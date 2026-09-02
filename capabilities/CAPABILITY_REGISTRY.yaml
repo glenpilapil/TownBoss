@@ -132,10 +132,16 @@ capabilities:
   - id: glen-ai-foundation
     name: Glen AI Foundation
     classification: platform-core
-    current_home: conceptual
-    status: approved-direction
-    future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper]
-    extraction_status: logical-boundary-only
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper]
+    core_entities: [ai-interaction, intent, skill-definition, skill-route, context-packet, grounding-reference, model-invocation, ai-output, action-proposal]
+    owns: [ai-interaction-normalization, intent-interpretation, skill-registry-contract, skill-discovery-and-routing, authorized-context-assembly, grounding-coordination, model-provider-abstraction, ai-output-typing, action-proposal-handoff, ai-interaction-observability-contract]
+    does_not_own: [identity-source-of-truth, authorization-policy-authorship, ai-authority-level-semantics, orchestration-lifecycle, domain-records, messaging-conversation-lifecycle, search-index-ownership, evidence-source-truth, scenario-execution, constraint-definition-authority, professional-judgment, professional-license-authority, government-authority, payments-custody, unrestricted-user-memory, product-help-content-authorship]
+    canonical_document: architecture/GLEN_AI_FOUNDATION.md
+    canonical_contract: capabilities/glen-ai-foundation/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: human-verification
     name: Human Verification Workflow
     classification: shared-domain
