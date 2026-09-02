@@ -1,0 +1,212 @@
+version: 1
+capability:
+  id: human-verification
+  name: Human Verification Workflow
+  classification: shared-domain
+  current_home: TownBoss
+  status: canonical-design-v1
+  extraction_status: logical-boundary-defined
+  canonical_document: architecture/HUMAN_VERIFICATION_WORKFLOW.md
+
+purpose: >-
+  Route claims, outputs, plans, assessments, or proposed actions to an appropriate
+  human when machine confidence, evidence quality, authority, qualification, or
+  policy is insufficient, producing attributable review outcomes without
+  fabricating certainty or authority.
+
+principles:
+  - insufficient_machine_confidence_or_authority_requires_governed_verification_path
+  - human_review_does_not_automatically_make_a_claim_true
+  - reviewer_identity_scope_qualification_and_evidence_must_be_attributable
+  - unknown_is_not_verified
+  - verification_does_not_grant_ai_authority
+  - external_authority_remains_external_authority
+  - unresolved_review_states_fail_closed
+  - re_verification_preserves_prior_history
+
+owns:
+  - verification_requests
+  - verification_subjects_and_scopes
+  - reviewer_requirement_declarations
+  - reviewer_assignment_and_routing_state
+  - review_evidence_packages
+  - reviewer_findings_and_dispositions
+  - clarification_and_more_evidence_requests
+  - attributable_reviewer_identity
+  - review_timestamps_and_validity_windows
+  - supersession_and_reverification_triggers
+  - evidence_provenance_links_for_review_outcomes
+  - escalation_when_reviewer_authority_or_qualification_is_insufficient
+
+does_not_own:
+  - professional_license_authority
+  - government_accreditation_authority
+  - government_or_regulatory_decisions
+  - domain_specific_professional_judgment_standards
+  - domain_approval_decisions
+  - ai_authority_levels
+  - identity_or_resource_authorization
+  - payment_settlement
+  - marketplace_pricing
+  - commissions
+  - commercial_engagement_terms
+  - truth_of_evidence_by_virtue_of_review
+
+reviewer_classes:
+  - user_confirmation
+  - operational_reviewer
+  - qualified_professional
+  - external_authoritative_reviewer_or_system
+
+lifecycle:
+  - REQUESTED
+  - ROUTING
+  - ASSIGNED
+  - IN_REVIEW
+  - VERIFIED
+  - VERIFIED_WITH_LIMITATIONS
+  - REJECTED
+  - NEEDS_MORE_EVIDENCE
+  - OUT_OF_SCOPE
+  - CANCELLED
+  - EXPIRED
+  - SUPERSEDED
+
+resolved_positive_dispositions:
+  - VERIFIED
+  - VERIFIED_WITH_LIMITATIONS
+
+unresolved_or_nonpositive_dispositions:
+  - REJECTED
+  - NEEDS_MORE_EVIDENCE
+  - OUT_OF_SCOPE
+  - CANCELLED
+  - EXPIRED
+  - SUPERSEDED
+
+request_fields:
+  required:
+    - request_id
+    - consuming_product
+    - domain
+    - subject_type
+    - subject_id
+    - review_question
+    - review_scope
+    - verification_reason
+    - required_reviewer_class
+    - evidence_references
+    - requesting_actor
+    - downstream_blocked_action
+  optional:
+    - required_qualifications
+    - scope_exclusions
+    - required_by
+    - ai_authority_context
+    - conflict_of_interest_constraints
+    - allowed_dispositions
+
+outcome_fields:
+  required:
+    - request_id
+    - reviewer_identity
+    - disposition
+    - findings
+    - evidence_reviewed
+    - reviewed_at
+  conditional:
+    - qualification_evidence
+    - reviewer_organization
+    - limitations_and_assumptions
+    - additional_evidence
+    - validity_or_expiration_conditions
+    - conflict_of_interest_disclosure
+    - signature_or_attestation_reference
+    - supersedes_outcome_id
+    - downstream_gate_re_evaluation_allowed
+
+qualification_dimensions:
+  - profession_or_role
+  - license_or_accreditation_type
+  - jurisdiction
+  - organization_membership
+  - verification_status
+  - conflict_of_interest_restriction
+  - independence_requirement
+  - geographic_eligibility
+  - qualification_evidence_recency
+
+fail_closed_when:
+  - no_qualified_reviewer_available
+  - reviewer_qualification_unestablished_when_required
+  - reviewer_outside_authorized_scope
+  - required_evidence_missing
+  - material_evidence_changed_after_review
+  - disallowed_conflict_of_interest
+  - verification_expired
+  - disposition_needs_more_evidence
+  - disposition_out_of_scope
+  - verification_record_ambiguous_unattributable_or_stale
+  - consuming_product_cannot_determine_requirement_satisfaction
+
+reverification_triggers:
+  - material_source_or_evidence_change
+  - new_observation_or_inspection
+  - changed_property_or_site_condition
+  - changed_law_rule_permit_or_external_record
+  - changed_scenario_assumptions
+  - changed_constraint_inputs
+  - expired_license_or_accreditation_evidence
+  - elapsed_validity_period
+  - superseding_professional_or_institutional_finding
+
+integrations:
+  evidence_provenance:
+    relationship: required_for_material_verification_outcomes
+    rule: evidence_and_review_lineage_remain_separate_but_linked
+  ai_authority:
+    relationship: escalation_path
+    rules:
+      - verification_may_satisfy_a_review_gate
+      - verification_does_not_raise_ai_authority_by_itself
+      - verification_does_not_create_user_authorization
+      - verification_cannot_permit_a4_autonomous_authority
+  scenario_engine:
+    relationship: may_trigger_verification_for_assumptions_or_simulated_outputs
+  constraint_engine:
+    relationship: may_trigger_verification_for_unknown_stale_or_ambiguous_inputs
+    rule: human_review_cannot_relabel_failed_constraint_as_pass_without_authorized_override_or_new_evidence_and_reevaluation
+
+marketplace_boundary:
+  included_in_v1: false
+  future_optional_capability: human-verification-marketplace
+  verification_owns:
+    - reviewer_eligibility_for_defined_verification_scope
+  marketplace_or_other_capabilities_may_own:
+    - discovery
+    - matching
+    - scheduling
+    - pricing
+    - booking
+    - commissions
+    - payment
+    - customer_relationship
+
+initial_consumers:
+  - GeoPlotter
+  - GlenTown
+future_consumers:
+  - RealWise
+  - TownDeveloper
+  - TownTraveler
+  - Development-Supervisor
+
+implementation_posture:
+  physical_extraction_required_now: false
+  centralized_marketplace_required_now: false
+  beta_scope_expansion_authorized: false
+  guidance: >-
+    Consumers should implement the smallest adapter around existing reviewer or
+    professional workflows and Evidence & Provenance links. Extract physically
+    only when demonstrated reuse, lifecycle independence, security, scale, or
+    operations justify it.
