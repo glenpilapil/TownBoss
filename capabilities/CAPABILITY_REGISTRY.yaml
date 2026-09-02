@@ -83,9 +83,15 @@ capabilities:
     name: Orchestration Engine
     classification: platform-core
     current_home: GlenTown
-    status: approved-direction
-    future_consumers: [GlenTown, TownTraveler, TownDeveloper]
-    extraction_status: logical-boundary-only
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [TownTraveler, TownDeveloper, Development-Supervisor]
+    core_entities: [goal, plan, task, requirement, dependency, validation-gate, resource-binding, schedule-binding, execution-attempt, exception, completion-record]
+    owns: [goal-to-task-lifecycle, plan-revision-lineage, dependency-readiness, gate-coordination, resource-binding-coordination, schedule-binding-coordination, execution-attempt-lifecycle, exception-routing, retry-recovery-coordination, completion-evidence-coordination]
+    does_not_own: [identity, resource-authorization-policy, ai-authority-levels, professional-judgment, professional-license-authority, government-authority, domain-policy-authorship, constraint-definition-authority, scenario-generation, payments-custody, external-authoritative-state, domain-specific-completion-semantics]
+    canonical_document: architecture/ORCHESTRATION_ENGINE.md
+    canonical_contract: capabilities/orchestration/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: scenario-engine
     name: Scenario Engine
     classification: platform-core
