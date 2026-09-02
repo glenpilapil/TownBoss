@@ -1,0 +1,208 @@
+version: 2
+capability: ai-authority
+name: Portfolio AI Authority Model
+classification: platform-core
+status: canonical-design-v2
+canonical_document: architecture/AI_AUTHORITY_MODEL.md
+purpose: >-
+  Define the maximum autonomous behavior AI may exercise across TownBoss products,
+  the approval and execution gates for consequential actions, and prohibited
+  autonomous authority boundaries.
+
+levels:
+  A0:
+    name: Inform / Explain
+    consequential_mutation: false
+    semantics: retrieve-summarize-explain-compare-and-surface-evidence-without-authoritative-mutation
+  A1:
+    name: Recommend / Draft
+    consequential_mutation: false
+    semantics: create-advisory-recommendations-drafts-scenarios-classifications-and-candidate-actions
+  A2:
+    name: Prepare for Approval
+    consequential_mutation: false
+    semantics: prepare-complete-consequential-actions-and-preflight-but-stop-before-authoritative-mutation
+  A3:
+    name: Bounded Execution
+    consequential_mutation: true
+    semantics: execute-only-under-preexisting-explicit-authority-authorization-and-deterministic-bounds
+  A4:
+    name: Prohibited Autonomous Authority
+    consequential_mutation: prohibited
+    semantics: ai-must-not-autonomously-claim-create-approve-or-exercise-reserved-authority
+
+invariants:
+  - confidence-is-not-authority
+  - inference-is-not-authoritative-record
+  - simulation-is-not-approval
+  - constraint-pass-is-not-execution-authority
+  - tool-access-is-not-permission
+  - orchestration-is-not-authority
+  - authorization-is-distinct-from-ai-authority
+  - previous-approval-is-not-blanket-delegation
+  - ai-cannot-grant-itself-additional-authority
+  - unknown-is-not-pass
+  - capability-does-not-create-authority
+
+separation_of_concerns:
+  ai_authority:
+    question: what-may-ai-autonomously-do-in-this-context
+    owns:
+      - authority-level-classification
+      - maximum-autonomous-behavior
+      - approval-boundary-semantics
+      - prohibited-autonomy-boundaries
+      - ai-execution-preconditions
+    does_not_own:
+      - identities-roles-or-resource-permissions
+      - task-lifecycle-or-scheduling
+      - external-authority-decisions
+  authorization:
+    question: may-this-actor-or-service-perform-this-operation-on-this-resource
+    owns:
+      - identity-and-actor-policy
+      - roles-and-permissions
+      - tenancy-and-resource-scope
+      - domain-access-decisions
+    rule: A3-requires-authorization-in-addition-to-ai-authority
+  orchestration:
+    question: how-does-an-approved-goal-or-action-progress-through-work
+    owns:
+      - tasks
+      - dependencies
+      - validation-gates
+      - schedule-and-resources
+      - execution-lifecycle
+      - exceptions-and-completion
+    rule: orchestration-must-not-create-or-escalate-authority
+
+execution_gates:
+  A3_required:
+    - authenticated-actor-or-service-identity
+    - exact-operation-and-resource-authorization
+    - valid-authority-source-or-delegation
+    - domain-appropriate-deterministic-constraints-and-risk-limits
+    - required-approvals-valid-for-exact-action-and-context
+    - no-unresolved-required-hard-constraint
+    - no-required-unknown-treated-as-pass
+    - idempotency-or-duplicate-prevention-when-retry-sensitive
+    - material-auditability
+    - material-evidence-or-provenance-links-when-required
+    - observable-execution-state-and-failure-handling
+    - domain-appropriate-recovery-compensation-cancellation-or-stop-behavior
+    - no-authority-ambiguity
+  fail_closed_when:
+    - authority-source-missing-or-unclear
+    - authorization-missing-or-denied
+    - required-approval-missing-expired-or-out-of-scope
+    - required-hard-constraint-failed
+    - required-hard-constraint-unknown-without-authorized-domain-resolution
+    - authority-safety-or-authorization-control-degraded
+
+consequential_action:
+  includes:
+    - rights-or-legal-position
+    - money-credit-custody-trading-or-payout
+    - safety
+    - government-status-or-records
+    - licensed-professional-reliance
+    - identity-access-or-enforcement
+    - significant-property-interests
+    - material-public-communications
+    - material-effects-on-another-person
+  default_level: A2
+  ambiguity_rule: resolve-downward-no-execution
+
+reserved_authority_boundaries:
+  human:
+    rule: required-human-approval-must-be-attributable-and-scoped-to-the-material-action
+  licensed_professional:
+    prohibited_autonomous_claims:
+      - professional-certification
+      - reserved-professional-judgment
+      - professional-signoff
+      - sealed-or-attested-output
+    rule: professional-validation-must-be-recorded-as-distinct-authoritative-act
+  government_and_external_authority:
+    prohibited_autonomous_claims:
+      - government-determination
+      - official-record-creation-as-authority
+      - permit-or-eligibility-approval
+      - external-provider-decision
+    allowed_support: [explain, preflight, prepare, submit-when-authorized, link, track, reconcile, orchestrate]
+    rule: external-source-remains-authoritative
+  financial:
+    default_maximum: A2
+    A3_requires_domain_policy:
+      - delegated-action-and-resource-scope
+      - amount-or-exposure-limits
+      - approval-conditions
+      - risk-controls
+      - idempotency
+      - audit-events
+      - reconciliation
+      - stop-and-recovery-behavior
+    prohibited_self_escalation: [raise-limits, bypass-dual-control, alter-custody-rules, self-approve-credit-or-withdrawal]
+  messaging_moderation_publication:
+    draft: A1
+    prepare-for-review: A2
+    bounded-automatic-action: A3-policy-required
+    policy_requires: [audience-or-target-scope, action-or-content-class, rate-or-scope-limits, authorization, auditability, stop-conditions]
+
+related_capabilities:
+  evidence_provenance:
+    contract: capabilities/evidence-provenance/CONTRACT.yaml
+    rule: evidence-and-confidence-improve-traceability-but-do-not-create-authority
+  scenario_engine:
+    contract: capabilities/scenario-engine/CONTRACT.yaml
+    rule: scenario-output-is-hypothetical-and-does-not-approve-or-grant-A3
+  constraint_engine:
+    contract: capabilities/constraint-engine/CONTRACT.yaml
+    rule: passing-evaluation-does-not-approve-or-grant-A3-and-overrides-require-owning-domain-authority
+  authorization:
+    rule: separately-required-for-A3
+  orchestration:
+    rule: may-coordinate-execution-but-cannot-create-or-escalate-authority
+
+self_escalation_prohibited:
+  - change-own-authority-level
+  - manufacture-approve-or-reinterpret-delegation-to-widen-scope
+  - infer-standing-permission-from-successful-prior-execution
+  - create-or-waive-authorization-requirements
+  - create-or-approve-own-constraint-override
+  - suppress-required-approval-or-evidence-based-on-confidence
+  - bypass-boundary-through-retries-tool-chaining-subagents-or-other-models
+  - delegate-to-another-ai-an-action-the-requesting-ai-lacks-authority-to-perform
+
+authority_change_rule:
+  source: authorized-non-ai-authority
+  application: controlled-configuration-or-domain-policy
+  audit_history_required: true
+
+capability_declaration_requirements_for_A2_or_A3:
+  - maximum-default-authority-level
+  - allowed-actions-by-level
+  - approval-required-actions
+  - prohibited-autonomous-actions
+  - valid-authority-and-approval-sources
+  - required-authorization-checks
+  - evidence-and-provenance-requirements
+  - scenario-or-preflight-gates-when-applicable
+  - constraint-gates-when-applicable
+  - reversibility-compensation-idempotency-and-recovery-requirements
+  - material-audit-events
+  - escalation-target
+
+defaults:
+  non_consequential_unclassified_output: A1
+  consequential_unclassified_action: A2
+  unclear_execution_authority: deny-execution
+  missing_required_approval: deny-execution
+  missing_authorization: deny-execution
+  product_may_lower_authority: true
+  product_may_raise_beyond-canonical-model: false
+
+implementation:
+  current_state: logical-contract-only
+  extraction_status: logical-boundary-defined
+  destructive_rewrite: prohibited-without-separate-approved-migration
