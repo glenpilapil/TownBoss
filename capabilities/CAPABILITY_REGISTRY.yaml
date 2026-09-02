@@ -110,6 +110,19 @@ capabilities:
     does_not_own: [government-rule-authority, professional-signoff, domain-policy-authorship, authorization-permissions, external-system-state, scenario-generation, task-orchestration]
     canonical_contract: capabilities/constraint-engine/CONTRACT.yaml
     extraction_status: logical-boundary-defined
+  - id: ai-authority
+    name: Portfolio AI Authority Model
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v2
+    initial_consumers: [GlenTown, GeoPlotter]
+    future_consumers: [RealWise, TownTraveler, TownDeveloper, Development-Supervisor, Forex-Quant-Lab]
+    levels: [A0, A1, A2, A3, A4]
+    owns: [ai-authority-level-semantics, maximum-autonomous-behavior, approval-boundary-semantics, prohibited-autonomy-boundaries, ai-execution-preconditions]
+    does_not_own: [identity-or-resource-permissions, authorization-policy-authorship, orchestration-lifecycle, professional-signoff, government-authority, financial-custody, domain-approval-decisions]
+    canonical_document: architecture/AI_AUTHORITY_MODEL.md
+    canonical_contract: capabilities/ai-authority/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: glen-ai-foundation
     name: Glen AI Foundation
     classification: platform-core
