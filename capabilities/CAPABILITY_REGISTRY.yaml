@@ -130,6 +130,19 @@ capabilities:
     status: approved-direction
     future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper]
     extraction_status: logical-boundary-only
+  - id: human-verification
+    name: Human Verification Workflow
+    classification: shared-domain
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GeoPlotter, GlenTown]
+    future_consumers: [RealWise, TownDeveloper, TownTraveler, Development-Supervisor]
+    core_entities: [verification-request, reviewer-requirement, reviewer-assignment, verification-outcome, reverification-trigger]
+    owns: [verification-routing, review-scope, reviewer-requirements, reviewer-assignment-state, attributable-review-outcomes, validity-expiration, reverification, review-evidence-links]
+    does_not_own: [professional-license-authority, government-authority, domain-approval-decisions, ai-authority-levels, resource-authorization, payments, commissions, marketplace-pricing, professional-judgment-standards]
+    canonical_document: architecture/HUMAN_VERIFICATION_WORKFLOW.md
+    canonical_contract: capabilities/human-verification/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: spatial-intelligence
     name: Spatial Intelligence
     classification: shared-domain
