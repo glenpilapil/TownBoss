@@ -11,16 +11,22 @@ default_profile:
   default_voice_presentation: masculine
   global_fallback: true
 
-required_profile_classes:
-  - id: glen
+canonical_profiles:
+  - profile_id: glen
+    display_name: Glen
     role: global-default
-  - id: female-character
-    role: first-class-alternative
+    presentation: masculine
+    default_voice_presentation: masculine
+  - profile_id: anji
+    display_name: Anji
+    canonical_spelling: Anji
+    common_spelling_note: intentionally distinct from Angie
+    role: first-class-female-alternative
+    presentation: feminine
+    default_voice_presentation: feminine
     requirements:
-      - stable-profile-id
-      - user-facing-female-identity
-      - female-default-voice-where-voice-enabled
       - coherent-personality-profile
+      - same-capability-as-glen
       - same-authority-and-safety-boundaries-as-glen
 
 profile_fields:
