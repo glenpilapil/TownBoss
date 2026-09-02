@@ -1,0 +1,238 @@
+version: 1
+capability: orchestration
+name: Orchestration Engine
+classification: platform-core
+status: canonical-design-v1
+canonical_document: architecture/ORCHESTRATION_ENGINE.md
+
+purpose: >-
+  Coordinate goals through attributable, resumable, policy-gated tasks,
+  requirements, dependencies, validation, resources, scheduling, execution,
+  exceptions, recovery, and verified completion without manufacturing authority.
+
+canonical_lifecycle:
+  - goal
+  - tasks
+  - requirements
+  - dependencies
+  - validation-gates
+  - resources
+  - schedule
+  - execution
+  - exceptions
+  - completion
+
+core_entities:
+  - goal
+  - plan
+  - task
+  - requirement
+  - dependency
+  - validation-gate
+  - resource-binding
+  - schedule-binding
+  - execution-attempt
+  - exception
+  - completion-record
+
+states:
+  - draft
+  - planned
+  - blocked
+  - ready
+  - awaiting_approval
+  - awaiting_verification
+  - scheduled
+  - executing
+  - paused
+  - exception
+  - completed
+  - cancelled
+  - failed
+
+owns:
+  - goal-to-task-lifecycle
+  - plan-revision-lineage
+  - dependency-readiness
+  - gate-coordination
+  - resource-binding-coordination
+  - schedule-binding-coordination
+  - execution-attempt-lifecycle
+  - exception-routing
+  - retry-recovery-coordination
+  - completion-evidence-coordination
+
+does_not_own:
+  - identity
+  - resource-authorization-policy
+  - ai-authority-levels
+  - professional-judgment
+  - professional-license-authority
+  - government-authority
+  - domain-policy-authorship
+  - constraint-definition-authority
+  - scenario-generation
+  - payments-custody
+  - external-authoritative-state
+  - domain-specific-completion-semantics
+
+invariants:
+  - planning-does-not-create-authority
+  - readiness-does-not-create-authority
+  - scheduling-does-not-create-authority
+  - orchestration-does-not-create-ai-authority
+  - simulation-does-not-equal-approval
+  - constraint-pass-does-not-equal-execution-authority
+  - verification-is-scope-bound
+  - external-authoritative-state-remains-external
+  - retries-do-not-bypass-gates
+  - completed-history-is-not-silently-rewritten
+  - replanning-does-not-launder-prohibited-actions
+  - completion-requires-explicit-completion-criteria
+
+readiness:
+  derived_not_permanent: true
+  invalidated_by:
+    - expired-or-revoked-approval
+    - stale-or-superseded-evidence
+    - changed-dependency
+    - failed-or-unknown-hard-constraint
+    - expired-or-revoked-verification
+    - resource-unavailability
+    - material-external-state-change
+
+execution_preconditions:
+  consequential:
+    - required-authorization-valid
+    - required-ai-authority-or-human-approval-valid
+    - hard-constraints-pass
+    - required-verification-current-and-in-scope
+    - evidence-fresh-enough-for-domain
+    - resource-scope-bounded
+    - duplicate-prevention-ready
+    - unresolved-partial-side-effects-safe
+    - external-state-not-materially-conflicting
+
+fail_closed_when:
+  - authorization-missing-or-unclear
+  - ai-authority-or-approval-insufficient
+  - required-hard-constraint-failed-or-unknown
+  - required-verification-missing-expired-revoked-or-out-of-scope
+  - materially-stale-evidence
+  - operation-scope-unbounded
+  - retry-sensitive-write-lacks-duplicate-prevention
+  - unresolved-partial-side-effect-makes-retry-unsafe
+  - authoritative-external-state-materially-conflicts
+  - ai-execution-would-cross-a4-boundary
+
+exception_types:
+  - requirement_missing
+  - dependency_blocked
+  - constraint_failed
+  - constraint_unknown
+  - authorization_missing
+  - approval_required
+  - authority_insufficient
+  - verification_required
+  - resource_unavailable
+  - schedule_conflict
+  - external_rejected
+  - external_timeout
+  - partial_side_effect
+  - evidence_stale
+  - recovery_exhausted
+
+integrations:
+  evidence_provenance:
+    consumes: [evidence, provenance, freshness, verification-assessments]
+    produces: [gate-evidence-links, execution-results, completion-claims]
+  scenario_engine:
+    consumes: [scenario-outcomes, assumptions, comparisons]
+    rule: selected-scenario-remains-non-authoritative-until-gates-pass
+  constraint_engine:
+    consumes: [constraint-evaluations, authorized-overrides]
+    rule: unknown-hard-constraint-does-not-pass
+  ai_authority:
+    consumes: [authority-level, execution-preconditions, delegation-or-approval]
+    rule: orchestration-never-upgrades-ai-authority
+  human_verification:
+    consumes: [verification-outcome, scope, validity]
+    produces: [verification-request-trigger]
+    rule: verification-does-not-create-unrelated-authority
+  authorization:
+    consumes: [authorization-decisions, approvals, delegations]
+    rule: orchestration-does-not-author-authorization-policy
+
+side_effects:
+  important_mutations_require_idempotency_or_equivalent: true
+  retry_requires_revalidation: true
+  partial_effect_requires_explicit_recovery_posture: true
+  recovery_postures:
+    - retry
+    - compensate
+    - reconcile
+    - manual-intervention
+    - terminal-failure
+
+replanning:
+  preserve_completed_history: true
+  preserve_failed_and_rejected_attempts: true
+  preserve_superseded_plan_provenance: true
+  reevaluate_dependencies_and-gates: true
+  cannot_reuse_expired_or_out_of_scope_approval: true
+  cannot_bypass_prohibition_by_task_splitting_or_tool_chaining: true
+
+cancellation:
+  first_class: true
+  distinguish:
+    - stop-future-work
+    - cancel-external-operation
+    - compensate-completed-side-effect
+    - non-reversible-completed-action
+  local-cancel-does-not-imply-external-cancel: true
+
+observability_required:
+  - goal-and-current-plan-revision
+  - task-status-and-block-reasons
+  - gate-results
+  - authority-and-approval-basis
+  - execution-attempts
+  - external-side-effects
+  - retry-recovery-compensation
+  - completion-evidence
+
+security:
+  preserve_identity_and_tenant_context: true
+  no-cross-tenant-bypass: true
+  secrets_not_embedded_in_task_payloads: true
+
+consumer_adapter_requirements:
+  - task-types-and-schemas
+  - requirements-and-completion-criteria
+  - constraint-and-gate-bindings
+  - authorization-and-approval-requirements
+  - ai-authority-operation-mapping
+  - resource-and-schedule-semantics
+  - external-system-adapters
+  - idempotency-and-recovery-behavior
+  - exception-and-escalation-policy
+
+implementation_truth:
+  current_home: GlenTown
+  evidence:
+    - app/Services/Travel/BookingOrchestrator.php
+    - app/Services/Travel/AvailabilityValidator.php
+    - app/Services/Travel/ConflictDetector.php
+    - app/Services/Travel/ItineraryGenerator.php
+    - app/Services/Travel/TravelCalendarSyncService.php
+  note: >-
+    These are domain implementation patterns, not evidence that the complete
+    portfolio Orchestration Engine contract is physically implemented.
+  extraction_status: logical-boundary-defined
+
+initial_consumers:
+  - GlenTown
+future_consumers:
+  - TownTraveler
+  - TownDeveloper
+  - Development-Supervisor
