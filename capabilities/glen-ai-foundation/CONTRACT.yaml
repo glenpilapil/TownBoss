@@ -1,0 +1,281 @@
+version: 1
+capability: glen-ai-foundation
+name: Glen AI Foundation
+classification: platform-core
+status: canonical-design-v1
+canonical_document: architecture/GLEN_AI_FOUNDATION.md
+
+purpose: >-
+  Provide the reusable TownBoss intelligence substrate for interaction intake,
+  intent interpretation, skill discovery/routing, authorized context assembly,
+  grounding, provider/model abstraction, response shaping, and bounded action
+  proposal handoff without manufacturing execution authority.
+
+core_entities:
+  - ai-interaction
+  - intent
+  - skill-definition
+  - skill-route
+  - context-packet
+  - grounding-reference
+  - model-invocation
+  - ai-output
+  - action-proposal
+
+owns:
+  - ai-interaction-normalization
+  - intent-interpretation
+  - skill-registry-contract
+  - skill-discovery-and-routing
+  - authorized-context-assembly
+  - grounding-coordination
+  - model-provider-abstraction
+  - ai-output-typing
+  - action-proposal-handoff
+  - ai-interaction-observability-contract
+
+does_not_own:
+  - identity-source-of-truth
+  - authorization-policy-authorship
+  - ai-authority-level-semantics
+  - orchestration-lifecycle
+  - domain-records
+  - messaging-conversation-lifecycle
+  - search-index-ownership
+  - evidence-source-truth
+  - scenario-execution
+  - constraint-definition-authority
+  - professional-judgment
+  - professional-license-authority
+  - government-authority
+  - payments-custody
+  - unrestricted-user-memory
+  - product-help-content-authorship
+
+interaction_lifecycle:
+  - input
+  - normalize
+  - interpret-intent
+  - determine-scope
+  - discover-skills
+  - authorize-context
+  - assemble-context
+  - ground
+  - invoke-intelligence
+  - evaluate-output
+  - shape-response
+  - propose-or-handoff-actions
+  - observe
+
+skill_definition_required_fields:
+  - skill-id
+  - version
+  - owner
+  - supported-intents
+  - input-contract
+  - output-contract
+  - required-context-scopes
+  - required-tools-or-capabilities
+  - maximum-requestable-ai-authority
+  - grounding-requirements
+  - failure-escalation-behavior
+
+skill_routing_considers:
+  - user-intent
+  - product-domain-context
+  - data-and-tool-availability
+  - resource-authorization
+  - ai-authority-boundary
+  - evidence-quality-and-freshness
+  - constraints-and-policy
+  - skill-version-and-health
+  - feature-flag-state
+  - cost-latency-provider-limits
+
+context_rules:
+  context-on-demand: true
+  minimum-necessary: true
+  preserve-tenant-isolation: true
+  no-unrestricted-global-context: true
+  secrets-and-credentials-excluded: true
+  unrelated-personal-data-excluded: true
+  authoritative-records-remain-owned-by-source-capability: true
+
+memory_boundary:
+  short-term-session-context-allowed: true
+  durable-memory-separately-governed: true
+  durable-memory-requires:
+    - explicit-source
+    - scope
+    - retention-deletion-policy
+    - privacy-basis
+  ai-summary-does-not-replace-authoritative-record: true
+
+truth_hierarchy:
+  - authoritative-current-domain-or-system-record
+  - verified-evidence-provenance-record
+  - current-authoritative-external-source
+  - attributable-product-knowledge
+  - validated-structured-inference-or-simulation
+  - general-model-knowledge
+
+invariants:
+  - confidence-does-not-create-authority
+  - intent-inference-does-not-create-authorization
+  - skill-selection-does-not-create-authority
+  - tool-access-does-not-create-authority
+  - model-provider-choice-does-not-change-authority
+  - skill-composition-does-not-expand-authority
+  - voice-command-does-not-expand-authority
+  - image-inference-does-not-become-authoritative-evidence
+  - ai-output-does-not-silently-overwrite-authoritative-records
+  - product-data-remains-owned-by-source-capability
+  - orchestration-remains-execution-lifecycle-authority
+  - ai-authority-remains-autonomy-boundary
+
+output_types:
+  - explanation
+  - answer
+  - recommendation
+  - draft
+  - classification
+  - structured-extraction
+  - plan-proposal
+  - scenario-proposal
+  - verification-request-proposal
+  - action-proposal
+
+model_provider_abstraction:
+  vendor-neutral: true
+  supported-requirement-classes:
+    - text-reasoning
+    - vision
+    - speech-input-output
+    - structured-output
+    - tool-calling
+    - context-size
+    - latency-class
+    - cost-class
+    - privacy-data-residency
+    - deterministic-or-high-reliability-preference
+  provider-change-cannot-weaken-gates: true
+
+prefer_deterministic_when:
+  - authoritative-domain-logic-exists
+  - deterministic-parser-exists
+  - rules-or-constraint-engine-is-authoritative
+  - calculator-or-search-is-more-reliable
+  - structured-domain-service-exists
+
+integrations:
+  ai_authority:
+    consumes: [authority-levels, execution-preconditions]
+    rule: model-confidence-or-tool-access-never-self-escalates-authority
+  orchestration:
+    produces: [goal-interpretation, plan-proposals, action-proposals]
+    consumes: [workflow-state, blockers, exceptions]
+    rule: no-hidden-parallel-consequential-workflow-state
+  evidence_provenance:
+    consumes: [sources, freshness, confidence, verification, supersession]
+    produces: [derived-claim-links, grounding-references]
+    rule: inference-is-not-authoritative-evidence
+  scenario_engine:
+    produces: [scenario-proposals, explicit-assumptions]
+    consumes: [scenario-results, comparisons]
+    rule: model-generated-scenario-is-not-approval
+  constraint_engine:
+    consumes: [constraint-results, explanations]
+    rule: unknown-or-failed-hard-constraint-cannot-be-recast-as-pass
+  human_verification:
+    produces: [verification-request-proposals]
+    consumes: [verification-outcomes]
+    rule: reviewer-credentials-and-professional-authority-cannot-be-manufactured
+  authorization:
+    consumes: [authorization-decisions]
+    rule: context-and-tools-remain-resource-authorized
+  help_lms:
+    consumes: [authoritative-product-help-and-training-content]
+    rule: ai-does-not-invent-missing-product-policy
+
+ai_authority_behavior:
+  A0: explain-or-surface-information
+  A1: recommend-draft-classify-summarize-or-propose
+  A2: prepare-consequential-action-for-attributable-human-approval
+  A3: bounded-execution-only-through-canonical-gates
+  A4: prohibited-autonomous-authority
+
+fail_closed_when:
+  - ai-authority-insufficient-or-ambiguous
+  - authorization-missing
+  - selected-skill-or-tool-does-not-permit-operation
+  - required-constraint-verification-or-evidence-unresolved
+  - context-isolation-cannot-be-guaranteed
+  - external-authoritative-state-materially-conflicts
+  - action-crosses-a4-boundary
+  - output-cannot-be-bounded-to-deterministic-operation-contract
+  - tool-requires-unsafe-credential-exposure
+
+prompt_instruction_boundary:
+  distinguish:
+    - canonical-platform-policy
+    - product-policy
+    - skill-instructions
+    - trusted-context
+    - tool-results
+    - user-input
+    - untrusted-retrieved-content
+  untrusted-content-cannot-override-system-policy: true
+  prompt-injection-resistance-required: true
+
+privacy_security:
+  tenant-isolation-required: true
+  cross-product-context-requires-explicit-authorization: true
+  provider-bound-data-minimized: true
+  provider-policy-may-exclude-sensitive-data-classes: true
+  secrets-not-in-model-context: true
+
+observability_required:
+  - selected-skills-and-routing-basis
+  - context-source-classes
+  - model-provider-and-version
+  - grounding-for-material-claims
+  - ai-authority-level
+  - action-proposals
+  - orchestration-or-verification-handoff
+  - fallbacks-refusals-policy-blocks
+  - latency-cost-usage-where-useful
+
+product_adapter_requirements:
+  - branded-interaction-surfaces-and-modalities
+  - domain-skill-registrations
+  - context-providers-and-scopes
+  - help-lms-knowledge-sources
+  - domain-tool-registrations
+  - authorization-and-ai-authority-mappings
+  - evidence-grounding-requirements
+  - domain-safety-policy-overlays
+  - locale-personality-voice-presentation
+  - escalation-and-fallback-behavior
+
+implementation_truth:
+  current_home: conceptual
+  evidence:
+    - GlenTown/app/Services/AI/AiAuthorityGate.php
+  implemented_components:
+    - product-side-ai-authority-enforcement-boundary
+  not_yet_implemented:
+    - general-assistant-runtime
+    - model-gateway
+    - skill-registry-router
+    - context-assembler
+    - grounding-coordinator
+    - conversational-action-handoff-runtime
+  extraction_status: logical-boundary-defined
+
+initial_consumers:
+  - GlenTown
+future_consumers:
+  - GeoPlotter
+  - RealWise
+  - TownTraveler
+  - TownDeveloper
