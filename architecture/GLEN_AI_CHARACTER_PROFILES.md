@@ -9,7 +9,7 @@
 
 Glen AI may be presented through multiple selectable character/personality profiles while retaining one shared intelligence, skill, grounding, authorization, orchestration, and AI Authority foundation.
 
-The global default character is **Glen**. Products may define context-appropriate defaults, and users may choose another available character. At minimum, the portfolio should support a female character with a female voice in addition to Glen, with room for additional profiles over time.
+The global default character is **Glen**. Products may define context-appropriate defaults, and users may choose another available character. The canonical female counterpart is **Anji**, with a female voice by default where voice is enabled. Additional profiles may be introduced over time.
 
 A character profile changes presentation and interaction style. It does **not** change what the AI knows, which product records it may access, which skills are available, what evidence is authoritative, or what actions it is permitted to perform.
 
@@ -52,17 +52,20 @@ The canonical global fallback profile is:
 
 The exact synthetic voice model/provider is not canonical. Voice providers may change without changing the Glen profile's identity or authority semantics.
 
-## Female character requirement
+## Anji — canonical female counterpart
 
-The portfolio must support at least one first-class female character profile with:
+The canonical first-class female character profile is:
 
-- a stable profile ID;
-- a user-facing female identity/name chosen through product/brand design;
-- a female voice by default where voice is enabled;
-- its own coherent conversational personality rather than merely changing voice pitch;
-- the same capability, grounding, safety, authorization, and AI Authority boundaries as Glen.
+- `profile_id: anji`
+- display name: `Anji`
+- canonical spelling: `Anji` (intentionally distinct from the more common `Angie` spelling)
+- presentation: female/feminine where voice/avatar presentation makes gender relevant;
+- voice: female voice by default where voice output is enabled;
+- role: first-class alternative to Glen, not a subordinate or reduced-capability character;
+- behavior: its own coherent conversational personality rather than merely changing voice pitch;
+- authority: exactly the same capability, grounding, safety, authorization, and AI Authority boundaries as Glen.
 
-The canonical architecture does not force a permanent female character name in v1. Product/brand design may name and visually define the profile later without changing this contract.
+The visual identity, exact personality tuning, synthetic voice provider/model, accent set, and product-specific use of Anji may evolve without changing the canonical identity or authority semantics.
 
 ## Additional characters
 
@@ -147,7 +150,7 @@ Products must not weaken the parent Glen AI Foundation invariants through charac
 ## Initial canonical requirements
 
 1. `Glen` is the global default.
-2. At least one female character with a female default voice must be supported by the architecture.
+2. `Anji` is the canonical first-class female character and uses a female default voice where voice is enabled.
 3. Character/personality and voice are configurable but separable.
 4. User selection should override contextual defaults unless the user opts into automatic switching.
 5. Character switching cannot alter capability, data access, authorization, AI Authority, constraints, evidence, or orchestration state.
