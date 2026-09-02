@@ -1,0 +1,75 @@
+version: 1
+capability: constraint-engine
+classification: platform-core
+status: canonical-design
+purpose: Represent and evaluate reusable feasibility constraints without owning the authoritative rules of source domains.
+principles:
+  - constraints-must-be-explicit-and-testable
+  - source-authority-remains-with-owning-domain-or-external-system
+  - unknown-is-not-pass
+  - hard-and-soft-constraints-are-distinct
+  - overrides-must-be-authorized-and-traceable
+  - time-location-subject-and-scope-matter
+  - evaluation-results-should-be-explainable
+core_entities:
+  constraint_definition:
+    required_semantics: [id, constraint_type, operator_or_rule, severity, status]
+    optional_semantics: [name, description, owning_domain, source_claim_reference, authority_reference, effective_from, effective_until, jurisdiction_reference, version, metadata]
+  constraint_parameter:
+    required_semantics: [id, constraint_reference, parameter_name, value]
+    optional_semantics: [unit, source_claim_reference, metadata]
+  constraint_set:
+    required_semantics: [id, name]
+    optional_semantics: [description, owning_domain, version, effective_from, effective_until, metadata]
+  constraint_set_member:
+    required_semantics: [id, constraint_set_reference, constraint_reference]
+    optional_semantics: [priority, required, metadata]
+  evaluation_context:
+    required_semantics: [id, subject_reference, evaluated_at]
+    optional_semantics: [scenario_reference, actor_reference, organization_reference, location_reference, jurisdiction_reference, time_window, input_claim_references, metadata]
+  constraint_evaluation:
+    required_semantics: [id, constraint_reference, context_reference, result, evaluated_at]
+    optional_semantics: [actual_value, expected_value, reason_code, explanation, evidence_claim_references, method_reference, method_version, metadata]
+  override:
+    required_semantics: [id, evaluation_reference, decision, authorized_by, authorized_at]
+    optional_semantics: [reason, expires_at, evidence_claim_references, metadata]
+severity_levels: [hard, soft, advisory]
+evaluation_results: [pass, fail, warning, unknown, not_applicable, error]
+constraint_categories:
+  - regulatory
+  - eligibility
+  - budget
+  - time
+  - availability
+  - inventory
+  - spatial
+  - capacity
+  - dependency
+  - risk
+  - authorization
+  - policy
+  - preference
+does_not_own:
+  - authoritative-government-rules
+  - professional-judgment-or-signoff
+  - domain-specific-policy-authorship
+  - user-authorization-permissions
+  - external-system-state
+  - scenario-generation
+  - task-orchestration
+relationships:
+  evidence_provenance: constraint-sources-and-material-evaluation-inputs-may-reference-evidence-provenance
+  scenario_engine: scenario-engine-binds-constraints-and-compares-feasibility-across-scenarios
+  orchestration: orchestration-may-use-constraint-evaluations-as-validation-gates
+  authorization: override-authority-must-be-checked-by-the-owning-authorization-domain
+rules:
+  hard_fail: a-failed-hard-constraint-makes-the-context-infeasible-unless-an-explicit-authorized-domain-policy-allows-override
+  unknown: unknown-must-not-be-treated-as-pass
+  supersession: changed-rules-create-new-version-or-supersession-lineage-rather-than-silent-rewrite
+  explanation: every-fail-warning-unknown-or-error-result-must-have-a-machine-readable-reason-or-explanation
+initial_consumers: [GeoPlotter, GlenTown]
+future_consumers: [TownTraveler, TownDeveloper, RealWise]
+implementation:
+  current_state: logical-contract-only
+  extraction_trigger: real-multi-product-use-or-other-extraction-policy-trigger
+  destructive_rewrite: prohibited-without-separate-approved-migration

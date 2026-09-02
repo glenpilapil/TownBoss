@@ -90,16 +90,26 @@ capabilities:
     name: Scenario Engine
     classification: platform-core
     current_home: none
-    status: approved-direction
-    future_consumers: [GeoPlotter, GlenTown, RealWise, TownTraveler, TownDeveloper, Forex-Quant-Lab]
-    extraction_status: design-after-evidence-provenance
+    status: canonical-design-v1
+    initial_consumers: [GeoPlotter, GlenTown]
+    future_consumers: [RealWise, TownTraveler, TownDeveloper, Forex-Quant-Lab]
+    core_entities: [scenario, assumption, scenario-constraint-binding, scenario-run, outcome, comparison]
+    owns: [scenario-lineage, assumptions, simulation-runs, outcomes, comparisons, tradeoffs, reproducibility-metadata]
+    does_not_own: [domain-specific-scenario-semantics, constraint-definition-authority, authoritative-decisions, professional-signoff, external-side-effect-execution, task-orchestration]
+    canonical_contract: capabilities/scenario-engine/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: constraint-engine
     name: Constraint Engine
     classification: platform-core
     current_home: none
-    status: approved-direction
-    future_consumers: [GeoPlotter, GlenTown, TownTraveler, TownDeveloper]
-    extraction_status: design-after-evidence-provenance
+    status: canonical-design-v1
+    initial_consumers: [GeoPlotter, GlenTown]
+    future_consumers: [TownTraveler, TownDeveloper, RealWise]
+    core_entities: [constraint-definition, constraint-parameter, constraint-set, evaluation-context, constraint-evaluation, override]
+    owns: [constraint-representation, constraint-sets, severity, evaluation-context, evaluation-results, explanations, authorized-override-records]
+    does_not_own: [government-rule-authority, professional-signoff, domain-policy-authorship, authorization-permissions, external-system-state, scenario-generation, task-orchestration]
+    canonical_contract: capabilities/constraint-engine/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: glen-ai-foundation
     name: Glen AI Foundation
     classification: platform-core
