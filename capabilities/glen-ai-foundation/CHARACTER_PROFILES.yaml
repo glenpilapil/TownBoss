@@ -1,0 +1,137 @@
+version: 1
+subcontract: glen-ai-character-profiles
+parent_capability: glen-ai-foundation
+status: canonical-design-v1
+canonical_document: architecture/GLEN_AI_CHARACTER_PROFILES.md
+
+default_profile:
+  profile_id: glen
+  display_name: Glen
+  presentation: masculine
+  default_voice_presentation: masculine
+  global_fallback: true
+
+required_profile_classes:
+  - id: glen
+    role: global-default
+  - id: female-character
+    role: first-class-alternative
+    requirements:
+      - stable-profile-id
+      - user-facing-female-identity
+      - female-default-voice-where-voice-enabled
+      - coherent-personality-profile
+      - same-authority-and-safety-boundaries-as-glen
+
+profile_fields:
+  required:
+    - profile-id
+    - version
+    - display-name
+    - personality-dimensions
+    - voice-policy
+  optional:
+    - presentation-gender-or-identity
+    - avatar-reference
+    - supported-voice-alternatives
+    - locale-language-accent-preferences
+    - emotional-expressiveness
+    - humor-playfulness
+    - context-suitability-tags
+    - accessibility-variants
+    - disclosure-metadata
+    - product-availability
+    - feature-flag-state
+
+resolution_precedence:
+  - explicit-user-session-selection
+  - saved-user-preference
+  - explicit-context-default
+  - product-default
+  - global-glen-fallback
+
+invariants:
+  - character-does-not-change-capability
+  - character-does-not-change-authorization
+  - character-does-not-change-ai-authority
+  - character-does-not-change-tool-permissions
+  - character-does-not-change-evidence-truth
+  - character-does-not-change-constraint-results
+  - character-does-not-create-professional-or-government-authority
+  - voice-does-not-change-user-intent-semantics
+  - profile-switch-does-not-create-parallel-orchestration-state
+  - user-choice-overrides-context-default-unless-auto-switching-opted-in
+  - personality-style-must-not-intentionally-change-material-facts
+
+personality_dimensions:
+  - directness
+  - warmth
+  - formality
+  - brevity-detail
+  - humor
+  - enthusiasm
+  - coaching-tendency
+  - next-step-initiative
+  - local-language-code-switching
+  - emotional-expressiveness
+
+voice_rules:
+  character-and-voice-separable: true
+  provider-neutral: true
+  allow-accessibility-variants: true
+  allow-language-accent-variants: true
+  voice-fallback-cannot-change-authority: true
+  real-person-voice-requires-rights-consent-and-disclosure: true
+
+context_default_rules:
+  product-may-set-context-default: true
+  context-default-affects-presentation-only: true
+  unexpected-mid-session-switch-disallowed-without-user-opt-in: true
+
+user_preferences:
+  saved-character-allowed: true
+  saved-voice-allowed: true
+  separately-governed-preference-data: true
+  must-be-removable-or-resettable: true
+  easy-return-to-glen: true
+
+skill_tool_independence:
+  skills-belong-to-capabilities-not-characters: true
+  profile-cannot-own-private-permission-escalating-skill-copy: true
+  profile-change-cannot-change-read-write-classification: true
+  profile-change-cannot-change-a1-a2-a3-mapping: true
+
+orchestration:
+  preserve-canonical-workflow-state-across-profile-switch: true
+  profile-may-be-interaction-metadata: true
+
+multimodal:
+  supported-presentation-surfaces:
+    - text
+    - voice
+    - avatar
+    - animation
+    - future-spatial-or-embodied-interface
+
+product_adapter_may_define:
+  - available-profiles
+  - profile-names-and-avatars-within-policy
+  - context-defaults
+  - profile-selection-ui
+  - voice-provider-mapping
+  - supported-locales-and-voices
+  - saved-preference-behavior
+  - feature-flag-and-experiment-rollout
+  - accessibility-variants
+
+implementation_truth:
+  implemented: false
+  not_yet_implemented:
+    - character-selection-ui
+    - avatar-switching
+    - voice-synthesis-profile-mapping
+    - saved-character-preferences
+    - saved-voice-preferences
+    - context-based-profile-defaulting
+    - automatic-profile-switching
+  note: architecture-only; not a GlenTown Beta prerequisite
