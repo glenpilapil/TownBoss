@@ -1,0 +1,126 @@
+version: 1
+capability: evidence-provenance
+classification: platform-core
+status: canonical-design
+principles:
+  - confidence-is-not-authority
+  - preserve-history-do-not-silently-overwrite
+  - distinguish-observed-effective-recorded-and-expiry-times
+  - media-is-an-artifact-capability-not-evidence-by-default
+  - audit-history-is-distinct-from-evidence-provenance
+  - domain-decisions-remain-with-domain-capabilities
+  - minimize-sensitive-data
+core_entities:
+  evidence_source:
+    purpose: Describe the origin/provider/authority context of information.
+    required_semantics: [id, source_type]
+    optional_semantics:
+      - provider_name
+      - provider_reference
+      - external_reference
+      - authority_class
+      - captured_at
+      - retrieved_at
+      - metadata
+  evidence_artifact:
+    purpose: Reference material that may support or contradict claims.
+    required_semantics: [id, artifact_type, source_reference]
+    optional_semantics:
+      - media_reference
+      - storage_reference
+      - content_hash
+      - captured_at
+      - retrieved_at
+      - sensitivity_class
+      - retention_class
+      - metadata
+  claim_observation:
+    purpose: Typed assertion or observation about a subject.
+    required_semantics: [id, claim_type, subject_reference, recorded_at]
+    optional_semantics:
+      - value
+      - asserted_by
+      - source_reference
+      - artifact_references
+      - observed_at
+      - effective_from
+      - effective_until
+      - expires_at
+      - confidence
+      - spatial_reference
+      - status
+  assessment:
+    purpose: Evaluation or verification of evidence or a claim without making the downstream domain decision.
+    required_semantics: [id, target_reference, assessment_type, status, assessed_at]
+    optional_semantics:
+      - assessor_reference
+      - method
+      - method_version
+      - confidence
+      - reason_code
+      - notes
+      - valid_until
+  provenance_relation:
+    purpose: Preserve derivation, support, contradiction, correction, and supersession relationships.
+    required_semantics: [id, from_reference, relation_type, to_reference, created_at]
+    relation_types:
+      - supports
+      - contradicts
+      - corroborates
+      - derived_from
+      - transformed_from
+      - supersedes
+      - corrects
+      - replaces
+      - references
+privacy:
+  default_raw_evidence_visibility: restricted
+  public_projection_required: true
+  public_projection_rule: expose-only-explicitly-approved-derived-or-reference-fields
+  sensitive_categories:
+    - identity-documents
+    - precise-location
+    - private-site-photos
+    - business-documents
+    - financial-records
+    - government-records
+ai_provenance:
+  retain_when_material:
+    - model_or_pipeline_family
+    - model_or_pipeline_version
+    - inference_timestamp
+    - input_references
+    - method_identifier
+    - confidence_or_uncertainty_when_meaningful
+    - human_correction_or_verification_relations
+  rule: ai-inference-remains-inference-unless-authoritatively-validated
+spatial_extension:
+  allowed_references:
+    - parcel_or_property
+    - point
+    - bounding_box
+    - geometry_or_feature
+    - camera_position_or_orientation
+    - coordinate_reference_metadata
+  boundary: spatial-intelligence-owns-geometry-semantics-evidence-provenance-owns-evidentiary-lineage
+does_not_own:
+  - domain-approval-decisions
+  - professional-signoff
+  - government-authority
+  - media-storage-lifecycle
+  - generic-audit-logging
+  - spatial-geometry-model
+initial_consumers:
+  - GlenTown
+  - GeoPlotter
+future_consumers:
+  - RealWise
+  - TownTraveler
+  - TownDeveloper
+  - Development-Supervisor
+  - Forex-Quant-Lab
+implementation:
+  current_state: logical-contract-only
+  migration_mode: incremental-adapters-and-links
+  destructive_rewrite: prohibited-without-separate-approved-migration
+  extraction_trigger: real-multi-product-use-or-other-extraction-policy-trigger
