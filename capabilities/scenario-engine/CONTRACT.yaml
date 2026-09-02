@@ -1,0 +1,53 @@
+version: 1
+capability: scenario-engine
+classification: platform-core
+status: canonical-design
+purpose: Model comparable hypothetical futures without owning domain-specific meaning or execution.
+principles:
+  - scenario-is-not-authoritative-state
+  - assumptions-must-be-explicit
+  - constraints-are-evaluated-not-silently-ignored
+  - outcomes-should-be-reproducible-when-inputs-and-methods-are-stable
+  - evidence-and-provenance-should-support-material-inputs-and-results
+  - preserve-scenario-history-and-comparison-lineage
+  - simulation-precedes-consequential-execution-where-appropriate
+core_entities:
+  scenario:
+    required_semantics: [id, scenario_type, subject_reference, status, created_at]
+    optional_semantics: [name, description, owner_reference, parent_scenario_reference, baseline_reference, method_reference, metadata]
+  assumption:
+    required_semantics: [id, scenario_reference, assumption_type, value]
+    optional_semantics: [source_claim_reference, confidence, effective_from, effective_until, rationale, metadata]
+  scenario_constraint_binding:
+    required_semantics: [id, scenario_reference, constraint_reference]
+    optional_semantics: [override_policy, override_reason, priority, metadata]
+  scenario_run:
+    required_semantics: [id, scenario_reference, run_status, started_at]
+    optional_semantics: [completed_at, method_reference, method_version, input_snapshot_reference, random_seed, metadata]
+  outcome:
+    required_semantics: [id, scenario_run_reference, outcome_type, value]
+    optional_semantics: [unit, evidence_claim_references, confidence, uncertainty, explanation_reference, metadata]
+  comparison:
+    required_semantics: [id, scenario_run_references, comparison_method, created_at]
+    optional_semantics: [criteria, ranking, tradeoffs, explanation_reference, metadata]
+scenario_statuses: [draft, ready, evaluated, archived, superseded, invalidated]
+run_statuses: [queued, running, completed, failed, inconclusive, cancelled]
+does_not_own:
+  - domain-specific-scenario-semantics
+  - constraint-definition-authority
+  - authoritative-business-or-government-decisions
+  - professional-signoff
+  - external-side-effect-execution
+  - scheduling-or-task-orchestration
+  - evidence-storage
+relationships:
+  constraint_engine: scenario-engine-binds-and-evaluates-constraints-through-constraint-engine
+  evidence_provenance: material-assumptions-inputs-and-outcomes-may-reference-evidence-provenance-records
+  orchestration: orchestration-may-consume-approved-scenario-results-before-execution
+  ai_authority: ai-generated-scenarios-default-to-recommend-or-prepare-unless-domain-policy-allows-more
+initial_consumers: [GeoPlotter, GlenTown]
+future_consumers: [RealWise, TownTraveler, TownDeveloper, Forex-Quant-Lab]
+implementation:
+  current_state: logical-contract-only
+  extraction_trigger: real-multi-product-use-or-other-extraction-policy-trigger
+  destructive_rewrite: prohibited-without-separate-approved-migration
