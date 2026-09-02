@@ -1,0 +1,148 @@
+version: 1
+status: canonical-foundation
+architecture_layers:
+  - platform-core
+  - shared-domain
+  - product
+rules:
+  dependency_direction: product -> shared-domain -> platform-core
+  extraction: logical-boundary-first
+  implementation_truth: registry status must reflect evidence, not architectural approval
+capabilities:
+  - id: identity-trust
+    name: Identity & Trust
+    classification: platform-core
+    current_home: GlenTown
+    status: implemented
+    future_consumers: [GlenTown, RealWise, TownTraveler, TownDeveloper]
+    extraction_status: logical-boundary-only
+  - id: organizations-tenancy
+    name: Organizations & Tenancy
+    classification: platform-core
+    current_home: GlenTown
+    status: implemented
+    future_consumers: [GlenTown, RealWise, TownTraveler, TownDeveloper]
+    extraction_status: logical-boundary-only
+  - id: authorization
+    name: Authorization
+    classification: platform-core
+    current_home: GlenTown
+    status: implemented-partial-by-domain
+    future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper]
+    extraction_status: logical-boundary-only
+  - id: location-geography
+    name: Location & Geography
+    classification: platform-core
+    current_home: GlenTown
+    status: implemented
+    future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper]
+    extraction_status: logical-boundary-only
+  - id: messaging
+    name: Messaging
+    classification: platform-core
+    current_home: GlenTown
+    status: planned
+    future_consumers: [GlenTown, RealWise, TownTraveler]
+    owns: [conversations, participants, messages, message-attachments, delivery-read-state]
+    does_not_own: [marketplace-orders, property-inquiries, travel-bookings]
+    extraction_status: logical-boundary-only
+  - id: notifications
+    name: Notifications
+    classification: platform-core
+    current_home: GlenTown
+    status: partial
+    future_consumers: [GlenTown, RealWise, TownTraveler, TownDeveloper]
+    extraction_status: logical-boundary-only
+  - id: payments-credits
+    name: Payments & Credits
+    classification: platform-core
+    current_home: GlenTown
+    status: partial-planned
+    future_consumers: [GlenTown, RealWise, TownTraveler]
+    extraction_status: logical-boundary-only
+  - id: media
+    name: Media
+    classification: platform-core
+    current_home: GlenTown
+    status: partial
+    future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper]
+    extraction_status: logical-boundary-only
+  - id: evidence-provenance
+    name: Evidence & Provenance
+    classification: platform-core
+    current_home: distributed
+    status: partial-fragments
+    future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper, Forex-Quant-Lab, Development-Supervisor]
+    owns: [sources, observations, observed-effective-dates, confidence, verification-status, supersession, provenance-links]
+    does_not_own: [domain-approval-decisions, professional-signoff, government-authority]
+    extraction_status: design-next
+  - id: orchestration
+    name: Orchestration Engine
+    classification: platform-core
+    current_home: GlenTown
+    status: approved-direction
+    future_consumers: [GlenTown, TownTraveler, TownDeveloper]
+    extraction_status: logical-boundary-only
+  - id: scenario-engine
+    name: Scenario Engine
+    classification: platform-core
+    current_home: none
+    status: approved-direction
+    future_consumers: [GeoPlotter, GlenTown, RealWise, TownTraveler, TownDeveloper, Forex-Quant-Lab]
+    extraction_status: design-after-evidence-provenance
+  - id: constraint-engine
+    name: Constraint Engine
+    classification: platform-core
+    current_home: none
+    status: approved-direction
+    future_consumers: [GeoPlotter, GlenTown, TownTraveler, TownDeveloper]
+    extraction_status: design-after-evidence-provenance
+  - id: glen-ai-foundation
+    name: Glen AI Foundation
+    classification: platform-core
+    current_home: conceptual
+    status: approved-direction
+    future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper]
+    extraction_status: logical-boundary-only
+  - id: spatial-intelligence
+    name: Spatial Intelligence
+    classification: shared-domain
+    current_home: GeoPlotter-future
+    status: approved-direction
+    future_consumers: [GeoPlotter, GlenTown, RealWise, TownTraveler, TownDeveloper]
+    extraction_status: defer-until-geoplotter-evidence
+  - id: property-intelligence
+    name: Property Intelligence
+    classification: shared-domain
+    current_home: GeoPlotter-RealWise
+    status: emerging
+    future_consumers: [GeoPlotter, RealWise, TownDeveloper, GlenTown]
+    extraction_status: logical-boundary-only
+  - id: visualization-3d
+    name: 3D & Blender Visualization
+    classification: shared-domain
+    current_home: GeoPlotter-future
+    status: approved-direction
+    future_consumers: [GeoPlotter, RealWise, TownDeveloper]
+    extraction_status: defer-until-implemented
+  - id: community
+    name: Community
+    classification: product
+    current_home: GlenTown
+    status: implemented-partial
+    future_consumers: [GlenTown]
+    extraction_status: keep-product-specific
+  - id: pre-loved
+    name: Pre-Loved
+    classification: product
+    current_home: GlenTown
+    status: implemented-partial
+    future_consumers: [GlenTown]
+    extraction_status: keep-product-specific
+  - id: parcel-technical-description
+    name: Parcel Technical Description Interpretation
+    classification: product
+    current_home: GeoPlotter
+    status: emerging
+    future_consumers: [GeoPlotter]
+    extraction_status: keep-product-specific-until-evidence
