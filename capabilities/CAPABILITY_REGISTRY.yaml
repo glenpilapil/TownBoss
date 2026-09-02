@@ -71,11 +71,14 @@ capabilities:
     name: Evidence & Provenance
     classification: platform-core
     current_home: distributed
-    status: partial-fragments
-    future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper, Forex-Quant-Lab, Development-Supervisor]
-    owns: [sources, observations, observed-effective-dates, confidence, verification-status, supersession, provenance-links]
-    does_not_own: [domain-approval-decisions, professional-signoff, government-authority]
-    extraction_status: design-next
+    status: canonical-design-v1
+    initial_consumers: [GlenTown, GeoPlotter]
+    future_consumers: [RealWise, TownTraveler, TownDeveloper, Forex-Quant-Lab, Development-Supervisor]
+    core_entities: [evidence-source, evidence-artifact, claim-observation, assessment, provenance-relation]
+    owns: [sources, artifact-lineage, observations-claims, observed-effective-recorded-dates, confidence, assessments-verification, supersession, provenance-links]
+    does_not_own: [domain-approval-decisions, professional-signoff, government-authority, media-storage-lifecycle, generic-audit-logging, spatial-geometry-model]
+    canonical_contract: capabilities/evidence-provenance/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: orchestration
     name: Orchestration Engine
     classification: platform-core
