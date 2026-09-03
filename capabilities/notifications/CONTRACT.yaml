@@ -1,0 +1,267 @@
+version: 1
+capability: notifications
+name: Notifications
+classification: platform-core
+status: canonical-design-v1
+canonical_document: architecture/NOTIFICATIONS.md
+
+purpose: >-
+  Coordinate attributable, preference-aware, retry-safe notification delivery
+  across approved channels without becoming the source of truth for the event,
+  granting permission, or treating delivery/read state as workflow completion.
+
+core_rules:
+  - notification-does-not-equal-message-or-authoritative-domain-state
+  - delivery-does-not-equal-read-acknowledgment-or-action-completion
+
+core_entities:
+  - notification-intent
+  - recipient-reference
+  - notification-type
+  - channel-policy
+  - delivery-attempt
+  - delivery-state
+  - interaction-state
+  - preference
+  - urgency
+  - deduplication-key
+  - action-reference
+
+owns:
+  - notification-intent-envelope
+  - recipient-delivery-coordination
+  - channel-selection-policy-interface
+  - delivery-state-semantics
+  - read-interaction-state
+  - notification-preference-semantics
+  - urgency-priority-semantics
+  - deduplication-and-retry-semantics
+  - digest-batching-semantics
+  - expiry-suppression
+  - provider-delivery-reconciliation
+
+does_not_own:
+  - message-conversation-records
+  - source-domain-state
+  - authorization-policy
+  - ai-authority-levels
+  - orchestration-state
+  - public-alert-authority
+  - government-authority
+  - scheduling-resource-availability
+  - provider-account-billing
+
+channels:
+  provider_neutral: true
+  supported_contracts:
+    - in-app
+    - push
+    - email
+    - sms
+    - external-adapter
+  implementation_may_support_subset: true
+
+lifecycle:
+  - source-event
+  - intent-created
+  - recipient-resolved
+  - policy-evaluated
+  - channel-selected
+  - delivery-attempted
+  - interaction-recorded
+  - expired-or-retained
+
+delivery_states:
+  - queued
+  - attempted
+  - provider-accepted
+  - delivered
+  - failed-transient
+  - failed-permanent
+  - suppressed
+  - expired
+  - cancelled
+
+invariants:
+  - notification-does-not-grant-authorization
+  - notification-does-not-complete-orchestration-task
+  - read-does-not-equal-approval
+  - provider-acceptance-does-not-automatically-equal-delivery
+  - source-authority-remains-with-source-domain-or-external-authority
+  - retries-must-not-create-unintended-duplicate-user-visible-notifications
+  - deep-links-recheck-authentication-authorization-and-domain-state
+  - urgency-is-policy-controlled
+  - optional-notices-respect-preferences
+  - mandatory-notices-require-explicit-policy
+
+preferences:
+  supported:
+    - type-or-category
+    - channel
+    - immediate-or-digest
+    - quiet-hours
+    - timezone
+    - locale
+    - preview-privacy
+  mandatory-bypass-requires-explicit-policy: true
+  promotional-cannot-be-reclassified-as-mandatory: true
+
+urgency:
+  classes: [normal, important, urgent, critical]
+  no-engagement-driven-inflation: true
+  quiet-hours-override-requires-explicit-policy: true
+
+public_alerts:
+  notification-layer-is-delivery-only: true
+  authoritative-source-remains-external-or-owning-domain: true
+  preserve-source-geography-effective-period-severity-and-provenance: true
+  glentown-red-urgent-indicator-is-product-presentation: true
+
+idempotency_deduplication:
+  required_for_retry_sensitive_flows: true
+  recommended_key_components:
+    - notification-type
+    - source-event-id
+    - recipient
+    - material-variant
+  repeated-reminders-require-explicit-policy: true
+
+retries:
+  distinguish_transient_permanent: true
+  bounded_backoff: true
+  provider-reference-reconciliation: true
+  dead-letter-or-reconciliation-for-important-failures: true
+  fallback-cannot-bypass-preference-privacy-cost-or-channel-policy: true
+
+outbox:
+  transactional-outbox-compatible: true
+  duplicate-event-delivery-tolerated: true
+
+scheduling:
+  supports:
+    - deferred-delivery
+    - reminders
+    - digests
+    - expiry
+  timezone-explicit: true
+  stale-reminder-suppression-when-deterministically-known: true
+  does_not_own_resource-calendar_availability: true
+
+action_references:
+  no-secret-bearing-links: true
+  target_rechecks:
+    - authentication-where-required
+    - authorization
+    - current-domain-state
+    - constraints-and-approvals-where-relevant
+
+messaging:
+  messages-may-trigger-notifications: true
+  message-remains-canonical-record: true
+  previews-respect-privacy-blocking-and-moderation: true
+
+orchestration:
+  may_request:
+    - reminders
+    - exception-notices
+    - approval-requests
+    - dependency-alerts
+    - completion-notices
+  notification-state-does-not-advance-workflow-by-default: true
+  read-does-not-equal-human-approval: true
+
+ai:
+  may_assist:
+    - summarize-context
+    - draft-copy
+    - classify-presentation
+    - prepare-notification-action
+  consequential-send-requires-ai-authority-and-authorization: true
+  cannot:
+    - suppress-mandatory-notices-for-engagement
+    - invent-source-events-or-authoritative-status
+    - self-escalate-via-notification
+    - impersonate-without-authorized-presentation
+    - rewrite-own-audit-evidence
+
+tenancy_authorization:
+  recipient-resolution-respects-tenancy: true
+  viewing-respects-authorization: true
+  notifications-not-an-authorization-system: true
+
+blocking_moderation:
+  may-suppress-optional-social-alerts: true
+  mandatory-security-notices-follow-security-policy: true
+  abuse-controls-required: true
+
+privacy:
+  minimize-channel-content: true
+  lockscreen-and-external-preview-risk-aware: true
+  no-secrets-tokens-passwords-private-keys-or-payment-credentials: true
+  sensitive-details-prefer-authenticated-retrieval: true
+
+localization:
+  localizable: true
+  timezone-semantics-explicit: true
+  wording-does-not-change-source-event-semantics: true
+
+feature_flags:
+  may-control-optional-channel-or-presentation-rollout: true
+  cannot-disable-mandatory-notices: true
+  cannot-weaken-security-privacy-authority: true
+  critical-reliability-not-experimented-downward: true
+
+audit_observability:
+  record_or_correlate:
+    - source-event
+    - requester
+    - recipient-scope
+    - notification-type
+    - urgency
+    - applied-policy-and-preference
+    - channel-and-provider
+    - delivery-result
+    - provider-reference-where-available
+    - retry-suppression-expiry-reason
+    - deduplication-decision
+    - interaction-where-collected
+    - material-admin-config-change
+  avoid-body-and-pii-in-operational-logs: true
+  critical-policy-mutations-durable-audit: true
+
+external_providers:
+  adapter_boundary_required: true
+  provider-webhooks-untrusted-until-validated: true
+  duplicate-and-out-of-order-receipts-tolerated: true
+  provider-change-cannot-redefine-canonical-delivery-state: true
+
+security:
+  endpoints-and-provider-credentials-sensitive: true
+  broadcast-functions-authorized-rate-limited-audited: true
+  urgent-broadcasts-require-stronger-controls: true
+
+retention:
+  distinguish:
+    - notification-intent-history
+    - delivery-attempt-metadata
+    - provider-receipts
+    - interaction-state
+  deleting-notification-does-not-delete-source-domain-record: true
+
+implementation_truth:
+  implemented_shared_runtime: false
+  glentown_search_findings:
+    dedicated-notification-controller-found: false
+    laravel-notifiable-usage-found: false
+    notify-calls-found: false
+    notification-preferences-found: false
+  status_interpretation: architecture-canonical-but-product-runtime-not-claimed
+  extraction_status: logical-boundary-defined
+
+initial_consumers:
+  - GlenTown
+future_consumers:
+  - RealWise
+  - TownTraveler
+  - TownDeveloper
+  - Glen-AI
