@@ -1,0 +1,323 @@
+version: 1
+capability:
+  id: media
+  name: Media
+  classification: platform-core
+  status: canonical-design-v1
+  current_home: TownBoss
+  runtime_evidence_home: GlenTown
+  extraction_status: logical-boundary-defined
+
+purpose: >-
+  Provide shared semantics for media assets, attachments, storage abstraction,
+  access, validation, processing, derived variants, lifecycle, retention,
+  integrity, and safe delivery without taking ownership of source-domain truth,
+  authorization policy, moderation policy, or evidence verification.
+
+invariant: media asset != domain record != evidence truth != authorization
+
+core_entities:
+  - media-asset
+  - media-attachment
+  - media-variant
+  - media-processing-job
+  - media-access-grant
+
+owns:
+  - media-asset-identity-and-metadata
+  - binary-storage-reference-contract
+  - generic-media-lifecycle
+  - generic-attachment-semantics
+  - media-visibility-and-delivery-semantics
+  - media-validation-interface
+  - media-processing-and-variant-lineage
+  - media-integrity-metadata
+  - provider-neutral-storage-contract
+  - media-retention-and-deletion-state-semantics
+  - media-security-baseline
+
+does_not_own:
+  - domain-record-business-state
+  - domain-authorization-policy
+  - moderation-policy-authorship
+  - evidence-truth-or-verification-outcome
+  - professional-authority
+  - government-authority
+  - payment-proof-approval
+  - identity-verification-decision
+  - messaging-conversation-lifecycle
+  - product-listing-policy
+  - legal-retention-policy-authorship
+  - ai-authority-levels
+
+media_classes:
+  supported_contract_classes:
+    - image
+    - document
+    - audio
+    - video
+    - archive
+    - verification-evidence
+    - payment-or-topup-proof
+    - delivery-proof
+    - identity-document
+    - generated-asset
+    - other-explicitly-supported
+  rule: domain-specific categories may extend these without changing common lifecycle/security semantics
+
+asset_metadata:
+  minimum_useful_fields:
+    - media_id
+    - uploader_or_owner_reference_if_applicable
+    - storage_provider_or_disk_reference
+    - storage_key_or_path
+    - safe_original_filename_if_retained
+    - normalized_mime_type
+    - byte_size
+    - media_class_or_type
+    - visibility_or_access_class
+    - lifecycle_state
+    - created_at
+    - schema_or_version
+  optional_fields:
+    - checksum_or_integrity_identifier
+    - width
+    - height
+    - duration
+    - custom_properties
+    - provenance_reference
+    - evidence_reference
+
+lifecycle:
+  possible_states:
+    - pending-upload
+    - uploaded
+    - validating-or-scanning
+    - ready
+    - rejected
+    - quarantined
+    - superseded
+    - deleted
+    - expired
+  rules:
+    - bytes accepted by storage do not imply safe-or-ready
+    - products need not implement every state
+    - consequential workflows must distinguish upload from verification or approval
+
+upload_boundary:
+  requirements_as_applicable:
+    - authenticated_or_explicitly_permitted_uploader
+    - source_domain_authorization_before_protected_attachment
+    - allowed_media_class
+    - allowed_mime_type
+    - server_side_size_limit
+    - extension_mime_consistency_check_where_feasible
+    - generated_safe_storage_key
+    - path_traversal_prevention
+    - executable_or_active_content_controls
+    - malware_or_content_scanning_where_risk_justifies
+    - hardened_parser_use
+    - metadata_minimization
+    - rate_limits_and_abuse_controls
+    - retry_safe_or_duplicate_handling_where_material
+  prohibited_assumptions:
+    - client_declared_mime_is_authoritative
+    - filename_extension_is_authoritative
+    - successful_storage_write_means_domain_approval
+
+storage_abstraction:
+  provider_neutral: true
+  examples:
+    - local-filesystem
+    - s3-compatible-object-storage
+    - cloud-blob-storage
+    - cdn-backed-storage
+  preserve_across_provider_migration:
+    - media_ids
+    - attachment_relations
+    - access_semantics
+    - integrity_metadata_where_available
+    - retention_state
+    - audit_and_provenance_links
+  rule: source domains should depend on stable logical media references rather than provider-specific paths
+
+visibility:
+  example_classes:
+    - public
+    - authenticated-user
+    - owner-or-participant-scoped
+    - organization-scoped
+    - privileged-reviewer-or-admin
+    - highly-restricted-verification-or-evidence
+  rules:
+    - visibility_does_not_replace_authorization
+    - private_media_should_use_authorized_delivery_or_short_lived_signed_access
+    - high_risk_documents_must_not_default_to_public_exposure
+
+attachments:
+  media_owns:
+    - generic_relation_to_domain_object
+    - collection_or_role_metadata
+    - ordering_metadata
+  source_domain_owns:
+    - why_asset_is_attached
+    - whether_asset_satisfies_requirement
+    - primary_or_featured_semantics
+    - business_approval_or_verification
+
+variants:
+  examples:
+    - thumbnail
+    - resized-image
+    - compressed-version
+    - document-preview
+    - transcoded-version
+    - redacted-copy
+    - metadata-stripped-public-derivative
+  rules:
+    - preserve_source_lineage
+    - do_not_silently_replace_original_when_original_is_evidence_or_authoritative_input
+    - strip_sensitive_metadata_from_public_derivatives_where_appropriate
+
+sensitive_media:
+  examples:
+    - identity-documents
+    - selfies
+    - professional-credentials
+    - property-documents
+    - payment-proofs
+    - private-message-attachments
+  requirements_as_applicable:
+    - least_privilege_access
+    - encryption_in_transit
+    - encryption_at_rest_via_provider_controls
+    - short_lived_delivery_grants
+    - privileged_access_audit
+    - restricted_operational_tooling
+    - explicit_retention_and_deletion_policy
+    - no_public_indexing
+    - no_model_training_or_unrelated_reuse_without_valid_authority_or_consent
+
+moderation:
+  media_role:
+    - expose_scanning_and_moderation_hooks
+    - enforce_authorized_visibility_quarantine_or_removal_state
+  not_media_role:
+    - author_moderation_policy
+    - treat_model_confidence_as_enforcement_authority
+
+retention_and_deletion:
+  distinguish:
+    - detach_from_domain_record
+    - hide_from_delivery
+    - soft_delete_logical_record
+    - physical_object_delete
+    - retention_or_legal_hold
+    - supersession
+  rules:
+    - no_universal_retention_duration
+    - domain_legal_privacy_evidence_financial_or_investigation_requirements_may_delay_physical_deletion
+    - evidence_history_must_not_be_silently_rewritten_by_media_replacement
+
+integrity:
+  recommended_where_practical:
+    - checksum_or_hash
+    - transfer_integrity_verification
+  rules:
+    - identical_bytes_do_not_imply_identical_business_meaning_or_ownership
+    - private_deduplication_must_not_leak_other_users_asset_existence
+
+reliability:
+  requirements:
+    - processing_retry_safe
+    - source_asset_not_corrupted_by_derivative_failure
+    - retries_do_not_create_uncontrolled_duplicate_assets_or_attachments
+    - processing_failures_observable
+  consequential_state_separation:
+    - bytes_accepted
+    - metadata_persisted
+    - domain_attachment_created
+    - processing_complete
+    - review_or_verification_complete
+
+integrations:
+  evidence_provenance:
+    rule: media owns storage/lifecycle/access while Evidence & Provenance owns source, claim, assessment, verification and lineage semantics
+  messaging:
+    rule: messaging references media and controls participant access; media owns blob lifecycle
+  notifications:
+    rule: do not embed durable private URLs or sensitive documents into insecure notification channels
+  search_discovery:
+    rule: only explicitly discoverable media may be indexed
+  payments_credits:
+    rule: media may store payment evidence but Payments & Credits owns financial validity and approval
+  identity_trust:
+    rule: media may store IDs/selfies but Identity & Trust owns verification outcome
+  glen_ai:
+    rules:
+      - model_access_does_not_imply_disclosure_retention_training_or_reuse_rights
+      - ai_processing_requires_authorization_privacy_consent_and_ai_authority_compliance
+      - real_person_likeness_or_voice_assets_follow_explicit_consent_and_provenance
+
+security_baseline:
+  required:
+    - server_side_type_and_size_validation
+    - non_executable_storage_or_equivalent_safe_object_storage
+    - generated_storage_keys
+    - path_traversal_prevention
+    - least_privilege_storage_credentials
+    - private_url_protection
+    - no_filename_based_execution_trust
+    - upload_rate_limits
+    - dangerous_active_content_controls_where_applicable
+    - sensitive_metadata_stripping_for_public_derivatives_where_appropriate
+    - privileged_access_audit_for_high_risk_assets_where_policy_requires
+
+observability:
+  audit_candidates:
+    - upload_accepted_or_rejected
+    - validation_or_scan_result
+    - visibility_change
+    - privileged_sensitive_media_access
+    - consequential_attach_or_detach
+    - deletion_or_retention_hold_action
+    - quarantine_or_release
+    - integrity_mismatch
+  operational_metrics:
+    - upload_error_rate
+    - processing_latency
+    - processing_queue_depth
+    - storage_provider_failures
+    - variant_failure_rate
+    - delivery_error_rate
+  prohibited_logging:
+    - raw_private_media_contents_in_general_logs
+
+implementation_truth:
+  GlenTown:
+    status: implemented-partial
+    evidence:
+      - Media model stores uploader, polymorphic relation, file name, MIME type, disk, path, size, dimensions, custom properties, type/category, visibility and private flag
+      - Media is referenced by delivery proofs, delivery vehicles, organization verification, logos/banners, posts, product variants, property records, supplier logos, profile/cover images and identity-verification media
+      - ProductMedia provides product attachment collection and sort-order semantics
+    not_verified_as_shared_runtime:
+      - one_cross_domain_upload_controller_or_service
+      - unified_scanning_pipeline
+      - provider_neutral_signed_delivery_service
+      - shared_variant_processor
+      - one_portfolio_wide_retention_and_access_policy
+
+extraction:
+  posture: logical-boundary-first
+  rule: physical extraction requires repeated runtime reuse evidence and must not block product delivery
+
+non_goals:
+  - mandate_specific_storage_vendor
+  - define_domain_business_rules
+  - define_moderation_policy
+  - determine_evidence_truth
+  - determine_identity_or_payment_verification
+  - grant_domain_authorization
+  - certify_government_or_professional_documents
+  - require_video_or_audio_transcoding_before_GlenTown_Beta
+  - require_global_CDN_before_product_need
