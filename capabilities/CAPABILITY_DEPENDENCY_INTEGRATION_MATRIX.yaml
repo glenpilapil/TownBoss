@@ -1,0 +1,143 @@
+version: 1
+status: canonical-design-v1
+owner: TownBoss
+classification: portfolio-architecture-governance
+rules:
+  dependency_direction: product -> shared-domain -> platform-core
+  no_authority_transfer: true
+  no_implicit_permission_from_data_access: true
+  no_forced_microservice_extraction: true
+  preserve_authorization_tenancy_provenance_reliability_audit: true
+  physical_extraction: evidence-driven
+
+dependency_classes:
+  required: consumer cannot correctly perform governed operation without dependency
+  conditional: dependency applies only when associated behavior is used
+  projection: consumer reads derived view while source remains authoritative
+  coordination: capabilities exchange state or intent without ownership transfer
+  adapter: external or product implementation behind canonical contract
+  governance: capability constrains behavior without owning business record
+
+capabilities:
+  identity-trust:
+    upstream: []
+    downstream: [authorization, organizations-tenancy, messaging, reviews-reputation, payments-credits, scheduling, glen-ai-foundation]
+  organizations-tenancy:
+    upstream: [identity-trust]
+    downstream: [authorization, search-discovery, messaging, payments-credits, scheduling]
+  authorization:
+    upstream: [identity-trust, organizations-tenancy]
+    downstream: [all-protected-capabilities]
+  location-geography:
+    upstream: [authorization:conditional]
+    downstream: [search-discovery, scheduling, public-data-gateway, orchestration, spatial-intelligence]
+  search-discovery:
+    upstream: [authorization, location-geography, source-domain-projections]
+    downstream: [GlenTown, Glen-AI, TownTraveler, RealWise]
+  media:
+    upstream: [authorization, organizations-tenancy:conditional]
+    downstream: [messaging, reviews-reputation, evidence-provenance, listings, glen-ai-foundation]
+  messaging:
+    upstream: [identity-trust, authorization, media, reliability-mutation-semantics]
+    downstream: [GlenTown, RealWise, TownTraveler, Glen-AI]
+  notifications:
+    upstream: [identity-trust, authorization, reliability-mutation-semantics]
+    downstream: [orchestration, scheduling, messaging, payments-credits, product-domains]
+  payments-credits:
+    upstream: [identity-trust, authorization, reliability-mutation-semantics, audit-observability, evidence-provenance:conditional]
+    downstream: [orders, bookings, services, portfolio-commerce]
+  reviews-reputation:
+    upstream: [identity-trust, authorization, source-interaction-eligibility, media:conditional, audit-observability]
+    downstream: [search-discovery, product-profiles, glen-ai-foundation]
+  scheduling:
+    upstream: [identity-trust, authorization, organizations-tenancy, location-geography:conditional, reliability-mutation-semantics]
+    downstream: [booking-domains, orchestration, planners, notifications]
+  public-data-gateway:
+    upstream: [authorization:conditional, location-geography:conditional, evidence-provenance, reliability-mutation-semantics]
+    downstream: [search-discovery, orchestration, glen-ai-foundation, spatial-intelligence, product-domains]
+  evidence-provenance:
+    upstream: [identity-trust:conditional, media:conditional]
+    downstream: [human-verification, glen-ai-foundation, scenario-engine, constraint-engine, audit-linked-workflows]
+  audit-observability:
+    upstream: [identity-trust:conditional, correlation-context]
+    downstream: [all-consequential-capabilities]
+  feature-flags-experimentation:
+    upstream: [identity-trust:conditional, audit-observability]
+    downstream: [product-surfaces, capability-implementations]
+  reliability-mutation-semantics:
+    upstream: [authorization:conditional, audit-observability]
+    downstream: [all-retry-sensitive-mutations]
+  platform-api-boundary:
+    upstream: [authorization, reliability-mutation-semantics]
+    downstream: [internal-interfaces, supported-public-product-interfaces, external-integration-adapters]
+  orchestration:
+    upstream: [authorization, scheduling:conditional, constraint-engine:conditional, evidence-provenance:conditional, ai-authority:conditional, human-verification:conditional, reliability-mutation-semantics]
+    downstream: [day-planner, trip-planner, event-planner, financial-planner, achieve, TownTraveler, TownDeveloper]
+  scenario-engine:
+    upstream: [constraint-engine:conditional, evidence-provenance:conditional, location-geography:conditional, spatial-intelligence:conditional]
+    downstream: [GeoPlotter, GlenTown, RealWise, TownDeveloper, Forex-Quant-Lab]
+  constraint-engine:
+    upstream: [evidence-provenance:conditional, authoritative-source-inputs, authorization:conditional]
+    downstream: [scenario-engine, orchestration, glen-ai-foundation, domain-workflows]
+  ai-authority:
+    upstream: [authorization, human-approval-delegation:conditional, constraint-engine:conditional, audit-observability, reliability-mutation-semantics]
+    downstream: [glen-ai-foundation, Development-Supervisor, ai-enabled-products]
+  glen-ai-foundation:
+    upstream: [authorization, ai-authority, search-discovery:conditional, evidence-provenance:conditional, constraint-engine:conditional, orchestration:conditional, audit-observability]
+    downstream: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper]
+  human-verification:
+    upstream: [identity-trust, authorization, evidence-provenance, audit-observability]
+    downstream: [glen-ai-foundation, orchestration, GeoPlotter, RealWise, product-workflows]
+  spatial-intelligence:
+    upstream: [location-geography, evidence-provenance, public-data-gateway:conditional, constraint-engine:conditional]
+    downstream: [GeoPlotter, GlenTown, RealWise, TownTraveler, TownDeveloper]
+
+critical_paths:
+  consequential_ai_action:
+    - glen-ai-foundation
+    - ai-authority
+    - authorization
+    - constraint-engine:conditional
+    - human-verification-or-approval:conditional
+    - orchestration
+    - owning-domain-mutation
+    - reliability-mutation-semantics
+    - audit-observability
+  planner_shared_calendar:
+    - planner
+    - orchestration
+    - scheduling
+    - owning-booking-resource-domain
+    - reliability-mutation-semantics
+    - notifications
+  commerce_mutation:
+    - product-cart-order-domain
+    - authorization
+    - payments-credits:conditional
+    - reliability-mutation-semantics
+    - audit-observability
+    - notifications
+  search_reputation:
+    - source-domain
+    - eligibility-publication-policy
+    - reviews-reputation:conditional
+    - search-discovery
+  evidence_verification:
+    - source-media-public-data
+    - evidence-provenance
+    - human-verification
+    - owning-domain-decision
+  government_public_data:
+    - product-orchestration-glen-ai
+    - public-data-gateway-or-approved-government-adapter
+    - authoritative-external-system
+    - reconciliation-provenance
+    - product-projection
+
+cycle_prevention:
+  - platform-core must not depend on product capability
+  - shared-domain must not require product-specific implementation as canonical source
+  - product-to-product dependencies should become shared contract or explicit external adapter when reuse is real
+  - callbacks must not create hidden authority escalation
+  - derived projections must not control their source of truth
+  - circular workflow coordination belongs in orchestration rather than mutual direct ownership
