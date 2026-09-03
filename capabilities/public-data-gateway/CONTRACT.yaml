@@ -1,0 +1,305 @@
+version: 1
+capability:
+  id: public-data-gateway
+  name: Public Data Gateway
+  classification: platform-core
+  status: canonical-design-v1
+  current_home: TownBoss
+  initial_consumers: [GlenTown]
+  future_consumers: [TownTraveler, GeoPlotter, RealWise, TownDeveloper, Glen-AI]
+
+core_rule: "ingested data != authoritative source != verified current truth"
+secondary_rules:
+  - "public government data != government transaction authority"
+  - "cached != current"
+  - "normalized != source-owned"
+  - "validation pass != factual proof"
+
+core_entities:
+  - data-source
+  - source-adapter
+  - source-record-reference
+  - ingestion-run
+  - canonical-data-envelope
+  - derived-projection
+  - freshness-policy
+  - reconciliation-record
+
+owns:
+  - source-registration-semantics
+  - source-adapter-contract
+  - external-ingestion-lifecycle
+  - canonical-data-envelope
+  - source-attribution-contract
+  - freshness-and-staleness-semantics
+  - public-data-cache-semantics
+  - source-record-reconciliation
+  - adapter-checkpoint-semantics
+  - source-rate-limit-coordination
+  - technical-data-quality-interface
+  - public-data-serving-contract
+
+does_not_own:
+  - government-authority
+  - professional-authority
+  - external-source-record-authority
+  - domain-business-rules
+  - authorization-policy
+  - ai-authority-levels
+  - search-ranking-policy
+  - spatial-analysis
+  - government-service-transaction-state
+  - provider-contractual-rights
+  - source-licensing-terms
+  - source-factual-correctness
+
+source_classification:
+  supported_classes:
+    - authoritative-government
+    - authoritative-institutional
+    - official-publisher
+    - trusted-partner
+    - open-community-dataset
+    - commercial-provider
+    - manual-import
+    - derived-third-party
+  invariant: authority-class-does-not-guarantee-freshness-completeness-or-correctness
+
+adapter_contract:
+  required_definition:
+    - source-identifier
+    - source-owner-operator
+    - endpoint-file-feed-identity
+    - access-and-authentication-requirements
+    - source-terms-or-license
+    - request-limits
+    - pagination-or-cursor-semantics
+    - retry-and-timeout-policy
+    - expected-update-cadence
+    - source-timezone
+    - source-schema-or-version
+    - source-record-identifier-strategy
+    - refresh-strategy
+    - deletion-or-tombstone-behavior
+    - rate-limit-handling
+    - provenance-mapping
+    - data-quality-checks
+  invariants:
+    - preserve-source-specific-semantics
+    - no-access-control-circumvention
+    - no-unsupported-scraping-by-default
+
+canonical_data_envelope:
+  fields:
+    - source-id
+    - source-record-id
+    - source-authority-class
+    - jurisdiction-or-scope
+    - observed-at
+    - effective-at
+    - ingested-at
+    - freshness-state
+    - transformation-version
+    - provenance-reference
+    - normalized-payload
+  rules:
+    - preserve-unknown-vs-null-vs-zero
+    - preserve-source-identity
+    - preserve-material-units-and-coordinate-reference-system
+    - transformations-must-be-versioned
+
+freshness:
+  states: [fresh, aging, stale, expired, unknown, source-unavailable]
+  rules:
+    - every-time-sensitive-source-defines-freshness-policy
+    - cache-ttl-is-not-source-validity
+    - stale-data-must-not-be-presented-as-current-when-material
+    - hard-gated-consequential-use-fails-closed-when-required-data-is-stale-or-unavailable-unless-domain-policy-defines-safe-alternative
+
+reconciliation:
+  states:
+    - unchanged
+    - updated
+    - newly-observed
+    - removed-at-source
+    - superseded
+    - source-corrected
+    - locally-invalidated
+    - conflict-unresolved
+  rules:
+    - preserve-change-lineage
+    - do-not-silently-prefer-old-local-value-over-new-source-state
+
+technical_data_quality:
+  checks:
+    - schema-validity
+    - required-fields
+    - range-and-unit-validation
+    - coordinate-sanity
+    - duplicate-detection
+    - chronology-consistency
+    - jurisdiction-consistency
+    - referential-integrity-where-possible
+    - suspicious-mass-change-detection
+  invariant: validation-pass-does-not-prove-source-factual-correctness
+
+failure_semantics:
+  typed_failures:
+    - source-timeout
+    - source-auth-failed
+    - source-rate-limited
+    - source-schema-changed
+    - source-record-invalid
+    - source-partial-response
+    - source-unavailable
+    - source-data-stale
+    - transform-failed
+    - reconciliation-conflict
+    - license-or-policy-block
+  invariant: partial-ingestion-must-not-be-presented-as-complete
+
+reliability:
+  requirements:
+    - ingestion-restartable
+    - duplicate-safe-record-processing
+    - stable-record-id-or-equivalent-deduplication
+    - checkpoints-advance-only-after-durable-acceptance-or-explicit-reconciliation
+    - bounded-retries
+    - rate-limit-aware-backoff
+
+privacy:
+  requirements:
+    - public-accessibility-does-not-equal-unrestricted-replication
+    - purpose-limitation
+    - personal-data-minimization
+    - sensitive-data-handling
+    - retention-controls
+    - redisclosure-restrictions-honored
+    - avoid-unnecessary-persistent-personal-data-copies
+
+security:
+  requirements:
+    - secrets-outside-source-code-and-payloads
+    - defensive-response-validation
+    - external-data-treated-as-untrusted-input
+    - ssrf-protection
+    - malicious-file-protection
+    - decompression-bomb-protection
+    - content-type-validation
+    - no-secret-logging
+
+integrations:
+  evidence-provenance:
+    requirements:
+      - source-attribution
+      - observed-effective-recorded-time-semantics
+      - transformation-lineage
+      - supersession-lineage
+      - authority-for-claim-context
+  government-service-interoperability:
+    invariant: public-reference-data-does-not-grant-government-transaction-authority
+  search-discovery:
+    invariant: search-index-is-derived-projection-and-does-not-transfer-authority
+  location-geography:
+    boundary: gateway-ingests-and-attributes-geographic-data-but-does-not-own-canonical-spatial-analysis
+  transit-data-interoperability:
+    requirements:
+      - preserve-source-identity
+      - preserve-telemetry-freshness
+      - distinguish-live-vs-estimated-vs-scheduled
+  weather-hazards-alerts:
+    requirements:
+      - preserve-official-source
+      - preserve-severity
+      - preserve-affected-area
+      - preserve-timing
+      - distinguish-official-alert-from-ai-summary-user-report-and-inference
+  glen-ai:
+    allowed:
+      - explain-authorized-public-data
+      - summarize-authorized-public-data
+      - compare-authorized-public-data
+      - retrieve-through-approved-gateway-interface
+    prohibited:
+      - fabricate-missing-source-records
+      - upgrade-third-party-source-to-government-authority
+      - bypass-source-access-restrictions
+      - silently-resolve-contradictory-sources-into-false-certainty
+    requirement: provide-source-and-freshness-context
+  orchestration:
+    requirements:
+      - revalidate-time-sensitive-inputs
+      - distinguish-availability-freshness-authority-domain-rule-authorization-ai-authority-and-external-completion
+  constraint-engine:
+    role: attributable-input-provider-only
+  scenario-engine:
+    requirement: retain-important-source-version-and-date-for-reproducibility
+  notifications:
+    role: gateway-may-emit-change-or-source-health-events-but-not-own-recipient-delivery-policy
+  audit-observability:
+    important_events:
+      - ingestion-started
+      - ingestion-completed
+      - ingestion-failed
+      - source-rate-limited
+      - source-schema-changed
+      - record-rejected
+      - record-superseded
+      - reconciliation-conflict
+      - freshness-expired
+      - source-credential-error
+      - source-policy-disabled
+
+feature_flags:
+  allowed:
+    - adapter-rollout
+    - dataset-exposure
+    - transformation-version-rollout
+    - provider-fallback
+  invariant: flag-cannot-override-source-rights-privacy-security-or-authority-boundaries
+
+product_adapter_responsibilities:
+  - required-datasets
+  - legitimate-purpose
+  - source-priority-and-fallback-policy
+  - authority-requirements
+  - freshness-thresholds
+  - jurisdiction-rules
+  - product-specific-normalization
+  - data-quality-gates
+  - retention
+  - user-visible-attribution
+  - conflict-presentation
+  - consequential-use-policy
+  - cache-tolerance
+  - source-outage-behavior
+
+implementation_truth:
+  GlenTown:
+    branch_inspected: master
+    generic_public_data_gateway_runtime: false
+    generic_external_source_adapter_framework: false
+    direct_laravel_http_client_usage_found_by_repository_search: false
+    direct_guzzle_usage_found_by_repository_search: false
+    approved_government_service_interoperability_direction: true
+    approved_transit_data_interoperability_direction: true
+    status: architecture-direction-without-centralized-runtime
+
+extraction_status: logical-boundary-defined
+
+non_goals:
+  - new-microservice
+  - mandatory-data-platform-vendor
+  - immediate-PAGASA-integration
+  - immediate-PSA-integration
+  - immediate-eGovPH-eGovDX-eLGU-integration
+  - immediate-GTFS-integration
+  - generic-web-scraping
+  - bypassing-source-terms-or-access-controls
+  - government-authority
+  - professional-authority
+  - domain-business-rules
+  - search-ranking
+  - spatial-analysis
+  - ai-authority
+  - unnecessary-pre-beta-integration-work

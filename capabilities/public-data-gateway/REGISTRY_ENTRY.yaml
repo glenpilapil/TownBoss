@@ -1,0 +1,13 @@
+id: public-data-gateway
+name: Public Data Gateway
+classification: platform-core
+current_home: TownBoss
+status: canonical-design-v1
+initial_consumers: [GlenTown]
+future_consumers: [TownTraveler, GeoPlotter, RealWise, TownDeveloper, Glen-AI]
+core_entities: [data-source, source-adapter, source-record-reference, ingestion-run, canonical-data-envelope, derived-projection, freshness-policy, reconciliation-record]
+owns: [source-registration-semantics, source-adapter-contract, external-ingestion-lifecycle, canonical-data-envelope, source-attribution-contract, freshness-and-staleness-semantics, public-data-cache-semantics, source-record-reconciliation, adapter-checkpoint-semantics, source-rate-limit-coordination, technical-data-quality-interface, public-data-serving-contract]
+does_not_own: [government-authority, professional-authority, external-source-record-authority, domain-business-rules, authorization-policy, ai-authority-levels, search-ranking-policy, spatial-analysis, government-service-transaction-state, provider-contractual-rights, source-licensing-terms, source-factual-correctness]
+canonical_document: architecture/PUBLIC_DATA_GATEWAY.md
+canonical_contract: capabilities/public-data-gateway/CONTRACT.yaml
+extraction_status: logical-boundary-defined
