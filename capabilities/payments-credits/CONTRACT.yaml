@@ -1,0 +1,352 @@
+version: 1
+capability: payments-credits
+name: Payments & Credits
+classification: platform-core
+status: canonical-design-v1
+canonical_document: architecture/PAYMENTS_CREDITS.md
+
+purpose: >-
+  Provide shared semantics for payment intent, credit balances, ledger-affecting
+  entries, top-ups, refunds, payouts, withdrawals, provider interactions,
+  reconciliation, and financially consequential state transitions without
+  claiming banking, processor, settlement, or autonomous financial authority.
+
+core_rules:
+  - payment-intent-does-not-equal-payment-confirmation-or-settlement
+  - credit-balance-does-not-equal-external-bank-balance-or-cash-on-hand
+  - authorization-does-not-equal-ai-authority-or-financial-authority
+  - provider-accepted-does-not-equal-provider-settled-or-reconciled
+
+core_entities:
+  - financial-account-reference
+  - credit-account
+  - ledger-entry
+  - payment-intent
+  - payment-attempt
+  - payment-confirmation
+  - top-up
+  - refund
+  - payout
+  - withdrawal
+  - financial-adjustment
+  - reconciliation-record
+  - financial-evidence-reference
+
+owns:
+  - payment-intent-semantics
+  - payment-attempt-state-mapping
+  - payment-confirmation-semantics
+  - credit-account-balance-semantics
+  - ledger-entry-semantics
+  - top-up-financial-state-semantics
+  - refund-financial-execution-semantics
+  - payout-financial-execution-semantics
+  - withdrawal-financial-execution-semantics
+  - financial-adjustment-semantics
+  - financial-idempotency-requirements
+  - provider-financial-state-reconciliation-contract
+  - financial-evidence-reference-contract
+  - financial-recovery-and-unknown-outcome-semantics
+
+does_not_own:
+  - product-pricing
+  - taxes
+  - commissions
+  - merchant-commercial-terms
+  - order-fulfillment-state
+  - booking-validity
+  - inventory-or-availability
+  - authorization-policy
+  - ai-authority-levels
+  - legal-custody-status
+  - banking-or-e-money-authority
+  - accounting-standards
+  - payment-provider-authority
+  - external-bank-or-wallet-source-of-truth
+
+invariants:
+  - amounts-have-explicit-currency-or-non-cash-unit
+  - posted-financial-history-is-not-destructively-rewritten
+  - corrections-use-reversal-compensation-or-adjustment-where-accountability-matters
+  - duplicate-provider-callback-cannot-post-value-twice
+  - unknown-provider-state-is-not-treated-as-success
+  - screenshot-or-uploaded-receipt-alone-is-not-authoritative-payment-proof
+  - displayed-balance-must-be-explainable-from-authoritative-financial-records
+  - promotional-or-restricted-credit-is-not-presented-as-cash-equivalent-when-it-is-not
+  - payout-or-withdrawal-request-is-not-equivalent-to-completed-transfer
+  - logs-and-metrics-are-not-the-financial-ledger
+  - ai-cannot-self-approve-financial-authority
+
+canonical_financial_states:
+  - created
+  - pending
+  - action-required
+  - submitted
+  - provider-accepted
+  - confirmed
+  - settled
+  - failed
+  - cancelled
+  - expired
+  - reversed
+  - partially-refunded
+  - refunded
+  - disputed
+  - reconciliation-required
+  - unknown
+
+balance_classes:
+  - available
+  - pending
+  - reserved
+  - payable
+  - withdrawable
+  - promotional-or-restricted
+  - disputed-or-frozen
+
+ledger_entry_classes:
+  - debit
+  - credit
+  - reservation
+  - release
+  - adjustment
+  - fee
+  - refund
+  - reversal
+  - payout
+  - withdrawal
+  - top-up
+
+idempotency_required_for:
+  - payment-intent-creation-when-retry-sensitive
+  - payment-confirmation-ingestion
+  - credit-top-up-posting
+  - refund-creation-and-submission
+  - payout-creation-and-submission
+  - withdrawal-creation-and-submission
+  - financial-adjustment
+  - provider-webhook-processing
+  - reconciliation-import
+  - commission-or-fee-posting-when-implemented
+
+manual_top_up_workflow:
+  states:
+    - submitted-pending-verification
+    - approved
+    - rejected
+    - posted
+  requirements:
+    - amount-and-currency
+    - evidence-reference
+    - duplicate-prevention
+    - authorized-reviewer
+    - attributable-decision
+    - idempotent-ledger-posting
+    - audit-event
+    - evidence-provenance-link
+  proof-alone-authoritative: false
+  ai-autonomous-approval: prohibited
+
+provider_adapter_preserves:
+  - provider
+  - route
+  - external-transaction-reference
+  - amount
+  - currency
+  - provider-status
+  - canonical-status-mapping
+  - observed-or-received-time
+  - capture-or-settlement-reference-where-available
+  - provider-reason-code-where-useful
+  - reconciliation-status
+
+provider_webhooks:
+  authenticity-verification-required: true
+  idempotent: true
+  replay-safe: true
+  duplicate-tolerant: true
+  out-of-order-tolerant-where-provider-requires: true
+  arbitrary-field-mutation-discouraged: true
+
+reconciliation_mismatch_classes:
+  - internal-success-without-external-success
+  - external-success-without-local-posting
+  - amount-mismatch
+  - currency-mismatch
+  - duplicate-transaction
+  - duplicate-callback
+  - refund-mismatch
+  - payout-mismatch
+  - withdrawal-mismatch
+  - stale-pending
+  - provider-reversal-or-dispute
+  - reused-manual-proof
+  - orphan-financial-record
+  - balance-drift
+
+financial_execution_preconditions:
+  - authenticated-actor-or-service-where-required
+  - exact-resource-authorization
+  - valid-financial-authority-source
+  - amount-and-currency
+  - sufficient-eligible-balance-where-applicable
+  - destination-validity-where-applicable
+  - product-domain-eligibility
+  - applicable-risk-or-hold-controls
+  - required-approvals-or-dual-control
+  - ai-authority-check-for-ai-assisted-execution
+  - idempotency
+  - audit-linkage
+  - reconciliation-path
+
+ai_authority:
+  a0_a2_allowed_examples:
+    - explain-balance-fees-or-payment-state
+    - identify-reconciliation-anomaly
+    - draft-refund-payout-withdrawal-or-adjustment
+    - prepare-payment-or-top-up-workflow
+    - recommend-provider-route-within-policy
+  a3_requires:
+    - dedicated-bounded-policy
+    - exact-account-and-resource-scope
+    - exact-operation-class
+    - amount-or-exposure-limits
+    - approval-conditions
+    - deterministic-controls
+    - idempotency
+    - audit
+    - reconciliation
+    - recovery-or-stop-behavior
+  ai_prohibited:
+    - autonomously-grant-credits
+    - approve-own-financial-adjustment
+    - waive-required-payment
+    - approve-required-human-or-institutional-withdrawal-or-payout
+    - increase-own-amount-limits
+    - bypass-dual-control
+    - reinterpret-failed-or-unknown-payment-as-success
+    - move-funds-beyond-explicit-delegation
+    - alter-financial-audit-evidence-to-conceal-own-action
+
+orchestration_integration:
+  distinct_gates:
+    - financial-readiness
+    - approval
+    - execution
+    - provider-confirmation
+    - reconciliation
+    - completion
+  orchestration-grants-financial-authority: false
+  retries-must-not-duplicate-financial-effects: true
+
+evidence_provenance_integration:
+  may-reference:
+    - provider-receipts
+    - manual-payment-proof
+    - reconciliation-artifacts
+    - reviewer-assessments
+    - superseding-evidence
+  evidence-posts-value: false
+  sensitive-artifacts-access-controlled: true
+
+audit_events_candidates:
+  - payment-intent-created
+  - payment-confirmed-or-failed
+  - top-up-submitted-approved-rejected-posted
+  - refund-requested-approved-submitted-completed
+  - payout-requested-approved-submitted-completed
+  - withdrawal-requested-approved-submitted-completed
+  - balance-held-or-released
+  - administrative-adjustment
+  - provider-or-routing-config-changed
+  - reconciliation-mismatch-recorded
+  - corrective-financial-entry-posted
+  - financial-limit-or-policy-config-changed
+  - ai-authority-evaluation-for-financial-action
+
+observability_metrics_candidates:
+  - payment-success-failure-rate
+  - pending-age
+  - webhook-lag
+  - duplicate-suppression
+  - reconciliation-mismatch-rate
+  - refund-failure-rate
+  - payout-failure-rate
+  - withdrawal-failure-rate
+  - balance-drift-detection
+  - provider-latency
+  - retry-exhaustion
+
+security:
+  prohibit_general_storage_of:
+    - raw-card-data
+    - cvv
+    - online-banking-credentials
+    - wallet-passwords
+    - private-keys
+    - access-tokens
+  provider-tokenization-preferred-where-instruments-supported: true
+  telemetry-redaction-required: true
+  minimum-instrument-metadata-only: true
+
+feature_flags:
+  may_control:
+    - provider-rollout
+    - payment-method-availability
+    - ui-presentation
+    - bounded-operational-routing
+  may_not:
+    - grant-financial-authorization
+    - bypass-required-payment-confirmation
+    - disable-mandatory-reconciliation-for-risky-flows
+    - expose-unapproved-payout-or-withdrawal-path
+    - change-ai-authority-classification
+    - convert-restricted-credit-into-withdrawable-funds
+
+failure_cases:
+  - provider-timeout-with-unknown-outcome
+  - duplicate-callback
+  - late-provider-success-after-local-timeout
+  - partial-multi-recipient-execution
+  - refund-or-payout-failure-after-local-approval
+  - reversal-after-success
+  - stale-pending
+  - ledger-posting-failure-after-external-success
+  - external-submission-failure-after-local-reservation
+  - orphan-hold
+  - manual-reconciliation-required
+
+unknown_outcome_policy: reconciliation-required-not-guessed-success-or-failure
+
+implementation_truth:
+  glentown:
+    status: partial-planned
+    verified_existing:
+      - order-payment-method-payment-status-paid-at-fields
+      - order-amount-and-currency-fields
+      - transactional-cart-checkout
+      - checkout-idempotency-key
+      - voucher-validation
+      - voucher-usage-records
+      - generic-audit-log-model-in-another-domain
+    not_verified_as_shared_runtime:
+      - payment-provider-runtime
+      - wallet-or-credit-ledger
+      - top-up-controller
+      - refund-engine
+      - payout-engine
+      - withdrawal-engine
+
+beta_posture:
+  full-provider-integration-required-before-beta: false
+  manual-credit-top-up-direction-supported: true
+  shared-runtime-extraction-required-before-physical-audit: false
+
+extraction:
+  canonical_owner: TownBoss
+  product_adapters: thin
+  physical_extraction_trigger:
+    - demonstrated-multi-product-reuse
+    - operational-isolation-need
+    - regulatory-boundary
+    - financial-risk-control-need
