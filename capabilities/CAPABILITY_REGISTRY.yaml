@@ -92,10 +92,16 @@ capabilities:
   - id: media
     name: Media
     classification: platform-core
-    current_home: GlenTown
-    status: partial
-    future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper]
-    extraction_status: logical-boundary-only
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI]
+    core_entities: [media-asset, media-attachment, media-variant, media-processing-job, media-access-grant]
+    owns: [media-asset-identity-and-metadata, binary-storage-reference-contract, generic-media-lifecycle, generic-attachment-semantics, media-visibility-and-delivery-semantics, media-validation-interface, media-processing-and-variant-lineage, media-integrity-metadata, provider-neutral-storage-contract, media-retention-and-deletion-state-semantics, media-security-baseline]
+    does_not_own: [domain-record-business-state, domain-authorization-policy, moderation-policy-authorship, evidence-truth-or-verification-outcome, professional-authority, government-authority, payment-proof-approval, identity-verification-decision, messaging-conversation-lifecycle, product-listing-policy, legal-retention-policy-authorship, ai-authority-levels]
+    canonical_document: architecture/MEDIA.md
+    canonical_contract: capabilities/media/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: evidence-provenance
     name: Evidence & Provenance
     classification: platform-core
