@@ -66,10 +66,16 @@ capabilities:
   - id: notifications
     name: Notifications
     classification: platform-core
-    current_home: GlenTown
-    status: partial
-    future_consumers: [GlenTown, RealWise, TownTraveler, TownDeveloper]
-    extraction_status: logical-boundary-only
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [RealWise, TownTraveler, TownDeveloper, Glen-AI]
+    core_entities: [notification-intent, recipient-reference, notification-type, channel-policy, delivery-attempt, delivery-state, interaction-state, preference, urgency, deduplication-key, action-reference]
+    owns: [notification-intent-envelope, recipient-delivery-coordination, channel-selection-policy-interface, delivery-state-semantics, read-interaction-state, notification-preference-semantics, urgency-priority-semantics, deduplication-and-retry-semantics, digest-batching-semantics, expiry-suppression, provider-delivery-reconciliation]
+    does_not_own: [message-conversation-records, source-domain-state, authorization-policy, ai-authority-levels, orchestration-state, public-alert-authority, government-authority, scheduling-resource-availability, provider-account-billing]
+    canonical_document: architecture/NOTIFICATIONS.md
+    canonical_contract: capabilities/notifications/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: payments-credits
     name: Payments & Credits
     classification: platform-core
