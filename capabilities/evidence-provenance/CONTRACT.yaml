@@ -1,7 +1,7 @@
 version: 1
 capability: evidence-provenance
 classification: platform-core
-status: canonical-design
+status: canonical-design-v1
 principles:
   - confidence-is-not-authority
   - preserve-history-do-not-silently-overwrite

@@ -1,7 +1,7 @@
 version: 1
 capability: constraint-engine
 classification: platform-core
-status: canonical-design
+status: canonical-design-v1
 purpose: Represent and evaluate reusable feasibility constraints without owning the authoritative rules of source domains.
 principles:
   - constraints-must-be-explicit-and-testable

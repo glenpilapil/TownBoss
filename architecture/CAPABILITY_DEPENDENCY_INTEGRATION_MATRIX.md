@@ -34,6 +34,18 @@ It is a logical architecture contract. It does not require physical service extr
 | Adapter | Integration with an external or product-specific implementation behind a canonical contract. |
 | Governance | Capability constrains or governs behavior but does not own the business record. |
 
+## Cross-capability composition precedence
+
+Cross-cutting contracts establish minimum or generic semantics; domain capabilities may specialize them but cannot silently take over their source-of-truth responsibility or weaken them.
+
+- **Identity & Trust** owns actor/subject identity source-of-truth semantics. **Organizations & Tenancy** owns organization and tenancy context/source-of-truth semantics. **Authorization** consumes those contexts and owns permission policy and access decisions; it does not redefine identity or tenancy.
+- **Security Baseline** is the portfolio minimum. Media, Payments, API, Public Data, AI, or another capability may define stricter security rules for its domain, but those rules supplement rather than replace or weaken the Security Baseline.
+- **Reliability & Mutation Semantics** owns generic retry-safe effect, idempotency, concurrency, recovery, and unknown-outcome semantics. **Platform API Boundary** may own where an idempotency key appears in an interface, while Payments, Scheduling, Messaging, and other capabilities may impose stricter domain-specific reliability profiles.
+- **Evidence & Provenance** owns source, claim, assessment, and lineage semantics. **Human Verification** owns review workflow and reviewer disposition, not reviewer identity source-of-truth or evidence truth. **Audit & Observability** records actions and telemetry without becoming either evidence source truth or domain state.
+- **Authorization**, **AI Authority**, professional authority, government/external authority, and **Orchestration** remain separate. Orchestration owns execution lifecycle coordination; it does not own execution authority merely because it coordinates execution.
+
+When two contracts state overlapping requirements, the more specific capability may strengthen the applicable rule, but it may not contradict the owning capability's canonical invariant. Any true ownership conflict requires a TownBoss architecture change rather than product-local interpretation.
+
 ## Canonical capability matrix
 
 | Capability | Primary upstream dependencies | Key downstream consumers | Integration rule |
@@ -146,10 +158,4 @@ No new Beta feature is required by this matrix.
 
 ## Follow-up audits
 
-This matrix is the input to:
-
-1. Portfolio Capability Registry completeness audit.
-2. Cross-contract consistency audit.
-3. Implementation-truth audit across products.
-4. Adapter roadmap.
-5. Final TownBoss Architecture Baseline v1.
+This matrix is an input to the Portfolio Capability Registry completeness audit, Cross-contract consistency audit, Implementation-truth audit across products, Adapter roadmap, and Final TownBoss Architecture Baseline v1.

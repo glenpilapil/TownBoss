@@ -29,22 +29,25 @@ The capability owns generic verification workflow concepts and lifecycle:
 - evidence packages supplied for review;
 - reviewer findings and dispositions;
 - requests for clarification or more evidence;
-- attributable reviewer identity;
+- reviewer identity reference and attribution within the verification record;
 - review timestamps and validity windows where applicable;
 - supersession and re-verification triggers;
 - links between verification outcomes and Evidence & Provenance records;
 - escalation when a reviewer lacks authority or required qualification.
 
+Identity & Trust remains the source of truth for reviewer identity. Human Verification references that identity and owns how it is attributed to a review outcome.
+
 ## Explicit non-ownership
 
 This capability does **not** own:
 
+- the identity source of truth or generic identity lifecycle;
 - professional licensing or government accreditation systems;
 - the legal authority of a professional, government officer, regulator, or external institution;
 - domain-specific standards of care or professional judgment;
 - domain approval decisions owned by GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper, or another product;
 - AI authority levels or autonomous execution permission;
-- generic identity and resource authorization;
+- resource-authorization policy;
 - payment settlement, commissions, marketplace pricing, or commercial engagement terms;
 - government records or government decision-making;
 - the truth of evidence merely because a human reviewed it.
@@ -78,7 +81,7 @@ The verification record should identify, where applicable:
 - evidence or claim reviewed;
 - source and artifact identifiers;
 - observed/effective/recorded dates;
-- reviewer identity and qualification evidence;
+- reviewer identity reference and qualification evidence;
 - review scope;
 - disposition;
 - confidence or limitations stated by the reviewer;
@@ -179,7 +182,7 @@ The request must be narrow enough that a reviewer can understand exactly what th
 A verification outcome should contain, where applicable:
 
 - request ID;
-- reviewer identity;
+- reviewer identity reference;
 - qualification evidence/reference;
 - reviewer organization if relevant;
 - disposition;

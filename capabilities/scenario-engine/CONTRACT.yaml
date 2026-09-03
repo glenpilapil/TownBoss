@@ -1,7 +1,7 @@
 version: 1
 capability: scenario-engine
 classification: platform-core
-status: canonical-design
+status: canonical-design-v1
 purpose: Model comparable hypothetical futures without owning domain-specific meaning or execution.
 principles:
   - scenario-is-not-authoritative-state

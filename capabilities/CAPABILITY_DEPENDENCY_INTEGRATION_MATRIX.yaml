@@ -10,6 +10,26 @@ rules:
   preserve_authorization_tenancy_provenance_reliability_audit: true
   physical_extraction: evidence-driven
 
+composition_rules:
+  identity_and_tenancy:
+    identity_source_of_truth: identity-trust
+    organization_tenancy_source_of_truth: organizations-tenancy
+    authorization_consumes_context_and_owns_permission_decisions: true
+  security:
+    minimum_portfolio_baseline: security-baseline
+    capability_specific_security_rules_may_strengthen_not_weaken_baseline: true
+  reliability:
+    generic_effect_semantics: reliability-mutation-semantics
+    platform_api_boundary_owns_interface_placement_and_contract: true
+    domain_capabilities_may_define_stricter_profiles: true
+  evidence_and_audit:
+    evidence_provenance_owns_source_and_lineage_semantics: true
+    audit_observability_records_actions_and_telemetry_not_source_truth: true
+    human_verification_owns_review_workflow_not_identity_source_or_evidence_truth: true
+  authority:
+    authorization_ai_authority_professional_authority_government_authority_and_orchestration_remain_distinct: true
+    orchestration_owns_execution_lifecycle_not_execution_authority: true
+
 dependency_classes:
   required: consumer cannot correctly perform governed operation without dependency
   conditional: dependency applies only when associated behavior is used

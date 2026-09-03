@@ -32,20 +32,21 @@ owns:
   - review_evidence_packages
   - reviewer_findings_and_dispositions
   - clarification_and_more_evidence_requests
-  - attributable_reviewer_identity
+  - reviewer_identity_reference_and_attribution
   - review_timestamps_and_validity_windows
   - supersession_and_reverification_triggers
   - evidence_provenance_links_for_review_outcomes
   - escalation_when_reviewer_authority_or_qualification_is_insufficient
 
 does_not_own:
+  - identity_source_of_truth
   - professional_license_authority
   - government_accreditation_authority
   - government_or_regulatory_decisions
   - domain_specific_professional_judgment_standards
   - domain_approval_decisions
   - ai_authority_levels
-  - identity_or_resource_authorization
+  - resource_authorization_policy
   - payment_settlement
   - marketplace_pricing
   - commissions
@@ -161,6 +162,9 @@ reverification_triggers:
   - superseding_professional_or_institutional_finding
 
 integrations:
+  identity_trust:
+    relationship: authoritative_reviewer_identity_source
+    rule: verification-references-reviewer-identity-but-does-not-own-identity-source-of-truth
   evidence_provenance:
     relationship: required_for_material_verification_outcomes
     rule: evidence_and_review_lineage_remain_separate_but_linked
