@@ -130,7 +130,7 @@ invariants:
   - image-inference-does-not-become-authoritative-evidence
   - ai-output-does-not-silently-overwrite-authoritative-records
   - product-data-remains-owned-by-source-capability
-  - orchestration-remains-execution-lifecycle-authority
+  - orchestration-remains-owner-of-execution-lifecycle
   - ai-authority-remains-autonomy-boundary
 
 output_types:
