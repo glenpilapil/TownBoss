@@ -203,6 +203,84 @@ capabilities:
     canonical_document: architecture/FEATURE_FLAGS_EXPERIMENTATION.md
     canonical_contract: capabilities/feature-flags-experimentation/CONTRACT.yaml
     extraction_status: logical-boundary-defined
+  - id: reviews-reputation
+    name: Reviews & Reputation
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [RealWise, TownTraveler, TownDeveloper, Glen-AI]
+    core_entities: [review, rating, review-subject-reference, reviewer-reference, eligibility-reference, review-response, moderation-state, reputation-signal, reputation-summary, abuse-signal]
+    owns: [review-record-semantics, review-eligibility-interface, rating-scale-and-dimension-contract, review-publication-state, review-response-semantics, reputation-derivation-interface, review-aggregation-semantics, review-moderation-hooks, review-abuse-signal-interface, review-edit-and-withdrawal-semantics, external-review-attribution-contract]
+    does_not_own: [source-transaction-state, source-booking-state, source-service-completion-state, identity-source-of-truth, authorization-policy, professional-verification, professional-license-authority, government-authority, evidence-truth, moderation-policy-authorship, payment-state, inventory-or-availability, financial-creditworthiness, search-ranking-policy-authorship]
+    canonical_document: architecture/REVIEWS_REPUTATION.md
+    canonical_contract: capabilities/reviews-reputation/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
+  - id: scheduling
+    name: Scheduling & Shared Resource Calendar
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [TownTraveler, RealWise, TownDeveloper, Glen-AI]
+    core_entities: [schedule-window, resource-reference, availability-rule, availability-observation, reservation, hold, calendar-entry, conflict, recurrence-rule, schedule-constraint, timezone-context, external-calendar-reference]
+    owns: [generic-time-window-semantics, resource-availability-interface, hold-and-reservation-semantics, conflict-detection-contract, capacity-coordination-semantics, recurrence-contract, timezone-and-local-time-contract, calendar-projection-semantics, shared-resource-calendar-interface, external-calendar-adapter-contract, scheduling-reconciliation-semantics, scheduling-concurrency-requirements]
+    does_not_own: [booking-business-state, order-state, service-completion-state, event-publication-state, payment-state, inventory-source-of-truth, resource-identity-source-of-truth, authorization-policy, ai-authority-levels, professional-authority, government-authority, external-calendar-authority, orchestration-lifecycle]
+    canonical_document: architecture/SCHEDULING.md
+    canonical_contract: capabilities/scheduling/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
+  - id: public-data-gateway
+    name: Public Data Gateway
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [TownTraveler, GeoPlotter, RealWise, TownDeveloper, Glen-AI]
+    core_entities: [data-source, source-adapter, source-record-reference, ingestion-run, canonical-data-envelope, derived-projection, freshness-policy, reconciliation-record]
+    owns: [source-registration-semantics, source-adapter-contract, external-ingestion-lifecycle, canonical-data-envelope, source-attribution-contract, freshness-and-staleness-semantics, public-data-cache-semantics, source-record-reconciliation, adapter-checkpoint-semantics, source-rate-limit-coordination, technical-data-quality-interface, public-data-serving-contract]
+    does_not_own: [government-authority, professional-authority, external-source-record-authority, domain-business-rules, authorization-policy, ai-authority-levels, search-ranking-policy, spatial-analysis, government-service-transaction-state, provider-contractual-rights, source-licensing-terms, source-factual-correctness]
+    canonical_document: architecture/PUBLIC_DATA_GATEWAY.md
+    canonical_contract: capabilities/public-data-gateway/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
+  - id: security-baseline
+    name: Security Baseline
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI, Development-Supervisor, Forex-Quant-Lab]
+    core_entities: [security-control-domain, trust-boundary, credential-reference, sensitive-data-class, security-event, security-exception]
+    owns: [minimum-portfolio-security-invariants, secure-default-semantics, minimum-authentication-handling-expectations, minimum-authorization-and-tenant-isolation-expectations, external-input-trust-boundary-rules, secret-handling-baseline, sensitive-data-minimization-baseline, upload-security-baseline, rate-limit-and-abuse-control-expectations, integration-security-baseline, ai-tool-security-invariants, dependency-supply-chain-expectations, production-origin-protection-direction, security-audit-readiness-expectations]
+    does_not_own: [product-domain-authorization-policy, identity-source-of-truth, legal-compliance-certification, pci-dss-certification, iso27001-certification, soc2-certification, provider-specific-security-configuration, product-specific-threat-model, infrastructure-provider-authority, incident-response-command, professional-security-assessment]
+    canonical_document: architecture/SECURITY_BASELINE.md
+    canonical_contract: capabilities/security-baseline/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
+  - id: platform-api-boundary
+    name: Platform API Boundary
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI, Development-Supervisor]
+    core_entities: [api-interface, interface-version, request-contract, response-contract, error-contract, consumer-reference, adapter-contract, deprecation-record, idempotency-contract, webhook-contract]
+    owns: [interface-classification-semantics, versioning-and-compatibility-expectations, supported-vs-internal-contract-distinction, request-response-boundary-discipline, public-api-lifecycle-and-deprecation-semantics, adapter-boundary-requirements, cross-capability-interface-principles, api-error-envelope-expectations, pagination-filtering-consistency-expectations, idempotency-key-placement-expectations, api-authentication-authorization-boundary-requirements, api-observability-correlation-expectations, webhook-trust-boundary-rules, schema-change-governance]
+    does_not_own: [domain-business-rules, product-specific-authorization-policy, identity-source-of-truth, capability-specific-payload-semantics, payment-provider-authority, government-authority, provider-specific-credentials, infrastructure-routing-or-dns, service-mesh-implementation, physical-microservice-extraction-decisions]
+    canonical_document: architecture/PLATFORM_API_BOUNDARY.md
+    canonical_contract: capabilities/platform-api-boundary/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
+  - id: reliability-mutation-semantics
+    name: Reliability & Mutation Semantics
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI, Development-Supervisor, Forex-Quant-Lab]
+    core_entities: [mutation-operation, idempotency-key, transaction-boundary, concurrency-control, outbox-work-item, retry-record, recovery-record, reconciliation-state, compensation-record]
+    owns: [mutation-classification-semantics, idempotency-and-duplicate-suppression-semantics, local-transaction-boundary-guidance, concurrency-control-expectations, transactional-outbox-compatibility, retry-classification-and-budgets, unknown-outcome-semantics, partial-failure-recovery-and-compensation-semantics, async-consumer-replay-safety, ordering-and-stale-event-handling, mutation-correlation-and-observability, durable-recovery-state-expectations]
+    does_not_own: [domain-business-rules, product-workflow-state, authentication, authorization-policy, ai-authority-levels, provider-authoritative-state, queue-provider, database-provider, infrastructure-provider, distributed-consensus-implementation, domain-specific-compensation-policy]
+    canonical_document: architecture/RELIABILITY_MUTATION_SEMANTICS.md
+    canonical_contract: capabilities/reliability-mutation-semantics/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: human-verification
     name: Human Verification Workflow
     classification: shared-domain
