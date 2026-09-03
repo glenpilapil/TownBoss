@@ -1,0 +1,13 @@
+id: scheduling
+name: Scheduling & Shared Resource Calendar
+classification: platform-core
+current_home: TownBoss
+status: canonical-design-v1
+initial_consumers: [GlenTown]
+future_consumers: [TownTraveler, RealWise, TownDeveloper, Glen-AI]
+core_entities: [schedule-window, resource-reference, availability-rule, availability-observation, reservation, hold, calendar-entry, conflict, recurrence-rule, schedule-constraint, timezone-context, external-calendar-reference]
+owns: [generic-time-window-semantics, resource-availability-interface, hold-and-reservation-semantics, conflict-detection-contract, capacity-coordination-semantics, recurrence-contract, timezone-and-local-time-contract, calendar-projection-semantics, shared-resource-calendar-interface, external-calendar-adapter-contract, scheduling-reconciliation-semantics, scheduling-concurrency-requirements]
+does_not_own: [booking-business-state, order-state, service-completion-state, event-publication-state, payment-state, inventory-source-of-truth, resource-identity-source-of-truth, authorization-policy, ai-authority-levels, professional-authority, government-authority, external-calendar-authority, orchestration-lifecycle]
+canonical_document: architecture/SCHEDULING.md
+canonical_contract: capabilities/scheduling/CONTRACT.yaml
+extraction_status: logical-boundary-defined
