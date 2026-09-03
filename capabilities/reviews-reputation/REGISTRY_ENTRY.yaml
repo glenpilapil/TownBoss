@@ -1,0 +1,13 @@
+id: reviews-reputation
+name: Reviews & Reputation
+classification: platform-core
+current_home: TownBoss
+status: canonical-design-v1
+initial_consumers: [GlenTown]
+future_consumers: [RealWise, TownTraveler, TownDeveloper, Glen-AI]
+core_entities: [review, rating, review-subject-reference, reviewer-reference, eligibility-reference, review-response, moderation-state, reputation-signal, reputation-summary, abuse-signal]
+owns: [review-record-semantics, review-eligibility-interface, rating-scale-and-dimension-contract, review-publication-state, review-response-semantics, reputation-derivation-interface, review-aggregation-semantics, review-moderation-hooks, review-abuse-signal-interface, review-edit-and-withdrawal-semantics, external-review-attribution-contract]
+does_not_own: [source-transaction-state, source-booking-state, source-service-completion-state, identity-source-of-truth, authorization-policy, professional-verification, professional-license-authority, government-authority, evidence-truth, moderation-policy-authorship, payment-state, inventory-or-availability, financial-creditworthiness, search-ranking-policy-authorship]
+canonical_document: architecture/REVIEWS_REPUTATION.md
+canonical_contract: capabilities/reviews-reputation/CONTRACT.yaml
+extraction_status: logical-boundary-defined
