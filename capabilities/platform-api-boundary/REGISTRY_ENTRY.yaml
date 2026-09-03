@@ -1,0 +1,13 @@
+id: platform-api-boundary
+name: Platform API Boundary
+classification: platform-core
+current_home: TownBoss
+status: canonical-design-v1
+initial_consumers: [GlenTown]
+future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI, Development-Supervisor]
+core_entities: [api-interface, interface-version, request-contract, response-contract, error-contract, consumer-reference, adapter-contract, deprecation-record, idempotency-contract, webhook-contract]
+owns: [interface-classification-semantics, versioning-and-compatibility-expectations, supported-vs-internal-contract-distinction, request-response-boundary-discipline, public-api-lifecycle-and-deprecation-semantics, adapter-boundary-requirements, cross-capability-interface-principles, api-error-envelope-expectations, pagination-filtering-consistency-expectations, idempotency-key-placement-expectations, api-authentication-authorization-boundary-requirements, api-observability-correlation-expectations, webhook-trust-boundary-rules, schema-change-governance]
+does_not_own: [domain-business-rules, product-specific-authorization-policy, identity-source-of-truth, capability-specific-payload-semantics, payment-provider-authority, government-authority, provider-specific-credentials, infrastructure-routing-or-dns, service-mesh-implementation, physical-microservice-extraction-decisions]
+canonical_document: architecture/PLATFORM_API_BOUNDARY.md
+canonical_contract: capabilities/platform-api-boundary/CONTRACT.yaml
+extraction_status: logical-boundary-defined

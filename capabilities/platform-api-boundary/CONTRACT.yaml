@@ -1,0 +1,345 @@
+version: 1
+capability:
+  id: platform-api-boundary
+  name: Platform API Boundary
+  classification: platform-core
+  status: canonical-design-v1
+  current_home: TownBoss
+  initial_consumers: [GlenTown]
+  future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI, Development-Supervisor]
+
+core_rule: "reachable endpoint != supported API != authorized capability"
+secondary_rules:
+  - "authenticated != authorized != entitled"
+  - "tool access != permission != authority"
+
+interface_classes:
+  - internal-application-api
+  - versioned-public-product-api
+  - capability-contract
+  - external-integration-api-adapter
+
+core_entities:
+  - api-interface
+  - interface-version
+  - request-contract
+  - response-contract
+  - error-contract
+  - consumer-reference
+  - adapter-contract
+  - deprecation-record
+  - idempotency-contract
+  - webhook-contract
+
+owns:
+  - interface-classification-semantics
+  - versioning-and-compatibility-expectations
+  - supported-vs-internal-contract-distinction
+  - request-response-boundary-discipline
+  - public-api-lifecycle-and-deprecation-semantics
+  - adapter-boundary-requirements
+  - cross-capability-interface-principles
+  - api-error-envelope-expectations
+  - pagination-filtering-consistency-expectations
+  - idempotency-key-placement-expectations
+  - api-authentication-authorization-boundary-requirements
+  - api-observability-correlation-expectations
+  - webhook-trust-boundary-rules
+  - schema-change-governance
+
+does_not_own:
+  - domain-business-rules
+  - product-specific-authorization-policy
+  - identity-source-of-truth
+  - capability-specific-payload-semantics
+  - payment-provider-authority
+  - government-authority
+  - provider-specific-credentials
+  - infrastructure-routing-or-dns
+  - service-mesh-implementation
+  - physical-microservice-extraction-decisions
+
+versioning:
+  supported_external_interfaces_must_be_explicitly_versioned: true
+  acceptable_patterns:
+    - path-versioning
+    - media-type-or-header-versioning-when-explicitly-governed
+  rules:
+    - breaking-observable-change-requires-versioning-decision
+    - semantic-meaning-change-is-breaking-even-if-name-and-type-stable
+    - field-removal-or-rename-requires-deprecation-for-supported-contracts
+    - version-describes-contract-compatibility-not-deployment-generation
+    - mobile-client-compatibility-window-required
+
+supported_surface:
+  not_automatically_supported:
+    - discovered-framework-routes
+    - database-schemas
+    - orm-models
+    - internal-service-classes
+    - queue-names
+    - undeclared-event-payloads
+    - log-formats
+    - undocumented-json-fields
+    - storage-paths
+    - feature-flag-keys
+    - provider-callback-payloads
+
+request_contract:
+  should_define:
+    - method-and-route
+    - authentication-requirements
+    - authorization-scope
+    - tenancy-context
+    - required-and-optional-fields
+    - validation-constraints
+    - content-type
+    - idempotency-behavior
+    - pagination-filter-sort-semantics
+    - locale-timezone-semantics
+    - expected-error-classes
+    - rate-limit-expectations
+  invariant: server-side-validation-is-authoritative
+
+response_contract:
+  preferred: explicit-resource-or-dto
+  must_avoid_leaking:
+    - internal-database-structure
+    - hidden-authorization-state
+    - secrets-or-credentials
+    - unnecessary-pii
+    - accidental-provider-internals
+    - abuse-enabling-security-signals
+
+errors:
+  minimum_categories:
+    - validation-failure
+    - authentication-failure
+    - authorization-failure
+    - not-found-or-visibility-filtered
+    - conflict-or-stale-state
+    - rate-limited
+    - dependency-unavailable
+    - retryable-server-failure
+    - nonretryable-business-rule-rejection
+  must_not_leak:
+    - stack-traces
+    - sql
+    - secret-material
+    - provider-credentials
+    - private-identifiers
+    - internal-topology
+
+authentication_authorization:
+  invariants:
+    - authentication-does-not-imply-authorization
+    - public-documentation-does-not-bypass-permission-checks
+    - protected-resources-require-explicit-authorization
+    - api-classification-does-not-grant-entitlement
+
+tenancy:
+  invariants:
+    - client-provided-tenant-id-is-untrusted-input
+    - membership-and-access-must-be-server-validated
+    - serialization-filtering-caches-events-and-jobs-must-preserve-tenant-boundary
+
+idempotency:
+  required_for_retry_sensitive_operations: true
+  examples:
+    - checkout
+    - payments-and-credits
+    - bookings
+    - reservations
+    - invitations
+    - verification-actions
+    - withdrawals
+    - external-submissions
+  rules:
+    - scope-key-to-actor-client-and-operation-domain
+    - reject-materially-different-payload-reuse
+    - reconcile-original-outcome-where-applicable
+    - idempotency-never-bypasses-auth-or-current-state-validation
+
+concurrency:
+  acceptable_mechanisms:
+    - transactional-locking
+    - optimistic-concurrency
+    - compare-and-set
+    - unique-constraints
+    - idempotency-records
+    - reservation-hold-semantics
+  invariant: stale-client-write-must-not-silently-overwrite-consequential-newer-state
+
+pagination_filtering_sorting:
+  requirements:
+    - deterministic-pagination
+    - documented-limits
+    - authorization-before-filtering-and-counting
+    - explicit-supported-sort-filter-fields
+    - stable-tie-breaking-where-needed
+  guidance:
+    volatile_or_large_sets: cursor-preferred
+    bounded_stable_sets: offset-acceptable
+
+capability_interfaces:
+  semantic_contract_transport_independent: true
+  allowed_transports:
+    - in-process
+    - events
+    - http
+    - queues
+    - other-governed-transport
+  invariant: product-adapters-must-not-fork-canonical-capability-semantics
+
+external_adapters:
+  isolate:
+    - provider-authentication-and-credentials
+    - provider-schema
+    - retries-and-rate-limits
+    - provider-errors
+    - callbacks-webhooks
+    - reconciliation-identifiers
+    - provider-version-upgrades
+  invariants:
+    - provider-acceptance-does-not-equal-domain-success
+    - normalized-domain-contract-preferred-over-provider-schema-leakage
+
+webhooks:
+  untrusted_until_validated: true
+  requirements:
+    - signature-or-authentication-verification
+    - replay-resistance-where-supported
+    - timestamp-or-nonce-checks-where-supported
+    - payload-size-limits
+    - schema-validation
+    - duplicate-tolerance
+    - out-of-order-tolerance
+    - correlation-to-known-provider-object
+    - idempotent-processing
+    - audit-observability
+  invariant: identifier-possession-does-not-grant-mutation-authority
+
+public_api_governance:
+  required_before_external-launch:
+    - consumer-use-case-registration
+    - data-classification-and-privacy-review
+    - authentication-client-identity
+    - scopes-permissions
+    - quotas-rate-limits
+    - acceptable-use-abuse-controls
+    - version-deprecation-policy
+    - documentation
+    - support-incident-path
+    - auditability
+  invariant: existing-product-routes-are-not-third-party-public-apis-by-default
+
+deprecation:
+  should_define:
+    - replacement-interface
+    - migration-guidance
+    - announcement-date
+    - end-of-support-date
+    - removal-date
+    - usage-telemetry-where-permitted
+  security_or_legal_emergency_retirement_allowed: true
+
+schema_evolution:
+  change_classes:
+    - additive-compatible
+    - conditionally-compatible
+    - breaking
+  breaking_examples:
+    - field-removal-or-rename
+    - type-change
+    - semantic-meaning-change
+    - narrowing-accepted-input
+    - material-default-behavior-change
+    - incompatible-auth-requirement-change
+    - currency-timezone-unit-semantics-change
+
+mobile_compatibility:
+  simultaneous-client-update-assumption: false
+  requirements:
+    - compatibility-window
+    - graceful-unknown-field-handling
+    - explicit-forced-upgrade-policy-when-required
+
+integrations:
+  security-baseline:
+    invariant: all-apis-inherit-security-baseline
+  ai-authority:
+    invariants:
+      - endpoint-or-tool-existence-does-not-grant-ai-authority
+      - a3-execution-requires-explicit-operation-and-scope
+  orchestration:
+    invariant: successful-http-response-alone-does-not-prove-domain-completion
+  evidence-provenance:
+    invariant: normalization-does-not-erase-source-type-or-authority
+  public-data-gateway:
+    relationship: gateway-owns-ingestion-source-semantics-api-boundary-governs-consumer-and-adapter-contracts
+  payments-credits:
+    invariant: transport-success-does-not-override-canonical-financial-state
+  messaging-notifications:
+    invariant: transport-endpoints-do-not-redefine-domain-truth
+  government-service-interoperability:
+    invariant: product-api-must-not-imply-government-authority
+
+observability:
+  should_capture:
+    - request-correlation-id
+    - principal-or-client-where-appropriate
+    - route-or-interface-id
+    - api-version
+    - outcome-status-class
+    - latency
+    - rate-limit-decisions
+    - authorization-denials-in-appropriate-audit-channel
+    - idempotency-replay-decisions
+    - external-dependency-correlation
+  never_log:
+    - passwords
+    - full-auth-tokens
+    - secret-keys
+    - payment-credentials
+    - unnecessary-pii
+
+feature_flags:
+  may_control:
+    - optional-route-rollout
+    - compatible-behavior-rollout
+  must_not:
+    - bypass-authorization
+    - remove-security-controls
+    - silently-change-financial-balances
+    - promote-internal-interface-to-supported-public-api
+    - introduce-breaking-external-contract-semantics-without-versioning-deprecation-review
+
+implementation_truth:
+  GlenTown:
+    branch_inspected: master
+    v1_route_prefix: true
+    api_v1_controller_namespace: true
+    unauthenticated_route_group: true
+    optional-authentication-route_group: true
+    sanctum_protected_route_group: true
+    named_throttles_on_sensitive_routes: true
+    signed_email_verification_route: true
+    domain_policies_present: true
+    explicit_http_resources_present: true
+    third_party_public_api_program_verified: false
+    oauth2_external_developer_scopes_verified: false
+    developer_portal_verified: false
+    canonical_openapi_contract_verified: false
+    generic_webhook_framework_verified: false
+    centralized_api_gateway_verified: false
+    status: implemented-product-api-patterns-with-canonical-platform-boundary-newly-defined
+
+non_goals:
+  - mandatory-microservices
+  - mandatory-api-gateway-vendor
+  - mandatory-graphql
+  - exposing-current-internal-routes-to-third-parties
+  - replacing-authorization
+  - replacing-security-baseline
+  - public-developer-program-before-product-need
+  - pre-beta-feature-scope-expansion
