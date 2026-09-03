@@ -79,10 +79,16 @@ capabilities:
   - id: payments-credits
     name: Payments & Credits
     classification: platform-core
-    current_home: GlenTown
-    status: partial-planned
-    future_consumers: [GlenTown, RealWise, TownTraveler]
-    extraction_status: logical-boundary-only
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [RealWise, TownTraveler, TownDeveloper]
+    core_entities: [financial-account-reference, credit-account, ledger-entry, payment-intent, payment-attempt, payment-confirmation, top-up, refund, payout, withdrawal, financial-adjustment, reconciliation-record, financial-evidence-reference]
+    owns: [payment-intent-semantics, payment-attempt-state-mapping, payment-confirmation-semantics, credit-account-balance-semantics, ledger-entry-semantics, top-up-financial-state-semantics, refund-financial-execution-semantics, payout-financial-execution-semantics, withdrawal-financial-execution-semantics, financial-adjustment-semantics, financial-idempotency-requirements, provider-financial-state-reconciliation-contract, financial-evidence-reference-contract, financial-recovery-and-unknown-outcome-semantics]
+    does_not_own: [product-pricing, taxes, commissions, merchant-commercial-terms, order-fulfillment-state, booking-validity, inventory-or-availability, authorization-policy, ai-authority-levels, legal-custody-status, banking-or-e-money-authority, accounting-standards, payment-provider-authority, external-bank-or-wallet-source-of-truth]
+    canonical_document: architecture/PAYMENTS_CREDITS.md
+    canonical_contract: capabilities/payments-credits/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: media
     name: Media
     classification: platform-core
