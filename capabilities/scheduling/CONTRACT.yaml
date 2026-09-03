@@ -1,0 +1,284 @@
+version: 1
+capability:
+  id: scheduling
+  name: Scheduling & Shared Resource Calendar
+  classification: platform-core
+  status: canonical-design-v1
+  current_home: TownBoss
+  initial_consumers: [GlenTown]
+  future_consumers: [TownTraveler, RealWise, TownDeveloper, Glen-AI]
+
+core_rule: "schedule != availability truth != reservation confirmation != execution authority"
+secondary_rule: "available at planning time != guaranteed available at execution time"
+
+core_entities:
+  - schedule-window
+  - resource-reference
+  - availability-rule
+  - availability-observation
+  - reservation
+  - hold
+  - calendar-entry
+  - conflict
+  - recurrence-rule
+  - schedule-constraint
+  - timezone-context
+  - external-calendar-reference
+
+owns:
+  - generic-time-window-semantics
+  - resource-availability-interface
+  - hold-and-reservation-semantics
+  - conflict-detection-contract
+  - capacity-coordination-semantics
+  - recurrence-contract
+  - timezone-and-local-time-contract
+  - calendar-projection-semantics
+  - shared-resource-calendar-interface
+  - external-calendar-adapter-contract
+  - scheduling-reconciliation-semantics
+  - scheduling-concurrency-requirements
+
+does_not_own:
+  - booking-business-state
+  - order-state
+  - service-completion-state
+  - event-publication-state
+  - payment-state
+  - inventory-source-of-truth
+  - resource-identity-source-of-truth
+  - authorization-policy
+  - ai-authority-levels
+  - professional-authority
+  - government-authority
+  - external-calendar-authority
+  - orchestration-lifecycle
+
+availability:
+  time_sensitive: true
+  possible_sources:
+    - declared-working-hours
+    - service-hours
+    - reservations
+    - holds
+    - capacity
+    - buffers
+    - domain-constraints
+    - external-calendar-busy-state
+    - external-provider-availability
+    - planner-arrival-departure-windows
+    - blackout-periods
+  invariants:
+    - current-state-revalidation-before-consequential-reservation
+    - planning-availability-is-not-confirmation
+    - source-domain-remains-authoritative-for-owned-capacity
+
+holds:
+  requirements:
+    - explicit-expiry-or-release
+    - capacity-effect-defined
+    - idempotent-release
+  invariant: tentative-hold-cannot-be-promoted-without-owning-domain-confirmation
+
+reservations:
+  requirements:
+    - authoritative-domain-reference
+    - attributable-actor
+    - time-window
+    - resource-reference
+    - status
+  invariant: scheduling-record-does-not-replace-owning-domain-business-state
+
+conflicts:
+  types:
+    - time-overlap
+    - capacity-exceeded
+    - outside-availability-window
+    - insufficient-buffer
+    - blackout-period
+    - incompatible-resource-assignment
+    - deadline-violation
+    - stale-external-availability
+  severity: [blocking, advisory]
+  invariant: conflict-override-requires-separate-product-policy-and-authority
+
+capacity:
+  supports: [single-capacity, multi-capacity]
+  requirements:
+    - deterministic-evaluation
+    - requested-vs-remaining-quantity
+    - revalidation-before-confirmation
+
+clock_semantics:
+  support:
+    - instant-timestamp
+    - local-date-time
+    - date-only
+    - interval
+    - all-day
+    - deadline
+    - recurring-window
+  requirements:
+    - retain-timezone-context
+    - deterministic-ambiguous-local-time-resolution
+    - prefer-timezone-identifier-for-recurring-or-future-events
+
+recurrence:
+  requirements:
+    - structured-rule
+    - attributable-exceptions
+    - attributable-overrides
+    - source-rule-preserved-when-expanded
+
+shared_resource_calendar:
+  role: coordination-view
+  possible_sources:
+    - trip-planner
+    - event-planner
+    - day-planner
+    - achieve
+    - service-bookings
+    - property-viewings
+    - deliveries
+    - professional-appointments
+  invariant: each-projection-retains-source-domain-reference
+
+external_calendars:
+  authoritative_for_own_records: true
+  adapter_operations:
+    - read-free-busy
+    - create-event
+    - update-event
+    - cancel-event
+    - reconcile-state
+    - detect-divergence
+  invariants:
+    - provider-attribution-preserved
+    - unknown-or-stale-sync-is-not-authoritative
+    - local-synced-state-does-not-overrule-provider
+
+concurrency:
+  principle: "conflict-free-read-plus-unguarded-write-is-insufficient"
+  acceptable_controls:
+    - transactions
+    - row-or-advisory-locks
+    - unique-constraints
+    - optimistic-version-checks
+    - compare-and-set
+    - provider-idempotency
+    - equivalent-duplicate-prevention
+  requirements:
+    - retry-sensitive-reservations-idempotent
+    - scarce-capacity-claims-concurrency-safe
+
+integrations:
+  orchestration:
+    allowed:
+      - request-feasible-window
+      - bind-task-to-window
+      - detect-conflict
+      - respond-to-schedule-change
+    invariant: scheduled-task-is-not-execution-authority
+  constraint-engine:
+    consumes:
+      - earliest-latest-times
+      - maximum-duration
+      - required-buffer
+      - operating-hours
+      - dependency-timing
+      - blackout-windows
+      - concurrent-capacity
+  search-discovery:
+    allowed:
+      - availability-filtering
+      - availability-ranking
+    invariant: indexed-availability-is-not-real-time-authority
+  notifications:
+    emits:
+      - reminders
+      - changes
+      - cancellations
+      - deadlines
+      - hold-expiry
+      - conflicts
+  glen-ai:
+    allowed:
+      - inspect-authorized-availability
+      - propose-times
+      - explain-conflicts
+      - draft-schedule-change
+    invariants:
+      - consequential-mutations-require-applicable-ai-authority
+      - no-confirmed-business-commitment-without-owning-domain-path
+
+privacy:
+  requirements:
+    - authorization-on-schedule-details
+    - minimum-necessary-free-busy-disclosure
+    - protect-private-notes
+    - protect-sensitive-location-data
+    - protect-participant-identities-when-not-required
+
+audit_observability:
+  important_events:
+    - hold-created
+    - hold-expired
+    - reservation-created
+    - reservation-released
+    - schedule-entry-created
+    - schedule-entry-updated
+    - schedule-entry-cancelled
+    - conflict-detected
+    - conflict-overridden
+    - availability-refreshed
+    - external-sync-attempted
+    - external-sync-reconciled
+  metrics:
+    - conflict-rate
+    - stale-availability-rate
+    - hold-expiry-rate
+    - external-sync-failure-rate
+    - scheduling-latency
+    - capacity-contention
+    - reconciliation-failures
+
+product_adapter_responsibilities:
+  - schedulable-resource-types
+  - resource-identity-mapping
+  - availability-source-and-freshness
+  - capacity-rules
+  - business-reservation-mapping
+  - hold-duration-and-expiry
+  - conflict-policy
+  - buffers-and-travel-setup-rules
+  - timezone-requirements
+  - recurrence-support
+  - external-calendar-adapters
+  - authorization-and-privacy-bindings
+  - idempotency-and-concurrency-controls
+  - reconciliation-and-cancellation-semantics
+
+implementation_truth:
+  GlenTown:
+    branch_inspected: master
+    implemented_patterns:
+      - Travel/DailyAvailabilityWindow
+      - Travel/ConflictDetector
+      - Travel/AvailabilityValidator
+      - Travel/BookingOrchestrator
+      - Travel/TravelCalendarSyncService
+      - Event-model
+      - StayBooking-model
+    centralized_portfolio_scheduler: false
+    status: product-level-patterns-exist-logical-shared-boundary-defined
+
+non_goals:
+  - new-scheduling-microservice
+  - replacing-booking-order-service-event-state-machines
+  - payment-or-inventory-authority
+  - granting-authorization-or-ai-authority
+  - guaranteeing-external-calendar-state
+  - mandatory-calendar-provider
+  - mandatory-day-planner-before-beta
+  - mandatory-pre-reuse-physical-extraction
+  - treating-search-index-availability-as-authoritative
