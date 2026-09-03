@@ -142,6 +142,19 @@ capabilities:
     canonical_document: architecture/GLEN_AI_FOUNDATION.md
     canonical_contract: capabilities/glen-ai-foundation/CONTRACT.yaml
     extraction_status: logical-boundary-defined
+  - id: feature-flags-experimentation
+    name: Feature Flags & Experimentation
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown, Glen-AI]
+    future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Development-Supervisor]
+    core_entities: [feature-flag, flag-evaluation-context, targeting-rule, variant, rollout, experiment, metric-binding, assignment, decision-record]
+    owns: [feature-exposure-semantics, flag-lifecycle, targeting-and-variant-evaluation, rollout-semantics, experiment-assignment, experiment-definition-governance, metric-bindings, rollout-and-experiment-decision-records, kill-switch-semantics, stale-flag-governance]
+    does_not_own: [authentication, resource-authorization, entitlements, ai-authority-levels, professional-authority, government-authority, consent-rights, domain-policy, source-business-metrics, generic-product-analytics, orchestration-lifecycle]
+    canonical_document: architecture/FEATURE_FLAGS_EXPERIMENTATION.md
+    canonical_contract: capabilities/feature-flags-experimentation/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: human-verification
     name: Human Verification Workflow
     classification: shared-domain

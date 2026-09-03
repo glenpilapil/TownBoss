@@ -1,0 +1,256 @@
+version: 1
+capability: feature-flags-experimentation
+name: Feature Flags & Experimentation
+classification: platform-core
+status: canonical-design-v1
+canonical_document: architecture/FEATURE_FLAGS_EXPERIMENTATION.md
+
+purpose: >-
+  Provide controlled feature exposure, targeting, progressive rollout, kill
+  switches, and evidence-producing experiments without becoming an alternate
+  authorization, entitlement, consent, or AI-authority system.
+
+core_rule: flag-exposure-does-not-equal-authorization-or-ai-authority-or-approval
+
+core_entities:
+  - feature-flag
+  - flag-evaluation-context
+  - targeting-rule
+  - variant
+  - rollout
+  - experiment
+  - metric-binding
+  - assignment
+  - decision-record
+
+flag_classes:
+  - release
+  - experiment
+  - operational
+  - permission-adjacent-presentation
+  - kill-switch
+
+lifecycle:
+  normal: [PROPOSED, ACTIVE, RAMPING, FULLY_RELEASED, RETIRING, RETIRED]
+  exceptional: [PAUSED, KILLED, EXPIRED]
+
+owns:
+  - feature-exposure-semantics
+  - flag-lifecycle
+  - targeting-and-variant-evaluation
+  - rollout-semantics
+  - experiment-assignment
+  - experiment-definition-governance
+  - metric-bindings
+  - rollout-and-experiment-decision-records
+  - kill-switch-semantics
+  - stale-flag-governance
+
+does_not_own:
+  - authentication
+  - resource-authorization
+  - entitlements
+  - ai-authority-levels
+  - professional-authority
+  - government-authority
+  - consent-rights
+  - domain-policy
+  - source-business-metrics
+  - generic-product-analytics
+  - orchestration-lifecycle
+
+invariants:
+  - enabled-flag-does-not-grant-permission
+  - client-side-hiding-is-not-security
+  - server-side-side-effects-require-server-enforcement
+  - flag-cannot-bypass-ai-authority
+  - flag-cannot-bypass-authorization
+  - flag-cannot-bypass-hard-constraints
+  - flag-cannot-bypass-required-consent
+  - experiment-variant-cannot-weaken-mandatory-safety-gate
+  - unknown-risky-exposure-fails-to-safer-state
+  - flags-are-not-secrets
+  - character-experiment-does-not-change-capability-or-authority
+
+supported_targeting:
+  - product
+  - environment
+  - pseudonymous-user-or-account-key
+  - organization-or-tenant
+  - geography
+  - beta-or-test-cohort
+  - app-client-version
+  - device-platform-capability
+  - subscription-or-entitlement-state
+  - approved-behavioral-cohort
+  - approved-internal-test-account
+
+targeting_privacy:
+  minimize_attributes: true
+  prefer_pseudonymous_assignment_keys: true
+  sensitive_attributes_require_explicit_legitimate-purpose: true
+  external-provider-data-minimization: true
+
+rollout:
+  supports:
+    - allowlist
+    - cohort
+    - percentage
+    - geography
+    - tenant
+    - environment
+    - version
+    - staged-progression
+  material-ramp-observable: true
+  material-ramp-reversible: true
+  high-risk-ramp-requires-guardrails-and-rollback-criteria: true
+
+geographic_rollout:
+  supported: true
+  rule: exposure-geography-does-not-create-authoritative-residency-jurisdiction-or-eligibility
+
+flag_dependencies:
+  explicit: true
+  prefer-acyclic: true
+  cannot-create-underlying-capability-or-permission: true
+
+experiment_definition_requires:
+  - experiment-id-and-version
+  - owner
+  - hypothesis
+  - population-and-exclusions
+  - assignment-unit
+  - variants-and-allocation
+  - primary-metrics
+  - guardrail-metrics
+  - start-stop-or-decision-criteria
+  - risks-and-privacy-considerations
+  - analysis-method
+  - final-decision-and-evidence
+
+experiment_integrity:
+  exposure-logging-required: true
+  material-midstream-definition-change-requires-version-or-recorded-amendment: true
+  inconclusive-is-valid: true
+  no-fabricated-certainty: true
+  sequential-peeking-must-match-analysis-method: true
+
+metrics_evidence:
+  link-consequential-decisions-to-evidence-provenance: true
+  record:
+    - metric-definition
+    - observation-window
+    - population
+    - exclusions
+    - analysis-version
+    - uncertainty-where-applicable
+    - known-limitations
+  exposure-does-not-prove-causation: true
+
+ai_rules:
+  may_flag:
+    - ask-glen-availability
+    - anji-availability
+    - voice-and-multimodal-surfaces
+    - skills
+    - model-provider-routing-experiments
+    - character-context-suggestions
+    - planner-integrations
+  cannot-change-canonical-ai-authority-classification: true
+  all-variants-preserve-safety-authorization-grounding-privacy-authority: true
+  mandatory-safety-gates-not-experimentable-downward: true
+
+character_profile_rules:
+  availability-may-be-flagged: true
+  preserve-profile-invariants: true
+  real-person-consent-evaluated-independently: true
+  flag-cannot-override-revoked-expired-or-missing-likeness-voice-rights: true
+
+orchestration:
+  may-consume-exposure-for-optional-path-availability: true
+  flag-is-not-task-approval: true
+  long-running-workflow-must-define-snapshot-or-reevaluation-policy: true
+  consequential-execution-gates-independent: true
+
+authorization_entitlement_composition:
+  distinct_systems: true
+  when_required: entitlement-and-exposure-and-authorization-and-authority-approval-constraints
+
+kill_switch:
+  fast-disable-path: true
+  audit_changes: [actor, timestamp, reason, affected-scope, restoration-decision]
+  does-not-reconcile-inflight-side-effects: true
+
+security:
+  flags-not-secrets: true
+  no-credentials-or-private-keys-in-client-config: true
+  production-admin-mutations-authenticated-authorized-audited: true
+  ai-a2-may-prepare-change: true
+  ai-a3-requires-explicit-bounded-policy: true
+  ai-cannot-disable-own-authority-or-safety-controls: true
+
+observability:
+  - evaluated-flag-and-version
+  - returned-variant
+  - matched-rule-or-rollout
+  - fallback-reason
+  - rollout-scope-history
+  - production-config-actor-and-reason
+  - active-experiments
+  - guardrail-health
+  - stale-overdue-flags
+
+stale_flag_governance:
+  temporary-flags-require-owner: true
+  temporary-flags-require-review-or-removal-trigger: true
+  surface:
+    - fully-released
+    - expired
+    - ownerless
+    - unused
+    - past-review-date
+  retirement-includes-dead-code-removal: true
+
+provider:
+  canonical_contract_provider_neutral: true
+  approved_major_reference: GrowthBook
+  production_dependency_status: candidate
+  product-code-should-prefer-townboss-semantics-over-vendor-objects: true
+  replacement-requires-stable-semantic-mapping-or-explicit-migration: true
+
+fail_closed_for_risky_exposure_when:
+  - configuration-unverified
+  - required-targeting-context-missing-or-ambiguous
+  - required-dependency-unavailable
+  - required-consent-missing-revoked-or-expired
+  - mandatory-safety-or-authority-rule-would-be-violated
+  - provider-failure-without-safe-local-state
+
+product_adapter_requirements:
+  - flag-keys-and-business-meaning
+  - allowed-targeting-attributes
+  - default-and-fallback
+  - server-client-evaluation-location
+  - rollout-plan-and-guardrails
+  - entitlement-authorization-composition
+  - experiment-hypotheses-and-metrics
+  - telemetry-bindings
+  - provider-mapping
+  - retirement-removal-work
+
+implementation_truth:
+  implemented: false
+  searched_repositories: [TownBoss, GlenTown-API, CodeBisor]
+  shared_runtime_evidence_found: false
+  growthbook_installed_or_deployed_claimed: false
+  extraction_status: logical-boundary-defined
+
+initial_consumers:
+  - GlenTown
+  - Glen-AI
+future_consumers:
+  - GeoPlotter
+  - RealWise
+  - TownTraveler
+  - TownDeveloper
+  - Development-Supervisor
