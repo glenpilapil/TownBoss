@@ -65,7 +65,9 @@ The canonical first-class female character profile is:
 - behavior: its own coherent conversational personality rather than merely changing voice pitch;
 - authority: exactly the same capability, grounding, safety, authorization, and AI Authority boundaries as Glen.
 
-The visual identity, exact personality tuning, synthetic voice provider/model, accent set, and product-specific use of Anji may evolve without changing the canonical identity or authority semantics.
+Anji is authorized to use the likeness and voice of the real person who approved that use for the character. The canonical technical contract must record that authorization through consent/provenance metadata, but must not unnecessarily expose private identity details in public runtime payloads or logs.
+
+The visual identity, exact personality tuning, synthetic voice provider/model, accent set, and product-specific use of Anji may evolve without changing the canonical identity or authority semantics, subject to the continuing scope of the underlying likeness/voice consent.
 
 ## Additional characters
 
@@ -131,7 +133,65 @@ No character may present itself as possessing a professional license, government
 
 ## Real-person likeness and voice
 
-If a profile uses the likeness or cloned/synthetic voice of a real person, the product must have the required rights/consent and provide appropriate disclosure. A real-person presentation does not convert AI output into human-authored output.
+A character that uses a real person's likeness or cloned/synthetic voice must have a documented authorization basis before production use.
+
+The authorization record should capture, at minimum:
+
+- stable consent/rights record ID;
+- character profile covered by the consent;
+- consent subject/rights holder reference;
+- modalities covered, such as likeness, still image, animation, video, or synthetic/cloned voice;
+- approved products, channels, and purposes;
+- effective date and version;
+- whether derivative transformations are permitted;
+- whether model/provider processing is permitted where relevant;
+- disclosure requirements;
+- modification/restriction history;
+- revocation/termination state and effective date if applicable;
+- evidence/provenance reference for the authorization.
+
+The actual signed consent artifact or private identity evidence should be stored in an appropriate governed location, not embedded in public character configuration or model prompts.
+
+Consent must be scoped. Permission to use a face does not automatically grant permission to clone a voice, create video, make endorsements, reuse private biography, or sublicense the likeness to unrelated products unless those uses are covered by the authorization.
+
+A revoked or expired authorization must fail closed for new generation or publication that depends on that authorization. Existing published assets require a product/legal handling policy appropriate to the consent terms rather than silently assuming perpetual rights.
+
+## Anji consent and provenance policy
+
+Anji is the first canonical real-person-based Glen AI character.
+
+For Anji, the architecture recognizes an approved likeness-and-voice use relationship, but production implementation must still create a durable consent/rights record before generating or deploying the real-person-based avatar or synthetic/cloned voice.
+
+The Anji consent record must separately identify at least:
+
+- likeness use;
+- synthetic/cloned voice use;
+- avatar/image transformation use;
+- supported product/channel scope;
+- any limits on advertising, promotion, endorsements, or commercial use;
+- consent evidence/provenance;
+- modification and revocation handling.
+
+The public character profile should reference the consent record by stable identifier/status rather than contain unnecessary personal documentation.
+
+## Disclosure and identity separation
+
+Users must be able to understand that **Anji is an AI character**, even though the character uses an authorized real person's likeness and voice.
+
+The system must not imply that:
+
+- the real person is personally participating in the current conversation;
+- AI-generated statements are the real person's personal statements, beliefs, endorsements, or advice;
+- AI actions were personally performed or approved by the real person merely because Anji's likeness/voice was used;
+- the real person possesses or delegates any professional, government, financial, or other authority that the Glen AI system itself does not have.
+
+Appropriate disclosure may be persistent, contextual, or both depending on the surface, but it must be clear enough to avoid reasonable confusion between the AI character and the real individual.
+
+## Biography and personal-data boundary
+
+Authorization to use a likeness or voice does not automatically authorize use of private biography, private communications, private memories, or unrelated personal data as character context.
+
+Any real-life biographical details intentionally incorporated into Anji should be separately approved for that purpose and should be limited to what is actually useful for the character/product experience.
 
 ## Multimodal presentation
 
@@ -143,7 +203,7 @@ Users should be able to choose voice/accent/speed/accessibility variants indepen
 
 ## Product adapter responsibilities
 
-A consuming product may define which profiles are available, profile names/avatars, context defaults, profile-selection UI, voice provider mapping, supported locales/voices, saved preference behavior, feature-flag/experiment rollout, and accessibility variants.
+A consuming product may define which profiles are available, profile names/avatars, context defaults, profile-selection UI, voice provider mapping, supported locales/voices, saved preference behavior, feature-flag/experiment rollout, accessibility variants, and consent-record references for any real-person-based presentation.
 
 Products must not weaken the parent Glen AI Foundation invariants through character configuration.
 
@@ -151,14 +211,16 @@ Products must not weaken the parent Glen AI Foundation invariants through charac
 
 1. `Glen` is the global default.
 2. `Anji` is the canonical first-class female character and uses a female default voice where voice is enabled.
-3. Character/personality and voice are configurable but separable.
-4. User selection should override contextual defaults unless the user opts into automatic switching.
-5. Character switching cannot alter capability, data access, authorization, AI Authority, constraints, evidence, or orchestration state.
-6. Products may add additional approved profiles without forking Glen AI.
-7. Character profiles should be machine-readable and versioned.
+3. Anji is an approved real-person-based likeness/voice character, but production use requires a durable scoped consent/rights record.
+4. Character/personality and voice are configurable but separable.
+5. User selection should override contextual defaults unless the user opts into automatic switching.
+6. Character switching cannot alter capability, data access, authorization, AI Authority, constraints, evidence, or orchestration state.
+7. Products may add additional approved profiles without forking Glen AI.
+8. Character profiles and real-person consent/rights references should be machine-readable and versioned.
+9. Real-person presentation must preserve clear AI/person identity separation and appropriate disclosure.
 
 ## Implementation truth
 
-This document defines the canonical profile architecture only. It does not claim that GlenTown or another TownBoss product already implements character selection, avatar switching, voice synthesis, saved profile preferences, or context-based automatic profile selection.
+This document defines the canonical profile and consent architecture only. It does not claim that GlenTown or another TownBoss product already implements character selection, avatar switching, voice synthesis, saved profile preferences, consent-record storage, or context-based automatic profile selection.
 
 Implementation should be incremental and tied to real product needs rather than treated as a prerequisite for GlenTown Beta.
