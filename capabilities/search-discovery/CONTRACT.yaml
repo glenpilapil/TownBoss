@@ -1,0 +1,227 @@
+version: 1
+capability: search-discovery
+name: Search & Discovery
+classification: platform-core
+status: canonical-design-v1
+canonical_document: architecture/SEARCH_DISCOVERY.md
+
+purpose: >-
+  Provide provider-neutral retrieval, filtering, ranking, location-aware
+  discovery, pagination, indexing, and federated result semantics without
+  becoming the source of truth or bypassing authorization and domain rules.
+
+core_rule: discoverable-does-not-equal-authorized-endorsed-or-authoritative
+
+core_entities:
+  - search-request
+  - discovery-context
+  - searchable-entity-reference
+  - search-document-projection
+  - filter
+  - facet
+  - ranking-signal
+  - search-result
+  - result-group
+
+owns:
+  - query-normalization-contract
+  - cross-domain-result-envelope
+  - filter-facet-semantics
+  - pagination-cursor-semantics
+  - ranking-policy-interface
+  - search-index-projection-lifecycle-contract
+  - indexing-freshness-rebuild-expectations
+  - location-aware-discovery-interface
+  - search-observability-hooks
+  - result-attribution-provenance-interface
+  - safe-personalization-input-contract
+  - provider-fallback-semantics
+
+does_not_own:
+  - source-business-records
+  - publication-moderation-state
+  - authorization-policy
+  - entitlements
+  - inventory-or-booking-availability-truth
+  - payments-checkout-state
+  - professional-verification
+  - government-authority
+  - review-reputation-source-records
+  - location-source-of-truth
+  - ai-authority
+  - evidence-truth
+  - advertising-billing
+  - product-ranking-policy-authorship
+
+invariants:
+  - eligibility-precedes-ranking
+  - ranking-cannot-rescue-ineligible-record
+  - index-is-derived-not-authoritative
+  - protected-entity-existence-must-not-leak-through-results-counts-or-facets
+  - client-search-ui-is-not-authorization-boundary
+  - search-ranking-is-not-evidence-quality
+  - search-ranking-is-not-endorsement
+  - semantic-similarity-is-not-proof-of-truth
+  - critical-transaction-state-revalidated-at-owning-domain
+  - blocked-hidden-content-not-reintroduced-through-alternate-index
+
+query_types:
+  - browse
+  - structured-lookup
+  - keyword-full-text
+  - faceted-filtering
+  - geospatial-proximity
+  - category-type-exploration
+  - personalized-ranking
+  - semantic-vector-retrieval
+  - federated-multi-domain
+  - external-directory-adapter
+
+eligibility_may_depend_on:
+  - publication-state
+  - deletion-archive-state
+  - moderation
+  - tenancy
+  - privacy-visibility
+  - geography
+  - product-activation
+  - feature-flags
+  - consent
+  - age-safety-restrictions
+  - availability-rules
+  - authorization
+
+location_aware_discovery:
+  first_class: true
+  consumes_location_geography_capability: true
+  supports:
+    - town-city-municipality
+    - province
+    - national
+    - coordinate-proximity
+    - product-defined-fallback-expansion
+  does_not_redefine-jurisdiction-residency-eligibility: true
+
+ranking:
+  layers:
+    - eligibility-gates
+    - organic-relevance
+    - personalization
+    - business-rule-boosts
+    - sponsored-placement
+    - deterministic-tie-breaking
+  sponsored-results-distinguishable-from-organic: true
+  paid-placement-does-not-imply-verification-or-authority: true
+
+personalization:
+  authorized-purpose-limited-context-only: true
+  prefer-coarse-bounded-signals: true
+  sensitive-data-not-used-by-default: true
+  anonymous-fallback-required: true
+  preserve-browse-filter-alternatives-where-practical: true
+
+indexing:
+  derived-projections: true
+  rebuildable-from-source: true
+  source-attribution-required-where-practical: true
+  delete-unpublish-moderation-propagation-required: true
+  retry-idempotency-required: true
+  eventual-consistency-explicit: true
+  protected-stale-data-must-not-remain-discoverable: true
+  reindex-migrations-observable: true
+  transactional-outbox-preferred-for-important-async-updates: true
+
+freshness:
+  domain-specific: true
+  index-does-not-imply-real-time-availability: true
+  critical-state-revalidated-before-consequential-action: true
+
+pagination:
+  supports: [page, cursor]
+  deterministic-tie-breaking-required: true
+  high-churn-large-results-prefer-cursor: true
+
+federated_search:
+  preserve-source-type: true
+  preserve-eligibility-rules: true
+  preserve-attribution: true
+  grouped-results-preferred-when-global-ranking-semantics-weak: true
+
+ai_rules:
+  glen-ai-may-use-for-context-retrieval: true
+  retrieved-content-is-data-not-authority: true
+  must-still-apply:
+    - authorization
+    - grounding
+    - evidence-provenance
+    - privacy
+    - ai-authority
+    - prompt-injection-resistance
+  vector-retrieval-cannot-substitute-for-source-evidence: true
+
+privacy_security:
+  protect-results-counts-facets-autocomplete-from-enumeration-leakage: true
+  do-not-index-raw-secrets-or-credentials: true
+  private-message-bodies-not-indexed-by-default: true
+  sensitive-pii-requires-explicit-use-case-and-protection: true
+  query-log-pii-minimization: true
+
+abuse_controls:
+  rate-limits-product-defined: true
+  anti-enumeration-controls-required-where-sensitive: true
+  autocomplete-same-visibility-discipline: true
+
+observability:
+  - query-volume-latency
+  - zero-result-rate
+  - provider-index-errors
+  - indexing-lag
+  - result-type-distribution
+  - filter-facet-usage
+  - privacy-approved-selection-signals
+  - eligibility-filtering-failures
+  - reindex-jobs-failures
+  - ranking-experiment-version
+
+feature_flags_experiments:
+  ranking-provider-semantic-retrieval-and-ui-may-be-flagged: true
+  experiment-cannot-change-protected-visibility: true
+  authorization-moderation-consent-safety-invariants-preserved: true
+
+product_adapter_requirements:
+  - searchable-entity-types
+  - indexable-source-fields
+  - publication-visibility-rules
+  - domain-filters-facets
+  - ranking-signals-business-boosts
+  - freshness-requirements
+  - indexing-update-triggers
+  - result-projection-fields
+  - query-limits-abuse-controls
+  - sponsored-result-rules
+  - personalization-inputs
+  - provider-index-mapping
+  - pretransaction-revalidation-rules
+
+implementation_truth:
+  status: canonical-design-v1
+  extraction_status: logical-boundary-defined
+  shared_portfolio_runtime_implemented: false
+  dedicated_search_provider_canonical: false
+  current_evidence:
+    - GlenTown-API-list-index-surfaces
+    - GlenTown-API-ProductDiscovery
+    - GlenTown-API-LocationScopedDiscovery
+  current_limitations:
+    - no-canonical-cross-domain-search-endpoint
+    - no-shared-townboss-search-runtime
+    - no-required-dedicated-search-engine
+
+initial_consumers:
+  - GlenTown
+future_consumers:
+  - Glen-AI
+  - TownTraveler
+  - RealWise
+  - GeoPlotter
+  - TownDeveloper
