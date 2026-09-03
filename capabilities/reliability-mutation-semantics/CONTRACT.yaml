@@ -1,0 +1,252 @@
+id: reliability-mutation-semantics
+version: 1
+status: canonical-design-v1
+classification: platform-core
+current_home: TownBoss
+initial_consumers: [GlenTown]
+future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI, Development-Supervisor, Forex-Quant-Lab]
+
+purpose: >-
+  Define portfolio-wide semantics for retry-safe writes, duplicate suppression,
+  transactions, concurrency control, durable side effects, unknown outcomes,
+  recovery, and mutation observability.
+
+invariants:
+  - request-retry-does-not-authorize-duplicate-effect
+  - database-commit-is-not-external-side-effect-completion
+  - provider-timeout-is-not-provider-failure
+  - accepted-command-is-not-completed-workflow
+  - retryable-does-not-mean-safe-to-replay-without-idempotency
+  - at-least-once-delivery-is-not-exactly-once-effect
+  - locking-does-not-grant-authorization
+
+mutation_classes:
+  M0:
+    name: local-reversible
+    examples: [preference-change, draft-edit, presentation-state]
+  M1:
+    name: durable-domain
+    requires: [validation, authorization, durable-transition, stable-errors, conflict-handling]
+  M2:
+    name: retry-sensitive-consequential
+    requires: [idempotency-or-equivalent, concurrency-safety, durable-accountability, retry-semantics, unknown-outcome-semantics]
+  M3:
+    name: cross-system-consequential
+    requires: [M2-controls, provider-correlation, external-reference, replay-protection, reconciliation]
+
+idempotency:
+  scope_required: true
+  scope_dimensions: [actor-or-account, tenant-when-applicable, operation-class]
+  same_key_different_semantics: reject
+  successful_prior_result: recover-or-replay-when-practical
+  durable_uniqueness_for_critical_operations: preferred
+  required_or_equivalent_for:
+    - checkout
+    - orders
+    - bookings
+    - reservations
+    - payments
+    - credits
+    - refunds
+    - payouts
+    - withdrawals
+    - voucher-consumption
+    - approvals
+    - verification-transitions
+    - consequential-publication
+    - webhook-ingestion
+    - reconciliation-imports
+
+transactions:
+  local_atomicity: required-when-invariants-span-multiple-local-writes
+  avoid_external_network_call_inside_lock_when-possible: true
+  external_side_effect_atomicity_claim: prohibited
+  durable_handoff:
+    preferred_pattern: transactional-outbox-or-equivalent
+    sequence:
+      - validate-and-authorize
+      - commit-domain-state-and-work-record-together
+      - dispatch-or-process-side-effect
+      - persist-processing-state
+      - bounded-idempotent-retry
+      - reconcile-or-escalate-on-exhaustion
+
+concurrency:
+  acceptable_controls:
+    - pessimistic-row-lock
+    - optimistic-version-check
+    - unique-constraint
+    - atomic-increment-decrement
+    - serialized-domain-command
+    - reservation-or-hold
+  must-protect_actual_invariant: true
+  common_invariants:
+    - stock
+    - capacity
+    - slot-availability
+    - one-time-invitation-acceptance
+    - one-time-verification-approval
+    - balance-posting
+    - reservation-conversion
+    - voucher-usage-limits
+    - consequential-status-transition
+
+state_transitions:
+  consequential_entities_should_use_explicit_transitions: true
+  evaluate:
+    - current-state
+    - requested-next-state
+    - actor-tenant-resource-authorization
+    - prerequisites
+    - constraints
+    - idempotency-status
+    - concurrency-or-version-condition
+    - downstream-obligations
+    - audit-or-evidence-requirements
+  stale_invalid_transition: deterministic-failure
+
+retry:
+  bounded: true
+  retryable_candidates:
+    - transient-network-failure
+    - provider-5xx-when-contract-allows
+    - deadlock-or-lock-timeout-with-bounded-retry
+    - temporary-dependency-unavailability
+    - worker-interruption-before-durable-completion
+  normally_non_retryable:
+    - validation-failure
+    - authorization-denial
+    - hard-constraint-failure
+    - unsupported-transition
+    - malformed-request
+    - idempotency-key-payload-conflict
+  exhaustion_requires:
+    one_of: [recovery, reconciliation, dead-letter, operator-review]
+
+unknown_outcome:
+  distinct_from: [success, failure]
+  rules:
+    - never-guess-success
+    - do-not-blindly-replay-non-idempotent-external-action
+    - preserve-correlation-and-external-reference
+    - query-or-reconcile-authoritative-state-when-possible
+    - mark-explicit-unknown-or-pending-reconciliation-state
+    - block-unsafe-duplicate-execution-until-resolved
+
+partial_failure:
+  require_forward_recovery_or_compensation_when-non-atomic: true
+  preserve-history_for-material-actions: true
+  preferred_material_correction: [reversal, adjustment, supersession]
+
+async_consumers:
+  assume_duplicate_delivery_unless-safely-proven-otherwise: true
+  important_processors_must_be:
+    - idempotent
+    - duplicate-tolerant
+    - stable-message-id-aware-when-available
+    - ordering-aware-when-needed
+    - stale-event-resistant
+    - restart-safe
+    - observable
+
+ordering:
+  arrival_order_not_assumed_causal: true
+  acceptable_ordering_sources:
+    - provider-sequence
+    - domain-version
+    - effective-time-plus-conflict-rule
+    - authoritative-requery
+  stale_event_must_not_regress_newer_state: true
+
+recovery:
+  durable_for_important_operations: true
+  candidate_fields:
+    - operation-id
+    - correlation-id
+    - idempotency-key
+    - actor
+    - tenant
+    - resource
+    - phase
+    - attempt-count
+    - last-failure-classification
+    - next-retry-eligibility
+    - external-reference
+    - local-transaction-reference
+    - unresolved-side-effects
+    - reconciliation-status
+    - required-human-decision
+  prefer_resume_or_reconcile_over_new_duplicate_operation: true
+
+ai_authority:
+  cannot:
+    - assume-non-idempotent-action-is-safe-to-retry
+    - replay-consequential-action-after-unknown-outcome-without-policy
+    - bypass-approval-after-technical-failure
+    - suppress-partial-execution-evidence
+    - expand-retry-budgets-to-force-success
+    - treat-timeout-as-permission-to-execute-again
+  bounded_execution_requires:
+    - existing-authority
+    - exact-authorization
+    - deterministic-constraints
+    - idempotency
+    - auditability
+    - recovery
+    - stop-conditions
+
+integrations:
+  platform-api-boundary:
+    owns: idempotency-key-placement-and-interface-contract
+    this_capability_owns: retry-safe-effect-semantics
+  payments-credits:
+    stronger_financial_rules_apply: true
+  scheduling:
+    availability-check-alone_is_not_commit-guarantee: true
+  security-baseline:
+    owns: webhook-trust-and-security-controls
+  audit-observability:
+    telemetry_is_not_domain-state: true
+
+observability:
+  track:
+    - duplicate-suppression
+    - idempotency-conflict
+    - transaction-failure
+    - deadlock-or-lock-contention
+    - retries
+    - retry-exhaustion
+    - outbox-lag
+    - webhook-duplicates
+    - unknown-outcomes
+    - compensation-or-reversal
+    - reconciliation-backlog
+    - dead-letter-or-manual-review
+
+implementation_truth:
+  GlenTown:
+    verified:
+      - checkout-accepts-Idempotency-Key-header
+      - cart-persists-checkout_idempotency_key
+      - same-key-repeat-can-return-existing-orders
+      - conflicting-key-on-used-cart-is-rejected
+      - checkout-uses-DB-transaction
+      - cart-items-products-and-variants-use-lockForUpdate
+      - stock-decrement-order-creation-order-items-status-history-and-cart-conversion-share-transaction
+    not_verified_as_shared_runtime:
+      - generic-idempotency-middleware-or-store
+      - transactional-outbox-runtime
+      - generic-event-bus
+      - generic-retry-policy-service
+      - dead-letter-management-layer
+      - generic-operation-recovery-record
+      - distributed-lock-service
+      - universal-optimistic-version-field
+
+beta_posture:
+  generic-reliability-platform-required_before_beta: false
+  demand_led_adoption: true
+  preserve_existing_safe_domain_local_mechanisms: true
+
+extraction:
+  principle: TownBoss-owns-semantics-products-implement-locally-until-reuse-evidence-justifies-shared-runtime
