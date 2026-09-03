@@ -1,0 +1,265 @@
+version: 1
+capability: messaging
+name: Messaging
+classification: platform-core
+status: canonical-design-v1
+canonical_document: architecture/MESSAGING.md
+
+purpose: >-
+  Provide durable conversation, participant, message, attachment, delivery/read,
+  moderation-hook, and lifecycle semantics across TownBoss products without
+  becoming the source of truth for linked business transactions.
+
+core_rule: conversation-context-does-not-equal-business-authority-or-transaction-state
+
+core_entities:
+  - conversation
+  - participant
+  - message
+  - message-attachment
+  - delivery-state
+  - read-state
+  - conversation-context-reference
+
+conversation_classes:
+  - direct
+  - group
+  - inquiry-support
+  - transaction-linked
+  - organization-team
+  - anonymous-or-pseudonymous-when-explicitly-allowed
+  - system-or-assistant-assisted
+
+owns:
+  - conversation-lifecycle
+  - participant-membership-state
+  - message-record-semantics
+  - message-attachment-relations
+  - delivery-state
+  - read-state
+  - conversation-context-linkage
+  - messaging-moderation-hooks
+  - messaging-reliability-contract
+
+does_not_own:
+  - order-state
+  - booking-state
+  - payment-state
+  - inventory-or-availability
+  - pricing
+  - property-inquiry-business-state
+  - service-inquiry-business-state
+  - job-application-business-state
+  - professional-authority
+  - government-authority
+  - moderation-policy-authorship
+  - media-blob-storage
+  - notification-delivery
+  - workflow-orchestration-state
+
+invariants:
+  - message-does-not-authoritatively-change-linked-domain-state
+  - participant-row-alone-is-not-always-sufficient-authorization
+  - organization-and-human-representative-identity-remain-distinct
+  - pseudonymity-does-not-remove-internal-safety-accountability
+  - durable-server-message-state-outranks-realtime-transport
+  - notification-failure-does-not-invalidate-accepted-message
+  - message-search-respects-underlying-content-authorization
+  - ai-draft-is-not-sent-message
+  - ai-must-not-silently-impersonate-human-participant
+  - feature-flag-cannot-bypass-conversation-authorization-or-safety
+  - private-message-content-not-generic-telemetry-by-default
+
+message_lifecycle:
+  normal: [ACCEPTED, QUEUED, SENT, DELIVERED]
+  exceptional: [FAILED, REJECTED, MODERATED, REDACTED, DELETED_BY_POLICY]
+  local_draft_is_server_message: false
+
+idempotency:
+  send-message-retry-safe: true
+  client-idempotency-key-or-equivalent: true
+  duplicate-suppression-required: true
+  server-ordering-metadata-required: true
+  strict-realtime-ordering-not-assumed: true
+
+editing_deletion:
+  product-policy-controlled: true
+  preserve-modified-fact-and-timestamp: true
+  high-risk-context-may-require-version-history: true
+  distinguish:
+    - hide-for-current-user
+    - remove-from-normal-presentation
+    - moderation-redaction
+    - legal-or-privacy-deletion
+    - retained-minimal-audit-metadata
+
+attachments:
+  media-capability-owned-content: true
+  sender-use-authorization-required: true
+  recipient-access-authorization-required: true
+  upload-success-does-not-imply-message-send-success: true
+
+realtime_transport:
+  provider-neutral: true
+  allowed_patterns: [websocket, push, polling, server-sent-events, other-approved]
+  durable-server-state-authoritative: true
+
+notifications:
+  downstream_capability: notifications
+  unread-state-distinct-from-notification-delivery-state: true
+  notification-failure-does-not-delete-message: true
+
+identity_pseudonymity:
+  integrates_with: [identity-trust, authorization]
+  internal-accountable-linkage-required-for-safety: true
+  product-may-expose-approved-presentation-identity: true
+
+blocking_safety:
+  blocking-evaluated-before-new-communication-where-required: true
+  product-defines-existing-group-transaction-context-behavior: true
+  blocking-does-not-erase-audit-or-domain-records: true
+
+moderation:
+  hooks_supported: true
+  distinguish:
+    - blocked-before-acceptance
+    - accepted-then-hidden-or-redacted
+    - participant-sanction
+    - conversation-restriction
+    - human-review-escalation
+  consequential-actions-auditable: true
+
+privacy:
+  private-message-body-sensitive: true
+  raw-content-in-logs-default: false
+  raw-content-in-analytics-default: false
+  raw-content-in-experiments-default: false
+  raw-content-in-ai-retrieval-default: false
+  admin-support-access-least-privilege-and-auditable: true
+  retention-product-and-policy-specific: true
+
+encryption:
+  transport-encryption-production-required: true
+  at-rest-follows-security-baseline: true
+  end-to-end-encryption-assumed: false
+  e2ee-claim-requires-real-cryptographic-implementation: true
+
+search:
+  capability: search-discovery
+  conversation-search-optional: true
+  authorization-before-result-exposure: true
+  no-unauthorized-leakage-via-snippets-counts-or-autocomplete: true
+
+ai:
+  integrates_with: [glen-ai-foundation, ai-authority]
+  allowed_examples:
+    - draft-reply
+    - authorized-conversation-summary
+    - translation
+    - next-action-proposal
+  private-context-purpose-limited-authorized-and-auditable: true
+  send-on-behalf-consequential: true
+  ai-cannot-silently-impersonate-human: true
+
+orchestration:
+  may-create-or-wait-on-messaging-task: true
+  messaging-does-not-own-workflow-state: true
+  natural-language-approval-does-not-bypass-domain-gates: true
+
+external_channels:
+  future_adapter_supported: true
+  examples: [facebook, instagram, whatsapp, other-approved]
+  external-delivery-state-may-remain-authoritative: true
+  adapters_require:
+    - normalized-identifiers-and-provenance
+    - duplicate-detection
+    - ordering-mapping
+    - edit-delete-mapping
+    - unsupported-feature-handling
+    - identity-resolution
+    - rate-limit-handling
+    - webhook-and-retry-semantics
+
+audit_observability:
+  integrates_with: audit-observability
+  consequential_events:
+    - conversation-created
+    - participant-added-removed-left
+    - message-accepted-rejected
+    - moderation-or-redaction
+    - delivery-failure
+    - administrative-content-access
+    - blocking-or-safety-enforcement
+    - external-sync-failure
+  raw-private-content-in-operational-telemetry-default: false
+
+feature_flags:
+  integrates_with: feature-flags-experimentation
+  may_control:
+    - messaging-feature-rollout
+    - realtime-transport
+    - ai-assistance
+    - read-receipts
+    - external-channel-adapters
+  cannot-grant-conversation-access: true
+  cannot-bypass-blocking-moderation-or-privacy: true
+
+reliability:
+  retry-safe-important-mutations: true
+  transactional-outbox-compatible: true
+  accepted-message-independent-of-downstream-notification-availability: true
+  downstream_side_effects:
+    - notifications
+    - indexing
+    - moderation-workflows
+    - analytics
+    - external-channel-synchronization
+
+abuse_resistance:
+  rate-limits-supported: true
+  dimensions:
+    - sender
+    - conversation
+    - recipient
+    - organization
+    - ip-or-device-risk
+  patterns:
+    - spam-burst
+    - unsolicited-conversation-creation
+    - attachment-abuse
+    - automated-scraping
+    - harassment
+
+product_adapter_requirements:
+  - exposed-conversation-classes
+  - create-join-send-read-eligibility
+  - participant-roles
+  - retention-deletion-policy
+  - editing-policy
+  - read-receipt-policy
+  - blocking-semantics
+  - moderation-and-escalation-policy
+  - realtime-transport
+  - notification-bindings
+  - attachment-limits
+  - domain-context-types
+  - external-channel-adapters
+  - ai-assistance-permissions
+  - rate-limits
+
+implementation_truth:
+  implemented: false
+  glentown_api_messaging_routes_found: false
+  glentown_api_messaging_runtime_evidence_found: false
+  centralized_messaging_runtime_claimed: false
+  realtime_provider_selected: false
+  e2ee_claimed: false
+  extraction_status: logical-boundary-defined
+
+initial_consumers:
+  - GlenTown
+future_consumers:
+  - RealWise
+  - TownTraveler
+  - TownDeveloper
+  - Glen-AI
