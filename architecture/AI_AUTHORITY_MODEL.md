@@ -98,7 +98,7 @@ It supplies the A0–A4 classification, maximum permitted AI behavior, approval 
 
 Authorization answers: **May this actor or service perform this operation on this resource?**
 
-Authorization owns identities, roles, permissions, tenancy/resource scope, policy checks, and domain-specific access decisions. AI Authority does not replace authorization. A3 execution must pass both.
+Authorization consumes actor identity from Identity & Trust and organization/tenancy context from Organizations & Tenancy. It owns resource-authorization policy, roles and permissions as authorization semantics, tenant-aware resource-scope enforcement, policy checks, and domain-specific access decisions. Identity & Trust remains the identity source of truth, and Organizations & Tenancy remains the organization/tenant source of truth. AI Authority does not replace authorization. A3 execution must pass both.
 
 ### Orchestration
 
