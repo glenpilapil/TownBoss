@@ -1,0 +1,260 @@
+version: 1
+capability:
+  id: security-baseline
+  name: Security Baseline
+  classification: platform-core
+  status: canonical-design-v1
+  current_home: TownBoss
+  initial_consumers: [GlenTown]
+  future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI, Development-Supervisor, Forex-Quant-Lab]
+
+core_rule: "feature availability != permission != trust != security approval"
+
+security_domains:
+  - authentication
+  - authorization-and-tenancy
+  - input-validation-and-output-safety
+  - secrets-and-credentials
+  - pii-and-sensitive-data
+  - media-and-uploads
+  - rate-limiting-and-abuse
+  - api-and-integration-security
+  - browser-mobile-session-security
+  - consequential-operation-security
+  - ai-and-agent-security
+  - dependency-and-supply-chain-security
+  - infrastructure-and-origin-protection
+  - logging-audit-and-errors
+  - backup-and-recovery-security
+  - transport-and-security-headers
+
+owns:
+  - minimum-portfolio-security-invariants
+  - secure-default-semantics
+  - minimum-authentication-handling-expectations
+  - minimum-authorization-and-tenant-isolation-expectations
+  - external-input-trust-boundary-rules
+  - secret-handling-baseline
+  - sensitive-data-minimization-baseline
+  - upload-security-baseline
+  - rate-limit-and-abuse-control-expectations
+  - integration-security-baseline
+  - ai-tool-security-invariants
+  - dependency-supply-chain-expectations
+  - production-origin-protection-direction
+  - security-audit-readiness-expectations
+
+does_not_own:
+  - product-domain-authorization-policy
+  - identity-source-of-truth
+  - legal-compliance-certification
+  - pci-dss-certification
+  - iso27001-certification
+  - soc2-certification
+  - provider-specific-security-configuration
+  - product-specific-threat-model
+  - infrastructure-provider-authority
+  - incident-response-command
+  - professional-security-assessment
+
+principles:
+  - authentication-does-not-imply-resource-authorization
+  - client-claims-are-not-server-authority
+  - external-input-is-untrusted
+  - least-privilege-by-default
+  - ambiguity-fails-closed-for-protected-or-consequential-actions
+  - secrets-do-not-belong-in-source-logs-urls-or-prompts
+  - cross-tenant-access-requires-explicit-authorization
+  - tool-access-does-not-upgrade-ai-authority
+  - external-success-does-not-bypass-local-gates
+  - security-implementation-truth-requires-evidence
+
+authentication:
+  requirements:
+    - approved-authentication-mechanism
+    - adaptive-password-hashing
+    - scoped-expiring-reset-and-verification-tokens
+    - explicit-token-or-session-revocation
+    - abuse-controls-on-sensitive-auth-endpoints
+    - minimize-account-enumeration
+
+authorization_and_tenancy:
+  requirements:
+    - explicit-server-side-authorization-for-protected-resources
+    - tenancy-enforced-on-reads-writes-search-exports-background-jobs-media-notifications-ai-context
+    - client-supplied-ownership-cannot-override-authoritative-context
+    - privileged-actions-require-explicit-policy
+    - cross-tenant-access-fails-closed
+
+input_validation:
+  trust_boundary_inputs:
+    - user-input
+    - uploads-and-file-metadata
+    - provider-webhooks
+    - public-data-feeds
+    - imported-documents
+    - ai-output
+    - internal-cross-boundary-messages
+  requirements:
+    - server-side-type-size-format-and-domain-validation
+    - parameterized-database-access
+    - context-appropriate-output-encoding
+    - safe-redirect-and-url-validation
+    - no-untrusted-dynamic-code-execution
+
+secrets:
+  prohibited_locations:
+    - source-control
+    - client-bundles
+    - logs
+    - analytics
+    - notification-bodies
+    - urls
+    - screenshots
+    - ai-prompts-unless-strictly-required-and-protected
+  requirements:
+    - environment-or-secret-store-injection
+    - least-privilege-provider-credentials
+    - environment-separation
+    - compromise-rotation
+
+sensitive_data:
+  requirements:
+    - data-minimization
+    - separate-public-display-from-verified-identity
+    - explicit-authorization-for-exports-and-admin-views
+    - minimize-pii-in-telemetry
+    - elevated-handling-for-payment-government-verification-and-private-location-data
+
+uploads:
+  requirements:
+    - size-validation
+    - type-and-mime-validation
+    - server-controlled-storage-paths
+    - path-traversal-prevention
+    - authorized-delivery-for-private-assets
+    - block-or-safely-handle-active-content
+    - no-clean-file-guarantee-without-scanning-evidence
+
+rate_limits_and_abuse:
+  controls_may_include:
+    - ip-limits
+    - account-limits
+    - tenant-limits
+    - operation-limits
+    - progressive-backoff
+    - idempotency
+    - bounded-pagination
+    - quotas
+    - concurrency-limits
+  invariant: rate-limit-is-not-authorization
+
+integrations:
+  requirements:
+    - encrypted-production-transport
+    - verified-webhooks
+    - replay-protection-where-applicable
+    - duplicate-and-out-of-order-tolerance
+    - least-privilege-api-credentials
+    - ssrf-defenses-for-user-controlled-destinations
+    - imported-content-is-data-not-instruction
+    - external-success-does-not-bypass-auth-ai-authority-or-domain-gates
+
+consequential_operations:
+  examples:
+    - payments
+    - credits
+    - refunds
+    - withdrawals
+    - bookings
+    - reservations
+    - approvals
+    - verification-changes
+    - organization-role-changes
+    - external-submissions
+    - destructive-actions
+  required_gates:
+    - authenticated-or-approved-system-identity
+    - resource-authorization
+    - current-domain-preconditions
+    - idempotency-where-retry-sensitive
+    - ai-authority-and-approval-if-ai-initiated
+    - attributable-audit-evidence-where-material
+
+ai_security:
+  requirements:
+    - retrieved-content-cannot-override-policy
+    - minimum-authorized-context
+    - no-unrestricted-secrets-in-prompts
+    - bounded-tool-scopes
+    - validate-ai-output-before-consequential-use
+    - a3-must-pass-canonical-ai-authority-gates
+    - a4-autonomy-prohibited
+    - prompt-injection-never-upgrades-authority
+
+supply_chain:
+  requirements:
+    - dependency-manifest-and-lockfile-where-supported
+    - update-review
+    - remediate-known-exploitable-vulnerabilities-by-risk
+    - protect-build-and-release-credentials
+    - preserve-artifact-integrity
+
+production_security_audit:
+  approved_scope:
+    - dependencies-and-lockfile
+    - owast-style-dast
+    - infrastructure-and-config-drift
+    - access-review
+    - secret-exposure
+    - tls-and-security-headers
+    - cors-csp-cookies
+    - backup-and-restore-verification
+    - logging-and-monitoring
+
+origin_protection:
+  preferred_direction:
+    - proxied-dns
+    - cloudflare-tunnel-or-private-ingress
+    - waf
+    - rate-limiting-and-bot-abuse-controls
+    - zero-trust-admin-access
+  fallback:
+    - restrictive-origin-firewall-rules-where-feasible
+
+secure_defaults:
+  - deny-over-implicit-allow
+  - private-over-public-for-sensitive-data
+  - bounded-scopes-over-wildcards
+  - expiring-tokens-over-indefinite-credentials
+  - revalidate-over-stale-authorization
+  - server-authority-over-client-assertion
+  - allowlists-over-arbitrary-destinations
+  - attributable-history-over-silent-mutation
+
+implementation_truth:
+  GlenTown:
+    branch_inspected: master
+    laravel_sanctum_dependency: true
+    auth_sanctum_protected_routes: true
+    personal_access_token_revocation: true
+    signed_email_verification_route: true
+    named_sensitive_operation_throttles: true
+    request_validation_pattern: true
+    multiple_domain_policies: true
+    complete_production_hardening_verified: false
+    centralized_secret_manager_verified: false
+    upload_malware_scanning_verified: false
+    universal_policy_coverage_verified: false
+    cloudflare_tunnel_waf_deployment_verified: false
+    exhaustive_security_headers_csp_verified: false
+    automated_dast_verified: false
+    portfolio_security_monitoring_verified: false
+
+non_goals:
+  - legal-or-regulatory-certification
+  - replacing-threat-modeling
+  - replacing-penetration-testing
+  - selecting-one-security-vendor
+  - premature-microservice-extraction
+  - treating-documentation-as-security-proof
