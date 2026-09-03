@@ -1,0 +1,230 @@
+version: 1
+capability:
+  id: reviews-reputation
+  name: Reviews & Reputation
+  classification: platform-core
+  status: canonical-design-v1
+  current_home: TownBoss
+  initial_consumers: [GlenTown]
+  future_consumers: [RealWise, TownTraveler, TownDeveloper, Glen-AI]
+
+core_rule: "review != verification != authority != evidence truth"
+secondary_rule: "reputation score != professional verification != legal status != financial creditworthiness"
+
+core_entities:
+  - review
+  - rating
+  - review-subject-reference
+  - reviewer-reference
+  - eligibility-reference
+  - review-response
+  - moderation-state
+  - reputation-signal
+  - reputation-summary
+  - abuse-signal
+
+owns:
+  - review-record-semantics
+  - review-eligibility-interface
+  - rating-scale-and-dimension-contract
+  - review-publication-state
+  - review-response-semantics
+  - reputation-derivation-interface
+  - review-aggregation-semantics
+  - review-moderation-hooks
+  - review-abuse-signal-interface
+  - review-edit-and-withdrawal-semantics
+  - external-review-attribution-contract
+
+does_not_own:
+  - source-transaction-state
+  - source-booking-state
+  - source-service-completion-state
+  - identity-source-of-truth
+  - authorization-policy
+  - professional-verification
+  - professional-license-authority
+  - government-authority
+  - evidence-truth
+  - moderation-policy-authorship
+  - payment-state
+  - inventory-or-availability
+  - financial-creditworthiness
+  - search-ranking-policy-authorship
+
+review_eligibility:
+  principle: owning-domain-revalidates-source-interaction
+  inputs:
+    - reviewer-reference
+    - subject-reference
+    - subject-type
+    - source-interaction-reference
+    - source-interaction-state
+    - review-window
+    - organization-or-tenancy-context
+  invariants:
+    - client-ui-is-not-eligibility-boundary
+    - source-interaction-must-be-revalidated
+    - duplicate-review-policy-must-be-deterministic
+    - self-review-restrictions-are-product-defined
+
+rating:
+  universal_scale_required: false
+  requirements:
+    - explicit-scale-metadata
+    - explicit-dimensions
+    - deterministic-aggregation
+    - incomparable-dimensions-not-combined-without-mapping
+
+reputation:
+  kind: derived-signal
+  possible_inputs:
+    - eligible-published-reviews
+    - rating-distribution
+    - review-recency
+    - verified-interaction-weighting
+    - moderation-outcomes
+    - product-defined-reliability-signals
+  invariants:
+    - no-professional-authority
+    - no-government-authority
+    - no-legal-status
+    - no-financial-credit-score
+    - major-inputs-must-be-explainable
+
+verified_interaction:
+  meaning: owning-domain-confirms-underlying-interaction
+  does_not_mean:
+    - verified-legal-identity
+    - professional-verification
+    - government-verification
+
+moderation:
+  policy_owner: product-or-moderation-capability
+  supported_states:
+    - pending
+    - published
+    - hidden
+    - removed
+    - disputed
+    - restored
+  invariant: moderation-state-changes-must-propagate-to-aggregates
+
+abuse_controls:
+  considerations:
+    - duplicate-reviews
+    - self-review
+    - coordinated-manipulation
+    - review-farming
+    - undisclosed-incentivized-reviews
+    - retaliatory-patterns
+    - automated-spam
+    - account-cycling
+    - brigading
+  rule: abuse-signal-is-not-authoritative-accusation
+
+aggregation:
+  minimum_outputs:
+    - eligible-published-review-count
+    - defined-rating-aggregate
+    - rating-distribution-when-useful
+  requirements:
+    - deterministic-policy
+    - stale-state-repair
+    - avoid-misleading-low-count-precision
+
+integrations:
+  search-discovery:
+    allowed:
+      - filter-by-rating
+      - sort-by-rating
+      - consume-reputation-signal
+    invariants:
+      - eligibility-before-ranking
+      - reputation-does-not-equal-endorsement
+  human-verification:
+    invariant: reputation-cannot-satisfy-human-verification-requirement
+  evidence-provenance:
+    invariant: user-review-is-not-automatically-factual-evidence
+  media:
+    use: review-attachments-and-supporting-media-references
+  audit-observability:
+    important_events:
+      - review-created
+      - review-edited
+      - review-published
+      - review-hidden
+      - review-removed
+      - review-restored
+      - review-response-added
+      - eligibility-rejected
+      - abuse-flag-raised
+      - aggregate-recalculated
+  glen-ai:
+    allowed:
+      - summarize-visible-reviews
+      - identify-review-themes
+      - draft-review-for-user
+    invariants:
+      - distinguish-opinion-from-fact
+      - distinguish-review-sentiment-from-verification
+      - no-fabricated-consensus
+      - ai-cannot-manufacture-eligibility
+      - autonomous-review-submission-requires-explicit-bounded-authority
+
+privacy:
+  requirements:
+    - minimize-public-reviewer-pii
+    - do-not-leak-private-source-interaction-data
+    - honor-identity-display-name-policy
+
+reliability:
+  requirements:
+    - retry-sensitive-mutations-idempotent
+    - aggregate-state-converges
+    - deterministic-rebuild-or-repair
+    - transactional-outbox-preferred-for-important-async-side-effects
+
+external_reviews:
+  requirements:
+    - preserve-source-attribution
+    - do-not-silently-convert-to-first-party-review
+    - cross-source-aggregation-requires-explicit-policy
+
+product_adapter_responsibilities:
+  - reviewable-subject-types
+  - source-interaction-types
+  - eligibility-rules
+  - review-window
+  - rating-dimensions-and-scale
+  - edit-delete-policy
+  - moderation-integration
+  - response-policy
+  - aggregate-algorithm
+  - abuse-controls
+  - public-display-rules
+  - search-discovery-use
+  - external-review-source-policy
+
+implementation_truth:
+  GlenTown:
+    branch_inspected: master
+    dedicated_review_model: false
+    dedicated_rating_model: false
+    dedicated_review_controller: false
+    dedicated_review_migration: false
+    dedicated_reputation_runtime: false
+    status: planned-architecture-only
+
+non_goals:
+  - replacing-identity-trust
+  - replacing-human-verification
+  - professional-authority
+  - government-authority
+  - factual-proof
+  - authorization
+  - payment-state
+  - universal-moderation-policy
+  - financial-credit-scoring
+  - mandatory-machine-learning-reputation
+  - mandatory-pre-beta-physical-extraction
