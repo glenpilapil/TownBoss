@@ -1,0 +1,13 @@
+id: security-baseline
+name: Security Baseline
+classification: platform-core
+current_home: TownBoss
+status: canonical-design-v1
+initial_consumers: [GlenTown]
+future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI, Development-Supervisor, Forex-Quant-Lab]
+core_entities: [security-control-domain, trust-boundary, credential-reference, sensitive-data-class, security-event, security-exception]
+owns: [minimum-portfolio-security-invariants, secure-default-semantics, minimum-authentication-handling-expectations, minimum-authorization-and-tenant-isolation-expectations, external-input-trust-boundary-rules, secret-handling-baseline, sensitive-data-minimization-baseline, upload-security-baseline, rate-limit-and-abuse-control-expectations, integration-security-baseline, ai-tool-security-invariants, dependency-supply-chain-expectations, production-origin-protection-direction, security-audit-readiness-expectations]
+does_not_own: [product-domain-authorization-policy, identity-source-of-truth, legal-compliance-certification, pci-dss-certification, iso27001-certification, soc2-certification, provider-specific-security-configuration, product-specific-threat-model, infrastructure-provider-authority, incident-response-command, professional-security-assessment]
+canonical_document: architecture/SECURITY_BASELINE.md
+canonical_contract: capabilities/security-baseline/CONTRACT.yaml
+extraction_status: logical-boundary-defined
