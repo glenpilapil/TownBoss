@@ -53,12 +53,16 @@ capabilities:
   - id: messaging
     name: Messaging
     classification: platform-core
-    current_home: GlenTown
-    status: planned
-    future_consumers: [GlenTown, RealWise, TownTraveler]
-    owns: [conversations, participants, messages, message-attachments, delivery-read-state]
-    does_not_own: [marketplace-orders, property-inquiries, travel-bookings]
-    extraction_status: logical-boundary-only
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [RealWise, TownTraveler, TownDeveloper, Glen-AI]
+    core_entities: [conversation, participant, message, message-attachment, delivery-state, read-state, conversation-context-reference]
+    owns: [conversation-lifecycle, participant-membership-state, message-record-semantics, message-attachment-relations, delivery-state, read-state, conversation-context-linkage, messaging-moderation-hooks, messaging-reliability-contract]
+    does_not_own: [order-state, booking-state, payment-state, inventory-or-availability, pricing, property-inquiry-business-state, service-inquiry-business-state, job-application-business-state, professional-authority, government-authority, moderation-policy-authorship, media-blob-storage, notification-delivery, workflow-orchestration-state]
+    canonical_document: architecture/MESSAGING.md
+    canonical_contract: capabilities/messaging/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: notifications
     name: Notifications
     classification: platform-core
