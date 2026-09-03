@@ -79,6 +79,19 @@ capabilities:
     does_not_own: [domain-approval-decisions, professional-signoff, government-authority, media-storage-lifecycle, generic-audit-logging, spatial-geometry-model]
     canonical_contract: capabilities/evidence-provenance/CONTRACT.yaml
     extraction_status: logical-boundary-defined
+  - id: audit-observability
+    name: Audit & Observability
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown, Glen-AI, Development-Supervisor]
+    future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Forex-Quant-Lab]
+    core_entities: [audit-event, actor-reference, subject-reference, action, outcome, authority-context, correlation-context, operational-log-event, metric, trace-span, health-signal, alert, incident-record]
+    owns: [audit-event-semantics, audit-minimum-fields, actor-and-subject-attribution, action-and-outcome-semantics, cross-capability-correlation-contract, operational-log-structure, metric-and-trace-integration-contract, health-and-alert-semantics, incident-record-semantics, telemetry-retention-classes, audit-integrity-and-delivery-requirements]
+    does_not_own: [domain-source-of-truth, evidence-source-lineage, authorization-policy, ai-authority-levels, orchestration-state, professional-authority, government-authority, payment-ledger, messaging-content, generic-product-notifications, experiment-statistical-methodology]
+    canonical_document: architecture/AUDIT_OBSERVABILITY.md
+    canonical_contract: capabilities/audit-observability/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: orchestration
     name: Orchestration Engine
     classification: platform-core
