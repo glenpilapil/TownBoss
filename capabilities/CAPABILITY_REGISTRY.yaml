@@ -37,6 +37,19 @@ capabilities:
     status: implemented
     future_consumers: [GlenTown, GeoPlotter, RealWise, TownTraveler, TownDeveloper]
     extraction_status: logical-boundary-only
+  - id: search-discovery
+    name: Search & Discovery
+    classification: platform-core
+    current_home: TownBoss
+    status: canonical-design-v1
+    initial_consumers: [GlenTown]
+    future_consumers: [Glen-AI, TownTraveler, RealWise, GeoPlotter, TownDeveloper]
+    core_entities: [search-request, discovery-context, searchable-entity-reference, search-document-projection, filter, facet, ranking-signal, search-result, result-group]
+    owns: [query-normalization-contract, cross-domain-result-envelope, filter-facet-semantics, pagination-cursor-semantics, ranking-policy-interface, search-index-projection-lifecycle-contract, indexing-freshness-rebuild-expectations, location-aware-discovery-interface, search-observability-hooks, result-attribution-provenance-interface, safe-personalization-input-contract, provider-fallback-semantics]
+    does_not_own: [source-business-records, publication-moderation-state, authorization-policy, entitlements, inventory-or-booking-availability-truth, payments-checkout-state, professional-verification, government-authority, review-reputation-source-records, location-source-of-truth, ai-authority, evidence-truth, advertising-billing, product-ranking-policy-authorship]
+    canonical_document: architecture/SEARCH_DISCOVERY.md
+    canonical_contract: capabilities/search-discovery/CONTRACT.yaml
+    extraction_status: logical-boundary-defined
   - id: messaging
     name: Messaging
     classification: platform-core
