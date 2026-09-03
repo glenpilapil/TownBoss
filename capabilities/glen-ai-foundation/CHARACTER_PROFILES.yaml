@@ -24,10 +24,18 @@ canonical_profiles:
     role: first-class-female-alternative
     presentation: feminine
     default_voice_presentation: feminine
+    real_person_based: true
+    consent_status: approved-in-principle-requires-durable-production-record
+    required_consent_modalities:
+      - likeness
+      - avatar-image-transformation
+      - synthetic-or-cloned-voice
     requirements:
       - coherent-personality-profile
       - same-capability-as-glen
       - same-authority-and-safety-boundaries-as-glen
+      - durable-scoped-consent-record-before-production-use
+      - clear-ai-person-identity-separation
 
 profile_fields:
   required:
@@ -46,6 +54,7 @@ profile_fields:
     - context-suitability-tags
     - accessibility-variants
     - disclosure-metadata
+    - consent-record-reference
     - product-availability
     - feature-flag-state
 
@@ -68,6 +77,9 @@ invariants:
   - profile-switch-does-not-create-parallel-orchestration-state
   - user-choice-overrides-context-default-unless-auto-switching-opted-in
   - personality-style-must-not-intentionally-change-material-facts
+  - real-person-likeness-does-not-make-ai-output-human-authored
+  - real-person-likeness-does-not-create-personal-endorsement
+  - consent-is-modality-and-scope-specific
 
 personality_dimensions:
   - directness
@@ -88,6 +100,54 @@ voice_rules:
   allow-language-accent-variants: true
   voice-fallback-cannot-change-authority: true
   real-person-voice-requires-rights-consent-and-disclosure: true
+
+real_person_consent_contract:
+  production_use_requires_durable_record: true
+  required_fields:
+    - consent-record-id
+    - character-profile-id
+    - consent-subject-or-rights-holder-reference
+    - covered-modalities
+    - approved-products-channels-and-purposes
+    - effective-date
+    - version
+    - derivative-transformation-permission
+    - provider-processing-permission-where-relevant
+    - disclosure-requirements
+    - modification-restriction-history
+    - revocation-or-termination-state
+    - evidence-provenance-reference
+  private-artifacts-not-in-public-profile-or-prompts: true
+  scope_specific: true
+  face-consent-does-not-imply-voice-consent: true
+  likeness-consent-does-not-imply-biography-consent: true
+  revoked-or-expired-consent-fails-closed-for-new-dependent-generation: true
+
+anji_consent_policy:
+  approved_real_person_based_character: true
+  production_record_required: true
+  must_cover:
+    - likeness-use
+    - synthetic-or-cloned-voice-use
+    - avatar-image-transformation-use
+    - product-channel-scope
+    - advertising-promotion-endorsement-limits
+    - consent-evidence-provenance
+    - modification-and-revocation-handling
+  public_profile_uses_stable-consent-reference-not-private-documentation: true
+
+disclosure_identity_separation:
+  must_make-clear-anji-is-ai: true
+  must_not_imply:
+    - real-person-live-participation
+    - ai-statements-are-real-person-statements
+    - ai-actions-are-personally-performed-or-approved-by-real-person
+    - real-person-likeness-grants-professional-government-financial-or-other-authority
+
+biography_boundary:
+  likeness-or-voice-consent-does-not-authorize-private-biography: true
+  biography-requires-separate-purpose-approval: true
+  private-communications-and-memories-excluded-by-default: true
 
 context_default_rules:
   product-may-set-context-default: true
@@ -129,6 +189,7 @@ product_adapter_may_define:
   - saved-preference-behavior
   - feature-flag-and-experiment-rollout
   - accessibility-variants
+  - consent-record-reference-for-real-person-based-presentation
 
 implementation_truth:
   implemented: false
@@ -138,6 +199,7 @@ implementation_truth:
     - voice-synthesis-profile-mapping
     - saved-character-preferences
     - saved-voice-preferences
+    - consent-record-storage
     - context-based-profile-defaulting
     - automatic-profile-switching
   note: architecture-only; not a GlenTown Beta prerequisite
