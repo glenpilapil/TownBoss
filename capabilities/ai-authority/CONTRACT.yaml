@@ -59,11 +59,17 @@ separation_of_concerns:
       - external-authority-decisions
   authorization:
     question: may-this-actor-or-service-perform-this-operation-on-this-resource
+    consumes:
+      - identity-and-actor-context-from-identity-trust
+      - organization-and-tenancy-context-from-organizations-tenancy
     owns:
-      - identity-and-actor-policy
-      - roles-and-permissions
-      - tenancy-and-resource-scope
+      - resource-authorization-policy
+      - roles-and-permissions-as-authorization-semantics
+      - tenant-aware-resource-scope-enforcement
       - domain-access-decisions
+    does_not_own:
+      - identity-source-of-truth
+      - organization-or-tenancy-source-of-truth
     rule: A3-requires-authorization-in-addition-to-ai-authority
   orchestration:
     question: how-does-an-approved-goal-or-action-progress-through-work
