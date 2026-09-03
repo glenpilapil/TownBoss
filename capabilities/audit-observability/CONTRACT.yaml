@@ -1,0 +1,397 @@
+version: 1
+capability: audit-observability
+name: Audit & Observability
+classification: platform-core
+status: canonical-design-v1
+canonical_document: architecture/AUDIT_OBSERVABILITY.md
+
+purpose: >-
+  Provide durable accountability semantics for governed actions and shared
+  operational telemetry semantics for logs, metrics, traces, health, alerts,
+  incidents, and correlation without turning telemetry into a business source
+  of truth or bypassing privacy, authorization, or AI Authority.
+
+core_rule: audit-record-does-not-equal-log-metric-trace-or-evidence-source-of-truth
+
+core_entities:
+  - audit-event
+  - actor-reference
+  - subject-reference
+  - action
+  - outcome
+  - authority-context
+  - correlation-context
+  - operational-log-event
+  - metric
+  - trace-span
+  - health-signal
+  - alert
+  - incident-record
+
+owns:
+  - audit-event-semantics
+  - audit-minimum-fields
+  - actor-and-subject-attribution
+  - action-and-outcome-semantics
+  - cross-capability-correlation-contract
+  - operational-log-structure
+  - metric-and-trace-integration-contract
+  - health-and-alert-semantics
+  - incident-record-semantics
+  - telemetry-retention-classes
+  - audit-integrity-and-delivery-requirements
+
+does_not_own:
+  - domain-source-of-truth
+  - evidence-source-lineage
+  - authorization-policy
+  - ai-authority-levels
+  - orchestration-state
+  - professional-authority
+  - government-authority
+  - payment-ledger
+  - messaging-content
+  - generic-product-notifications
+  - experiment-statistical-methodology
+
+invariants:
+  - audit-log-metric-trace-and-evidence-remain-distinct
+  - audit-events-append-oriented-for-accountability
+  - corrections-use-superseding-or-corrective-events-when-accountability-matters
+  - no-raw-secrets-passwords-or-access-tokens-in-telemetry
+  - no-unnecessary-pii-or-private-content-in-logs
+  - dashboards-are-projections-not-sources-of-truth
+  - ai-cannot-suppress-or-rewrite-required-audit-for-own-actions
+  - client-or-provider-observability-cannot-bypass-authorization-or-ai-authority
+  - sampled-traces-cannot-be-sole-accountability-record-for-critical-actions
+  - telemetry-provider-change-cannot-remove-required-audit-fields-or-controls
+
+audit_event_minimum_fields:
+  - event-id
+  - action
+  - occurred-at
+  - recorded-at-when-different
+  - actor-class
+  - actor-reference-when-resolved
+  - subject-type
+  - subject-id
+  - product-environment-scope
+  - correlation-identifiers-where-applicable
+  - authority-approval-consent-constraint-references-where-material
+  - outcome
+  - reason-code-where-material
+  - source-component
+  - schema-version
+
+optional_audit_fields:
+  - tenant-or-organization-scope
+  - change-summary
+  - idempotency-key
+  - retry-linkage
+  - evidence-provenance-reference
+  - external-system-reference
+  - before-after-hashes-or-safe-deltas
+
+actor_classes:
+  - human-user
+  - administrator
+  - service-account
+  - system-component
+  - automated-worker
+  - ai-assistant
+  - external-system
+  - anonymous-or-unresolved
+
+outcomes:
+  - success
+  - denied
+  - failed
+  - partial
+  - cancelled
+  - expired
+  - superseded
+  - no-op
+  - unknown
+
+correlation_identifiers:
+  - request-id
+  - trace-id
+  - span-id
+  - correlation-id
+  - session-id
+  - interaction-id
+  - orchestration-plan-id
+  - task-id
+  - execution-attempt-id
+  - job-id
+  - idempotency-key
+  - domain-transaction-reference
+  - external-system-reference
+
+structured_logging:
+  machine-queryable: true
+  stable-event-names-preferred: true
+  free-text-only-important-failures-discouraged: true
+  raw-request-response-body-default: prohibited
+  raw-message-body-default: prohibited
+  raw-prompt-private-context-global-capture-default: prohibited
+
+metrics:
+  common_classes:
+    - request-rate
+    - error-rate
+    - latency
+    - saturation
+    - queue-depth-and-age
+    - retries-and-retry-exhaustion
+    - dependency-health
+    - external-integration-health
+    - idempotency-conflicts
+    - authorization-denials
+    - ai-authority-denials-and-escalations
+    - orchestration-blocked-failed-recovery-states
+    - verification-pending-expired-unresolved
+    - feature-flag-experiment-guardrails
+    - payment-credit-reconciliation-failures
+    - notification-delivery-failures
+    - security-significant-anomalies
+  not-individual-business-source-of-truth: true
+
+tracing:
+  use-when-cross-component-causality-material: true
+  propagate-across:
+    - api-requests
+    - background-jobs
+    - outbox-event-consumers
+    - orchestration-steps
+    - ai-model-tool-invocations
+    - approved-external-integrations
+  critical-audit-independent-of-sampling: true
+
+health:
+  distinguish-liveness-and-readiness-where-useful: true
+  dependency-states: [healthy, degraded, unavailable, unknown]
+  fail-closed-refusals-should-expose-reason: true
+
+alerts:
+  actionable-conditions-preferred: true
+  require:
+    - owner
+    - severity
+    - scope
+    - runbook-or-recovery-expectation
+    - deduplication-or-suppression-behavior
+  distinct-from-user-facing-notifications: true
+
+incident_record_requires:
+  - incident-id
+  - detected-started-resolved-times
+  - affected-products-capabilities-environments
+  - impact-and-scope
+  - detection-source
+  - related-alert-log-trace-audit-evidence-references
+  - mitigations
+  - recovery-reconciliation
+  - root-cause-or-current-hypothesis
+  - corrective-preventive-actions
+  - follow-up-owner-and-status
+
+security_audit_candidates:
+  - authentication-security-events-where-policy-requires
+  - credential-or-security-setting-changes
+  - role-permission-policy-changes
+  - administrator-impersonation-or-elevated-access
+  - organization-or-tenant-membership-changes
+  - production-config-feature-flag-kill-switch-changes
+  - security-control-bypass-attempts
+  - data-export-deletion-redaction
+  - moderation-enforcement-with-material-impact
+
+ai_observability:
+  capture-where-material:
+    - interaction-id
+    - skill-id-and-version
+    - model-provider-route
+    - character-profile
+    - ai-authority-classification-and-result
+    - output-type
+    - grounding-evidence-references
+    - tool-and-integration-invocations
+    - approval-delegation-reference
+    - safety-constraint-authorization-results
+    - latency-failure-retry-provider-fallback
+    - cost-token-telemetry-where-appropriate
+  character-choice-does-not-alter-attribution-or-authority: true
+  raw-sensitive-prompts-and-context-not-globally-queryable-by-default: true
+
+ai_authority_integration:
+  records-evaluations-not-defines-levels: true
+  a2-a3-audit-preserves:
+    - authority-result
+    - approval-or-delegation
+    - resource-authorization
+    - constraints
+    - execution-attempt
+    - outcome
+  ai-cannot-disable-required-audit-controls: true
+
+orchestration_integration:
+  observe:
+    - plan-create-revise
+    - readiness-change
+    - validation-gate-outcome
+    - execution-attempt
+    - retry
+    - exception
+    - recovery
+    - cancellation
+    - completion
+  does-not-own-state: true
+  partial-side-effects-reconstructable-across-attempts: true
+
+evidence_provenance_integration:
+  audit-may-reference-evidence: true
+  audit-verification-label-not-proof-without-underlying-record: true
+  telemetry-becomes-evidence-only-when-deliberately-governed: true
+
+human_verification_integration:
+  audit:
+    - request
+    - reviewer-assignment
+    - completion
+    - expiration
+    - reverification
+    - override
+    - material-disposition-change
+  audit-does-not-replace-reviewer-outcome: true
+
+feature_flags_experimentation_integration:
+  audit-production-config-changes: true
+  audit-kill-switch-actions: true
+  audit-rollout-changes: true
+  audit-experiment-decision-records: true
+  every-exposure-not-required-as-durable-audit: true
+  risky-exposure-reconstructability-required: true
+
+consequential_mutations:
+  preserve-where-applicable:
+    - actor
+    - authorization
+    - idempotency-key
+    - value-or-amount-reference
+    - approval
+    - reconciliation-state
+    - external-provider-reference
+    - retries
+    - reversal
+    - final-outcome
+  audit-is-not-second-ledger: true
+
+external_authoritative_systems:
+  record-local-attempt-status-and-external-reference-where-allowed: true
+  do-not-copy-entire-authoritative-record-by-default: true
+  telemetry-does-not-become-external-official-record: true
+
+messaging_moderation:
+  audit-metadata-and-governed-actions-not-message-bodies-by-default: true
+
+privacy:
+  minimize: true
+  prefer-internal-identifiers-over-duplicated-pii: true
+  redact-or-tokenize-sensitive-values: true
+  scoped-production-telemetry-access: true
+  sensitive-support-access-may-itself-be-audited: true
+
+retention_classes:
+  - short-lived-debug-logs
+  - standard-operational-logs
+  - metrics-time-series
+  - traces
+  - security-events
+  - durable-business-security-audit
+  - incident-records
+  universal-numeric-retention: false
+
+integrity_delivery:
+  important-audit-must-have-defined-sink-failure-behavior: true
+  supported-risk-based-options:
+    - block-operation
+    - reliable-outbox-or-event-queue
+    - durable-local-fallback
+  stable-schema-versioning: true
+  duplicate-semantic-events-should-use-stable-event-id-deduplication: true
+  transactional-outbox-compatible: true
+
+time_semantics:
+  distinguish-occurred-and-recorded-when-material: true
+  do-not-rely-solely-on-wall-clock-ordering: true
+
+environment_separation:
+  distinguish-production-staging-development-test: true
+  label-synthetic-test-traffic-where-feasible: true
+
+dashboards:
+  projections-only: true
+  useful_views:
+    - service-capability-health
+    - error-latency-saturation
+    - queue-retry-recovery
+    - external-dependency-health
+    - incidents
+    - security-anomalies
+    - ai-provider-skill-tool-health
+    - orchestration-attention-required
+    - flag-experiment-guardrails
+    - governed-audit-search
+
+slo_sli_direction:
+  compatible: true
+  require-immediate-slo-for-every-pre-beta-component: false
+  examples:
+    - availability
+    - latency
+    - successful-completion
+    - data-freshness
+    - reconciliation-timeliness
+
+provider:
+  provider-neutral: true
+  compatible_with:
+    - framework-structured-logging
+    - OpenTelemetry-style-correlation
+    - APM
+    - SIEM
+    - metrics-platforms
+  product-code-should-prefer-canonical-semantics: true
+
+implementation_truth:
+  status: distributed-incomplete
+  glentown_api:
+    local_framework_logging: true
+    framework: Laravel-Monolog
+    channels_observed:
+      - stack
+      - single
+      - daily
+      - slack
+      - papertrail
+      - stderr
+      - syslog
+      - errorlog
+      - null
+      - emergency
+  shared_audit_event_model_found: false
+  portfolio_observability_contract_found_before_this_change: false
+  full_shared_capability_implemented: false
+  extraction_status: logical-boundary-defined
+
+initial_consumers:
+  - GlenTown
+  - Glen-AI
+  - Development-Supervisor
+future_consumers:
+  - GeoPlotter
+  - RealWise
+  - TownTraveler
+  - TownDeveloper
+  - Forex-Quant-Lab
