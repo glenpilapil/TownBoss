@@ -1,0 +1,13 @@
+id: reliability-mutation-semantics
+name: Reliability & Mutation Semantics
+classification: platform-core
+current_home: TownBoss
+status: canonical-design-v1
+initial_consumers: [GlenTown]
+future_consumers: [GeoPlotter, RealWise, TownTraveler, TownDeveloper, Glen-AI, Development-Supervisor, Forex-Quant-Lab]
+core_entities: [mutation-operation, idempotency-key, transaction-boundary, concurrency-control, outbox-work-item, retry-record, recovery-record, reconciliation-state, compensation-record]
+owns: [mutation-classification-semantics, idempotency-and-duplicate-suppression-semantics, local-transaction-boundary-guidance, concurrency-control-expectations, transactional-outbox-compatibility, retry-classification-and-budgets, unknown-outcome-semantics, partial-failure-recovery-and-compensation-semantics, async-consumer-replay-safety, ordering-and-stale-event-handling, mutation-correlation-and-observability, durable-recovery-state-expectations]
+does_not_own: [domain-business-rules, product-workflow-state, authentication, authorization-policy, ai-authority-levels, provider-authoritative-state, queue-provider, database-provider, infrastructure-provider, distributed-consensus-implementation, domain-specific-compensation-policy]
+canonical_document: architecture/RELIABILITY_MUTATION_SEMANTICS.md
+canonical_contract: capabilities/reliability-mutation-semantics/CONTRACT.yaml
+extraction_status: logical-boundary-defined
