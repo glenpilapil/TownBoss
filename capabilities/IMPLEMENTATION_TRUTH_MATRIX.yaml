@@ -1,0 +1,352 @@
+version: 1
+status: audited-2026-09-04
+owner: TownBoss
+purpose: >-
+  Record implementation evidence separately from canonical architecture status so
+  product-local behavior, thin adapters, client surfaces, and physically shared
+  runtimes are not conflated.
+
+invariants:
+  - implemented-in-one-product-does-not-equal-shared-capability-extracted
+  - client-surface-does-not-equal-server-enforcement
+  - architecture-status-does-not-equal-runtime-status
+  - local-pattern-does-not-equal-portfolio-runtime
+  - thin-adapter-does-not-equal-full-capability-implementation
+  - documentation-does-not-equal-runtime
+  - missing-runtime-does-not-invalidate-canonical-architecture
+
+runtime_status_classes:
+  implemented: material runtime implementing the relevant capability exists
+  implemented-partial: meaningful subset exists but capability is incomplete
+  product-level-patterns: local domain behavior exhibits canonical semantics without shared runtime
+  adapter-enforcement: thin adapter or enforcement boundary to canonical contract exists
+  client-surface-only: client/UI behavior exists but server-side enforcement is not established by it
+  distributed-incomplete: behavior is spread across framework/domain components without complete capability runtime
+  scaffold-only: service/application boundary exists but material domain behavior is not implemented
+  not-verified: no qualifying runtime evidence found in audited repositories
+  not-audited-no-repository: no standalone repository was available in this pass
+
+audited_repository_refs:
+  TownBoss:
+    branch: main
+    commit: 6e7691ae77bbda50a744435a71b22ed2b9b334f2
+  GlenTown-API:
+    branch: master
+    commit: 25468cda8ed0619b7e11b891689cf7d00a3223b6
+  GlenTown-App:
+    branch: main
+    commit: 8454449d19c55881ac11471873aa4899e16d53c9
+  GeoPlotter-Real-Estate:
+    branch: main
+    commit: b73fda6f68d84178cc9475c8c0dbd25b34cb82b1
+  CodeBisor:
+    branch: master
+    commit: c47e4a16a7866baa5df2cd1482876749682dd6e9
+
+capabilities:
+  identity-trust:
+    canonical_status: implemented
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented
+        note: authentication and user identity patterns are established; audit does not claim portfolio extraction
+    shared_runtime_extracted: false
+
+  organizations-tenancy:
+    canonical_status: implemented
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented
+        note: organization/tenant domain patterns are established; portfolio extraction not claimed
+    shared_runtime_extracted: false
+
+  authorization:
+    canonical_status: implemented-partial-by-domain
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented-partial
+        note: multiple domain policies and protected routes exist; universal policy coverage is not verified
+    shared_runtime_extracted: false
+
+  location-geography:
+    canonical_status: implemented
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented
+        note: product location/geography structures exist; shared portfolio service is not claimed
+    shared_runtime_extracted: false
+
+  search-discovery:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+        note: no dedicated shared search/discovery provider runtime verified
+    shared_runtime_extracted: false
+
+  messaging:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+        note: no dedicated messaging/conversation backend runtime verified
+      GlenTown-App:
+        runtime_status: client-surface-only
+        note: client presence must not be treated as backend implementation evidence
+    shared_runtime_extracted: false
+
+  notifications:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+        note: no dedicated canonical notification runtime verified
+      GlenTown-App:
+        runtime_status: client-surface-only
+    shared_runtime_extracted: false
+
+  payments-credits:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented-partial
+        note: order payment fields, checkout, voucher behavior, and payment-status semantics exist; no wallet ledger/provider/top-up/refund/payout/withdrawal runtime verified
+    shared_runtime_extracted: false
+
+  media:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented-partial
+        note: product media model/attachments exist; unified scanning, signed delivery, variants, and portfolio retention runtime are not verified
+    shared_runtime_extracted: false
+
+  evidence-provenance:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: distributed-incomplete
+        note: evidence-like records exist in product domains but no complete canonical Evidence & Provenance runtime is verified
+      GeoPlotter-Real-Estate:
+        runtime_status: not-verified
+        note: documentation exists but material evidence/provenance runtime is not implemented on audited main
+    shared_runtime_extracted: false
+
+  audit-observability:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: distributed-incomplete
+        note: framework logging and domain audit patterns exist; no complete shared audit/observability runtime verified
+      CodeBisor:
+        runtime_status: implemented-partial
+        note: supervisor runtime contains operational state/recovery/diagnostic machinery, but this is not a shared TownBoss audit service
+    shared_runtime_extracted: false
+
+  orchestration:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: product-level-patterns
+        evidence:
+          - app/Services/Travel/BookingOrchestrator.php
+          - app/Services/Travel/AvailabilityValidator.php
+          - app/Services/Travel/ConflictDetector.php
+          - app/Services/Travel/ItineraryGenerator.php
+          - app/Services/Travel/TravelCalendarSyncService.php
+        note: Travel domain patterns do not establish a complete portfolio Orchestration Engine runtime
+      CodeBisor:
+        runtime_status: product-level-patterns
+        note: Development Supervisor orchestration is product-specific and does not replace the canonical portfolio engine
+    shared_runtime_extracted: false
+
+  scenario-engine:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+      GeoPlotter-Real-Estate:
+        runtime_status: not-verified
+        note: architecture/domain documentation is not runtime evidence
+    shared_runtime_extracted: false
+
+  constraint-engine:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+      GeoPlotter-Real-Estate:
+        runtime_status: not-verified
+    shared_runtime_extracted: false
+
+  ai-authority:
+    canonical_status: canonical-design-v2
+    implementations:
+      GlenTown-API:
+        runtime_status: adapter-enforcement
+        evidence:
+          - app/Services/AI/AiAuthorityGate.php
+          - config/ai_authority.php
+          - tests/Unit/AI/AiAuthorityGateTest.php
+      CodeBisor:
+        runtime_status: adapter-enforcement
+        evidence:
+          - ai_authority.py
+          - CODEBISOR_AI_AUTHORITY_POLICY.json
+          - AI_AUTHORITY_V2_CONFORMANCE_AUDIT.md
+    shared_runtime_extracted: false
+
+  glen-ai-foundation:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+        note: AI Authority gate exists, but general assistant/model gateway/skill router/context assembler/grounding/action-handoff runtime is not verified
+    shared_runtime_extracted: false
+
+  feature-flags-experimentation:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+      CodeBisor:
+        runtime_status: not-verified
+    shared_runtime_extracted: false
+
+  reviews-reputation:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+        note: no dedicated Review/Rating model/controller/migration or reputation runtime verified
+      GlenTown-App:
+        runtime_status: client-surface-only
+    shared_runtime_extracted: false
+
+  scheduling:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: product-level-patterns
+        evidence:
+          - app/Services/Travel/DailyAvailabilityWindow.php
+          - app/Services/Travel/ConflictDetector.php
+          - app/Services/Travel/AvailabilityValidator.php
+          - app/Services/Travel/BookingOrchestrator.php
+          - app/Services/Travel/TravelCalendarSyncService.php
+          - app/Models/Event.php
+          - app/Models/StayBooking.php
+    shared_runtime_extracted: false
+
+  public-data-gateway:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+        note: no generic gateway or external-source adapter framework verified
+    shared_runtime_extracted: false
+
+  security-baseline:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented-partial
+        note: Sanctum, protected routes, signed verification, throttles, validation, token revocation, and policies provide partial evidence; complete production hardening is not verified
+    shared_runtime_extracted: false
+
+  platform-api-boundary:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: product-level-patterns
+        note: v1 routes/controllers, protected/public route groupings, validation/resources and throttles exist; no third-party public API program or centralized gateway is verified
+    shared_runtime_extracted: false
+
+  reliability-mutation-semantics:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented-partial
+        evidence:
+          - app/Http/Controllers/Api/V1/CartController.php
+          - app/Actions/Cart/CheckoutCart.php
+        note: checkout has idempotency and transactional/concurrency protection; generic outbox/retry/recovery runtime is not verified
+      CodeBisor:
+        runtime_status: implemented-partial
+        note: durable recovery and duplicate-suppression patterns exist in the supervisor domain but are not a shared portfolio reliability runtime
+    shared_runtime_extracted: false
+
+  human-verification:
+    canonical_status: canonical-design-v1
+    implementations:
+      GlenTown-API:
+        runtime_status: not-verified
+      GeoPlotter-Real-Estate:
+        runtime_status: not-verified
+    shared_runtime_extracted: false
+
+  spatial-intelligence:
+    canonical_status: approved-direction
+    implementations:
+      GeoPlotter-Real-Estate:
+        runtime_status: scaffold-only
+        evidence:
+          - services/geospatial/app/main.py
+        note: geospatial FastAPI boundary currently exposes health only; deterministic GIS/geometry/OCR/CV capabilities described by the service are not implemented on audited main
+    shared_runtime_extracted: false
+
+  property-intelligence:
+    canonical_status: emerging
+    implementations:
+      GeoPlotter-Real-Estate:
+        runtime_status: scaffold-only
+        note: architecture/domain documentation exists, but material property-intelligence runtime was not found on audited main
+    shared_runtime_extracted: false
+
+  visualization-3d:
+    canonical_status: approved-direction
+    implementations:
+      GeoPlotter-Real-Estate:
+        runtime_status: not-verified
+    shared_runtime_extracted: false
+
+  community:
+    canonical_status: implemented-partial
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented-partial
+      GlenTown-App:
+        runtime_status: client-surface-only
+    shared_runtime_extracted: false
+
+  pre-loved:
+    canonical_status: implemented-partial
+    implementations:
+      GlenTown-API:
+        runtime_status: implemented-partial
+      GlenTown-App:
+        runtime_status: client-surface-only
+    shared_runtime_extracted: false
+
+  parcel-technical-description:
+    canonical_status: emerging
+    implementations:
+      GeoPlotter-Real-Estate:
+        runtime_status: scaffold-only
+        note: current repository contains the geospatial service boundary and architecture documentation but no parcel technical-description interpretation runtime on audited main
+    shared_runtime_extracted: false
+
+products_without_standalone_audited_repository_in_this_pass:
+  - RealWise
+  - TownTraveler
+  - TownDeveloper
+  - Forex-Quant-Lab
+
+conclusion:
+  canonical_registry_status_change_required: false
+  reason: >-
+    The root registry's canonical/maturity status and this runtime-evidence matrix
+    answer different questions. No audited evidence justified promoting a canonical
+    capability to shared implemented runtime, and existing implemented/partial
+    product entries were not contradicted strongly enough to require registry change.
+  physical_shared_capabilities_verified: []
