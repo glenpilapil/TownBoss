@@ -1,0 +1,278 @@
+version: 1
+status: canonical-roadmap-v1
+owner: TownBoss
+classification: portfolio-architecture-implementation-roadmap
+
+principles:
+  canonical_capability_does_not_require_physical_adapter_today: true
+  implementation_led: true
+  evidence_driven_extraction: true
+  no_automatic_provider_dependency: true
+  no_authority_transfer: true
+  no_policy_bypass: true
+  no_microservice_by_default: true
+  no_architecture_completeness_theater: true
+
+adapter_classes:
+  product_to_capability:
+    description: map product-local behavior to canonical TownBoss capability contract
+  provider:
+    description: encapsulate replaceable commercial or technical provider behind canonical capability
+  authoritative_external_system:
+    description: integrate system that remains authoritative outside TownBoss
+  product_to_product:
+    description: explicit bounded product integration without capability ownership transfer
+
+lifecycle:
+  - candidate
+  - evaluating
+  - approved
+  - implemented
+  - verified
+  - deprecated
+  - retired
+
+state_invariants:
+  - approved != implemented
+  - implemented != verified
+  - provider_selected != authority_transferred
+  - product_local_behavior != shared_runtime
+  - thin_adapter != full_capability_implementation
+
+entry_gates:
+  - active_product_need
+  - canonical_owning_capability_identified
+  - source_of_truth_identified
+  - authorization_and_tenant_context_defined
+  - ai_authority_defined_if_applicable
+  - reliability_requirements_defined
+  - provenance_and_freshness_defined_if_applicable
+  - privacy_and_data_classification_defined
+  - failure_behavior_defined
+  - observability_and_audit_defined
+  - disable_or_replacement_path_defined
+  - provider_terms_cost_quota_exit_reviewed_if_applicable
+
+verification_gates:
+  - contract_conformance
+  - authentication_authorization
+  - tenant_boundary
+  - request_response_validation
+  - timeout_retry_rate_limit_unknown_outcome
+  - idempotency_duplicate_suppression_if_consequential
+  - webhook_signature_replay_protection_if_applicable
+  - provenance_freshness_preservation_if_applicable
+  - partial_failure_reconciliation
+  - secrets_and_log_redaction
+  - pii_privacy
+  - audit_observability
+  - disable_kill_switch
+  - schema_change_handling
+  - authority_safe_fallback
+
+current_verified_adapter_style_enforcement:
+  - id: glentown-ai-authority
+    product: GlenTown-API
+    canonical_capability: ai-authority
+    state: verified
+    scope: thin-enforcement
+    evidence:
+      - app/Services/AI/AiAuthorityGate.php
+      - config/ai_authority.php
+      - tests/Unit/AI/AiAuthorityGateTest.php
+  - id: codebisor-ai-authority
+    product: CodeBisor
+    canonical_capability: ai-authority
+    state: verified
+    scope: thin-enforcement
+    evidence:
+      - ai_authority.py
+      - CODEBISOR_AI_AUTHORITY_POLICY.json
+      - AI_AUTHORITY_V2_CONFORMANCE_AUDIT.md
+
+priority_model:
+  ordered_factors:
+    - active_product_delivery_need
+    - consequential_risk_reduction
+    - cross_product_reuse_evidence
+    - external_dependency_or_partnership_readiness
+    - cost_of_delay
+    - beta_or_production_operational_maturity
+  calendar_based: false
+
+waves:
+  wave_0:
+    name: preserve-existing-thin-adapters
+    items:
+      - id: glentown-ai-authority
+        trigger: new-ai-enabled-consequential-operation
+        action: extend-existing-thin-mapping-only-as-needed
+      - id: codebisor-ai-authority
+        trigger: new-supervisor-ai-authority-boundary
+        action: extend-existing-thin-mapping-only-as-needed
+
+  wave_1:
+    name: glentown-beta-driven-adapters
+    items:
+      - id: glentown-messaging
+        canonical_capability: messaging
+        current_runtime: not-verified-backend
+        trigger: real-backend-messaging-implementation-begins
+        defer_provider_adapters_until_core_runtime: true
+      - id: glentown-notifications
+        canonical_capability: notifications
+        current_runtime: client-surface-only-plus-no-dedicated-backend
+        trigger: server-side-delivery-preferences-deduplication-becomes-real
+        defer_delivery_provider_until_canonical_runtime: true
+      - id: glentown-reviews-reputation
+        canonical_capability: reviews-reputation
+        current_runtime: not-verified-backend
+        trigger: review-rating-backend-implementation-begins
+      - id: glentown-search-discovery
+        canonical_capability: search-discovery
+        current_runtime: not-verified-dedicated-runtime
+        trigger: cross-domain-discovery-index-ranking-or-provider-search-needed
+      - id: glentown-media
+        canonical_capability: media
+        current_runtime: implemented-partial
+        trigger: private-sensitive-media-signed-access-processing-or-cross-domain-reuse
+        migration_style: incremental
+      - id: glentown-payments-credits
+        canonical_capability: payments-credits
+        current_runtime: implemented-partial
+        trigger: external-payment-wallet-ledger-refund-payout-withdrawal-or-automated-topup
+      - id: glentown-scheduling-orchestration
+        canonical_capabilities: [scheduling, orchestration]
+        current_runtime: product-level-patterns
+        trigger: shared-calendar-or-execution-lifecycle-needed-across-two-or-more-domains
+        preferred_strategy: adapt-proven-travel-patterns
+      - id: glentown-glen-ai-foundation
+        canonical_capabilities: [glen-ai-foundation, ai-authority, authorization, audit-observability]
+        current_runtime: no-general-assistant-runtime-verified
+        trigger: real-assistant-runtime-adds-skill-routing-model-invocation-grounding-context-or-action-proposals
+
+  wave_2:
+    name: official-public-data-and-government-interoperability
+    items:
+      - id: pagasa-weather-hazard
+        adapter_class: authoritative_external_system
+        canonical_capability: public-data-gateway
+        trigger: approved-official-access-plus-real-product-use-case
+        preserve: [source, observation_time, effective_time, severity, jurisdiction, freshness, attribution]
+      - id: psa-public-datasets
+        adapter_class: authoritative_external_system
+        canonical_capability: public-data-gateway
+        trigger: lawful-approved-dataset-access-plus-real-product-requirement
+        privacy_rule: public_access_does_not_authorize_unrestricted_personal_record_replication
+      - id: government-service-interoperability
+        adapter_class: authoritative_external_system
+        candidate_systems: [eGovPH, eGovDX, eLGU, agency-api, lgu-api]
+        canonical_capabilities: [public-data-gateway, orchestration, platform-api-boundary, authorization, ai-authority]
+        trigger: post-beta-partnership-supported-api-or-formal-integration
+        authority_remains_external: true
+      - id: transit-data
+        adapter_class: authoritative_external_system
+        candidate_sources: [glentown-native-driver-gps, operator-fleet-api, lgu-public-feed, dedicated-gps-hardware, route-schedule-fallback]
+        trigger: real-telemetry-or-feed-source-available
+        required_distinctions: [live, estimated, scheduled, stale]
+
+  wave_3:
+    name: geoplotter-spatial-intelligence-proving-adapters
+    items:
+      - id: geoplotter-spatial-intelligence
+        product: GeoPlotter
+        canonical_capability: spatial-intelligence
+        current_runtime: scaffold-only
+        trigger: material-gis-geometry-terrain-hazard-ocr-cv-imagery-runtime-exists-on-main
+        preserve: [crs, units, source, observation_date, transformation_lineage, uncertainty]
+        authority_rule: computed_or_inferred_output_does_not_equal_professional_or_government_authority
+      - id: geoplotter-parcel-technical-description
+        product: GeoPlotter
+        current_runtime: scaffold-only
+        trigger: actual-bearing-distance-parcel-interpretation-runtime-implemented
+        first_boundary: product-specific
+        promote_shared_components_only_with_reuse_evidence: true
+
+  wave_4:
+    name: realwise-and-towntraveler
+    deferred_until_runtime_exists: true
+    items:
+      - id: realwise-shared-capability-adapters
+        product: RealWise
+        predicted_only: true
+        possible_capabilities: [identity-trust, organizations-tenancy, search-discovery, messaging, reviews-reputation, scheduling, payments-credits, evidence-provenance, spatial-intelligence]
+        ownership_rule: preferential-geoplotter-use-does-not-transfer-capability-ownership
+      - id: towntraveler-shared-capability-adapters
+        product: TownTraveler
+        predicted_only: true
+        possible_capabilities: [search-discovery, scheduling, orchestration, messaging, payments-credits, reviews-reputation, glen-ai-foundation]
+        rule: consume-existing-canonical-contracts-before-forking
+
+  wave_5:
+    name: later-portfolio-products
+    deferred_until_real_behavior: true
+    products: [TownDeveloper, Forex-Quant-Lab, future-products]
+
+provider_candidates:
+  note: candidates_not_dependencies
+  items:
+    - GrowthBook
+    - ai-model-providers
+    - payment-processors-or-wallet-providers
+    - push-email-sms-providers
+    - search-index-providers
+    - object-storage-media-processing-providers
+    - mapping-geocoding-providers
+  approval_requirements:
+    - security
+    - privacy_legal_compliance
+    - cost
+    - reliability
+    - authority_provenance
+    - architecture_fit
+    - exit_portability
+
+ownership_fields_required:
+  - canonical_owning_capability
+  - product_consumer
+  - external_provider_or_source_if_any
+  - source_of_truth
+  - code_owner
+  - configuration_owner
+  - secrets_owner
+  - operational_owner
+  - deprecation_owner
+
+anti_corruption_layer:
+  provider_specific_semantics_should_not_leak_across_product: true
+  normalization_must_preserve_material_distinctions: true
+  material_states:
+    - unknown
+    - stale
+    - partial
+    - pending
+    - failed
+    - rejected
+    - confirmed
+    - settled
+    - authoritative
+
+feature_flags:
+  allowed_uses:
+    - adapter_rollout
+    - provider_migration
+    - cohort_or_geographic_exposure
+    - fallback_activation
+    - kill_switch
+  cannot_override:
+    - authorization
+    - ai_authority
+    - privacy
+    - security
+    - source_rights
+    - government_authority
+    - professional_authority
+    - financial_reconciliation
+
+source_of_current_runtime_truth: capabilities/IMPLEMENTATION_TRUTH_MATRIX.yaml
+next_architecture_step: final-townboss-architecture-baseline-v1
