@@ -1,0 +1,168 @@
+version: 1
+status: canonical-baseline-v1
+owner: TownBoss
+established_date: 2026-09-04
+source_commit: 09d0be6d6a07dccfb85779d4d5f28e974812ffed
+canonical_document: architecture/TOWNBOSS_ARCHITECTURE_BASELINE_V1.md
+
+portfolio_model:
+  capability_company: true
+  dependency_direction: product -> shared-domain -> platform-core
+  logical_boundary_before_physical_extraction: true
+  physical_extraction: evidence-driven
+  implementation_mode_after_baseline: implementation-led
+
+canonical_sources:
+  capability_registry: capabilities/CAPABILITY_REGISTRY.yaml
+  dependency_matrix: capabilities/CAPABILITY_DEPENDENCY_INTEGRATION_MATRIX.yaml
+  implementation_truth_matrix: capabilities/IMPLEMENTATION_TRUTH_MATRIX.yaml
+  adapter_roadmap: capabilities/ADAPTER_ROADMAP.yaml
+  security_baseline: architecture/SECURITY_BASELINE.md
+  api_boundary: architecture/PLATFORM_API_BOUNDARY.md
+  reliability_semantics: architecture/RELIABILITY_MUTATION_SEMANTICS.md
+  ai_authority: architecture/AI_AUTHORITY_MODEL.md
+  evidence_provenance: capabilities/evidence-provenance/CONTRACT.yaml
+  audit_observability: capabilities/audit-observability/CONTRACT.yaml
+  orchestration: capabilities/orchestration/CONTRACT.yaml
+
+portfolio_invariants:
+  - dependency != ownership
+  - integration != authority transfer
+  - data access != permission
+  - authenticated != authorized
+  - confidence != authority
+  - tool access != permission
+  - orchestration != authority
+  - scenario output != approval
+  - constraint pass != execution authority
+  - review != verification != authority != evidence truth
+  - audit record != evidence source truth != domain state
+  - derived projection != authoritative record
+  - public government data != government transaction authority
+  - cached != current
+  - payment intent != payment confirmation != settlement
+  - schedule != availability truth != reservation confirmation != execution authority
+  - media blob != domain record != evidence truth
+  - request retry != permission to duplicate effect
+  - database commit != external side-effect completion
+  - provider timeout != provider failure
+  - at-least-once delivery != exactly-once effect
+  - canonical capability != required physical adapter today
+
+composition_rules:
+  identity:
+    source_of_truth: identity-trust
+  tenancy:
+    source_of_truth: organizations-tenancy
+  permission:
+    owner: authorization
+    must_not_be_bypassed_by: [ai, feature-flags, internal-api, orchestration]
+  security:
+    minimum_floor: security-baseline
+    specialized_rules_may_strengthen_not_weaken: true
+  reliability:
+    generic_effect_semantics: reliability-mutation-semantics
+    interface_contract: platform-api-boundary
+    domain_profiles_may_be_stricter: true
+  evidence:
+    source_lineage_owner: evidence-provenance
+  audit:
+    action_telemetry_owner: audit-observability
+    not_source_domain_truth: true
+  human_verification:
+    owns_review_workflow: true
+    identity_source: identity-trust
+    evidence_source: evidence-provenance
+  authority:
+    distinct_domains: [authorization, ai-authority, professional-authority, government-external-authority, orchestration]
+    orchestration_owns_lifecycle_not_authority: true
+
+ai_authority:
+  version: 2
+  levels: [A0, A1, A2, A3, A4]
+  consequential_default: A2
+  a3_requires_explicit_bounded_authority_and_gates: true
+  a4_autonomous_authority_prohibited: true
+
+adapter_policy:
+  classes: [product-to-capability, provider, authoritative-external-system, product-to-product]
+  lifecycle: [candidate, evaluating, approved, implemented, verified, deprecated, retired]
+  approval_does_not_imply_implementation: true
+  implementation_does_not_imply_verification: true
+  provider_evaluation_required: [security, privacy-legal-compliance, cost, reliability, authority-provenance, architecture]
+
+canonical_contract_directories:
+  - ai-authority
+  - audit-observability
+  - constraint-engine
+  - evidence-provenance
+  - feature-flags-experimentation
+  - glen-ai-foundation
+  - human-verification
+  - media
+  - messaging
+  - notifications
+  - orchestration
+  - payments-credits
+  - platform-api-boundary
+  - public-data-gateway
+  - reliability-mutation-semantics
+  - reviews-reputation
+  - scenario-engine
+  - scheduling
+  - search-discovery
+  - security-baseline
+
+implementation_truth_at_baseline:
+  shared_portfolio_runtimes_physically_extracted: []
+  ai_authority_thin_adapters:
+    - GlenTown-API
+    - CodeBisor
+  glentown_product_level_patterns:
+    - scheduling
+    - orchestration
+    - reliability-mutation-semantics
+    - platform-api-boundary
+  glentown_not_verified_runtimes:
+    - messaging
+    - reviews-reputation
+    - public-data-gateway
+    - glen-ai-foundation
+    - scenario-engine
+    - constraint-engine
+    - human-verification
+  geoplotter_spatial_runtime_status: scaffold-only
+
+approved_future_interoperability:
+  government_service:
+    authoritative_external_systems: true
+    candidate_interfaces: [eGovPH, eGovDX, eLGU, agency-apis, lgu-apis]
+    townboss_may: [orchestrate, preflight, explain, link, submit-when-authorized-and-supported, track, reconcile]
+    may_not_imply_government_authority: true
+  transit_data:
+    source_classes: [native-driver-operator-gps, operator-fleet-api, lgu-public-feed, dedicated-gps-hardware, route-schedule-status-fallback]
+    source_and_freshness_explicit: true
+
+baseline_evidence:
+  registry_completeness_audit: audits/CAPABILITY_REGISTRY_COMPLETENESS_AUDIT_2026-09-03.md
+  cross_contract_consistency_audit: audits/CROSS_CONTRACT_CONSISTENCY_AUDIT_2026-09-03.md
+  implementation_truth_audit: audits/IMPLEMENTATION_TRUTH_AUDIT_2026-09-04.md
+  adapter_roadmap: architecture/ADAPTER_ROADMAP.md
+
+change_control:
+  new_baseline_version_requires_material_reason: true
+  valid_triggers:
+    - implementation evidence contradicts current assumption
+    - genuine cross-product reuse pressure
+    - real external partnership or provider requirement
+    - security legal privacy reliability or authority requirement change
+    - materially ambiguous capability ownership
+    - canonical contract blocks necessary implementation
+  minor_product_details_do_not_require_baseline_version: true
+  superseding_version_must_state_changed_invariants: true
+
+outcome:
+  architecture_baseline_complete: true
+  next_default_mode: implementation-led
+  near_term_driver: GlenTown-Beta
+  future_extraction_evidence_sources: [GeoPlotter, TownTraveler, RealWise, TownDeveloper, Forex-Quant-Lab]
