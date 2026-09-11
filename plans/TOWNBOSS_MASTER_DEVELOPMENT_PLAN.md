@@ -2,6 +2,7 @@
 
 **Status:** CANONICAL / ACTIVE  
 **Baseline date:** 2026-09-11  
+**Latest repository reconciliation:** 2026-09-12  
 **Purpose:** Portfolio-level development authority for TownBoss and its projects.
 
 ## 1. Authority and Scope
@@ -45,12 +46,14 @@ Each project plan maintains:
 | Project | Current classification | Primary purpose | Plan |
 |---|---|---|---|
 | TownBoss Platform | DECIDED / PLANNED / partial foundations | Portfolio governance, shared capabilities and operating architecture | `projects/townboss/TOWNBOSS_PLATFORM_IMPLEMENTATION_PLAN.md` |
-| GlenTown | IMPLEMENTED / VERIFIED in substantial areas; active Beta development | Digital Town Operating System | `projects/glentown/GLENTOWN_IMPLEMENTATION_PLAN.md` |
-| CodeBisor | ACTIVE IMPLEMENTATION | Development supervisor / operational engineering system | `projects/codebisor/CODEBISOR_IMPLEMENTATION_PLAN.md` |
-| GeoPlotter | ACTIVE IMPLEMENTATION | Geospatial real-estate/project inventory platform | `projects/geoplotter/GEOPLOTTER_IMPLEMENTATION_PLAN.md` |
-| RealWise | DECIDED / PLANNED with operating requirements | Real-estate business platform and operating model | `projects/realwise/REALWISE_IMPLEMENTATION_PLAN.md` |
-| TownTraveler | DECIDED / PLANNED | Web-first travel discovery/planning vertical | `projects/towntraveler/TOWNTRAVELER_IMPLEMENTATION_PLAN.md` |
-| Forex Quant Lab | RESEARCH / PLANNED | Controlled systematic-trading research and execution lab | `projects/forex-quant-lab/FOREX_QUANT_LAB_IMPLEMENTATION_PLAN.md` |
+| GlenTown | IMPLEMENTED in substantial areas; active Beta verification | Digital Town Operating System | `projects/glentown/GLENTOWN_IMPLEMENTATION_PLAN.md` |
+| CodeBisor | ACTIVE IMPLEMENTATION / repository-reconciled | Development supervisor / operational engineering system | `projects/codebisor/CODEBISOR_IMPLEMENTATION_PLAN.md` |
+| GeoPlotter | ACTIVE IMPLEMENTATION / remote-local reconciliation required | Geospatial real-estate/project inventory platform | `projects/geoplotter/GEOPLOTTER_IMPLEMENTATION_PLAN.md` |
+| RealWise | DECIDED / PLANNED; no canonical repo currently identified | Real-estate business platform and operating model | `projects/realwise/REALWISE_IMPLEMENTATION_PLAN.md` |
+| TownTraveler | DECIDED / PLANNED; no canonical repo currently identified | Web-first travel discovery/planning vertical | `projects/towntraveler/TOWNTRAVELER_IMPLEMENTATION_PLAN.md` |
+| Forex Quant Lab | RESEARCH / PLANNED; no canonical repo currently identified | Controlled systematic-trading research and execution lab | `projects/forex-quant-lab/FOREX_QUANT_LAB_IMPLEMENTATION_PLAN.md` |
+
+The first active-repository reconciliation report is `reconciliation/ACTIVE_REPOSITORY_RECONCILIATION_2026-09-12.md`.
 
 ## 4. Shared TownBoss Architecture
 
@@ -172,8 +175,10 @@ Conflicts are resolved by explicit decision, source authority and recency—not 
 
 ## 9. Immediate Masterplan Workstream
 
-- [ ] Repository-by-repository AS-IS reconciliation.
-- [ ] Convert inferred statuses to evidence-backed statuses.
+- [x] First repository-by-repository AS-IS reconciliation for GlenTown, CodeBisor and GeoPlotter.
+- [x] Reclassify several inferred statuses using repository evidence where available.
+- [ ] Fresh current-HEAD automated verification for GlenTown API/App and CodeBisor.
+- [ ] Reconcile GeoPlotter local PASS 0C–0I work with canonical remote Git history.
 - [ ] Link canonical specifications/ADRs for each project.
 - [ ] Establish cross-project dependency register.
 - [ ] Establish shared-service ownership map.
