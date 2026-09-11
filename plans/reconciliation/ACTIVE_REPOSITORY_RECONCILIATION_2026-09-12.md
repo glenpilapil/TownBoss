@@ -1,77 +1,84 @@
 # Active Repository Reconciliation — 2026-09-12
 
-**Scope:** First evidence-backed reconciliation pass for active TownBoss development repositories.
+**Scope:** Evidence-backed reconciliation for active TownBoss development repositories.
 
-## Repositories identified
+## Canonical repositories and current default refs
 
-| Project | Canonical repository located | Default branch | Reconciliation result |
-|---|---|---|---|
-| GlenTown Flutter | `glenpilapil/GlenTown-App` | `main` | Reconciled |
-| GlenTown API | `glenpilapil/GlenTown-API` | `master` | Reconciled |
-| CodeBisor | `glenpilapil/CodeBisor` | `master` | Reconciled |
-| GeoPlotter | `glenpilapil/GeoPlotter-Real-Estate` | `main` | Reconciled with remote/local evidence discrepancy |
-| TownBoss planning/architecture | `glenpilapil/TownBoss` | `main` | Canonical planning authority |
-| RealWise | No installed repository found under the current connected GitHub account | — | Planning-only until repository is established/identified |
-| TownTraveler | No installed repository found under the current connected GitHub account | — | Planning-only until repository is established/identified |
-| Forex Quant Lab | No installed repository found under the current connected GitHub account | — | Research/planning-only until repository is established/identified |
+| Project | Repository | Default branch | Current default HEAD | Current evidence result |
+|---|---|---|---|---|
+| GlenTown Flutter | `glenpilapil/GlenTown-App` | `main` | `9ff2443` | Real-API Trip/Event/Financial work on canonical branch; fresh test receipt pending |
+| GlenTown API | `glenpilapil/GlenTown-API` | `master` | `5d9f812` | Organization/community work canonical; Messaging exists later but is not on current default branch |
+| CodeBisor | `glenpilapil/CodeBisor` | `master` | `a1a1d29` | Provider-routing/canary foundations canonical; required `test` branch check configured, fresh visible receipt pending |
+| GeoPlotter | `glenpilapil/GeoPlotter-Real-Estate` | `main` | `bde5a05` | `main` through PASS 0B; remote PASS 0C branch exists; reported PASS 0I still absent remotely |
+| TownBoss | `glenpilapil/TownBoss` | `main` | active | Canonical architecture/planning authority |
 
-## GlenTown findings
+RealWise, TownTraveler and Forex Quant Lab have no separate installed repositories currently visible through the connected GitHub account; they remain planning/research surfaces until a repository is established or identified.
 
-### API
-Repository evidence confirms implementation beyond the earlier masterplan baseline, including:
+## GlenTown API reconciliation
 
-- merged messaging backend foundation (`c90a643`, building on `5d38926`);
-- messaging participant/mute/idempotency contract work;
-- organization setup and actor-discovery contracts;
-- bounded self-employment enrollment;
-- community taxonomy and viewer-scoped feed filters;
-- versioned Community Advisory acknowledgement APIs.
+Current canonical `master` is `5d9f812` (organization setup/actor-discovery merge). Repository history also contains Messaging implementation (`5d38926`) and a later Messaging integration commit (`c90a643`), but those commits are not ancestors of the currently exposed default-branch HEAD.
 
-Historical Laravel test counts remain useful evidence but are not current-HEAD verification. A fresh full suite remains required.
+Therefore:
 
-### Flutter
-Repository evidence confirms:
+- organization setup/actor discovery, self-employment enrollment, community taxonomy/feed filters and advisory acknowledgements are canonical-default-branch implementation evidence;
+- Messaging is **IMPLEMENTED IN REPOSITORY HISTORY / DEFAULT-BRANCH INTEGRATION PENDING**;
+- the previous statement that Messaging was merged into current API `master` was incorrect and has been corrected in the GlenTown implementation plan.
 
-- Trip Planner real-API integration merged by PR #15 (`e83c961`);
-- Event planning/discovery real-API integration merged by PR #16 (`fa15502`);
-- Financial Planner real-API integration merged by PR #17 (`9ff2443`).
+No current default-HEAD status checks or PR-triggered workflow receipts were exposed by the connected GitHub lookup. Historical Laravel pass counts remain historical evidence only. Fresh full-suite execution against the canonical release candidate is required.
 
-Therefore these capabilities were reclassified from generic approved/planned direction to implemented-with-current-verification-pending.
+## GlenTown Flutter reconciliation
 
-## CodeBisor findings
+Current canonical `main` is `9ff2443`, the Financial Planner real-API merge. Canonical history confirms:
 
-Recent repository history confirms implemented foundations for:
+- Trip Planner real-API integration — PR #15 (`e83c961`);
+- Event planning/discovery real-API integration — PR #16 (`fa15502`);
+- Financial Planner real-API integration — PR #17 (`9ff2443`).
+
+The earlier 369/369 test + zero-analyzer-issues checkpoint predates these later integrations. Fresh current-HEAD analyzer/tests remain required. Physical-device onboarding/auth corrections discussed after September 4 are not evidenced on current `main` and must be reconciled before promotion to IMPLEMENTED.
+
+## CodeBisor reconciliation
+
+Current canonical `master` is `a1a1d29`. Repository history confirms:
 
 - capability-aware provider routing;
-- provider identity binding before worker launch;
+- provider identity binding before live worker launch;
 - provider-specific autonomous resource budgets;
 - deterministic provider failure normalization/deferral;
-- routed adapter identity for Codex, Gemini, Cline and Kilo;
-- bounded GeoPlotter onboarding canary behavior.
+- Codex/Gemini/Cline/Kilo adapter identity binding;
+- bounded GeoPlotter onboarding canary work.
 
-The masterplan parser/ingestion layer remains a planned next step and is now explicitly linked to the TownBoss planning corpus.
+`master` is configured with a required `test` status check. However, the connected status/workflow lookup exposes no fresh receipt for current HEAD, so CodeBisor remains IMPLEMENTED with fresh full-suite/runtime verification pending.
 
-## GeoPlotter findings
+## GeoPlotter reconciliation
 
-The canonical connected GitHub repository currently exposes `main` through PASS 0B (`bde5a05`) with executable development foundations, local infrastructure, Python geospatial-service scaffold, health test and baseline CI.
+Canonical `main` remains `bde5a05`, the PASS 0B merge.
 
-A later PASS 0I checkpoint was reported from local development as branch `feat/pass-0e-projects-foundation`, commit `33435d3`, but the connected GitHub repository does not resolve that commit and branch discovery does not expose the reported later branch.
+Remote branch inventory also exposes:
 
-The masterplan therefore distinguishes:
+- `feat/pass-0b-development-foundation`;
+- `feat/pass-0c-persistence-tenancy-foundation` at `47d5c1b`;
+- `docs/realwise-business-foundation`.
 
-- remote-GitHub-evidenced implementation through PASS 0B; and
-- reported local implementation through PASS 0I pending synchronization/reconciliation.
+The PASS 0C branch is therefore remotely present, but it has not been merged into `main`. Its current head includes accepted CRM/TownBoss platform-boundary documentation, so branch-name presence alone is not sufficient to claim the whole PASS 0C implementation verified.
 
-This discrepancy is a development-governance issue, not a reason to discard the PASS 0I work. The next GeoPlotter gate is to establish the canonical remote ref for the later passes and bind test/migration evidence to it.
+The reported later PASS 0I checkpoint (`feat/pass-0e-projects-foundation`, `33435d3`) still does not resolve in the connected repository, and no PASS 0D–0I branches are exposed remotely.
 
-## Immediate next reconciliation sequence
+GeoPlotter status is therefore:
 
-1. Fresh GlenTown API full-suite evidence at current HEAD.
-2. Fresh GlenTown Flutter analyzer/test evidence at current HEAD.
-3. GeoPlotter remote synchronization and PASS 0C–0I reconciliation.
-4. Current CodeBisor full-suite and persistence/runtime evidence.
-5. Repository establishment/identification decisions for RealWise, TownTraveler and Forex Quant Lab when implementation begins.
+- **PASS 0B — canonical/default-branch evidenced**;
+- **PASS 0C — remote feature branch evidenced, merge/test completeness pending reconciliation**;
+- **PASS 0D–0I — reported local implementation, remote provenance pending**.
+
+## Immediate execution gates
+
+1. Integrate/reconcile GlenTown Messaging lineage with canonical API branch before Beta release claims.
+2. Run fresh GlenTown API full suite on canonical release candidate.
+3. Run fresh GlenTown Flutter analyzer/test suite on canonical release candidate.
+4. Reconcile post-September-4 Flutter onboarding/auth work with `main`.
+5. Obtain fresh CodeBisor required-test/full-suite/runtime evidence.
+6. Push or otherwise establish canonical remote provenance for GeoPlotter PASS 0D–0I and bind tests/migrations to those refs.
+7. Reconcile PASS 0C branch completeness and intended merge path.
 
 ## Status rule
 
-Conversation notes and agent reports may establish `DECIDED`, `PLANNED`, or reported implementation context. Canonical repository evidence establishes implementation existence. Fresh tests/build/runtime evidence tied to a concrete ref are required for `VERIFIED` release claims.
+Conversation notes and agent reports may establish `DECIDED`, `PLANNED`, or reported implementation context. Repository history establishes implementation existence. Default-branch ancestry establishes canonical integration. `VERIFIED` requires fresh test/build/runtime evidence tied to a concrete canonical ref or release candidate.
