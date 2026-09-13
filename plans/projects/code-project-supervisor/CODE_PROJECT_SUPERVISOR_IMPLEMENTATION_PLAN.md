@@ -340,7 +340,7 @@ Add only gaps proven necessary by the Phase 0 audit:
 - [x] Recovery-budget/circuit-breaker tests
    Evidence: `TestCircuitBreaker`
 - [x] Independent-review tests
-   Evidence: `TestTaskContractFlags` covers `RequiresIndependentReview`
+   Evidence: `TestReviewGateBlockedWhenRequiredAndMissing`, `TestReviewGateAllowedWhenRequiredAndPresent`, `TestReviewGateNotImposedWhenNotRequired`, `TestReviewGateNotBypassedByCheckpointEvidence`
 - [x] Checkpoint-gate tests
    Evidence: `TestPromotionGate` covers checkpoint promotion blocking
 - [x] Documentation compliance receipt support
@@ -355,7 +355,7 @@ Add only gaps proven necessary by the Phase 0 audit:
 - [x] Recovery cannot exceed configured governance limits
    Evidence: `CircuitBreaker.RecordAttempt()` trips when budgets are exhausted; cannot be silently cleared
 - [x] Required independent review cannot be silently skipped
-   Evidence: `TaskContract.RequiredReview` field; promotion gate can be extended to require review evidence before VERIFIED
+   Evidence: `TaskGovernanceState.PromotionGate` blocks promotion to VERIFIED/CHECKPOINTED/DONE when `TaskContract.RequiredReview` is true and no acceptable review evidence (Approved/ChangesRequested verdict or operator waiver) is present
 - [x] Rule exceptions require explicit recorded authorization
    Evidence: `RuleException` requires Approver, ApprovedAt, and optional ExpiresAt; `IsValid()` enforces authorization
 - [x] Documentation compliance is checked before planning, during material change, and before final report
