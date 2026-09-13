@@ -1,63 +1,106 @@
-# TownBoss Platform Implementation Plan
+# TownBoss Platform Implementation Plan / Development Dashboard
 
-**Status:** DECIDED / PLANNED with governance foundations
+**Status:** DECIDED / PLANNED with governance foundations  
+**Dashboard rule:** checkboxes are authoritative completion markers.
+
+## Dashboard summary
+- [ ] Phase 0 — Portfolio architecture inventory complete.
+- [ ] Phase 1 — Portfolio standards complete.
+- [ ] Phase 2 — Shared orchestration foundation complete where justified.
+- [ ] Phase 3 — AI/tool gateway complete where justified.
+- [ ] Phase 4 — Cross-product identity/integration complete where justified.
+- [ ] Shared-service extraction decisions evidence-backed.
 
 ## Mission
-
 Provide the portfolio-level operating architecture that allows TownBoss projects to share capabilities deliberately without collapsing into one tightly coupled application.
 
-## Existing foundations to preserve and reconcile
-
-- Management Guidelines v2.1.
-- Managing Director Guidelines — Master Summary v2.1.
-- IP & Legal Validation Gate Map.
-- canonical decision and operating blueprint practices.
-- GeoPlotter and GlenTown integration guidelines.
-- shared orchestration-engine decision.
-- Glen AI direction.
-- production protection and origin-control practices.
+## Existing foundations to preserve/reconcile
+- [x] Management Guidelines v2.1 recognized.
+- [x] Managing Director Guidelines — Master Summary v2.1 recognized.
+- [x] IP & Legal Validation Gate Map recognized.
+- [x] Canonical decision/operating blueprint practices recognized.
+- [x] GeoPlotter/GlenTown integration guidance recognized.
+- [x] Shared orchestration-engine direction recognized.
+- [x] Glen AI direction recognized.
+- [x] Production protection/origin-control practices recognized.
+- [x] Portfolio Development Rules established.
+- [x] Project Governance Standard established.
 
 ## Shared capability candidates
+Each item requires an explicit ownership/build-vs-project decision before implementation.
 
-These are candidates for shared platform ownership; each requires a build-vs-project-owned decision before implementation:
-
-- identity and account linking;
-- organizations and roles where cross-product semantics truly align;
-- orchestration engine;
-- Glen AI service gateway and controlled tool access;
-- notifications and messaging interoperability;
-- shared geographic and reference data;
-- audit and event conventions;
-- feature flags and experimentation;
-- observability and platform controls;
-- government integration adapters;
-- developer and integration standards.
+- [ ] Identity/account linking ownership decided.
+- [ ] Organization/role sharing justified or rejected.
+- [ ] Shared orchestration engine ownership decided.
+- [ ] Glen AI gateway/tool-access ownership decided.
+- [ ] Notification/messaging interoperability ownership decided.
+- [ ] Shared geographic/reference data ownership decided.
+- [ ] Audit/event conventions standardized.
+- [ ] Feature-flag/experimentation ownership decided.
+- [ ] Observability/platform controls standardized.
+- [ ] Government-integration adapter ownership decided.
+- [ ] Developer/integration standards established.
 
 ## Architecture rule
+A capability becomes a TownBoss shared service only when at least two products have sufficiently aligned semantics and centralization creates more value than coupling cost. Otherwise it remains project-owned behind an explicit API/contract.
 
-A capability becomes a TownBoss shared service only when at least two products have sufficiently aligned semantics and centralization creates more value than coupling cost. Otherwise it remains project-owned behind an API or contract.
+## Phase 0 — Portfolio architecture inventory
+**Status:** NEXT
+- [ ] Repository/application inventory complete.
+- [ ] Domain ownership map complete.
+- [ ] Deployment/environment inventory complete.
+- [ ] Data classification complete.
+- [ ] Dependency/integration map complete.
+- [ ] Current shared-capability implementations reconciled against planning truth.
 
-## Implementation phases
+### Gate
+- [ ] Architecture inventory reviewed with evidence.
 
-### Phase 0 — Portfolio architecture inventory
-- repository and application inventory;
-- domain ownership map;
-- deployment and environment inventory;
-- data classification;
-- dependency map.
+## Phase 1 — Standards
+- [ ] API conventions approved.
+- [ ] Event conventions approved.
+- [ ] Account/permission interoperability rules approved.
+- [ ] Logging/audit conventions approved.
+- [ ] Platform-protection baseline approved.
+- [ ] Release/checkpoint evidence schema approved.
+- [x] Portfolio Development Rules established.
+- [x] Project Governance Standard established.
 
-### Phase 1 — Standards
-- API and event conventions;
-- account and permission interoperability rules;
-- logging and audit conventions;
-- platform protection baseline;
-- release and checkpoint evidence schema.
+### Gate
+- [ ] Standards are documented, consumable and adopted by at least one active project where applicable.
 
-### Phase 2 — Shared orchestration foundation
-Implement only after consumer requirements from GlenTown planners and CodeBisor are reconciled.
+## Phase 2 — Shared orchestration foundation
+- [ ] Consumer requirements reconciled from GlenTown planners and development-supervision needs.
+- [ ] Shared-vs-project ownership justified.
+- [ ] Minimal shared orchestration contract defined.
+- [ ] At least two consumers validate aligned semantics before extraction.
 
-### Phase 3 — AI and tool gateway
-Controlled Glen AI access to native product capabilities with validation, receipts, and approval gates.
+### Gate
+- [ ] Shared orchestration foundation proven useful without forcing product coupling.
 
-### Phase 4 — Cross-product identity and integration
-Account linking and shared adapters only after privacy, platform-protection, and legal architecture review.
+## Phase 3 — AI and tool gateway
+- [ ] Glen AI capability boundary defined.
+- [ ] Tool access uses explicit authority/validation controls.
+- [ ] Receipts/evidence model defined.
+- [ ] Approval gates defined for consequential actions.
+- [ ] Product-owned capabilities remain authoritative.
+
+### Gate
+- [ ] Controlled AI/tool integration passes safety and product-boundary review.
+
+## Phase 4 — Cross-product identity and integration
+- [ ] Account-linking use cases reconciled.
+- [ ] Privacy/data-boundary review complete.
+- [ ] Shared adapter requirements proven by real consumers.
+- [ ] Product-specific semantics remain isolated where alignment is insufficient.
+
+### Gate
+- [ ] Cross-product integration works without collapsing product domain ownership.
+
+## Operational governance checklist
+- [ ] Every active project has an implementation-plan dashboard.
+- [ ] Every active project has a durable Memory ledger.
+- [ ] Every active project has Current State.
+- [ ] Every active project inherits TownBoss Development Rules.
+- [ ] Every substantial task follows documentation compliance.
+- [ ] Shared capabilities are evidence-driven rather than speculative.
