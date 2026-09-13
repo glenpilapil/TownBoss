@@ -15,7 +15,9 @@ This file records meaningful development history, decisions, reversals, incident
 **Engineering baseline:** lint/typecheck/tests/build previously passing; 13/13 tests reported  
 **Visual baseline:** NOT ACCEPTED  
 **Current design authority:** controlled hybrid documented in `GLENTOWN_APP_SITE_DESIGN_AUTHORITY_MATRIX.md`  
-**Next approved action:** reconcile docs/current branch, then implement typography + hero only and perform human visual audit before continuing.
+**TownBoss documentation reconciliation:** COMPLETE  
+**Repository-local documentation reconciliation:** PENDING on authoritative dirty Pass 3 worktree  
+**Next approved action:** preserve/inspect Pass 3, reconcile local README/architecture docs, rerun baseline validation, then implement typography + hero only and perform human visual audit before continuing.
 
 ---
 
@@ -285,9 +287,36 @@ Adopt a controlled hybrid rather than a single-template design system.
 
 The user likes the Sofiyev scroll effect but not the desktop friction. Target future behavior is selected visual waypoints: a deliberate wheel/swipe gesture may settle toward the next visual resting state, without strict section-ID snapping or global scroll hijacking.
 
-### Next Step
+---
 
-Implement typography + hero only, then stop for human visual audit before proceeding further.
+## 2026-09-13 — Documentation Authority Reconciled
+
+**Type:** Documentation / Governance  
+**Status:** TOWNBOSS COMPLETE / REPOSITORY-LOCAL FOLLOW-UP PENDING
+
+### Context
+
+The parent `APP_GLENTOWN_COM.md` still described the application as `APPROVED / READY TO START` even though the dedicated repository, major routes, release configuration, theme system, SEO foundation and several visual passes already existed.
+
+### Action
+
+- Updated the parent plan to evidence-backed `IMPLEMENTATION IN PROGRESS / VISUAL RECOVERY` status.
+- Marked implemented Phase 0/Phase 1 foundations without overstating deployment, accessibility, Help/legal, or store-release readiness.
+- Added `GLENTOWN_APP_SITE_DOCUMENTATION_RECONCILIATION.md`.
+- Updated this package's README, Current State and V0 implementation gate.
+- Explicitly preserved the boundary between engineering validation and human visual acceptance.
+
+### Repository-Local Boundary
+
+The remote GlenTown-App-Site repository was deliberately not mutated because the authoritative local Pass 3 worktree is intentionally dirty and newer than the pushed state.
+
+### Result
+
+TownBoss planning now reflects actual project status. The next required action is to reconcile the local Pass 3 `README.md` and `docs/APP_SITE_ARCHITECTURE.md` in place, preserve the worktree, capture exact evidence, and rerun baseline validation before V1.
+
+### Lesson
+
+Portfolio planning, repository-local documentation, source code and validation evidence must advance together, but a dirty authoritative worktree must not be bypassed by remote documentation edits.
 
 ---
 
