@@ -1,139 +1,178 @@
-# GlenTown Implementation Plan / Development Dashboard
+# GlenTown Implementation Plan / Live Development Dashboard
 
 **Portfolio:** TownBoss
-**Current state:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
-**Pilot:** Puerto Princesa City, Palawan
-**Rollout:** Nationwide access with capability/readiness-based availability and nationwide pre-Beta seeding.
-**Dashboard rule:** checkboxes are authoritative completion markers; do not mark complete without evidence.
+**Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
+**Current phase:** Phase 1 — Core Mobile Functional and UX Recovery
+**Current deliverable/task:** D1.4 Create recovery / T1.4.1 audit authority and bounded contract
+**Phase gate:** OPEN — physical verification and remaining recovery work are incomplete.
 
-## Governing execution documents
-- `GLENTOWN_AUTHORITY_MATRIX.md`
-- `GLENTOWN_CAPABILITY_MATRIX.md`
-- `GLENTOWN_BLOCKER_REGISTER.md`
-- `GLENTOWN_VALIDATION_PROFILES.md`
-- `GLENTOWN_OPERATIONAL_ACCEPTANCE_TEST.md`
-- `GLENTOWN_RISK_REGISTER.md`
-- `GLENTOWN_RELEASE_EVIDENCE_MANIFEST_TEMPLATE.md`
-- `GLENTOWN_DOCUMENTATION_COMPLIANCE_PROTOCOL.md`
-- `GLENTOWN_DECISIONS_AND_RULES.md`
-- `GLENTOWN_ACCEPTANCE_CRITERIA.md`
-- `GLENTOWN_MEMORY.md`
+## Status legend
 
-## Status promotion
-PLANNED, IMPLEMENTED, INTEGRATED, TEST_VERIFIED, RUNTIME_VERIFIED, PHYSICAL_VERIFIED, RELEASE_READY.
-Historical code/tests prove only the level actually evidenced. Worker prose alone cannot promote status.
+`[ ]` not complete; `[x]` complete with evidence; `IN_PROGRESS` active; `ATTENTION` needs review; `BLOCKED` dependency; `DEFERRED` explicitly out of scope.
 
-# Phase 0 — Canonical State Reconciliation
-**Gate:** active work is traceable to current canonical repository and planning authority.
-- [ ] Fresh API full-suite/database verification complete on canonical HEAD.
-- [ ] Fresh Flutter analyze/test verification complete on canonical HEAD.
-- [ ] Post-September onboarding/auth and active recovery work reconciled to canonical App lineage.
-- [ ] Canonical UI/UX regression/audit authority reconciled and versioned.
-- [ ] Capability Matrix reflects present implementation truth.
-- [ ] Blocker Register reflects known dependencies.
+## Current summary
 
-# Phase 1 — Core Functional and UX Recovery
-**Gate:** release-critical mobile surfaces are coherent before broader promotion.
-- [ ] Onboarding/auth current authority physically rechecked.
-- [ ] Home/floating-navigation recovery physically rechecked.
-- [ ] Notifications gestures/routing physically rechecked.
-- [ ] Community post interactions/detail architecture resolved to applicable contract level.
-- [ ] Cart and Around You recovery physically rechecked.
-- [ ] Map recovery physically rechecked against real-data capability.
-- [ ] Explore canonical audit backlog recovered and physically rechecked.
-- [ ] Create, Chat/Messages and You remaining audit backlog reconciled.
+- [x] Phase 0 governance/planning foundations substantially established. Evidence: GlenTown control corpus and 2026-09-13 governance adoption.
+- [x] Home recovery App-side complete; physical verification pending. Evidence: `170baca` → `969abec` → `9a7861e` → `a43442b` → `c28feee` → `ff6d2e2`; 369 Flutter tests passed, analyze no issues, diff check pass.
+- [x] Explore recovery App-side complete; physical verification pending. Evidence: `3edfb0c`; 33 focused Explore tests, 9 cross-route tests, 369 Flutter tests, analyze no issues, diff check pass.
+- [ ] `IN_PROGRESS` Next active deliverable: D1.4 Create recovery. Not started by this documentation-only checkpoint.
+- [ ] Chat, You/Profile, cross-screen closure, API/data blockers, full mobile physical audit and Beta readiness remain open.
+
+## D0.1 — Canonical repository/state reconciliation
+
+- [x] T0.1.1 Reconcile TownBoss planning authority and dashboard ownership. Evidence: canonical files under `plans/projects/glentown/`.
+- [ ] T0.1.2 Fresh GlenTown-API current-HEAD full suite/database verification. `ATTENTION`.
+- [ ] T0.1.3 Fresh GlenTown-App current-HEAD analyze/full-suite verification. `ATTENTION`; historical recovery checkpoints are not release verification.
+
+## D0.2 — Audit authority, capability/blocker controls, and governance adoption
+
+- [x] T0.2.1 Normalize physical/code/screenshot audit backlog into canonical App ledger. Evidence: GlenTown-App `9db4f889130a83c11e379f1101dae45ed5288cb8`.
+- [x] T0.2.2 Establish Capability Matrix and Blocker Register. Evidence: corresponding canonical documents.
+- [x] T0.2.3 Adopt documentation-compliance/governance controls. Evidence: Authority Matrix, Validation Profiles, Risk Register, Operational Acceptance Test, Documentation Compliance Protocol.
+
+## Phase 0 gate
+
+- [x] Governance/planning and audit authority established.
+- [ ] Fresh API and App canonical verification complete.
+
+---
+
+# Phase 1 — Core Mobile Functional and UX Recovery
+
+**Phase status:** CURRENT
+
+## D1.1 — Onboarding/Auth recovery
+
+- [x] T1.1.1 Recover onboarding/auth visual authority and supplied logo assets. Evidence: `be202c5ab539218305c8ed2d80ec823504445238`.
+- [x] T1.1.2 Implement development-only email-verification bypass. Evidence: `GLENTOWN_DEV_BYPASS_EMAIL_VERIFICATION`, default off and disabled in release builds.
+- [ ] T1.1.3 Real SMTP/email verification E2E. `BLOCKED_EXTERNAL` pending SMTP/delivery account.
+- [ ] T1.1.4 Physical onboarding/auth recheck. `ATTENTION`.
+
+## D1.2 — Home + Floating Navigation recovery
+
+- [x] T1.2.1 Navigation shell recovery. Evidence: `170baca4b9fb43ac35560372224e43c0e066abf0`; App-side complete / physical recheck pending.
+- [x] T1.2.2 Community UI recovery. Evidence: `969abecc4aef8f9786f1b8ff88bf2d543336fe06`.
+- [x] T1.2.3 Notifications recovery. Evidence: `9a7861e13cec66b7acf8f1bba0a6ef6b36fb5075`.
+- [x] T1.2.4 Map recovery. Evidence: `a43442b75916e805b44af2af62f38233112882a7`.
+- [x] T1.2.5 Cart + Around You recovery. Evidence: `c28feee029834fe3be6678da0b81ab11c329c64d`.
+- [x] T1.2.6 Final Home reconciliation. Evidence: `ff6d2e2e502a0fa91d19a799b46a8d7ca0523428`; 369 tests, analyze no issues, diff check pass.
+- [ ] T1.2.7 Samsung physical recheck. `ATTENTION`.
+
+## D1.3 — Explore / Discovery recovery
+
+- [x] T1.3.1 Audit backlog recovery. Evidence: `9db4f889130a83c11e379f1101dae45ed5288cb8`.
+- [x] T1.3.2 Canonical Explore UI/data-truthfulness recovery. Evidence: `3edfb0c075fc984c19c6b9407868afa5a4ed6965`.
+- [x] T1.3.3 Focused Explore validation. Evidence: 33 focused Explore tests passed.
+- [x] T1.3.4 Cross-route validation. Evidence: 9 cross-route tests passed.
+- [x] T1.3.5 Full Flutter checkpoint. Evidence: 369 tests passed.
+- [x] T1.3.6 Analyzer. Evidence: no issues.
+- [ ] T1.3.7 Samsung physical recheck. `ATTENTION`.
+- [ ] T1.3.8 Connected universal Search; geographic scope-bound discovery/ranking; nationwide scope queries. `BLOCKED_API_CONTRACT`; see `CONNECTED_SEARCH`.
+- [ ] T1.3.9 Destination hero media. `BLOCKED_API_DATA`; see `DESTINATION_HERO_MEDIA`.
+- [ ] T1.3.10 Real map listing projection. `BLOCKED_API_CONTRACT`; see `MAP_LISTINGS`.
+- [ ] T1.3.11 Seeded destination/discovery richness. `BLOCKED_BY_DEMO_DATA`; see `DISCOVERY_RICHNESS`.
+- [ ] T1.3.12 Jobs/Directory detail fallback. Pending App recovery unless evidence proves otherwise.
+
+## D1.4 — Create recovery
+
+**Status:** `NEXT ACTIVE DELIVERABLE` — do not begin in this checkpoint.
+
+- [ ] T1.4.1 Establish Create audit authority/bounded recovery contract.
+- [ ] T1.4.2 Create layout/hierarchy and canonical Community taxonomy.
+- [ ] T1.4.3 Citizen Product → Pre-Loved; commercial category → business setup gating; citizen Post a Job restriction.
+- [ ] T1.4.4 Media controls, form/keyboard behavior, Trust/Verification routing, validation/error states.
+- [ ] T1.4.5 Focused validation and physical recheck.
+
+## D1.5 — Chat recovery
+
+- [ ] T1.5.1 Canonical Chat information architecture and direct/group/chatroom/request/search flows.
+- [ ] T1.5.2 Composer/keyboard/loading/error/unread behavior and API-contract alignment.
+- [ ] T1.5.3 Focused validation, documentation reconciliation and physical recheck.
+
+## D1.6 — You/Profile recovery
+
+- [ ] T1.6.1 Fix Profile Setup Continue/keyboard premature progression.
+- [ ] T1.6.2 Reconcile orders/calendar/places/job seeker/settings and Trust/Verification/credits/help/business routes.
+- [ ] T1.6.3 Focused validation and physical recheck.
+
+## D1.7 — Cross-screen/accessibility closure
+
+- [ ] T1.7.1 SafeArea, keyboard overlap, horizontal clipping and raw technical errors.
+- [ ] T1.7.2 Contrast/icon consistency, responsive verification, text scale/accessibility semantics.
+- [ ] T1.7.3 Cross-screen validation and physical recheck.
+
+## Phase 1 gate
+
+- [ ] D1.1–D1.7 independently implementable work complete or explicitly blocked/deferred.
+- [ ] Completed recovery surfaces physically rechecked.
+- [ ] No release-critical audit finding lacks canonical status.
+
+---
 
 # Phase 2 — Data Completeness and Demo Reality
-**Gate:** representative audits can exercise intended states without misleading real-mode behavior.
-- [ ] Comprehensive rerunnable realistic demo-data seeding passes twice.
-- [ ] Stable populated demo user/personas available.
-- [ ] Community advisory data available where intended.
-- [ ] Rich mixed community posts include representative media and categories.
-- [ ] Recommendations/discovery fixtures available where product design requires them.
-- [ ] Life-event/reminder/home orchestration cards represented where intended.
-- [ ] Multi-category/multi-vendor cart/order history represented.
-- [ ] Messaging/notification/reservation histories represented.
-- [ ] Claimable-business semantics and provenance verified.
 
-# Phase 3 — Critical Journey Validation
-**Gate:** core journeys work end-to-end against real contracts.
-- [ ] Authentication/profile journey passes.
-- [ ] Community create/interact/detail journey passes at supported capability level.
-- [ ] Explore/search/map/detail journey passes.
-- [ ] Marketplace/Food/Service representative transaction journeys pass.
-- [ ] Cart/checkout/order boundaries pass.
-- [ ] Messaging end-to-end physical-device journey passes.
-- [ ] Trip Planner regression/runtime gate passes.
-- [ ] Event Planner regression/runtime gate passes.
-- [ ] Financial Planner regression/runtime gate passes.
-- [ ] Commerce/order boundary review passes.
+## D2.1 — Demo seeder integrity and populated persona
+- [ ] T2.1.1 Rerunnable/idempotent demo seeder integrity.
+- [ ] T2.1.2 Populated demo user/personas.
 
-# Phase 4 — Nationwide Beta Readiness
-**Gate:** enabled locations satisfy explicit readiness thresholds or are capability-gated truthfully.
-- [ ] Province Ready scoring/thresholds finalized.
-- [ ] Nationwide pre-Beta seeding executed to required threshold.
-- [ ] Puerto Princesa deepest-pilot density/readiness evidenced.
-- [ ] Additional Palawan municipality sample passes.
-- [ ] Outside-Palawan sample passes.
-- [ ] Capability availability is geographic/readiness-aware.
+## D2.2 — Representative composition and histories
+- [ ] T2.2.1 Home representative composition and destination/discovery seed richness.
+- [ ] T2.2.2 Multi-category cart/order and messaging/history fixtures.
+- [ ] T2.2.3 Claimable business/provenance.
 
-# Phase 5 — Quality, Security, Privacy and Compliance
-**Gate:** release candidate has no unaccepted critical/high risk.
-- [ ] Accessibility/responsive/edge-case review complete.
-- [ ] Authentication/authorization/tenancy/privacy review complete.
-- [ ] Commerce/booking financial-state authority review complete.
-- [ ] Private media/data leakage review complete.
-- [ ] External/government adapter review complete where enabled.
-- [ ] Production ingress/security controls reviewed.
-- [ ] Required independent reviews complete.
-- [ ] Risk Register reconciled; accepted risks explicitly authorized.
+## Phase 2 gate
+- [ ] Representative states are rerunnable, truthful, provenance-aware and adequate for audits.
 
-# Phase 6 — Release Candidate Operational Acceptance
-**Gate:** `GLENTOWN_OPERATIONAL_ACCEPTANCE_TEST.md` passes on concrete release refs.
-- [ ] API/App/TownBoss release refs frozen and recorded.
-- [ ] Fresh full automated gates pass under Validation Profiles.
-- [ ] Operational Acceptance Test passes.
-- [ ] Final physical-device visual audit passes.
-- [ ] Required web/browser surface checks pass.
-- [ ] Release Evidence Manifest completed.
-- [ ] Memory, Current State, Capability Matrix and dashboard updated.
+# Phase 3 — Critical Journeys
+
+## D3.1 — Identity, community, discovery and commerce
+- [ ] T3.1.1 Auth/profile and Community journeys.
+- [ ] T3.1.2 Explore/search/map, commerce, and services/booking journeys.
+
+## D3.2 — Messaging and planners
+- [ ] T3.2.1 Messaging journey.
+- [ ] T3.2.2 Trip Planner, Event Planner and Financial Planner journeys.
+
+## Phase 3 gate
+- [ ] Beta-critical journeys pass on concrete App/API refs with authoritative boundaries.
+
+# Phase 4 — Nationwide Readiness
+
+## D4.1 — Province Ready model and samples
+- [ ] T4.1.1 Province Ready definition, scoring and minimum thresholds.
+- [ ] T4.1.2 Seeding rollout; Puerto Princesa deep-pilot; Palawan and non-Palawan samples.
+
+## Phase 4 gate
+- [ ] Enabled geography meets thresholds or truthfully exposes limited capability.
+
+# Phase 5 — Quality, Security and Compliance
+
+## D5.1 — Quality/accessibility and security boundaries
+- [ ] T5.1.1 Accessibility, auth/tenancy/privacy, commerce financial boundaries and private-media leakage.
+- [ ] T5.1.2 External/government adapters, production ingress, independent review and risk reconciliation.
+
+## Phase 5 gate
+- [ ] No unaccepted critical/high risk remains.
+
+# Phase 6 — RC Operational Acceptance
+
+## D6.1 — Release evidence and acceptance
+- [ ] T6.1.1 Release refs and full validation.
+- [ ] T6.1.2 Operational acceptance, Samsung physical audit, browser/web checks, release evidence manifest and documentation closeout.
+
+## Phase 6 gate
+- [ ] Operational Acceptance Test passes on concrete release refs.
 
 # Phase 7 — Production Verification
-**Gate:** deployed surfaces match the accepted release candidate and rollback is ready.
-- [ ] Android/iOS GlenTown release verified — `apps/GLENTOWN_MOBILE.md`.
-- [ ] `glentown.com` verified — `apps/GLENTOWN_WEB.md`.
-- [ ] `app.glentown.com` verified — `apps/APP_GLENTOWN_COM.md`.
-- [ ] `biz.glentown.com` verified — `apps/BIZ_GLENTOWN_COM.md`.
-- [ ] `admin.glentown.com` verified — `apps/ADMIN_GLENTOWN_COM.md`.
-- [ ] `api.glentown.com` verified — `apps/API_GLENTOWN_COM.md`.
-- [ ] `help.glentown.com` verified — `apps/HELP_GLENTOWN_COM.md`.
-- [ ] `dev.glentown.com` verified — `apps/DEV_GLENTOWN_COM.md`.
-- [ ] Production smoke/health verification passes.
-- [ ] Rollback refs/procedure verified.
 
-`glentown.com` remains canonical; `www.glentown.com` should redirect to it.
+## D7.1 — Deployable surfaces
+- [ ] T7.1.1 GlenTown mobile.
+- [ ] T7.1.2 `glentown.com`, `app.glentown.com`, `biz.glentown.com`, `admin.glentown.com`.
+- [ ] T7.1.3 `api.glentown.com`, `help.glentown.com`, `dev.glentown.com`, production smoke and rollback.
 
-## Capability work outside immediate Beta gates
-- [x] Trip Planner implementation present on canonical Flutter lineage.
-- [x] Event Planner / Events implementation present on canonical Flutter lineage.
-- [x] Financial Planner implementation present on canonical Flutter lineage.
-- [x] Messaging backend implementation present on canonical API lineage.
-- [x] Community advisory acknowledgements implemented on API lineage.
-- [x] Organization actor/setup discovery implemented on API lineage.
-- [ ] Day Planner implementation evidence reconciled.
-- [ ] Achieve implementation evidence reconciled.
-- [ ] Glen AI / Ask Glen production implementation evidenced.
-- [ ] Government-service adapters production implementation evidenced.
-- [ ] PMS multi-unit evolution implementation evidenced where activated.
-- [ ] Transport/transfers and event-venue/rentals implementation evidenced where activated.
+## Phase 7 gate
+- [ ] Deployed surfaces match accepted release candidate and rollback is ready.
 
-## Phase discipline
-- Do not pull later-phase capability work forward merely because it is convenient.
-- A phase may overlap another only when dependencies permit and doing so does not bypass its gate.
-- Known blockers must be reconciled through `GLENTOWN_BLOCKER_REGISTER.md`.
-- Validation must use `GLENTOWN_VALIDATION_PROFILES.md`.
-- Material work must obey `GLENTOWN_AUTHORITY_MATRIX.md` and produce the Documentation Compliance Receipt.
-- Every substantial agent task contract must include safe-abort and recovery behavior as a mandatory section.
+## Closeout discipline
 
-## Evidence rule
-Repository history proves implementation existence. Default-branch ancestry proves canonical integration. Higher verification states require fresh evidence tied to concrete refs and applicable validation/acceptance gates.
+Each checkpoint updates exact task/evidence, Current State, Capability Matrix, Blocker Register, Risk Register when material, and Memory; completes the Documentation Compliance Receipt; validates diff; commits `[P<phase>][D<deliverable>][T<task>]`; then performs normal non-force remote checkpoint.
