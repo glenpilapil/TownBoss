@@ -1,153 +1,497 @@
-# Code Project Supervisor — Implementation Plan
+# Code Project Supervisor — Implementation Plan / Dashboard
 
 **Status:** FOUNDATION ADOPTION / PLANNED  
 **Primary upstream candidate:** `Untrivial-ai/agent-orchestrator`  
 **Legacy reference:** existing CodeBisor repository and TownBoss `plans/projects/codebisor/`
 
+## Dashboard purpose
+
+This document is both the canonical implementation plan and the human-readable CPS development dashboard.
+
+It must show, at a glance:
+
+- what phase CPS is in;
+- what has been completed;
+- what is currently being worked on;
+- what is blocked or awaiting review;
+- what gates must pass before the next phase;
+- what deliverables remain;
+- what evidence/checkpoints close each phase.
+
+All phases, tasks, deliverables, gates, and acceptance items use checklists. Items may be checked only when completion is backed by evidence. A checked box means the stated item is complete at the required evidence level; it does not mean merely attempted.
+
+## Status legend
+
+- `[ ]` — not yet complete
+- `[x]` — complete with evidence
+- `⏳` — in progress / active workstream
+- `⚠` — attention/review required
+- `⛔` — blocked
+- `↪` — deferred by explicit decision
+
+If Markdown rendering does not support the symbols consistently, the checkbox remains authoritative and the textual status should be written beside the item.
+
+## Current dashboard summary
+
+- [x] Project foundation documents established
+- [x] Portfolio-wide TownBoss Development Rules established
+- [x] CPS Memory ledger established
+- [x] CPS current-state / capability / task-contract / authority / validation / risk / adapter / upstream-sync / documentation-compliance / operational-acceptance documents established
+- [ ] **Current phase: Phase 0 — Agent Orchestrator adoption audit**
+- [ ] First operational release achieved
+- [ ] CPS feature-freeze entered after operational acceptance
+
 ## Implementation objective
 
 Reach operational usefulness as quickly as possible by inheriting mature upstream orchestration and adding only the minimum TownBoss-specific governance needed to supervise real product development.
 
-## Phase 0 — Adoption audit
+---
 
-### Goal
+# Phase 0 — Adoption Audit
+
+**Phase status:** PLANNED / NEXT ACTIVE PHASE
+
+## Phase checklist
+
+- [ ] Read all relevant TownBoss and CPS canonical documents before planning the audit
+- [ ] Inspect the current Agent Orchestrator upstream repository and documentation
+- [ ] Inspect the legacy CodeBisor repository only as a behavioral/reference source
+- [ ] Produce the required capability-by-capability adoption matrix
+- [ ] Review findings against CPS acceptance criteria and implementation objective
+- [ ] Update CPS Memory with the audit result
+- [ ] Record a bounded GO / NO-GO decision
+
+## Goal
+
 Prove that Agent Orchestrator is the right chassis before forking.
 
-### Deliverables
-- capability-by-capability comparison;
-- license and dependency review;
-- Windows/runtime verification;
-- adapter inventory for Kilo, Codex, Cline and other intended workers;
-- CLI/desktop/daemon architecture review;
-- data/event/persistence model review;
-- migration map from legacy CodeBisor capabilities.
+## Deliverables
 
-### Classification
-Every intended capability must be classified:
+- [ ] Capability-by-capability comparison
+- [ ] License and dependency review
+- [ ] Windows/runtime verification
+- [ ] Adapter inventory for Kilo, Codex, Cline and other intended workers
+- [ ] CLI/desktop/daemon architecture review
+- [ ] Data/event/persistence model review
+- [ ] Migration map from legacy CodeBisor capabilities
+- [ ] Development Governance Conformance mapping for TownBoss rules
+- [ ] Explicit list of upstream capabilities that will be inherited unchanged
+- [ ] Explicit list of capabilities requiring configuration
+- [ ] Explicit list of capabilities requiring CPS extension
+- [ ] Explicit list of legacy CodeBisor concepts worth selectively porting
+- [ ] Explicit list of capabilities to drop
+- [ ] Risk register and adoption blockers
+- [ ] Final GO / NO-GO recommendation
 
-`INHERIT | CONFIGURE | EXTEND | PORT_FROM_LEGACY | NEW | DROP`
+## Classification checklist
 
-### Gate
-No implementation fork until the audit returns GO.
+Every intended capability must be classified as exactly one of:
 
-## Phase 1 — Establish fork and baseline
+- [ ] `INHERIT`
+- [ ] `CONFIGURE`
+- [ ] `EXTEND`
+- [ ] `PORT_FROM_LEGACY`
+- [ ] `NEW`
+- [ ] `DROP`
 
-- Fork approved upstream into a clean Code Project Supervisor repository.
-- Preserve upstream Apache-2.0 license/NOTICE obligations.
-- Configure upstream remote strategy for future synchronization.
-- Establish Code Project Supervisor branding in an isolated layer.
-- Run upstream tests and record the clean baseline.
-- Do not port legacy CodeBisor yet.
+The classification labels above are not individually completed as project tasks; the phase is complete only when every required CPS capability has one evidence-backed classification.
 
-### Gate
-Upstream baseline passes on the primary Windows development environment.
+## Gate — Fork Authorization
 
-## Phase 2 — Operator and project baseline
+- [ ] Adoption audit completed
+- [ ] Agent Orchestrator architecture fit confirmed
+- [ ] License/commercial use acceptable
+- [ ] Primary Windows environment support confirmed
+- [ ] Required worker ecosystem support confirmed or bounded gaps identified
+- [ ] Governance-enforcement gaps identified and implementation path defined
+- [ ] Upstream synchronization strategy accepted
+- [ ] Exit/fallback strategy accepted
+- [ ] GO decision recorded in CPS Decisions/Rules and Memory
 
-- Configure/register first TownBoss projects.
-- Verify daemon lifecycle and CLI/desktop attachment.
-- Verify repository/worktree discovery and isolation.
-- Verify worker sessions can be started, attached, stopped and resumed according to upstream capabilities.
-- Verify at least Kilo and Codex adapters or nearest supported paths.
+**Gate rule:** No implementation fork until every required gate item above is complete and the audit returns GO.
 
-### Gate
-One synthetic project can be supervised end-to-end without TownBoss-specific extensions.
+---
 
-## Phase 3 — TownBoss governance extensions
+# Phase 1 — Establish Fork and Baseline
 
-Add only gaps proven necessary by the adoption audit:
+**Phase status:** NOT STARTED
 
-- completion contracts;
-- evidence-backed validation/status promotion;
-- operator decision/authority extensions;
-- provider/resource budgets;
-- no-progress circuit breakers;
-- project validation profiles;
-- independent-review policy;
-- checkpoint governance.
+## Phase checklist
 
-Prefer adapters/plugins/extensions to core forks when possible.
+- [ ] Confirm Phase 0 fork-authorization gate is complete
+- [ ] Create/fork the approved upstream into the Code Project Supervisor repository
+- [ ] Preserve upstream history where appropriate
+- [ ] Establish upstream remote
+- [ ] Establish CPS origin remote
+- [ ] Preserve Apache-2.0 license/NOTICE obligations
+- [ ] Document fork provenance and upstream baseline commit/tag
+- [ ] Establish isolated CPS branding/customization layer
+- [ ] Run upstream tests without CPS modifications
+- [ ] Record baseline failures, if any
+- [ ] Resolve only environment/baseline blockers required to establish a clean reference
+- [ ] Update Memory with fork provenance and baseline evidence
+- [ ] Create baseline checkpoint
 
-### Gate
-Governance tests prove the supervisor cannot promote incomplete work or bypass mandatory decisions.
+## Deliverables
 
-## Phase 4 — Planning corpus integration
+- [ ] Clean CPS fork repository
+- [ ] Upstream remote strategy documented and working
+- [ ] License/NOTICE compliance preserved
+- [ ] Upstream baseline version recorded
+- [ ] Baseline build/install instructions verified
+- [ ] Baseline test results recorded
+- [ ] Windows environment notes recorded
+- [ ] CPS customization boundary documented
+- [ ] Baseline checkpoint commit created
 
-- Link TownBoss Master Development Plan and project implementation plans.
-- Resolve project/milestone/task identifiers without treating planning docs as implementation evidence.
-- Support task creation from approved project objectives.
-- Preserve repository-local instructions as authoritative within scope.
+## Gate — Upstream Baseline
 
-### Gate
-A planning objective can be materialized into supervised work with traceable source authority.
+- [ ] Repository builds/installs successfully on the primary Windows development environment
+- [ ] Upstream baseline tests pass or every pre-existing exception is documented and accepted
+- [ ] No TownBoss-specific behavior has been prematurely ported
+- [ ] Working tree is clean at checkpoint
+- [ ] Memory updated
 
-## Phase 5 — Real product canary
+**Gate rule:** No CPS behavior customization until the upstream baseline is evidence-backed.
 
-Use a bounded real development objective from one active project.
+---
 
-Acceptance flow:
+# Phase 2 — Operator and Project Baseline
 
-1. Operator supplies objective to Code Project Supervisor.
-2. Supervisor resolves project and current repository state.
-3. Supervisor plans/decomposes the work.
-4. Supervisor selects an eligible coding agent.
-5. Worker executes in an isolated workspace.
-6. Supervisor handles progress/recovery.
-7. Validation gates run.
-8. Independent review runs if policy requires it.
-9. Genuine operator decisions are surfaced with recommendation.
-10. Supervisor returns verified checkpoint readiness or a bounded block.
+**Phase status:** NOT STARTED
 
-The operator must not manually prompt the worker during the normal flow.
+## Phase checklist
 
-### Gate
-Real canary passes with evidence.
+- [ ] Configure/register a synthetic TownBoss-compatible project
+- [ ] Verify daemon/background lifecycle
+- [ ] Verify CLI attachment
+- [ ] Verify desktop UI attachment where applicable
+- [ ] Verify repository discovery
+- [ ] Verify worktree discovery/isolation
+- [ ] Verify worker session launch
+- [ ] Verify worker session attachment
+- [ ] Verify worker session stop/cancel
+- [ ] Verify worker session resume/recovery where upstream supports it
+- [ ] Verify at least Kilo integration or nearest supported path
+- [ ] Verify at least Codex integration or nearest supported path
+- [ ] Confirm no TownBoss-specific extensions were required for the synthetic canary unless explicitly documented
+- [ ] Update Memory
 
-## Phase 6 — Multi-project operations
+## Deliverables
 
-- Verify concurrent independent projects.
-- Verify same-repository/worktree conflict prevention.
-- Verify queueing and worker capacity.
-- Verify provider outage/quota handling.
-- Verify restart/state reconstruction.
+- [ ] First registered synthetic project
+- [ ] Background/daemon lifecycle evidence
+- [ ] CLI attachment evidence
+- [ ] Repository/worktree isolation evidence
+- [ ] Worker-session lifecycle evidence
+- [ ] Kilo adapter/integration result
+- [ ] Codex adapter/integration result
+- [ ] Known adapter gaps list
 
-### Gate
-Two projects can be supervised without cross-project state or workspace contamination.
+## Gate — Synthetic End-to-End Supervision
 
-## Phase 7 — Operationalization
+- [ ] One synthetic project can be supervised from task intake through worker completion
+- [ ] Worker runs in an isolated workspace/worktree
+- [ ] Operator can observe current state without manually controlling the worker
+- [ ] No cross-project/repository contamination
+- [ ] No premature CPS-specific governance extensions were required beyond proven gaps
+- [ ] Evidence and Memory updated
 
-- Establish startup/background service policy.
-- Document operator workflows.
-- Add backup/recovery procedures for supervisor state.
-- Establish upstream update process.
-- Establish security review cadence.
-- Define minimum telemetry/log retention.
+---
 
-### Gate
-Supervisor is safe for routine portfolio use.
+# Phase 3 — TownBoss Governance Extensions
 
-## Deferred until proven necessary
+**Phase status:** NOT STARTED
 
-- custom TUI framework;
-- custom desktop client replacing upstream UI;
-- remote internet-exposed control plane;
-- mobile app;
-- broad project-management/ERP features;
-- autonomous production deployment.
+## Phase checklist
 
-## Implementation discipline
+Add only gaps proven necessary by the Phase 0 audit:
 
-Each phase must be independently testable and reversible until final cutover. A later capability must not be pulled forward merely because it is interesting or convenient.
+- [ ] Completion contracts
+- [ ] Evidence-backed validation/status promotion
+- [ ] Operator decision/authority extensions
+- [ ] Provider/resource budgets
+- [ ] No-progress detection
+- [ ] Recovery circuit breakers
+- [ ] Project validation profiles
+- [ ] Independent-review policy
+- [ ] Checkpoint governance
+- [ ] Documentation-compliance enforcement
+- [ ] Task-contract enforcement
+- [ ] Memory-update requirement at milestone/checkpoint boundaries
+- [ ] Rule-exception recording and approval mechanism
 
-## Legacy migration rule
+## Deliverables
 
-Do not copy legacy CodeBisor code by default. For each candidate capability:
+- [ ] CPS governance extension map linked to TownBoss Development Rules
+- [ ] Machine-enforceable gates implemented where deterministic
+- [ ] Human-gate paths implemented where explicit authority is required
+- [ ] Governance regression tests
+- [ ] Evidence/status promotion tests
+- [ ] Decision/authority tests
+- [ ] Recovery-budget/circuit-breaker tests
+- [ ] Independent-review tests
+- [ ] Checkpoint-gate tests
+- [ ] Documentation compliance receipt support
 
-1. verify upstream does not already solve it;
-2. verify it is still required by the acceptance target;
-3. prefer concept/test/spec porting over code porting;
-4. port implementation code only when that is the lowest-risk path.
+## Gate — Governance Conformance
 
-## Definition of first operational release
+- [ ] Supervisor cannot promote incomplete work to VERIFIED/CHECKPOINTED
+- [ ] Mandatory decisions cannot be bypassed
+- [ ] Recovery cannot exceed configured governance limits
+- [ ] Required independent review cannot be silently skipped
+- [ ] Rule exceptions require explicit recorded authorization
+- [ ] Documentation compliance is checked before planning, during material change, and before final report
+- [ ] Memory/checkpoint obligations are enforced
+- [ ] Governance tests pass
 
-The first release is operational when a real product development objective can be supervised from intake through verified checkpoint with normal worker interaction hidden behind the supervisor and with human involvement limited to genuine decisions/authorizations.
+---
+
+# Phase 4 — Planning Corpus Integration
+
+**Phase status:** NOT STARTED
+
+## Phase checklist
+
+- [ ] Link local TownBoss governance/documentation corpus
+- [ ] Verify local TownBoss branch/HEAD/freshness before reliance
+- [ ] Load TownBoss Master Development Plan
+- [ ] Load project implementation plans
+- [ ] Load project Decisions & Rules
+- [ ] Load project Acceptance Criteria
+- [ ] Load project Memory
+- [ ] Respect repository-local instructions within their scope
+- [ ] Resolve project/milestone/task identifiers from planning documents
+- [ ] Ensure planning documents do not masquerade as implementation evidence
+- [ ] Support task creation from approved project objectives
+- [ ] Produce documentation compliance receipts
+- [ ] Update Memory
+
+## Deliverables
+
+- [ ] TownBoss local documentation source configuration
+- [ ] Canonical documentation discovery/read-set mechanism
+- [ ] Planning source provenance model
+- [ ] Project/milestone/task identifier mapping
+- [ ] Task materialization from approved objective
+- [ ] Documentation compliance receipt
+- [ ] Stale/local-clone detection behavior
+- [ ] Repository-local instruction precedence behavior
+
+## Gate — Traceable Planning-to-Work
+
+- [ ] Approved objective can be converted into a bounded task contract
+- [ ] Every task records its governing documents
+- [ ] Documentation was checked during planning
+- [ ] Material scope/architecture changes trigger documentation re-check
+- [ ] Final report is blocked until final documentation review occurs
+- [ ] Planning docs are never counted as implementation evidence
+- [ ] Source authority/provenance remains traceable
+
+---
+
+# Phase 5 — Real Product Canary
+
+**Phase status:** NOT STARTED
+
+Use one bounded real development objective from an active TownBoss project.
+
+## Acceptance-flow checklist
+
+- [ ] Operator supplies a real bounded product objective
+- [ ] CPS resolves the project and current repository/worktree state
+- [ ] CPS reads all required planning/governance/Memory documents
+- [ ] CPS creates a bounded task contract
+- [ ] CPS plans/decomposes the work
+- [ ] CPS selects an eligible coding agent
+- [ ] Worker starts in an isolated workspace/worktree
+- [ ] Worker receives the relevant documentation/rules/task contract
+- [ ] CPS supervises meaningful progress
+- [ ] CPS handles worker failure/recovery within policy
+- [ ] Validation gates execute
+- [ ] Independent review executes when policy requires it
+- [ ] Genuine operator decisions are surfaced with recommendation and evidence
+- [ ] Worker does not require manual prompting during normal flow
+- [ ] Final documentation compliance review executes
+- [ ] Required project documentation is updated
+- [ ] Project Memory is updated
+- [ ] Verified checkpoint readiness is produced, or a bounded BLOCKED result is returned
+
+## Deliverables
+
+- [ ] Real canary task contract
+- [ ] Worker/session evidence
+- [ ] Validation evidence
+- [ ] Review evidence where required
+- [ ] Decision receipts where required
+- [ ] Documentation compliance receipt
+- [ ] Project Memory entry
+- [ ] Verified checkpoint or bounded block report
+
+## Gate — Real Product Canary
+
+- [ ] Full real canary acceptance flow passes
+- [ ] Operator did not manually babysit the worker
+- [ ] No unauthorized scope expansion occurred
+- [ ] No required governance rule was bypassed
+- [ ] Product repository remains coherent and checkpointable
+- [ ] Evidence is sufficient to reproduce the completion claim
+
+---
+
+# Phase 6 — Multi-Project Operations
+
+**Phase status:** NOT STARTED
+
+## Phase checklist
+
+- [ ] Register at least two independent test/canary projects
+- [ ] Verify concurrent independent projects
+- [ ] Verify same-repository/worktree conflict prevention
+- [ ] Verify write-task serialization where required
+- [ ] Verify queueing
+- [ ] Verify worker/provider capacity handling
+- [ ] Verify provider outage/quota handling
+- [ ] Verify restart/state reconstruction
+- [ ] Verify project focus switching
+- [ ] Verify no cross-project state contamination
+- [ ] Verify no cross-project workspace contamination
+- [ ] Update Memory
+
+## Deliverables
+
+- [ ] Multi-project scheduling evidence
+- [ ] Workspace/worktree conflict evidence
+- [ ] Queue/capacity evidence
+- [ ] Provider-outage handling evidence
+- [ ] Restart/reconstruction evidence
+- [ ] Cross-project isolation evidence
+
+## Gate — Portfolio Concurrency
+
+- [ ] Two independent projects can run concurrently when capacity allows
+- [ ] Conflicting writes cannot run concurrently on the same worktree
+- [ ] Queued tasks drain correctly
+- [ ] Provider failure does not corrupt unrelated project state
+- [ ] Restart reconstructs authoritative state correctly
+- [ ] No cross-project contamination observed
+
+---
+
+# Phase 7 — Operationalization
+
+**Phase status:** NOT STARTED
+
+## Phase checklist
+
+- [ ] Establish startup/background service policy
+- [ ] Establish operator workflow documentation
+- [ ] Establish state backup/recovery procedures
+- [ ] Establish upstream update/sync process
+- [ ] Establish security review cadence
+- [ ] Define minimum telemetry/log retention
+- [ ] Define incident response procedure
+- [ ] Define dependency/update review cadence
+- [ ] Define operational health checks
+- [ ] Verify local TownBoss documentation sync workflow
+- [ ] Finalize operator handoff documentation
+- [ ] Update Memory
+
+## Deliverables
+
+- [ ] Startup/background operations guide
+- [ ] Operator runbook
+- [ ] Backup/recovery runbook
+- [ ] Upstream synchronization runbook
+- [ ] Security review schedule
+- [ ] Telemetry/log retention policy
+- [ ] Incident-handling procedure
+- [ ] Dependency/update procedure
+- [ ] Operational health checklist
+
+## Gate — Routine Portfolio Use
+
+- [ ] CPS survives normal restart/recovery scenarios
+- [ ] Operator can start/attach/use/stop CPS predictably
+- [ ] State can be restored from documented procedures
+- [ ] Upstream updates can be evaluated without losing CPS customizations
+- [ ] Security/operational review cadence exists
+- [ ] Documentation and Memory are current
+- [ ] CPS is safe for routine TownBoss portfolio use
+
+---
+
+# Deferred Until Proven Necessary
+
+- [ ] Custom TUI framework — DEFERRED
+- [ ] Custom desktop client replacing upstream UI — DEFERRED
+- [ ] Remote internet-exposed control plane — DEFERRED
+- [ ] Mobile app — DEFERRED
+- [ ] Broad project-management/ERP features — DEFERRED
+- [ ] Autonomous production deployment — DEFERRED
+
+Deferred items remain unchecked unless an explicit later decision brings them into scope.
+
+---
+
+# Implementation Discipline Checklist
+
+Every phase and substantial task must satisfy these rules:
+
+- [ ] Relevant TownBoss/CPS/project documentation was checked during planning
+- [ ] Task contract is bounded and explicit
+- [ ] Scope expansion was either rejected or explicitly authorized
+- [ ] Existing working behavior was preserved unless change was approved
+- [ ] Upstream solution was preferred before custom implementation
+- [ ] Validation evidence matches the actual completion claim
+- [ ] Material uncertainty failed closed
+- [ ] Required independent review occurred
+- [ ] Final documentation review occurred before reporting
+- [ ] Documentation compliance receipt exists
+- [ ] Project Memory was updated when material knowledge changed
+- [ ] Checkpoint evidence was recorded when applicable
+
+A later capability must not be pulled forward merely because it is interesting or convenient.
+
+# Legacy Migration Checklist
+
+For every legacy CodeBisor capability considered for migration:
+
+- [ ] Verify upstream does not already solve it adequately
+- [ ] Verify the capability is still required by CPS acceptance criteria
+- [ ] Prefer porting concept/spec/test over implementation code
+- [ ] Port implementation code only when evidence shows it is the lowest-risk path
+- [ ] Preserve only relevant historical lessons/evidence
+- [ ] Record the migration classification in the capability matrix
+- [ ] Record material migration decisions in Memory
+
+# Definition of First Operational Release
+
+CPS reaches its first operational release only when all of the following are complete:
+
+- [ ] Real product objective accepted
+- [ ] Relevant documentation automatically resolved and checked
+- [ ] Bounded task contract produced
+- [ ] Appropriate worker selected and launched without manual worker prompting
+- [ ] Isolated workspace/worktree used
+- [ ] Progress/recovery supervised within policy
+- [ ] Validation gates passed
+- [ ] Independent review passed where required
+- [ ] Genuine human decisions surfaced appropriately
+- [ ] Documentation compliance receipt completed
+- [ ] Project Memory updated
+- [ ] Verified checkpoint produced
+- [ ] Operator did not need to babysit the coding worker
+- [ ] Operational acceptance test passed
+
+# Operational Freeze Gate
+
+After the first operational release:
+
+- [ ] CPS declared operational
+- [ ] Feature freeze activated by default
+- [ ] New CPS features require evidence from real product work that an actual blocking gap exists
+- [ ] Nice-to-have UX/tooling/framework work is deferred
+- [ ] Product development becomes the primary use of CPS
+
+The implementation plan/dashboard should be updated as evidence-backed work completes. Checkbox state must reflect repository/runtime evidence, not optimism or worker prose alone.
