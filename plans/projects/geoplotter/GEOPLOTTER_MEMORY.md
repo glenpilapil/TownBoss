@@ -2,6 +2,13 @@
 
 **Status:** CANONICAL / LIVING DOCUMENT
 
+## 2026-09-13 — Governance normalization integrated on TownBoss main
+
+**Type:** CHECKPOINT / GOVERNANCE
+**Status:** CURRENT
+
+The GeoPlotter governance-normalization branch was integrated on canonical TownBoss `main` through merge commit `9cf2880`. The project corpus now explicitly inherits current portfolio execution, closeout, checkpoint, and reporting policies. This integration changes planning governance only; it does not promote GeoPlotter implementation or validation status.
+
 This file is the durable development-memory ledger for GeoPlotter. Record material decisions, implementation milestones, verification, incidents, blockers, lessons, checkpoints and handoffs. Preserve superseded history rather than rewriting it.
 
 ## Initial reconciled memory

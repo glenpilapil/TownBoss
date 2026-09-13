@@ -5,7 +5,10 @@
 GeoPlotter inherits:
 - `governance/DEVELOPMENT_RULES.md`
 - `governance/PROJECT_GOVERNANCE_STANDARD.md`
+- `governance/PROJECT_EXECUTION_STANDARD.md`
+- `governance/TASK_CLOSEOUT_SEQUENCE.md`
 - `governance/TASK_CHECKPOINT_COMMIT_POLICY.md`
+- `governance/TASK_REPORTING_AND_MEMORY_POLICY.md`
 
 ## Project-specific rules
 1. **Evidence/provenance first.** Geospatial, document, inventory, commercial and verification claims must preserve source/provenance appropriate to their risk.
