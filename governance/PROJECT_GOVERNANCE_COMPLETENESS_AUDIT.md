@@ -29,7 +29,7 @@ Legacy `plans/projects/codebisor/` is excluded because it is retained as histori
 | RealWise | Yes | Yes | Yes | Consolidated | Consolidated | Consolidated | SUBSTANTIVELY COMPLETE / STRUCTURAL ATTENTION |
 | TownTraveler | Yes | Yes | Yes | Consolidated | Consolidated | Consolidated | SUBSTANTIVELY COMPLETE / STRUCTURAL ATTENTION |
 | Forex Quant Lab | Yes | Yes | Yes | Consolidated | Consolidated | Consolidated | SUBSTANTIVELY COMPLETE / STRUCTURAL ATTENTION |
-| TownBoss Platform | Yes | Yes | Yes | Missing | Missing | Missing | INCOMPLETE |
+| TownBoss Platform | Yes | Yes | Yes | Consolidated | Consolidated | Consolidated | SUBSTANTIVELY COMPLETE / STRUCTURAL ATTENTION |
 
 ## Findings
 
@@ -85,29 +85,24 @@ Substantively complete through `FOREX_QUANT_LAB_GOVERNANCE.md`, which combines r
 
 The implementation plan is stage-gated and checklist-driven.
 
-Its governance appropriately requires evidence-backed progression through research, data validation, robustness, out-of-sample and simulation gates before later-stage experimentation.
+Its governance requires evidence-backed progression through research, data validation, robustness, out-of-sample and simulation gates before later-stage experimentation.
 
 ### TownBoss Platform
 
-Incomplete against the current Project Governance Standard.
+The missing project-specific governance authority found during this audit was repaired by adding `TOWNBOSS_PLATFORM_GOVERNANCE.md`.
 
-Present:
-- `TOWNBOSS_PLATFORM_IMPLEMENTATION_PLAN.md`
-- `TOWNBOSS_PLATFORM_MEMORY.md`
-- `TOWNBOSS_PLATFORM_CURRENT_STATE.md`
+The new baseline contains:
+- project-specific decisions and rules;
+- acceptance criteria;
+- documentation-compliance requirements.
 
-Missing:
-- explicit project Decisions & Rules or equivalent governance baseline;
-- explicit Acceptance Criteria;
-- explicit Documentation Compliance Protocol.
-
-The implementation dashboard itself is well structured and already includes an operational-governance checklist, but the missing project-specific governance authority should be repaired before substantial new TownBoss Platform implementation work begins.
+TownBoss Platform is now substantively complete, with the same consolidated-document structural question as GeoPlotter, RealWise, TownTraveler and Forex Quant Lab.
 
 ## Structural policy issue found
 
-Four projects use a consolidated `*_GOVERNANCE.md` document for Decisions & Rules, Acceptance Criteria and Documentation Compliance, while the current Project Governance Standard describes those as separate required project documents.
+Five projects use a consolidated `*_GOVERNANCE.md` document for Decisions & Rules, Acceptance Criteria and Documentation Compliance, while the current Project Governance Standard describes those as separate required project documents.
 
-This is not currently a substantive governance gap because the consolidated files contain all three areas explicitly, but it is a structural-policy ambiguity.
+This is not a substantive governance gap because the consolidated files contain all three areas explicitly, but it is a structural-policy ambiguity.
 
 Recommended policy correction:
 
@@ -125,11 +120,11 @@ Recommended policy correction:
 | RealWise | Yes | Yes | No immediate structural issue |
 | TownTraveler | Yes | Yes | No immediate structural issue |
 | Forex Quant Lab | Yes | Yes | No immediate structural issue |
-| TownBoss Platform | Yes | Yes | Governance corpus incomplete |
+| TownBoss Platform | Yes | Yes | No immediate dashboard issue |
 
 ## Required remediation checklist
 
-- [ ] Add a TownBoss Platform governance baseline covering project rules, acceptance criteria and documentation compliance.
+- [x] Add a TownBoss Platform governance baseline covering project rules, acceptance criteria and documentation compliance.
 - [ ] Resolve whether consolidated governance files are formally allowed by `PROJECT_GOVERNANCE_STANDARD.md`.
 - [ ] Reconcile GlenTown dashboard into explicit Beta-phase sequencing and app-plan rollup.
 - [ ] Reconcile GeoPlotter PASS 0D–0I provenance before promoting those passes to canonical completion.
@@ -138,10 +133,17 @@ Recommended policy correction:
 
 ## Overall determination
 
-The active portfolio is substantially closer to a uniform governance baseline than before this audit.
+Every active TownBoss project now has, in substance:
 
-- CPS and GlenTown are structurally complete.
-- GeoPlotter, RealWise, TownTraveler and Forex Quant Lab are substantively complete but use consolidated governance documents that should be formally recognized or split.
-- TownBoss Platform has a real governance-document gap that should be repaired before substantial implementation.
+- an implementation dashboard;
+- Memory;
+- Current State;
+- project-specific rules;
+- acceptance criteria;
+- documentation-compliance requirements.
 
-No further portfolio-wide governance expansion is recommended beyond these targeted corrections. The objective now is to use the system during real development rather than continue adding governance layers.
+CPS and GlenTown use separate governance documents. GeoPlotter, RealWise, TownTraveler, Forex Quant Lab and TownBoss Platform use consolidated governance baselines.
+
+The remaining portfolio-governance work is targeted rather than foundational: clarify consolidated-governance policy, improve GlenTown dashboard sequencing, and reconcile GeoPlotter implementation provenance.
+
+No further portfolio-wide governance expansion is recommended. The governance system should now be exercised during real development work.
