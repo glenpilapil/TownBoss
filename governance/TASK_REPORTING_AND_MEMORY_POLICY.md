@@ -10,7 +10,7 @@ Every substantial task must separate **operator reporting** from **durable proje
 
 The final operator-facing report must be short, concise, and decision-oriented. Detailed development history, implementation notes, evidence, lessons, limitations, and handoff context belong in project Memory and task artifacts.
 
-A task is not complete if the final report is truncated before required checkpoint, compliance, blocker, or next-action information is delivered.
+A task is not complete if the final report is truncated before required checkpoint, remote-checkpoint, compliance, blocker, or next-action information is delivered.
 
 ## Final report principle
 
@@ -21,12 +21,13 @@ Default final reports should contain only what the operator needs to understand:
 1. **Outcome** — `DONE | BLOCKED | REVIEW_REQUIRED | FAILED`.
 2. **What changed** — concise bounded summary.
 3. **Validation** — exact high-value results/counts only.
-4. **Checkpoint** — phase, deliverable, task ID, commit hash, branch, clean/dirty status.
-5. **Decisions / attention** — only items requiring operator awareness or authority.
-6. **Known limitations / blockers** — concise and material only.
-7. **Next action** — one bounded recommended next step.
-8. **Documentation Compliance Receipt** — compressed form unless a conflict/exception requires detail.
-9. **Memory update** — exact Memory file and confirmation that detailed history was recorded.
+4. **Checkpoint** — phase, deliverable, task ID, commit hash, local branch, remote branch, and clean/dirty status.
+5. **Remote checkpoint** — push result, remote SHA, and local/remote match when repository changes exist.
+6. **Decisions / attention** — only items requiring operator awareness or authority.
+7. **Known limitations / blockers** — concise and material only.
+8. **Next action** — one bounded recommended next step.
+9. **Documentation Compliance Receipt** — compressed form unless a conflict/exception requires detail.
+10. **Memory update** — exact Memory file and confirmation that detailed history was recorded.
 
 Do not repeat large inventories, raw logs, source excerpts, full test-name lists, long architecture explanations, or material already recorded in canonical documents unless the operator explicitly asks for detail.
 
@@ -39,7 +40,7 @@ Before sending a final report, the agent must:
 - compress repetitive detail;
 - replace large enumerations with counts plus canonical artifact/file references;
 - move detailed findings into Memory or a dedicated task artifact;
-- preserve exact commit hashes, gate results, blockers, exceptions, and next action in the final response;
+- preserve exact commit hashes, remote checkpoint details, gate results, blockers, exceptions, and next action in the final response;
 - never rely on the final response as the only copy of important evidence.
 
 If a task produces extensive audit/research output, write the complete detail to a governed repository artifact first, then provide a concise final summary pointing to that artifact.
@@ -59,6 +60,7 @@ For substantial tasks, Memory should capture material details that would otherwi
 - limitations and deferred work;
 - lessons worth preserving;
 - commit/checkpoint identifier;
+- remote checkpoint identifier when pushed;
 - final status and next action.
 
 Memory should remain structured and useful. Do not paste raw terminal logs or duplicate whole reports.
@@ -84,13 +86,14 @@ Every substantial final report must include, in concise form:
 - Task ID
 - Outcome
 - Commit hash or `NO_COMMIT_REQUIRED`
+- Remote checkpoint result when a commit exists
 - Validation result
 - Documentation compliance result
 - Memory updated: `YES | NO`
 - Blocker/attention: `NONE` or concise item
 - Next action
 
-For write-capable tasks, the commit information must satisfy `governance/TASK_CHECKPOINT_COMMIT_POLICY.md`.
+For write-capable tasks, the checkpoint information must satisfy `governance/TASK_CHECKPOINT_COMMIT_POLICY.md`, including remote checkpoint verification unless an approved exception applies.
 
 ## Reporting compliance gate
 
@@ -98,7 +101,8 @@ Before a task may be considered `DONE` or its final report accepted, verify:
 
 - required detailed evidence exists in Memory or governed artifacts;
 - final output is concise enough to avoid likely truncation;
-- required commit/checkpoint receipt is present;
+- required local checkpoint receipt is present;
+- required remote checkpoint receipt is present when repository changes exist, or an approved exception is stated;
 - required Documentation Compliance Receipt is present;
 - no material blocker, exception, or next action is omitted merely to shorten the report;
 - Memory and dashboard/current-state updates required by the task were completed before reporting.
@@ -113,4 +117,5 @@ CPS should eventually machine-enforce:
 - detailed evidence is linked to Memory/artifacts rather than emitted as oversized output;
 - final-report generation refuses completion if required checkpoint/compliance fields are missing;
 - a task that risks output truncation writes durable detail before responding;
+- remote checkpoint SHA is included and verifiable for changed repositories;
 - final `DONE` transition requires `REPORTING_COMPLIANCE=PASS`.
