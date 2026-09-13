@@ -59,5 +59,29 @@ MapLibre GL JS is the approved interactive map foundation. PostGIS/SpatialRecord
 
 Repeated terminal/computer interruptions demonstrated that the repository/worktree must be treated as the durable checkpoint. Recovery prompts inspect surviving state first, preserve complete work, repair only partial/broken artifacts, avoid rerunning completed work, and resume the active bounded PASS from the first unfinished durable step.
 
+### 2026-09-13 — Phase 5 CPS real product canary: PASS 0L accepted
+**Type:** CHECKPOINT / VERIFICATION
+**Status:** COMPLETED
+
+GeoPlotter PASS 0L — Interactive project + lot map foundation was accepted as the CPS Phase 5 real product canary. The checkpoint is `d15a15dd1a242ae6955fda7b97094ddf98acf641` on branch `feat/pass-0e-projects-foundation`.
+
+CPS supervised the complete acceptance flow: planning corpus resolution → task contract materialization → worker selection → implementation → validation → independent review → checkpoint. The worker (Kilo) implemented the missing backend map API route, fixed pre-existing test and schema defects discovered during validation, and produced 17/17 passing map HTTP boundary tests.
+
+**Evidence**
+- Backend route: `apps/web/src/app/api/projects/[projectId]/map/route.ts`
+- Frontend: `apps/web/src/features/project-map/` + `apps/web/src/app/projects/[projectId]/map/page.tsx`
+- Tests: `apps/web/src/__tests__/projects.map.http.test.ts` — 17/17 pass
+- Migrations: `0009_pass_0l_spatial_subject_linkage.sql`, `0010_pass_0l_nullable_subject_linkage.sql`
+- Checkpoint: `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] feat: complete interactive project and lot map foundation`
+
+**Defects fixed**
+- Test bug: `membershipStatus.ACTIVE` (undefined) → `"active"`
+- Test bug: `lot.id` (array access) → `lot[0].id`
+- Schema: nullable `subject_type`/`subject_id` columns missing DEFAULT NULL
+- Route: added UUID validation for invalid projectId format
+
+**Next eligible work**
+PASS 0M — parcel and technical-description plotting. Canonical/default-branch reconciliation remains a separate portfolio gate.
+
 ### Current handoff
-Cline is implementing PASS 0L. Required completion is a real backend spatial projection + authenticated project map API + MapLibre frontend + interactive lot selection; a frontend-only mocked implementation is insufficient. After PASS 0L acceptance, current orchestration priority is PASS 0M parcel/technical-description plotting unless new evidence changes dependencies. Canonical/default-branch reconciliation remains a separate portfolio gate.
+PASS 0L is complete. After PASS 0L acceptance, current orchestration priority is PASS 0M parcel/technical-description plotting unless new evidence changes dependencies. Canonical/default-branch reconciliation remains a separate portfolio gate.

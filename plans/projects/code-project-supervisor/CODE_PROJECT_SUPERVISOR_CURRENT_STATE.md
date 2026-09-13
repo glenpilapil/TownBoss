@@ -1,6 +1,6 @@
 # Code Project Supervisor — Current State
 
-**Status:** FOUNDATION ADOPTION — PHASE 4 COMPLETE
+**Status:** FOUNDATION ADOPTION — PHASE 5 COMPLETE
 **Date:** 2026-09-13  
 **Purpose:** Fast, current-state entry point for humans and agents.
 
@@ -29,13 +29,13 @@ Accepted baseline exceptions: 8 upstream Windows `internal/session_manager` test
 
 ## Current Workstream
 
-**Next bounded milestone:** `CPS_PHASE_5_REAL_PRODUCT_CANARY`
+**Next bounded milestone:** `CPS_PHASE_6_MULTI_PROJECT_OPERATIONS`
 
-Phase 4 is complete. Phase 5 — Real Product Canary is the current active phase.
+Phase 5 is complete. Phase 6 — Multi-Project Operations is the current active phase.
 
 ## Current Blockers
 
-None. Phase 4 planning corpus integration implemented. No upstream blockers discovered.
+None. Phase 5 real product canary (GeoPlotter PASS 0L) completed successfully. GeoPlotter checkpoint `d15a15dd` pushed to `feat/pass-0e-projects-foundation`.
 
 ## Deferred Work
 
@@ -43,7 +43,6 @@ None. Phase 4 planning corpus integration implemented. No upstream blockers disc
 - Production worker-adapter implementation.
 - CPS operational acceptance test against a real bounded product task.
 - Codex integration on this workstation is blocked by local account setup (CODEX_ACCOUNT_MANAGEMENT_UNAVAILABLE); upstream adapter is present and functional.
-- Phase 3 operator-decision UI, provider-selection policy wiring, and validation-profile configuration are implemented as projection types; they require Phase 5 real product canary to exercise end-to-end.
 
 ## Canonical Reading Order
 

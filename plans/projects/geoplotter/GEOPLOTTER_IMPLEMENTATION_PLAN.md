@@ -78,9 +78,10 @@ GeoPlotter is the authoritative geospatial real-estate and development-project p
 **Deferrals:** area/bedroom criteria where canonical support remains incomplete; no public matching API.
 
 ### PASS 0L — Interactive project + lot map foundation
-**Status:** `[ ] ⏳ IN PROGRESS`  
+**Status:** `[x] ACCEPTED`  
 **Objective:** PostGIS/SpatialRecord -> map projection API -> MapLibre -> selectable lot UI.  
 **Required gate:** real backend projection + real API + frontend MapLibre; frontend-only mock is insufficient.  
+**Evidence:** implementation `d15a15d`; 17/17 map HTTP boundary tests pass; backend route `apps/web/src/app/api/projects/[projectId]/map/route.ts` returns authenticated spatial data; MapLibre frontend displays selectable lots.  
 **Deferred:** cadastral overlays, hazards, elevation, parcel drawing/editing, vertical floor selector, 2.5D/3D.
 
 ### PASS 0M — Parcel / technical-description plotting

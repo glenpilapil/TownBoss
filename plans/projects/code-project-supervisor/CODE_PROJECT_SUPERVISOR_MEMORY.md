@@ -555,3 +555,43 @@ Phase 1 remains COMPLETE. The 8 failures are carried forward as accepted baselin
 - If the corresponding runtime behavior fails during Phase 2 verification, these exceptions must be reclassified as `BLOCKER` or `UPSTREAM_PATCH_REQUIRED`.
 - Phase 2 must explicitly verify the affected session/handoff/PATH/file-mode behavior at runtime, not merely rely on unit-test pass/fail status.
 - These exceptions apply only to the untouched upstream baseline; any CPS modification in the affected areas must be regression-tested against the same behavior.
+
+### 2026-09-13 — Phase 5 GeoPlotter PASS 0L real product canary completed
+
+**Type:** VERIFICATION / CHECKPOINT
+**Status:** COMPLETED
+**Scope:** Phase 5 real product canary — GeoPlotter PASS 0L
+**Performed by:** Kilo
+
+**What happened**
+Phase 5 real product canary was completed using GeoPlotter PASS 0L — Interactive project + lot map foundation. CPS resolved the GeoPlotter planning corpus from TownBoss, materialized a bounded TaskContract, identified the missing backend map API route as the critical gap, implemented the route, and validated against 17 existing HTTP boundary tests.
+
+**Why / context**
+Phase 5 proves that CPS can supervise a real bounded product objective through the complete acceptance flow: corpus resolution → task contract → worker selection → implementation → validation → review → checkpoint.
+
+**Result**
+- CPS planning corpus resolution: GeoPlotter project resolved from `D:\Projects\TownBoss\plans\projects\geoplotter\` via `CorpusReader` and `ProjectCorpusResolver`
+- Task contract: `TaskMaterializer.MaterializeFromObjective` produced validated `TaskContract` for PASS 0L with R2 authority classification, RequiredReview: true, checkpoint required, memory update required
+- Worker selection: Kilo selected as eligible coding agent
+- Implementation: Backend map API route `apps/web/src/app/api/projects/[projectId]/map/route.ts` implemented using existing `listProjectMap` lib function
+- Validation: 17/17 map HTTP boundary tests pass; `npx vitest run src/__tests__/projects.map.http.test.ts` green
+- Independent review: Phase 3 review gate enforced; RequiredReview: true satisfied
+- Checkpoint: GeoPlotter commit `d15a15dd1a242ae6955fda7b97094ddf98acf641` — `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] feat: complete interactive project and lot map foundation` pushed to `feat/pass-0e-projects-foundation`
+
+**Defects fixed during canary**
+- Pre-existing test bug: `membershipStatus.ACTIVE` (undefined) replaced with `"active"` in test file
+- Pre-existing test bug: `lot.id` (array access error) replaced with `lot[0].id` in test file
+- Schema issue: PASS 0L migration `0009_pass_0l_spatial_subject_linkage.sql` added nullable `subject_type` and `subject_id` columns without DEFAULT NULL; migration `0010_pass_0l_nullable_subject_linkage.sql` added DEFAULT NULL
+- Route robustness: UUID validation added to map route to handle invalid projectId format gracefully
+
+**Evidence**
+- GeoPlotter checkpoint: `d15a15dd1a242ae6955fda7b97094ddf98acf641`
+- CPS checkpoint: `198e857de73099b05719bbca2a3aa60812ba7aa5` (Phase 4), `232f8a3b` (Phase 3 correction), `0a0f1cc7` (Phase 3)
+- TownBoss checkpoint: `594c6d244c2010186faedb788b6e589eba030b4b` (Phase 4), `cf96770a622d080525cd1f09f5f43947f8c45690` (Phase 3 correction), `bba6544892dc191c2ac371b1b66117f313e73f4e` (Phase 2), `5a997ae288ef05a48897283fdecc8a80e63e0a57` (workspace cleanup)
+- Tests: 17/17 map HTTP boundary tests pass
+- Typecheck: passes for new route code
+
+**Impact on future work**
+Phase 6 is the next active phase. GeoPlotter PASS 0L is complete and checkpointed. The real product canary proved CPS can supervise bounded development work end-to-end. No upstream blockers were discovered.
+
+### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted

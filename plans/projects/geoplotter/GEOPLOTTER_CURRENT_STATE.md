@@ -10,10 +10,10 @@ GeoPlotter development is active. The product repository is `glenpilapil/GeoPlot
 ## Latest evidenced implementation
 - PASS 0J listing/publication accepted: `da5604d` plus closure `d991535`.
 - PASS 0K buyer requirements and deterministic matching implemented: `7ce0926`.
-- PASS 0L interactive project and lot map: IN PROGRESS.
+- PASS 0L interactive project and lot map accepted: `d15a15d`.
 
 ## Current active work
-PASS 0L must establish a real backend spatial projection, authenticated project map API, MapLibre GL JS frontend, and interactive lot selection. A frontend-only mocked map is not sufficient for completion; mocks are for tests only.
+PASS 0L is complete. The next eligible work is PASS 0M — parcel and technical-description plotting, unless a new evidence-backed blocker changes the dependency order.
 
 ## Current attention
 - Reconcile durable remote provenance and integration for active-lineage checkpoints before calling them canonical default-branch state.
