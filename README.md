@@ -14,5 +14,10 @@ TownBoss Architecture Baseline v1 is the current portfolio architecture baseline
 - Adapter Roadmap: `capabilities/ADAPTER_ROADMAP.yaml`
 - Shared Capability Extraction Policy: `governance/EXTRACTION_POLICY.md`
 - Approved Upstream Implementation Ledger: `governance/APPROVED_UPSTREAM_IMPLEMENTATION_LEDGER.md`
+- Portfolio Development Rules: `governance/DEVELOPMENT_RULES.md`
 
 The baseline separates canonical architecture from implementation truth. Physical capability extraction and adapters remain evidence-driven and implementation-led. Approved upstream recommendations are tracked separately with explicit implementation triggers, validation receipts, dependency status, and stage gates so approval does not imply premature adoption and triggered recommendations are not lost.
+
+## Development governance
+
+`governance/DEVELOPMENT_RULES.md` is the canonical portfolio-wide development policy. Projects may add stricter project-specific rules and explicit approved exceptions, but substantial development should be planned, bounded, evidence-driven, verified, checkpointed, and recorded in project Memory. Machine-enforceable rules should be encoded into development supervision, repository checks, CI, and checkpoint gates rather than relying only on agent recollection.
