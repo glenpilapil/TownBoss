@@ -329,3 +329,44 @@ CPS fork is live on GitHub and locally at `D:\Projects\Code-Project-Supervisor`,
 
 **Impact on future work**
 No CPS behavior customization should begin until the upstream baseline is fully documented and accepted. The 8 failing tests should be investigated to determine whether they are Windows-specific environment issues or actual upstream defects before they are carried forward as known baseline exceptions.
+
+### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted
+
+**Type:** DECISION / VERIFICATION
+**Status:** CURRENT
+**Scope:** Phase 1 upstream baseline exceptions
+**Performed by:** Operator decision; recorded by Kilo
+
+**What happened**
+The operator accepted 8 untouched-upstream Windows `internal/session_manager` test failures as bounded Phase 1 baseline exceptions. The failures are:
+
+- `TestBuildSourceHandoffRequestUsesCurrentNativeSessionContext`
+- `TestSwitchAgentFreshPreservesAOIdentityAndDeliversArtifact`
+- `TestSwitchAgentRefreshesLateSourceNativeIdentityAtStopBoundary`
+- `TestWriteAgentHandoffFileIsPrivateAtomicAndImmutable`
+- `TestInterfaceTransitionReservedTranscriptRequiresUntouchedTerminal` (`lookup_error` subtest)
+- `TestSpawn_DefaultsBranchUnderDevNamespaceForDevDataDir`
+- `TestSpawnAndRestore_PrependsResolvedBinaryAndNodeDirsToRuntimePATH`
+- `TestSpawn_DoesNotAddNodeRuntimeForNativeBinary`
+
+Classification: `ACCEPTED_BASELINE_EXCEPTION`.
+
+**Why / context**
+- Untouched upstream backend builds successfully on Windows.
+- Failures were present before any CPS customization.
+- Failures cluster around Windows PATH normalization, file-mode semantics, process/session naming/identity, and handoff behavior.
+- No CPS-specific code exists yet.
+- Phase 2 will verify the corresponding runtime behavior directly.
+
+**Result**
+Phase 1 remains COMPLETE. The 8 failures are carried forward as accepted baseline exceptions. Acceptance is not equivalent to declaring the defects irrelevant.
+
+**Evidence**
+- Phase 1 memory entry: `CODE_PROJECT_SUPERVISOR_MEMORY.md` — Phase 1 fork and baseline established
+- Test output: `D:\Projects\agent-orchestrator-audit\backend` — `go test ./internal/session_manager/...`
+- Phase 2 checklist updated in `CODE_PROJECT_SUPERVISOR_IMPLEMENTATION_PLAN.md`
+
+**Impact on future work**
+- If the corresponding runtime behavior fails during Phase 2 verification, these exceptions must be reclassified as `BLOCKER` or `UPSTREAM_PATCH_REQUIRED`.
+- Phase 2 must explicitly verify the affected session/handoff/PATH/file-mode behavior at runtime, not merely rely on unit-test pass/fail status.
+- These exceptions apply only to the untouched upstream baseline; any CPS modification in the affected areas must be regression-tested against the same behavior.

@@ -12,6 +12,8 @@ The prior CodeBisor implementation is preserved as legacy/reference evidence. It
 
 Phase 1 — Establish Fork and Baseline is complete. The CPS fork is live at `D:\Projects\Code-Project-Supervisor` and on GitHub at `glenpilapil/Code-Project-Supervisor`, baseline-tagged at upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`.
 
+Accepted baseline exceptions: 8 upstream Windows `internal/session_manager` test failures documented as `ACCEPTED_BASELINE_EXCEPTION`.
+
 ## Completed Foundation Work
 
 - Project mission, duties, product specification, architecture, implementation plan, decisions/rules, acceptance criteria, and upstream adoption strategy established.
@@ -32,7 +34,7 @@ Phase 1 is complete. Phase 2 — Operator and Project Baseline is the current ac
 ## Current Blockers
 
 None at project-governance level. Phase 2 entry prerequisites:
-- Investigate and decide whether the 8 pre-existing `internal/session_manager` test failures on Windows are acceptable baseline exceptions or must be resolved before operational use.
+- Runtime verification of the 8 accepted Windows `internal/session_manager` baseline exceptions (session/handoff/PATH/file-mode behavior).
 - Configure/register a synthetic TownBoss-compatible project in the CPS fork.
 
 ## Deferred Work

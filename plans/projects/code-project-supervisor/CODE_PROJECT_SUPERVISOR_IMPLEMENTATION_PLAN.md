@@ -171,7 +171,7 @@ NEXT PHASE: PHASE 1 — ESTABLISH FORK AND BASELINE
 - [x] Run untouched upstream tests on Windows (`cd backend && go test ./...`)
    Evidence: 8 pre-existing failures in internal/session_manager on Windows; all other packages pass
 - [x] Record baseline failures, if any
-   Evidence: 8 failures documented in Phase 1 memory entry; Windows-specific PATH/process naming/mode issues
+   Evidence: 8 failures documented and accepted as bounded Phase 1 baseline exceptions; Windows-specific PATH/process naming/mode issues; corresponding runtime behavior must be verified in Phase 2
 - [x] Create/fork the approved upstream into the Code Project Supervisor repository
    Evidence: D:\Projects\Code-Project-Supervisor cloned from Untrivial-ai/agent-orchestrator
 - [x] Preserve upstream history where appropriate
@@ -208,7 +208,7 @@ NEXT PHASE: PHASE 1 — ESTABLISH FORK AND BASELINE
 - [x] Repository builds/installs successfully on the primary Windows development environment
    Evidence: `cd backend && go build ./...` passes cleanly with Go 1.27.0
 - [x] Upstream baseline tests pass or every pre-existing exception is documented and accepted
-   Evidence: 8 pre-existing failures in internal/session_manager documented; all other packages pass
+   Evidence: 8 pre-existing Windows `internal/session_manager` failures documented and accepted as bounded Phase 1 baseline exceptions; corresponding runtime behavior must be verified in Phase 2
 - [x] No TownBoss-specific behavior has been prematurely ported
    Evidence: Fork is untouched upstream at cadde8c9; no CPS modifications committed
 - [x] Working tree is clean at checkpoint
@@ -240,6 +240,7 @@ NEXT PHASE: PHASE 1 — ESTABLISH FORK AND BASELINE
 - [ ] Verify worker session resume/recovery where upstream supports it
 - [ ] Verify at least Kilo integration or nearest supported path
 - [ ] Verify at least Codex integration or nearest supported path
+- [ ] Verify runtime behavior corresponding to the 8 accepted Windows `internal/session_manager` baseline exceptions
 - [ ] Confirm no TownBoss-specific extensions were required for the synthetic canary unless explicitly documented
 - [ ] Update Memory
 
