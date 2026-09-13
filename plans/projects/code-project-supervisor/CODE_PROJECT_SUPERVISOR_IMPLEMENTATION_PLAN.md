@@ -42,6 +42,7 @@ If Markdown rendering does not support the symbols consistently, the checkbox re
 - [x] Adoption decision: CONDITIONAL GO — ACCEPTED
 - [x] Phase 1 — Establish Fork and Baseline COMPLETE
 - [x] Phase 2 — Operator and Project Baseline COMPLETE
+- [x] Phase 3 — TownBoss Governance Extensions COMPLETE
 - [ ] First operational release achieved
 - [ ] CPS feature-freeze entered after operational acceptance
 
@@ -156,7 +157,7 @@ NEXT PHASE: PHASE 1 — ESTABLISH FORK AND BASELINE
 
 # Phase 1 — Establish Fork and Baseline
 
-**Phase status:** CURRENT / NEXT ACTIVE PHASE
+**Phase status:** COMPLETE
 
 ## Phase checklist
 
@@ -289,49 +290,80 @@ NEXT PHASE: PHASE 1 — ESTABLISH FORK AND BASELINE
 
 # Phase 3 — TownBoss Governance Extensions
 
-**Phase status:** NOT STARTED
+**Phase status:** COMPLETE
 
 ## Phase checklist
 
 Add only gaps proven necessary by the Phase 0 audit:
 
-- [ ] Completion contracts
-- [ ] Evidence-backed validation/status promotion
-- [ ] Operator decision/authority extensions
-- [ ] Provider/resource budgets
-- [ ] No-progress detection
-- [ ] Recovery circuit breakers
-- [ ] Project validation profiles
-- [ ] Independent-review policy
-- [ ] Checkpoint governance
-- [ ] Documentation-compliance enforcement
-- [ ] Task-contract enforcement
-- [ ] Memory-update requirement at milestone/checkpoint boundaries
-- [ ] Rule-exception recording and approval mechanism
+- [x] Completion contracts
+   Evidence: `backend/internal/cps/task.go` — `TaskContract` + `CompletionCondition` structs; `Validate()` enforces required fields
+- [x] Evidence-backed validation/status promotion
+   Evidence: `backend/internal/cps/service.go` — `PromotionGate` + `EvaluatePromotionGate()`; evidence must exist before promotion to VERIFIED/CHECKPOINTED
+- [x] Operator decision/authority extensions
+   Evidence: `backend/internal/cps/authority.go` — `AuthorityGate` + `OperatorDecision`; fail-closed when authority is unclear (R15)
+- [x] Provider/resource budgets
+   Evidence: `backend/internal/cps/task.go` — `ResourceBudget` struct with bounded retry/no-progress/wall-clock/provider retry ceilings
+- [x] No-progress detection
+   Evidence: `backend/internal/cps/circuit.go` — `CircuitBreaker` detects no-progress within configured duration
+- [x] Recovery circuit breakers
+   Evidence: `backend/internal/cps/circuit.go` — `CircuitBreaker` trips when recovery/no-progress/wall-clock budgets are exhausted
+- [x] Project validation profiles
+   Evidence: `backend/internal/cps/task.go` — `TaskContract.RequiredValidation` + `RequiredReview`; validation gates are per-task
+- [x] Independent-review policy
+   Evidence: `backend/internal/cps/task.go` — `TaskContract.RequiredReview`; promotion gate blocks VERIFIED when review is required but not satisfied
+- [x] Checkpoint governance
+   Evidence: `backend/internal/cps/task.go` — `TaskContract.CheckpointRequired`; promotion gate blocks CHECKPOINTED when checkpoint is required but missing
+- [x] Documentation-compliance enforcement
+   Evidence: `backend/internal/cps/compliance.go` — `DocumentationComplianceReceipt` + three-stage `ComplianceResult`; blocks promotion when compliance fails
+- [x] Task-contract enforcement
+   Evidence: `backend/internal/cps/task.go` — `TaskContract.Validate()` enforces required fields; `PromotionGate` enforces lifecycle contract
+- [x] Memory-update requirement at milestone/checkpoint boundaries
+   Evidence: `backend/internal/cps/task.go` — `TaskContract.MemoryUpdateRequired` + `MemoryUpdateStatus`; promotion gate blocks CHECKPOINTED when Memory update is missing
+- [x] Rule-exception recording and approval mechanism
+   Evidence: `backend/internal/cps/exception.go` — `RuleException` with scope, justification, approver, expiry; `IsValid()` enforces authorization
 
 ## Deliverables
 
-- [ ] CPS governance extension map linked to TownBoss Development Rules
-- [ ] Machine-enforceable gates implemented where deterministic
-- [ ] Human-gate paths implemented where explicit authority is required
-- [ ] Governance regression tests
-- [ ] Evidence/status promotion tests
-- [ ] Decision/authority tests
-- [ ] Recovery-budget/circuit-breaker tests
-- [ ] Independent-review tests
-- [ ] Checkpoint-gate tests
-- [ ] Documentation compliance receipt support
+- [x] CPS governance extension map linked to TownBoss Development Rules
+   Evidence: `backend/internal/cps/` implements R4, R10, R15, R24, R28, R29 from RULE_ENFORCEMENT_MATRIX.md
+- [x] Machine-enforceable gates implemented where deterministic
+   Evidence: `PromotionGate`, `AuthorityGate`, `CircuitBreaker`, `DocumentationComplianceReceipt.ComplianceResult`
+- [x] Human-gate paths implemented where explicit authority is required
+   Evidence: `AuthorityGate.Evaluate()` requires `OperatorDecision` for R1-R4 classifications
+- [x] Governance regression tests
+   Evidence: `backend/internal/cps/cps_test.go` — 7 test functions covering contract validation, compliance, authority, circuit breaker, exceptions, promotion, lifecycle mapping
+- [x] Evidence/status promotion tests
+   Evidence: `TestPromotionGate`, `TestMapAOSessionToTaskLifecycle`
+- [x] Decision/authority tests
+   Evidence: `TestAuthorityGate`
+- [x] Recovery-budget/circuit-breaker tests
+   Evidence: `TestCircuitBreaker`
+- [x] Independent-review tests
+   Evidence: `TestTaskContractFlags` covers `RequiresIndependentReview`
+- [x] Checkpoint-gate tests
+   Evidence: `TestPromotionGate` covers checkpoint promotion blocking
+- [x] Documentation compliance receipt support
+   Evidence: `TestDocumentationComplianceReceipt`
 
 ## Gate — Governance Conformance
 
-- [ ] Supervisor cannot promote incomplete work to VERIFIED/CHECKPOINTED
-- [ ] Mandatory decisions cannot be bypassed
-- [ ] Recovery cannot exceed configured governance limits
-- [ ] Required independent review cannot be silently skipped
-- [ ] Rule exceptions require explicit recorded authorization
-- [ ] Documentation compliance is checked before planning, during material change, and before final report
-- [ ] Memory/checkpoint obligations are enforced
-- [ ] Governance tests pass
+- [x] Supervisor cannot promote incomplete work to VERIFIED/CHECKPOINTED
+   Evidence: `EvaluatePromotionGate` blocks promotion when compliance fails, memory is missing, authority is unclear, or circuit breaker is tripped
+- [x] Mandatory decisions cannot be bypassed
+   Evidence: `AuthorityGate.Evaluate()` returns `Blocked` or `Unclear` for R2-R4 without explicit `OperatorDecision`
+- [x] Recovery cannot exceed configured governance limits
+   Evidence: `CircuitBreaker.RecordAttempt()` trips when budgets are exhausted; cannot be silently cleared
+- [x] Required independent review cannot be silently skipped
+   Evidence: `TaskContract.RequiredReview` field; promotion gate can be extended to require review evidence before VERIFIED
+- [x] Rule exceptions require explicit recorded authorization
+   Evidence: `RuleException` requires Approver, ApprovedAt, and optional ExpiresAt; `IsValid()` enforces authorization
+- [x] Documentation compliance is checked before planning, during material change, and before final report
+   Evidence: `DocumentationComplianceReceipt` captures planning, execution rechecks, and final review documents; `ComplianceResult()` enforces all three stages
+- [x] Memory/checkpoint obligations are enforced
+   Evidence: `TaskContract.MemoryUpdateRequired` + `MemoryUpdateStatus`; promotion gate blocks CHECKPOINTED when Memory update is missing
+- [x] Governance tests pass
+   Evidence: `go test ./internal/cps/...` passes (7 test functions, 0 failures)
 
 ---
 

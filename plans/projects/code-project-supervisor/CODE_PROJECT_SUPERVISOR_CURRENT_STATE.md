@@ -1,6 +1,6 @@
 # Code Project Supervisor — Current State
 
-**Status:** FOUNDATION ADOPTION — PHASE 2 COMPLETE
+**Status:** FOUNDATION ADOPTION — PHASE 3 COMPLETE
 **Date:** 2026-09-13  
 **Purpose:** Fast, current-state entry point for humans and agents.
 
@@ -29,21 +29,21 @@ Accepted baseline exceptions: 8 upstream Windows `internal/session_manager` test
 
 ## Current Workstream
 
-**Next bounded milestone:** `CPS_PHASE_3_TOWNBOSS_GOVERNANCE_EXTENSIONS`
+**Next bounded milestone:** `CPS_PHASE_4_PLANNING_CORPUS_INTEGRATION`
 
-Phase 2 is complete. Phase 3 — TownBoss Governance Extensions is the current active phase.
+Phase 3 is complete. Phase 4 — Planning Corpus Integration is the current active phase.
 
 ## Current Blockers
 
-None. Phase 2 verification passed. No CPS-specific extensions were required for the synthetic canary baseline.
+None. Phase 3 governance extensions implemented. No upstream blockers discovered.
 
 ## Deferred Work
 
 - Establish isolated CPS branding/customization layer in the fork.
-- Port selected CodeBisor governance concepts (recovery budgets, circuit breakers, completion contracts, authority model).
 - Production worker-adapter implementation.
 - CPS operational acceptance test against a real bounded product task.
 - Codex integration on this workstation is blocked by local account setup (CODEX_ACCOUNT_MANAGEMENT_UNAVAILABLE); upstream adapter is present and functional.
+- Phase 3 operator-decision UI, provider-selection policy wiring, and validation-profile configuration are implemented as projection types; they require Phase 4 planning-corpus integration and a real canary to exercise end-to-end.
 
 ## Canonical Reading Order
 

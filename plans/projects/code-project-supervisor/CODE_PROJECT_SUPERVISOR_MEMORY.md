@@ -398,6 +398,37 @@ Phase 2 created auxiliary directories directly under D:\Projects for audit clone
 **Impact on future work**
 Future CPS runtime/audit/canary artifacts must reside under D:\Projects\Code-Project-Supervisor\.cps-local. D:\Projects is a protected namespace; only explicitly authorized project roots may be created there.
 
+### 2026-09-13 — Phase 3 TownBoss governance extensions implemented
+
+**Type:** IMPLEMENTATION / VERIFICATION
+**Status:** COMPLETED
+**Scope:** Phase 3 TownBoss Governance Extensions
+**Performed by:** Kilo
+
+**What happened**
+Phase 3 governance extensions were implemented in the CPS fork at `D:\Projects\Code-Project-Supervisor` as a thin projection layer over Agent Orchestrator's existing session/project primitives. The implementation adds machine-enforceable governance gates without modifying upstream core behavior.
+
+**Why / context**
+Phase 3 is required by the Phase 0 adoption audit and Rule Enforcement Matrix. Six rules are marked operational blockers (R4, R5, R15, R19, R24, R28) that must be addressed before CPS can be declared operational. The minimum viable path inherits AO's session lifecycle and adds CPS-specific governance projection types.
+
+**Result**
+- `backend/internal/cps/task.go` — `TaskContract` with required fields (project, phase, deliverable, task, objective, scope, validation, review, evidence, checkpoint, completion); `CompletionCondition`; `ResourceBudget`; `TaskGovernanceState`; `MapAOSessionToTaskLifecycle`
+- `backend/internal/cps/compliance.go` — `DocumentationComplianceReceipt` implementing three-stage planning/execution/final-review compliance check; `ComplianceResult` with PASS/PASS_WITH_EXCEPTION/FAIL
+- `backend/internal/cps/authority.go` — `AuthorityGate` implementing fail-closed rule (R15); `OperatorDecision` for explicit authorization; blocks unclear authority
+- `backend/internal/cps/circuit.go` — `CircuitBreaker` with bounded recovery/no-progress/wall-clock/provider-retry budgets; cannot be silently cleared
+- `backend/internal/cps/exception.go` — `RuleException` with scope, justification, approver, expiry; `IsValid()` enforces authorization
+- `backend/internal/cps/service.go` — `GovernanceProjection` computes CPS governance state from AO session facts; `EvaluatePromotionGate` composes all gates
+- `backend/internal/cps/cps_test.go` — 7 test functions covering contract validation, compliance receipt, authority gate, circuit breaker, rule exceptions, promotion gate, lifecycle mapping
+
+**Evidence**
+- CPS commit: `0a0f1cc7` — `[P3][D-GOVERNANCE][T-TASK-CONTRACT] feat: add CPS task governance projection and enforcement gates`
+- Tests: `go test ./internal/cps/...` passes
+- Build: `go build ./...` passes
+- TownBoss docs: `CODE_PROJECT_SUPERVISOR_IMPLEMENTATION_PLAN.md` Phase 3 checklist complete
+
+**Impact on future work**
+Phase 4 is the next active phase. The governance projection types are ready for wiring into AO's session lifecycle and operator UI. Some Phase 3 items (operator-decision UI, provider-selection policy, validation-profile configuration) are implemented as projection types and require Phase 4 planning-corpus integration and a real canary to exercise end-to-end. No upstream blockers were discovered.
+
 ### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted
 
 **Type:** DECISION / VERIFICATION
