@@ -1,92 +1,74 @@
 # CodeBisor Implementation Plan
 
-**Status:** ACTIVE IMPLEMENTATION  
-**Evidence reconciliation:** 2026-09-12
+**Status:** LEGACY / REFERENCE ONLY  
+**Superseded portfolio project:** `Code Project Supervisor`  
+**Superseding plan:** `../code-project-supervisor/README.md`
 
-## Mission
+## Legacy purpose
 
-CodeBisor is the TownBoss development supervisor: a persistent operational view of projects, tasks, agents, evidence, checkpoints, blockers and validation gates.
+This document preserves the historical implementation direction and repository evidence for the earlier CodeBisor supervisor effort. It is retained for lessons learned, behavioral contracts, useful tests, governance concepts and migration evidence.
 
-## Repository AS-IS Baseline — `glenpilapil/CodeBisor`
+It is **not** the preferred implementation foundation for current TownBoss development supervision.
 
-Recent repository history confirms that CodeBisor is beyond a static dashboard prototype and already contains governed multi-provider execution foundations.
+The active portfolio project is now **Code Project Supervisor**, which follows an upstream-first strategy and currently prefers `Untrivial-ai/agent-orchestrator` as the candidate foundation subject to adoption audit.
 
-**IMPLEMENTED / repository-evidenced:**
+## Historical mission
 
-- Supervisor dashboard model with portfolio/project/task checklists and statuses.
-- Current task and live subtask activity rendering.
-- ANSI cursor-boundary rendering with persistent and transient regions plus fallback behavior.
-- Portfolio attention, deferred-decision and event-log concepts.
-- Capability-aware provider routing policy for approved workers.
-- Provider selection persisted before live worker launch.
-- Provider-specific autonomous resource budgets while preserving explicit legacy budget semantics.
-- Deterministic provider-failure normalization and deferral handling.
-- Explicit routed adapter identity binding for Codex, Gemini, Cline and Kilo.
-- GeoPlotter onboarding canary/task support, including a bounded read-only Gemini onboarding path and non-autostart safety behavior.
-- Repository/local-path adjustments for GeoPlotter audit/canary execution.
+CodeBisor was intended as the TownBoss development supervisor: a persistent operational view of projects, tasks, agents, evidence, checkpoints, blockers and validation gates.
 
-Key evidence includes commits `343d90f` (provider routing + GeoPlotter onboarding canary), `679bda6` (provider binding before launch), `30b90b0` (provider resource budgets), `a8d9b9b` (normalized provider failure handling), and `21606ac` (bounded GeoPlotter onboarding canary).
+## Historical repository baseline — `glenpilapil/CodeBisor`
 
-## Current Capability Classification
+Repository history demonstrated substantial experimentation and implementation in areas including:
 
-| Capability | Classification | Notes |
-|---|---|---|
-| Terminal supervisor rendering | IMPLEMENTED | Persistent/transient region model established |
-| Multi-provider routing | IMPLEMENTED | Capability-aware routing and identity binding in repository history |
-| Provider resource budgets | IMPLEMENTED | Provider-specific defaults with compatibility behavior |
-| Provider failure normalization | IMPLEMENTED | Deterministic classification/deferral path present |
-| GeoPlotter onboarding canary | IMPLEMENTED / bounded | Read-only and explicit safety contract |
-| Masterplan ingestion | PLANNED | TownBoss planning corpus now exists; parser/schema not yet evidenced |
-| Evidence-backed status promotion | PARTIAL / PLANNED | Principle exists; complete canonical implementation must be reconciled |
-| Resumable sessions | PLANNED unless newer evidence is found | Requires repository pass |
-| Remote-operation security model | PLANNED | Future gate |
+- supervisor/dashboard state;
+- project/task checklists;
+- provider routing;
+- worker identity binding;
+- provider resource budgets;
+- provider failure normalization;
+- GeoPlotter onboarding canary/task handling;
+- recovery/circuit-breaker concepts;
+- completion contracts and validation concepts;
+- multi-project scheduling and state reconciliation;
+- interactive CLI/TUI experiments.
 
-## Target Architecture
+These capabilities are historical evidence and reference material, not a mandate to port the implementation wholesale.
 
-### 1. Canonical plan ingestion
-Consume the TownBoss masterplan hierarchy and project/application plans as roadmap authority. Parser output should preserve stable IDs, status vocabulary, dependencies, gates and evidence requirements.
+## Migration rule
 
-### 2. Repository adapters
-Git/GitHub/local-workspace adapters for branch, commit, dirty state, tests, PRs, issues and checkpoint evidence.
+For every legacy CodeBisor capability considered for Code Project Supervisor:
 
-### 3. Agent execution
-Provider-neutral worker interface for Codex, Gemini, Kilo/Cline and future approved agents, with explicit task contracts, routed provider identity, stdout/events, cancellation, bounded resources and receipts.
+1. check whether the selected upstream foundation already implements it;
+2. classify the capability under the new adoption matrix;
+3. port behavioral contracts/tests/specification before implementation code where practical;
+4. port code only when it is both still required and lower-risk than extending upstream;
+5. do not preserve duplicate infrastructure because of sunk development effort.
 
-### 4. State model
-`Portfolio -> Project -> Application -> Milestone -> Gate -> Task -> Subtask -> Evidence/Checkpoint`
+## High-value concepts to retain for evaluation
 
-### 5. Verification
-Never mark DONE from worker prose alone when machine-verifiable evidence is required. Capture test/analyzer/build/git/runtime evidence and bind it to a concrete repository state.
+- provider-neutral worker supervision;
+- bounded recovery/resource governance;
+- provider failure vs task failure distinction;
+- human decision/attention gates;
+- evidence-backed completion contracts;
+- independent review;
+- checkpoint governance;
+- project-aware scheduling;
+- persistent state/reconciliation;
+- operator interaction with the supervisor rather than direct worker babysitting.
 
-### 6. Safety
-Approval gates for destructive operations, production changes, secrets, irreversible migrations and external publication. Canary/onboarding tasks remain bounded until their safety contracts and provider routing are proven.
+## Low-value or superseded areas unless proven necessary
 
-## Immediate Gap Register
+- custom terminal rendering infrastructure;
+- bespoke ANSI dashboard lifecycle;
+- duplicate daemon/process supervision already solved upstream;
+- bespoke worker launch adapters available in upstream;
+- UI experimentation that does not affect operational delivery.
 
-- [ ] Run and record current full CodeBisor test suite at current default-branch HEAD.
-- [ ] Inventory current supervisor state/schema and persistence behavior.
-- [ ] Define and implement TownBoss masterplan Markdown parser/schema.
-- [ ] Map existing supervisor checklist state to canonical plan/application/milestone IDs.
-- [ ] Complete evidence-backed status-promotion rules and provenance receipts.
-- [ ] Confirm checkpoint persistence survives process/session restart.
-- [ ] Verify multi-project switching does not lose live worker or evidence state.
-- [ ] Reconcile terminal rendering implementation against latest dashboard requirements.
-- [ ] Implement/verify resumable supervisor sessions.
-- [ ] Define security/permission model for any future remote operation.
-- [ ] Add explicit synchronization strategy between TownBoss planning corpus and CodeBisor runtime state.
+## Historical evidence rule
 
-## Release/Operational Gates
+Commit history proves that a capability existed at some point. It does not prove that it remains correct, verified or appropriate for the new implementation. Any migrated capability must be validated against the selected upstream baseline and current Code Project Supervisor rules.
 
-1. Current test-suite green gate.
-2. State persistence/restart gate.
-3. Provider routing + failure-handling regression gate.
-4. Canary safety-contract gate.
-5. Masterplan ingestion correctness gate.
-6. Evidence/status provenance gate.
-7. Multi-project concurrency/state-isolation gate.
-8. Terminal/non-ANSI rendering gate.
-9. Security review before remote or autonomous mutation expansion.
+## Current action
 
-## Evidence Rule
-
-Commit history proves that a capability has existed in repository code. `VERIFIED` requires fresh tests or runtime evidence tied to the current commit used by the supervisor.
+Do not continue feature development in this legacy plan by default. Use it as input to the Code Project Supervisor upstream adoption audit.
