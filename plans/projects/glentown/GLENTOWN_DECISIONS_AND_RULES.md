@@ -2,12 +2,21 @@
 
 **Status:** CANONICAL / PROJECT-SPECIFIC
 
-GlenTown inherits `governance/DEVELOPMENT_RULES.md` and `governance/PROJECT_GOVERNANCE_STANDARD.md`.
+GlenTown inherits the TownBoss portfolio governance stack, including:
+
+- `governance/DEVELOPMENT_RULES.md`
+- `governance/PROJECT_GOVERNANCE_STANDARD.md`
+- `governance/PROJECT_EXECUTION_STANDARD.md`
+- `governance/TASK_CHECKPOINT_COMMIT_POLICY.md`
+- `governance/TASK_COMPLETION_COMPLIANCE_POLICY.md`
+- `governance/TASK_REPORTING_AND_MEMORY_POLICY.md`
+
+GlenTown project-specific rules may be stricter but do not silently weaken portfolio governance.
 
 ## Binding project rules
 
 1. Puerto Princesa remains the deepest operational pilot, while nationwide access and nationwide pre-Beta seeding are valid rollout goals.
-2. Repository history proves implementation existence; `VERIFIED` requires fresh evidence tied to a concrete canonical ref/release candidate.
+2. Repository history proves implementation existence; higher verification states require fresh evidence tied to a concrete canonical ref/release candidate and applicable validation profile.
 3. Messaging is already integrated in the canonical API lineage and must not be treated as absent without contrary repository evidence.
 4. Client UI must not become authoritative for security, tenancy, pricing, completion, or protected state transitions.
 5. Realistic seed content must use legitimate/publicly supportable sources and must preserve provenance and claimable-business semantics.
@@ -16,7 +25,11 @@ GlenTown inherits `governance/DEVELOPMENT_RULES.md` and `governance/PROJECT_GOVE
 8. Physical-device verification remains a release gate for critical mobile journeys.
 9. UI/UX or infrastructure improvements discovered during bounded work do not silently expand scope.
 10. Material work must update Memory and the implementation-plan dashboard before handoff.
+11. Known blockers must be reconciled into `GLENTOWN_BLOCKER_REGISTER.md`; they must not remain only in agent reports or conversation history.
+12. Capability status promotion must follow `GLENTOWN_CAPABILITY_MATRIX.md` and the applicable `GLENTOWN_VALIDATION_PROFILES.md` evidence requirements.
+13. Every substantial write-capable task must include the mandatory TownBoss safe-abort/recovery protocol from `governance/PROJECT_EXECUTION_STANDARD.md`.
+14. Material risk acceptance, product/UX authority supersession, destructive actions, external publication/deployment, and rule exceptions require the authority defined by the portfolio standard and `GLENTOWN_AUTHORITY_MATRIX.md`.
 
 ## Documentation rule
 
-Substantial work must consult the implementation plan, app-specific plans, relevant TownBoss governance, Memory, Current State, applicable architecture/decision documents and repository-local instructions before action and before final reporting.
+Substantial work must consult the implementation plan, app-specific plans, relevant TownBoss governance, Authority Matrix, Capability Matrix, Blocker Register, Validation Profiles, Risk Register, Memory, Current State, applicable architecture/decision documents and repository-local instructions before action and before final reporting.
