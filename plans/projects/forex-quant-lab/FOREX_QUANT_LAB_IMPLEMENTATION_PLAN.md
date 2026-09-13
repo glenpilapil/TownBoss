@@ -1,59 +1,103 @@
-# Forex Quant Lab Implementation Plan
+# Forex Quant Lab Implementation Plan / Development Dashboard
 
-**Status:** RESEARCH / PLANNED
+**Status:** RESEARCH / PLANNED  
+**Dashboard rule:** checkboxes are authoritative completion markers.
 
-## Mission
-
-Build an explainable, controlled systematic trading research environment focused on day trading/scalping research, London/New York sessions, news awareness and strict risk controls.
-
-## Non-negotiable progression
-
+## Governing progression
 `Research -> Data validation -> Backtest -> Walk-forward/out-of-sample -> Paper/simulation -> Small controlled live experiment -> Review -> Scale decision`
 
-No strategy progresses because of headline backtest returns alone.
+## Dashboard summary
+- [ ] Research hypotheses defined.
+- [ ] Data/feed validation complete.
+- [ ] Backtest framework validated.
+- [ ] Walk-forward/out-of-sample evidence complete.
+- [ ] Paper/simulation gate passed.
+- [ ] Small controlled live experiment authorized and completed.
+- [ ] Review/scale decision complete.
 
-## Architecture
+## Mission
+Build an explainable, controlled systematic trading research environment focused on day trading/scalping research, London/New York sessions, news awareness and strict risk controls.
 
-- Python research environment.
-- MT5 integration isolated behind an execution adapter.
-- market/news data provenance.
-- strategy modules separated from risk approval and execution.
-- persistent decision/evidence logs.
-- reproducible configuration/versioning.
+## Architecture checklist
+- [ ] Python research environment reproducibly configured.
+- [ ] MT5 integration isolated behind an execution adapter.
+- [ ] Market/news data provenance recorded.
+- [ ] Strategy logic separated from risk approval and execution.
+- [ ] Persistent decision/evidence logs maintained.
+- [ ] Configuration/versioning reproducible.
 
-## Agent architecture references
+## Phase 0 — Research definition
+**Status:** NEXT
+- [ ] Define testable strategy hypotheses before optimization.
+- [ ] Define quantitative sniper-entry criteria.
+- [ ] Define session/regime filters.
+- [ ] Define exits/invalidation.
+- [ ] Define validation metrics and rejection criteria.
 
-TradingAgents and similar upstream projects are research/pattern sources, not architectural authorities. Useful patterns include specialized analysis agents, adversarial bull/bear analysis, explicit risk approval, and separation of analysis/decision/execution.
+### Gate
+- [ ] Research hypotheses and evaluation protocol approved before optimization.
 
-## Workstreams
+## Phase 1 — Data validation
+- [ ] Broker/feed selected for research.
+- [ ] Timestamp/timezone/session normalization verified.
+- [ ] Spread/slippage/commission modeling verified.
+- [ ] News-event dataset and behavior/exclusion rules verified.
+- [ ] Missing/corrupt data handling documented.
 
-### Data
-- broker/feed selection;
-- timestamp/timezone/session normalization;
-- spread/slippage/commission modeling;
-- news-event dataset and exclusion/behavior rules.
+### Gate
+- [ ] Data-quality/provenance gate passes.
 
-### Strategy research
-- define hypotheses before optimization;
-- sniper-entry criteria expressed quantitatively;
-- regime/session filters;
-- exits and invalidation;
-- parameter stability analysis.
+## Phase 2 — Backtest and robustness
+- [ ] Backtest engine validated against known cases.
+- [ ] Leakage/overfitting checks pass.
+- [ ] Transaction costs modeled realistically.
+- [ ] Parameter sensitivity/stability reviewed.
+- [ ] Monte Carlo/robustness analysis completed where applicable.
 
-### Risk engine
-- per-trade risk;
-- daily loss limits;
-- max exposure/correlation;
-- kill switch;
-- execution sanity checks;
-- funded-account rules as a later profile, not the initial design authority.
+### Gate
+- [ ] Backtest evidence meets predefined criteria without relying on headline return alone.
 
-### Validation
-- leakage/overfitting checks;
-- out-of-sample and walk-forward;
-- Monte Carlo/sensitivity;
-- realistic transaction costs;
-- paper-trading evidence.
+## Phase 3 — Walk-forward / out-of-sample
+- [ ] Out-of-sample periods predefined.
+- [ ] Walk-forward protocol executed.
+- [ ] Results compared with training/backtest expectations.
+- [ ] Failure/regime boundaries documented.
 
-### Live gate
-A small live account is an experiment, not proof of sustainable income. Scaling requires predefined evidence thresholds and drawdown controls.
+### Gate
+- [ ] Out-of-sample evidence supports continued experimentation.
+
+## Phase 4 — Paper / simulation
+- [ ] Paper environment configured.
+- [ ] Execution adapter behavior verified.
+- [ ] Risk engine enforced.
+- [ ] Session/news behavior monitored.
+- [ ] Paper evidence collected for predefined period/sample.
+
+### Gate
+- [ ] Paper/simulation criteria pass before any live experiment.
+
+## Risk engine checklist
+- [ ] Per-trade risk enforced.
+- [ ] Daily loss limits enforced.
+- [ ] Exposure/correlation limits enforced.
+- [ ] Kill switch verified.
+- [ ] Execution sanity checks verified.
+- [ ] Funded-account rules remain a later profile rather than initial design authority.
+
+## Phase 5 — Small controlled live experiment
+- [ ] Explicit operator authorization obtained.
+- [ ] Live experiment parameters/limits documented before activation.
+- [ ] Evidence captured without redefining thresholds after results are known.
+- [ ] Drawdown/kill criteria enforced.
+
+### Gate
+- [ ] Live experiment closed and reviewed before any scale decision.
+
+## Phase 6 — Review / scale decision
+- [ ] Research, out-of-sample, paper and live evidence reviewed together.
+- [ ] Failure modes documented.
+- [ ] Continue/modify/stop decision recorded.
+- [ ] Scaling permitted only when predefined evidence thresholds are satisfied.
+
+## Evidence rule
+No strategy progresses because of headline backtest returns alone. Every promotion requires evidence appropriate to the current stage, and unsuccessful hypotheses remain part of project Memory.
