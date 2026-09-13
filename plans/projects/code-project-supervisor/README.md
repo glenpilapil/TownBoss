@@ -26,6 +26,11 @@ The new implementation should start from the open-source `Untrivial-ai/agent-orc
 - `CODE_PROJECT_SUPERVISOR_DECISIONS_AND_RULES.md` — starting decisions, non-negotiable rules and scope controls.
 - `CODE_PROJECT_SUPERVISOR_ACCEPTANCE_CRITERIA.md` — definition of operational readiness and completion.
 - `CODE_PROJECT_SUPERVISOR_UPSTREAM_ADOPTION_PLAN.md` — Agent Orchestrator fork/adoption strategy.
+- `CODE_PROJECT_SUPERVISOR_MEMORY.md` — durable, append-oriented development memory recording what was performed, decisions, incidents, verification evidence, lessons, checkpoints and handoffs across sessions and agents.
+
+## Project memory rule
+
+Substantial development work must consult the project Memory before execution and append durable evidence before a completed milestone or handoff is considered closed. Memory complements the normative specifications: it records what actually happened and why, while the specifications and decisions documents define what currently governs.
 
 ## Governing success statement
 
