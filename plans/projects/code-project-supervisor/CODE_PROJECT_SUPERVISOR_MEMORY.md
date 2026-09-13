@@ -365,6 +365,39 @@ Phase 2 verifies that upstream runtime behavior is sufficient to supervise a syn
 **Impact on future work**
 Phase 3 is the next active phase. No upstream blockers were discovered. The only known adapter gap is Codex local account setup, which is an operator-side prerequisite, not a CPS code change.
 
+### 2026-09-13 — Post-Phase-2 workspace cleanup
+
+**Type:** INCIDENT / HOUSEKEEPING
+**Status:** COMPLETED
+**Scope:** D:\Projects workspace hygiene
+**Performed by:** Kilo
+
+**What happened**
+Post-Phase-2 workspace cleanup was performed to restore D:\Projects so that only legitimate project roots remain at the top level. CPS auxiliary material was relocated beneath D:\Projects\Code-Project-Supervisor\.cps-local. Orphaned worktrees and runtime directories were removed.
+
+**Why / context**
+Phase 2 created auxiliary directories directly under D:\Projects for audit clones, synthetic canaries, and AO runtime data. These violate the project-root namespace rule and must live beneath the owning project.
+
+**Result**
+- `D:\Projects\agent-orchestrator-audit` moved to `D:\Projects\Code-Project-Supervisor\.cps-local\references\agent-orchestrator-audit`
+- `D:\Projects\CPS-Synthetic-Canary` moved to `D:\Projects\Code-Project-Supervisor\.cps-local\canaries\synthetic-project`
+- `D:\Projects\CPS-Phase2-AO-Data` moved to `D:\Projects\Code-Project-Supervisor\.cps-local\runtime\phase2-ao-data`
+- `D:\Projects\CPS-Synthetic-Canary-remote.git` (orphaned bare repo) deleted
+- `D:\Projects\CodeBisor-dashboard-fix` (orphaned worktree of CodeBisor with missing admin path) deleted; all content is preserved in D:\Projects\CodeBisor
+- `D:\Projects\dashboard-state` (empty directory) deleted
+- `D:\Projects\Developer-Control-Plane` preserved as independent legitimate project
+- AO daemon stopped cleanly before move; no live process referenced old paths after move
+- `.cps-local/` added to D:\Projects\Code-Project-Supervisor\.git\info\exclude
+- TownBoss governance updated: DEVELOPMENT_RULES.md section 31 added (workspace root namespace protection)
+
+**Evidence**
+- Final D:\Projects children: Code-Project-Supervisor, CodeBisor, Developer-Control-Plane, Forex-Quant-Lab, GeoPlotter, GlenTown, PHirst, TownBoss
+- CPS repo clean; .cps-local excluded locally
+- No AO processes remain
+
+**Impact on future work**
+Future CPS runtime/audit/canary artifacts must reside under D:\Projects\Code-Project-Supervisor\.cps-local. D:\Projects is a protected namespace; only explicitly authorized project roots may be created there.
+
 ### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted
 
 **Type:** DECISION / VERIFICATION

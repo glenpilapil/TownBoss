@@ -12,7 +12,7 @@ The prior CodeBisor implementation is preserved as legacy/reference evidence. It
 
 Phase 1 — Establish Fork and Baseline is complete. The CPS fork is live at `D:\Projects\Code-Project-Supervisor` and on GitHub at `glenpilapil/Code-Project-Supervisor`, baseline-tagged at upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`.
 
-Phase 2 — Operator and Project Baseline is complete. Runtime verification performed against untouched upstream cadde8c9 using synthetic project "CPS Synthetic Canary" registered in AO data dir `D:\Projects\CPS-Phase2-AO-Data`.
+Phase 2 — Operator and Project Baseline is complete. Runtime verification was performed against untouched upstream cadde8c9 using synthetic project "CPS Synthetic Canary". Phase 2 runtime artifacts are archived under `D:\Projects\Code-Project-Supervisor\.cps-local\runtime\phase2-ao-data`.
 
 Accepted baseline exceptions: 8 upstream Windows `internal/session_manager` test failures documented as `ACCEPTED_BASELINE_EXCEPTION`. Runtime source review confirms the failures are environment-specific; the underlying behavior is implemented in upstream.
 

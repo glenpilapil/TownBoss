@@ -330,3 +330,11 @@ When a worker or supervisor detects a material rule violation:
 The purpose of development governance is to finish useful products safely and reliably. Governance itself must not become an endless product-development project.
 
 When the accepted objective is achieved with sufficient evidence, checkpoint it and proceed to the next product objective.
+
+## 31. Workspace Root Namespace Protection
+
+`D:\Projects` is a protected project-root namespace. Agents may access authorized sibling projects but may create a new top-level directory only for an explicitly authorized project.
+
+Project-owned auxiliary artifacts such as runtime data, canaries, audit clones, worktrees, logs, state, references, and temporary files must live beneath the owning project unless the operator explicitly authorizes an external location.
+
+Legitimate project roots are established by the operator or by explicit project-creation workflow. A directory is not a project root merely because it contains source code.
