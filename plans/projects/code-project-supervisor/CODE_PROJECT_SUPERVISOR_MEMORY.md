@@ -189,6 +189,38 @@ Future meaningful development passes are required to append concise evidence-bac
 **Impact on future work**
 Every agent or human conducting substantial Code Project Supervisor development should read the current Memory before beginning work and update it before closing a completed milestone or handing the project to another worker.
 
+### 2026-09-13 — Development governance and execution contracts established
+
+**Type:** IMPLEMENTATION / DECISION  
+**Status:** CURRENT  
+**Scope:** CPS governance baseline  
+**Performed by:** Operator + TownBoss planning process
+
+**What happened**
+CPS received an explicit current-state file, capability matrix, bounded task contract, authority matrix, validation/evidence standard, risk/recovery policy, worker adapter contract, upstream synchronization policy, documentation compliance protocol, and operational acceptance test. TownBoss also established portfolio-wide development rules.
+
+**Why / context**
+The project needed enforceable finish lines and execution boundaries before the Agent Orchestrator adoption audit so governance would not be invented reactively during implementation. Documentation compliance was made a three-stage cycle covering planning, execution-stage re-checks, and final review before reporting.
+
+**Result**
+The CPS project now has a defined operational governance corpus. The final operational acceptance test explicitly freezes CPS feature development after CPS can successfully supervise a real bounded product task, unless a real product-development blocker later justifies CPS work.
+
+**Evidence**
+- TownBoss: `governance/DEVELOPMENT_RULES.md`
+- `CODE_PROJECT_SUPERVISOR_CURRENT_STATE.md`
+- `CODE_PROJECT_SUPERVISOR_CAPABILITY_MATRIX.md`
+- `CODE_PROJECT_SUPERVISOR_TASK_CONTRACT.md`
+- `CODE_PROJECT_SUPERVISOR_AUTHORITY_MATRIX.md`
+- `CODE_PROJECT_SUPERVISOR_VALIDATION_AND_EVIDENCE_STANDARD.md`
+- `CODE_PROJECT_SUPERVISOR_RISK_AND_RECOVERY_POLICY.md`
+- `CODE_PROJECT_SUPERVISOR_WORKER_ADAPTER_CONTRACT.md`
+- `CODE_PROJECT_SUPERVISOR_UPSTREAM_SYNC_POLICY.md`
+- `CODE_PROJECT_SUPERVISOR_DOCUMENTATION_COMPLIANCE_PROTOCOL.md`
+- `CODE_PROJECT_SUPERVISOR_OPERATIONAL_ACCEPTANCE_TEST.md`
+
+**Impact on future work**
+The next development activity should be the Agent Orchestrator fork-adoption audit. The audit must evaluate not just feature parity but where each required governance rule is enforced and must produce the first completed capability/adoption matrix.
+
 ## 8. Memory Maintenance Rules
 
 1. **Append history; do not erase it.** Corrections should identify the incorrect entry and record the correction.
