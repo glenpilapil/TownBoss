@@ -11,7 +11,7 @@
 | Universal Search | Yes | BLOCKED_API_CONTRACT | Geographic cross-domain contract |
 | Map | Yes | IMPLEMENTED UI; `a43442b` | Listing/media projection, physical check |
 | Cart/Around You | Yes | IMPLEMENTED; `c28feee` | Rich fixtures/projection/physical check |
-| Create | Yes | PLANNED — D1.4 next | Bounded recovery evidence |
+| Create | Yes | TEST_VERIFIED recovery `aa07d25` | Samsung recheck; API persistence blockers |
 | Chat | Yes | API foundation integrated; App recovery planned | E2E physical journey |
 | You/Profile | Yes | IMPLEMENTED surfaces; recovery planned | Keyboard/routing validation |
 | Cross-screen accessibility | Yes | PLANNED | SafeArea/semantics/responsive evidence |

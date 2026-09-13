@@ -54,3 +54,12 @@ TownBoss rebuilt the implementation plan as a live phase/deliverable/task dashbo
 **Status:** CURRENT
 
 The evidence-backed live dashboard was integrated on TownBoss `main` through merge commit `66efa2e`. Its current phase remains Phase 1 and next eligible implementation work remains D1.4 Create recovery; no Create work was begun by the integration.
+
+## 2026-09-13 — Create recovery checkpoint
+
+**Type:** IMPLEMENTATION / VERIFICATION / CHECKPOINT
+**Status:** CURRENT
+
+GlenTown-App `aa07d2586f0b7db9a440f20b6fa927fee374b4b0` closes independently App-fixable D1.4 work. The existing role-aware Create hierarchy, shared Community taxonomy/preselection, citizen Pre-Loved composer, commercial setup gate, and employer-gated jobs were revalidated. The contextual business-claim entry now opens the dedicated Trust & Verification screen rather than simulating document upload or claim success. Evidence: 9 focused tests, 370 full Flutter tests, full analyze with no issues, and diff check pass.
+
+D1.4 is App-side complete and `READY_FOR_PHYSICAL_RECHECK`, not physically verified. Community category/media/poll persistence and business-claim persistence remain `BLOCKED_API_CONTRACT`; Create IME/CTA and permission flows require Samsung verification. Next bounded deliverable: D1.5 Chat recovery.

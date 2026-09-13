@@ -3,7 +3,7 @@
 **Portfolio:** TownBoss
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **Current phase:** Phase 1 — Core Mobile Functional and UX Recovery
-**Current deliverable/task:** D1.4 Create recovery / T1.4.1 audit authority and bounded contract
+**Current deliverable/task:** D1.5 Chat recovery / T1.5.1 canonical Chat information architecture
 **Phase gate:** OPEN — physical verification and remaining recovery work are incomplete.
 
 ## Status legend
@@ -15,8 +15,9 @@
 - [x] Phase 0 governance/planning foundations substantially established. Evidence: GlenTown control corpus and 2026-09-13 governance adoption.
 - [x] Home recovery App-side complete; physical verification pending. Evidence: `170baca` → `969abec` → `9a7861e` → `a43442b` → `c28feee` → `ff6d2e2`; 369 Flutter tests passed, analyze no issues, diff check pass.
 - [x] Explore recovery App-side complete; physical verification pending. Evidence: `3edfb0c`; 33 focused Explore tests, 9 cross-route tests, 369 Flutter tests, analyze no issues, diff check pass.
-- [ ] `IN_PROGRESS` Next active deliverable: D1.4 Create recovery. Not started by this documentation-only checkpoint.
-- [ ] Chat, You/Profile, cross-screen closure, API/data blockers, full mobile physical audit and Beta readiness remain open.
+- [x] Create recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `aa07d2586f0b7db9a440f20b6fa927fee374b4b0`; 9 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
+- [ ] `IN_PROGRESS` Next active deliverable: D1.5 Chat recovery. D1.4 physical verification and API-contract blockers remain open.
+- [ ] You/Profile, cross-screen closure, API/data blockers, full mobile physical audit and Beta readiness remain open.
 
 ## D0.1 — Canonical repository/state reconciliation
 
@@ -75,13 +76,15 @@
 
 ## D1.4 — Create recovery
 
-**Status:** `NEXT ACTIVE DELIVERABLE` — do not begin in this checkpoint.
+**Status:** APP-SIDE COMPLETE / `READY_FOR_PHYSICAL_RECHECK`; next active deliverable is D1.5 Chat recovery.
 
-- [ ] T1.4.1 Establish Create audit authority/bounded recovery contract.
-- [ ] T1.4.2 Create layout/hierarchy and canonical Community taxonomy.
-- [ ] T1.4.3 Citizen Product → Pre-Loved; commercial category → business setup gating; citizen Post a Job restriction.
-- [ ] T1.4.4 Media controls, form/keyboard behavior, Trust/Verification routing, validation/error states.
-- [ ] T1.4.5 Focused validation and physical recheck.
+- [x] T1.4.1 Establish Create audit authority/bounded recovery contract. Evidence: canonical App ledger CREATE-A2-01 through CREATE-A2-07 reconciled at `aa07d25`.
+- [x] T1.4.2 Create layout/hierarchy and canonical Community taxonomy. Evidence: CREATE-A2-01/03 remain code-reconciled from `969abec`; shared taxonomy is preserved and validated by the D1.4 focused suite.
+- [x] T1.4.3 Citizen Product → Pre-Loved; commercial category → business setup gating; citizen Post a Job restriction. Evidence: CREATE-A2-02; D1.4 focused suite covers citizen, seller, and employer paths.
+- [x] T1.4.4 Truthful Trust/Verification routing and customer-safe Create gates. Evidence: `aa07d25`; contextual claim entry opens the full-screen Trust & Verification gate and cannot simulate uploaded evidence or a successful claim.
+- [ ] T1.4.5 Media persistence/poll special-type publishing. `BLOCKED_API_CONTRACT`; see `COMMUNITY_MEDIA` and `COMMUNITY_CATEGORY_PERSISTENCE`.
+- [ ] T1.4.6 Samsung physical recheck of Create layout, IME/CTA, validation/error layers, and permission flows. `ATTENTION`.
+- [x] T1.4.7 Focused and full automated validation. Evidence: 9 focused tests, 370 full Flutter tests, full analyze no issues, `git diff --check` pass at `aa07d25`.
 
 ## D1.5 — Chat recovery
 

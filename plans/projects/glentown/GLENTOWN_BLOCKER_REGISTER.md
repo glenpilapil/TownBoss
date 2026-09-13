@@ -11,6 +11,7 @@
 | JOBS_DIRECTORY_FALLBACK | BLOCKED_APP_DOMAIN_CONTRACT | Jobs/Directory fallback | Canonical detail/route recovery evidence |
 | SMTP_EMAIL_VERIFICATION | BLOCKED_EXTERNAL | Real email verification E2E | SMTP/delivery account and E2E proof |
 | COMMUNITY_MEDIA | BLOCKED_API_CONTRACT | Media persistence/detail | Write/read projection with tests |
+| BUSINESS_CLAIM_PERSISTENCE | BLOCKED_API_CONTRACT | Real business claim/evidence submission | Server claim/evidence write contract and authoritative status projection |
 | NOTIFICATION_PREFERENCES | BLOCKED_API_CONTRACT | Persisted settings | Preference contract |
 | CART_RICH_FIXTURES | BLOCKED_BY_DEMO_DATA | Cart audit | Representative fixtures |
 | HOME_RICH_DATA | BLOCKED_BY_DEMO_DATA | Home physical audit | Mixed rich fixtures |
