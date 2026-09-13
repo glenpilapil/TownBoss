@@ -42,6 +42,22 @@ Before committing, the agent must:
 
 Blind staging such as `git add .` or `git add -A` is prohibited unless an explicit project policy authorizes it for the exact repository/workflow.
 
+## Checkpoint compliance gate
+
+Checkpoint compliance is mandatory for every write-capable task.
+
+Before the task may be promoted to `CHECKPOINTED` or `DONE`, verify:
+
+- a task-owned commit exists, or the task legitimately produced no repository changes and reports `NO_COMMIT_REQUIRED`;
+- the commit subject begins with the canonical phase/deliverable/task prefix;
+- the commit was created in the expected repository/worktree and branch;
+- the committed file scope matches the bounded task;
+- validation, documentation review, dashboard/current-state updates, and Memory updates required by the task occurred before the commit;
+- `git status` after commit is clean for task-owned work, or every remaining change is explicitly identified as unrelated/pre-existing;
+- the final report cites the exact commit hash and push state.
+
+If any required checkpoint condition fails, set `CHECKPOINT_COMPLIANCE=FAIL`. The task cannot be reported as `DONE` until repaired or an explicit governed exception is approved.
+
 ## Blocked and failed tasks
 
 If a task is `BLOCKED` or `FAILED` but has legitimate durable changes/evidence that must be preserved, those changes may be committed using the same phase/deliverable/task prefix. The commit summary and Memory must clearly state the blocked/failed condition.
@@ -68,9 +84,12 @@ Every final report for a write-capable task must include:
 - exact committed scope/files;
 - validation evidence;
 - post-commit `git status`;
+- checkpoint compliance result: `PASS | PASS_WITH_APPROVED_EXCEPTION | FAIL`;
 - whether the commit was pushed (`NO` unless separately authorized).
 
 The Documentation Compliance Receipt must be completed before the checkpoint commit, not reconstructed afterward.
+
+The final report must also comply with `governance/TASK_REPORTING_AND_MEMORY_POLICY.md` and remain concise; detailed evidence belongs in Memory or governed artifacts.
 
 ## Supervisor enforcement target
 
@@ -81,4 +100,5 @@ CPS should eventually machine-enforce:
 - checkpoint commit is on the expected repository/worktree/branch;
 - committed paths are within task scope;
 - required validation and documentation receipts exist before checkpointing;
-- final report cites the verified commit hash.
+- final report cites the verified commit hash;
+- no `CHECKPOINTED -> DONE` transition when `CHECKPOINT_COMPLIANCE != PASS` unless an approved exception exists.
