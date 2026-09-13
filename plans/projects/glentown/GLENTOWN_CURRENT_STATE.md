@@ -3,27 +3,8 @@
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **Authoritative dashboard:** `GLENTOWN_IMPLEMENTATION_PLAN.md`
 
-## Present truth
-GlenTown has substantial backend and Flutter implementation, including messaging, planners, commerce/discovery and organization/community foundations. Historical and recent recovery evidence exists, but release promotion requires fresh evidence tied to concrete canonical/release-candidate refs.
+Phase 0 governance/planning foundations are substantially established. Phase 1 is current: Home/floating-navigation and Explore recovery are App-side complete with recorded automated evidence, but both require Samsung physical rechecks. The next eligible work is D1.4 Create recovery (T1.4.1 audit authority/bounded contract); it was not started by this documentation-only checkpoint.
 
-The TownBoss GlenTown planning corpus now uses an explicit authority matrix, capability completeness map, blocker/dependency register, validation profiles, operational acceptance test, risk register and release evidence manifest in addition to the existing dashboard, acceptance criteria, decisions, Memory and documentation-compliance protocol.
+Home recovery evidence ends at `ff6d2e2` (369 Flutter tests, analyze clean, diff check pass). Explore recovery at `3edfb0c` records 33 focused Explore tests, 9 cross-route tests, 369 full tests, analyze clean and diff check pass. These are historical recovery checkpoints, not current release verification. Fresh API current-HEAD full suite/database verification and App current-HEAD release validation remain open.
 
-## Current phase
-Phase 0/Phase 1 overlap is active: canonical-state reconciliation plus bounded core functional/UX recovery. Current frontend work must finish the audited recovery sequence, including Explore and remaining Create/Chat/You findings, before the overall mobile recovery gate can close.
-
-## Current priorities
-- Reconcile active App/API branches and fresh verification evidence to canonical lineage.
-- Complete the canonical UI/UX audit backlog in sequence without compartmentalizing previously found issues.
-- Physically recheck completed Home/navigation/notifications/community/cart/Around You/map recovery.
-- Complete Explore recovery, then remaining Create/Chat/You backlog.
-- Resolve or explicitly track API/data/architecture blockers through `GLENTOWN_BLOCKER_REGISTER.md`.
-- Build representative realistic demo/Beta data for physical and critical-journey audits.
-- Verify messaging and critical planner journeys end-to-end.
-- Establish nationwide Province Ready/readiness evidence.
-- Complete quality/security/privacy/compliance and operational acceptance gates.
-
-## Current blockers/unknowns
-See `GLENTOWN_BLOCKER_REGISTER.md` for the canonical live register. Major known classes include community typed-detail/media/category contracts, connected universal search, real map listings/media, notification preference persistence, cart/Around You media/data completeness, rich Home/demo composition and nationwide readiness evidence.
-
-## Next action
-Execute the highest-priority eligible item in `GLENTOWN_IMPLEMENTATION_PLAN.md`, consulting the Authority Matrix, Capability Matrix, Blocker Register, Validation Profiles and repository-local canonical documentation. Do not bypass phase gates or silently rediscover/document blockers only in agent reports.
+Explore blockers: universal Search, geographic scope/ranking and real map listings are `BLOCKED_API_CONTRACT`; destination hero media is `BLOCKED_API_DATA`; discovery richness is `BLOCKED_BY_DEMO_DATA`; Jobs/Directory fallback is pending App recovery. Real SMTP verification is `BLOCKED_EXTERNAL`. Full mobile physical audit is pending; Beta is not release ready.
