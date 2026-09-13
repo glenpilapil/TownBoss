@@ -23,6 +23,7 @@ This directory follows the documentation discipline used by `plans/projects/code
 - `GLENTOWN_APP_SITE_VALIDATION_AND_EVIDENCE_STANDARD.md` — evidence required before status promotion.
 - `GLENTOWN_APP_SITE_VISUAL_AUDIT_LEDGER.md` — visual findings, corrections, and verification status.
 - `GLENTOWN_APP_SITE_MEMORY.md` — durable project history, including attempts, failures, reversals, checkpoints, and lessons.
+- `GLENTOWN_APP_SITE_DOCUMENTATION_RECONCILIATION.md` — reconciliation between parent planning, this package, and repository-local implementation documentation.
 
 ## Status Vocabulary
 
@@ -44,6 +45,8 @@ For visual work, engineering and visual status must be recorded separately. A pa
 Primary implementation repository: `glenpilapil/GlenTown-App-Site` / local `D:\Projects\GlenTown\GlenTown-App-Site`.
 
 This TownBoss package is the planning authority. Repository-local docs may contain implementation detail, but must not knowingly contradict this package.
+
+The pushed repository-local docs are currently older than the dirty local Pass 3 visual-audit state. The reconciliation document records why remote implementation docs must not be updated independently before the local worktree is preserved and reconciled.
 
 ## Current Design Workflow
 
