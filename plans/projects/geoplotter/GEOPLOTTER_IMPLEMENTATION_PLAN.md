@@ -1,111 +1,189 @@
 # GeoPlotter Implementation Plan / Development Dashboard
 
 **Status:** ACTIVE IMPLEMENTATION  
-**Evidence reconciliation:** 2026-09-12  
-**Dashboard rule:** checkboxes are authoritative completion markers; do not mark complete without evidence.
+**Canonical planning role:** operator dashboard + implementation sequence  
+**Evidence rule:** checkboxes are authoritative completion markers; do not mark complete without evidence.
 
-## Dashboard summary
-- [x] PASS 0B — canonical/default-branch foundation evidenced.
-- [ ] PASS 0C — remote feature-branch contents and completion contract reconciled.
-- [ ] PASS 0D–0I — durable remote provenance reconciled and validated.
-- [ ] Canonical full-suite verification complete after synchronization.
-- [ ] Geospatial accuracy/provenance gate complete.
-- [ ] Development inventory/state-machine gate complete.
-- [ ] CRM/routing gate complete.
-- [ ] RealWise operational pilot complete.
-- [ ] Privacy/compliance review complete.
-- [ ] Production deployment architecture complete.
+## Status legend
+- `[ ]` not complete
+- `[x]` complete with evidence at the stated level
+- `⏳` in progress
+- `⚠` attention/review required
+- `⛔` blocked
+- `↪` explicitly deferred
+
+## Current dashboard summary
+- [x] PASS 0E — project foundation implemented on active GeoPlotter lineage.
+- [x] PASS 0F — PostGIS/SpatialRecord provenance foundation implemented.
+- [x] PASS 0G — horizontal inventory implemented.
+- [x] PASS 0H — vertical inventory implemented.
+- [x] PASS 0I — audited inventory lifecycle implemented.
+- [x] PASS 0J — listing/publication foundation accepted (`da5604d`, closure `d991535`).
+- [x] PASS 0K — buyer requirements + deterministic matching implemented (`7ce0926`).
+- [ ] ⏳ PASS 0L — interactive project + lot map foundation is active.
+- [ ] Canonical/default-branch integration of later active-lineage work reconciled.
+- [ ] End-to-end operational acceptance complete.
+- [ ] Physical + visual final gate complete.
+
+> **Provenance note:** implementation/checkpoint evidence above does not by itself prove default-branch integration. The connected remote currently does not expose the active `feat/pass-0e-projects-foundation` branch; canonical integration remains a separate gate.
 
 ## Mission
-Geospatial real-estate and development-project platform for parcels, hazards/elevation, project inventory, sales workflows and RealWise operations.
+GeoPlotter is the authoritative geospatial real-estate and development-project platform for parcel geometry, provenance/evidence, development inventory, commercial listings/publication, buyer matching, brokerage workflows and RealWise operations.
 
 ## Architecture baseline
-- [x] Laravel/API + Next.js web + Python geospatial-service direction established.
-- [x] PostgreSQL selected.
-- [x] Local services must remain independently runnable where virtualization/container tooling is unavailable.
+- Next.js / TypeScript web application.
+- Drizzle ORM.
+- PostgreSQL/PostGIS authoritative spatial persistence.
+- Python geospatial service for specialized geospatial computation.
+- MapLibre GL JS approved interactive mapping foundation.
+- Local services must remain independently runnable where container/virtualization tooling is unavailable.
 
-## Repository AS-IS
-**Canonical repository:** `glenpilapil/GeoPlotter-Real-Estate`  
-**Default branch:** `main`  
-**Reconciled default HEAD:** `bde5a05` — PASS 0B merge.
+## Workstream sequence
 
-### PASS 0B — canonical/default-branch evidenced
-- [x] Development foundations present.
-- [x] Local environment/infrastructure contract present.
-- [x] Python geospatial-service scaffold present.
-- [x] Health endpoint/test present.
-- [x] Baseline CI and architecture/domain documentation present.
+### PASS 0E — Project foundation
+**Status:** `[x] IMPLEMENTED`  
+**Objective:** tenant-scoped development-project identity and service/API foundation.  
+**Gate:** project CRUD/domain behavior evidenced; tenant isolation preserved.
 
-### PASS 0C — remote feature branch; review pending
-Remote branch `feat/pass-0c-persistence-tenancy-foundation` was reconciled at `47d5c1b`.
-- [x] Remote branch located.
-- [ ] Audit branch contents against PASS 0C completion contract.
-- [ ] Verify intended PASS 0C tests/evidence.
-- [ ] Approve controlled integration path.
+### PASS 0F — Spatial/PostGIS foundation
+**Status:** `[x] IMPLEMENTED`  
+**Objective:** authoritative SpatialRecord persistence with provenance and validation state.  
+**Gate:** geometry stored through canonical spatial abstraction; provenance survives persistence.
 
-### PASS 0D–0I — reported later implementation; provenance pending
-A later PASS 0I checkpoint was reported locally at `33435d3`, but it was not resolved in the connected remote during the 2026-09-12 reconciliation.
-- [ ] Locate durable repository refs for PASS 0D.
-- [ ] Locate durable repository refs for PASS 0E.
-- [ ] Locate durable repository refs for PASS 0F.
-- [ ] Locate durable repository refs for PASS 0G.
-- [ ] Locate durable repository refs for PASS 0H.
-- [ ] Locate durable repository refs for PASS 0I.
-- [ ] Reconcile associated schema/migrations/tests/checkpoints.
-- [ ] Promote only evidence-backed work to canonical implementation status.
+### PASS 0G — Horizontal inventory
+**Status:** `[x] IMPLEMENTED`  
+**Objective:** Phase -> Block -> Lot.  
+**Gate:** organization/project scoping and hierarchy integrity evidenced.
 
-## Major workstreams
+### PASS 0H — Vertical inventory
+**Status:** `[x] IMPLEMENTED`  
+**Objective:** Building -> Floor -> Unit.  
+**Gate:** tenant-safe hierarchy and canonical unit identity evidenced.
 
-### Geospatial core
-- [ ] Title/parcel plotting acceptance verified.
-- [ ] Cadastral/geographic base-layer contract verified.
-- [ ] Hazards/elevation integration verified.
-- [ ] Document extraction includes human verification where uncertainty exists.
-- [ ] Provenance/confidence handling verified.
+### PASS 0I — Inventory lifecycle
+**Status:** `[x] IMPLEMENTED`  
+**Objective:** audited lot/unit availability transitions.  
+**Gate:** immutable history, actor attribution, allowed transitions, cross-tenant denial.  
+**Evidence:** checkpoint `33435d3` reported; migration `0006`.
 
-### Development projects and inventory
-- [ ] Horizontal phase/block/lot model verified.
-- [ ] Vertical building/floor/unit model verified.
-- [ ] Site-plan polygon generation/import verified.
-- [ ] Inventory lifecycle/history verified.
-- [ ] Sample-computation generation verified.
-- [ ] Later 3D selector remains deferred until separately activated.
+### PASS 0J — Listing/publication
+**Status:** `[x] ACCEPTED`  
+**Objective:** listing != inventory, per-channel publication, eligibility, public-safe projection, immutable publication history.  
+**Evidence:** implementation `da5604d`; closure `d991535`; full suite 130/130, lint/build/typecheck green at acceptance.
 
-### CRM / sales routing
-- [ ] Lead/customer model verified.
-- [ ] Agent -> manager -> director -> broker routing verified.
-- [ ] Tripping/appointment workflows verified.
-- [ ] Commission/payout workflow boundaries verified.
-- [ ] Listing submission/approval flow verified.
+### PASS 0K — Buyer requirements + deterministic matching
+**Status:** `[x] IMPLEMENTED`  
+**Objective:** BuyerRequirement plus deterministic, explainable lot/unit matching.  
+**Evidence:** `7ce0926`; typecheck/tests/lint/build green; migration `0008` coherent.  
+**Deferrals:** area/bedroom criteria where canonical support remains incomplete; no public matching API.
 
-GeoPlotter owns real-estate-specific CRM semantics. Reusable generic CRM primitives may migrate toward TownBoss shared infrastructure only when semantic alignment is proven.
+### PASS 0L — Interactive project + lot map foundation
+**Status:** `[ ] ⏳ IN PROGRESS`  
+**Objective:** PostGIS/SpatialRecord -> map projection API -> MapLibre -> selectable lot UI.  
+**Required gate:** real backend projection + real API + frontend MapLibre; frontend-only mock is insufficient.  
+**Deferred:** cadastral overlays, hazards, elevation, parcel drawing/editing, vertical floor selector, 2.5D/3D.
 
-### Content / marketing
-- [ ] Blog/content management scope defined and verified.
-- [ ] Property/project publishing flow verified.
-- [ ] Social-content support bounded.
-- [ ] Webinar funnel requirements bounded.
+### PASS 0M — Parcel / technical-description plotting
+**Status:** `[ ]`  
+**Objective:** technical description -> bearing/distance parsing -> traverse -> closure/misclosure -> polygon -> SpatialRecord -> map.  
+**Gate:** geometry provenance, CRS handling, closure evidence, uncertainty surfaced; no survey-authority overclaim.
 
-### Integration
-- [ ] GeoPlotter/GlenTown integration guidance followed.
-- [ ] Versioned API/contracts/events used instead of direct database coupling where appropriate.
-- [ ] RealWise consumption preserves GeoPlotter domain authority.
+### PASS 0N — Document ingestion + OCR review
+**Status:** `[ ]`  
+**Objective:** title/survey/site-plan ingestion, OCR extraction, confidence and human-review workflow.  
+**Gate:** uncertain extraction cannot silently become authoritative property truth.
 
-## Immediate gates
-- [x] PASS 0B default-branch provenance established.
-- [x] PASS 0C remote branch located.
-- [ ] PASS 0C contents/tests audited.
-- [ ] PASS 0D–0I remote provenance established.
-- [ ] PASS 0D–0I tests/checkpoints bound to durable refs.
-- [ ] Intended completed passes integrated through controlled branch/PR path.
-- [ ] Fresh full suite passes after synchronization.
+### PASS 0O — Property verification + evidence
+**Status:** `[ ]`  
+**Objective:** attribute + source + date + verification state assertions.  
+**Gate:** conflicts/refresh requirements visible; generic verified-property shortcuts prohibited.
+
+### PASS 0P — Property intelligence overlays
+**Status:** `[ ]`  
+**Objective:** sourced hazard, elevation and contextual overlays.  
+**Gate:** source/date/method/limitations preserved; no unsupported safety claims.
+
+### PASS 0Q — Public property/project experience
+**Status:** `[ ]`  
+**Objective:** public search/map/detail experience using publication-safe projections.
+
+### PASS 0R — Interactive developer inventory
+**Status:** `[ ]`  
+**Objective:** site-plan/project inventory experience over canonical lot/unit data.
+
+### PASS 0S — Vertical floor/unit selector
+**Status:** `[ ]`  
+**Objective:** Tower/Building -> Floor -> Unit visual selection.  
+**Rule:** accurate 2D first; 2.5D/3D later.
+
+### PASS 0T — Sample computation engine
+**Status:** `[ ]`  
+**Objective:** auditable pricing/payment scenario computation with effective assumptions and dates.
+
+### PASS 0U — Lead / Opportunity foundation
+**Status:** `[ ]`  
+**Objective:** brokerage-specific lead/opportunity domain attached to existing BuyerRequirement where appropriate.
+
+### PASS 0V — Unified inbox
+**Status:** `[ ]`  
+**Objective:** normalized conversations with lead/property context; channel adapters remain replaceable.
+
+### PASS 0W — Viewing / tripping workflow
+**Status:** `[ ]`  
+**Objective:** request -> confirmation -> completion/follow-up plus itinerary/vehicle context.
+
+### PASS 0X — Transaction readiness
+**Status:** `[ ]`  
+**Objective:** pre-transaction gates, document readiness and professional handoff.
+
+### PASS 0Y — CMA / valuation workspace
+**Status:** `[ ]`  
+**Objective:** comparable evidence, ranges/confidence, adjustment provenance; no automated formal-appraisal overclaim.
+
+### PASS 0Z — Developer inventory import
+**Status:** `[ ]`  
+**Objective:** Excel/PDF reconciliation, change review and controlled inventory updates.
+
+### PASS 1A — Public-safe integration contract
+**Status:** `[ ]`  
+**Objective:** versioned GeoPlotter contracts for RealWise/GlenTown; no direct downstream authority duplication.
+
+### PASS 1B — Security + tenancy hardening
+**Status:** `[ ]`
+
+### PASS 1C — Performance/scaling
+**Status:** `[ ]`
+
+### PASS 1D — Observability
+**Status:** `[ ]`
+
+### PASS 1E — Deployment hardening
+**Status:** `[ ]`
+
+### PASS 1F — End-to-end operational acceptance
+**Status:** `[ ]`  
+**Objective:** prove the canonical acceptance scenarios in `GEOPLOTTER_OPERATIONAL_ACCEPTANCE_TEST.md`.
+
+### PASS 1G — Physical + visual audit
+**Status:** `[ ] FINAL GATE`  
+**Rule:** do not declare product visual readiness before preceding core gates are accepted.
+
+## Cross-cutting gates
+- [ ] Canonical repository provenance reconciled for all intended completed passes.
+- [ ] Fresh full validation suite passes on release-candidate lineage.
 - [ ] Geospatial accuracy/provenance gate passes.
-- [ ] Inventory concurrency/state-machine gate passes.
-- [ ] CRM/routing implementation gate passes.
+- [ ] Inventory lifecycle/concurrency gate passes.
+- [ ] Publication/privacy leakage gate passes.
+- [ ] Matching correctness/explainability gate passes.
+- [ ] CRM/routing gate passes.
 - [ ] RealWise operational pilot passes.
+- [ ] GlenTown/public-safe integration contract passes where activated.
 - [ ] Privacy/compliance review passes.
-- [ ] Production deployment architecture approved.
+- [ ] Production architecture/readiness approved.
 - [ ] Memory and Current State updated for release candidate.
 
+## Implementation discipline
+Every substantial PASS must define baseline, objective, scope, dependencies, out-of-scope work, authority/risk boundary, validation, documentation updates and handoff. A PASS ends `DONE`, `BLOCKED`, `REVIEW_REQUIRED` or `FAILED`; it does not silently expand.
+
 ## Evidence rule
-Repository history proves durable implementation provenance. Default-branch ancestry establishes canonical integration. `VERIFIED` requires test/build/runtime evidence tied to the canonical ref or release candidate.
+Planning documents record intended/current state; they are not implementation evidence. Repository history proves durable provenance. `VERIFIED` requires validation evidence tied to the candidate ref. `CHECKPOINTED` requires the applicable documentation/Memory obligations and task checkpoint policy to be satisfied.
