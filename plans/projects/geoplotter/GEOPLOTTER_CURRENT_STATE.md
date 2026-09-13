@@ -1,16 +1,26 @@
 # GeoPlotter Current State
 
-Status: ACTIVE IMPLEMENTATION
-Dashboard: GEOPLOTTER_IMPLEMENTATION_PLAN.md
+**Status:** ACTIVE IMPLEMENTATION
+**Dashboard:** `GEOPLOTTER_IMPLEMENTATION_PLAN.md`
+**Documentation freshness:** 2026-09-13
 
 ## Present truth
-PASS 0B is recorded on the canonical main branch. PASS 0C is recorded on a remote feature branch and still needs completion review. Later reported work still needs repository reconciliation before it is treated as canonical integrated state.
+GeoPlotter development is active. The product repository is `glenpilapil/GeoPlotter-Real-Estate` with default branch `main`. The connected remote does not currently expose the local active implementation branch `feat/pass-0e-projects-foundation`, so later implementation checkpoints must be distinguished from default-branch integration.
 
-## Current priorities
-- Review PASS 0C against its intended completion contract.
-- Reconcile later work with durable repository evidence.
-- Re-run the complete validation suite after reconciliation.
-- Continue the remaining implementation-plan gates in dashboard order.
+## Latest evidenced implementation
+- PASS 0J listing/publication accepted: `da5604d` plus closure `d991535`.
+- PASS 0K buyer requirements and deterministic matching implemented: `7ce0926`.
+- PASS 0L interactive project and lot map: IN PROGRESS.
 
-## Next action
-Take the highest-priority unchecked item in the implementation-plan dashboard under TownBoss development rules.
+## Current active work
+PASS 0L must establish a real backend spatial projection, authenticated project map API, MapLibre GL JS frontend, and interactive lot selection. A frontend-only mocked map is not sufficient for completion; mocks are for tests only.
+
+## Current attention
+- Reconcile durable remote provenance and integration for active-lineage checkpoints before calling them canonical default-branch state.
+- Keep TownBoss GeoPlotter documentation synchronized with accepted PASS evidence.
+
+## Next eligible work
+After PASS 0L acceptance, the current orchestration priority is PASS 0M — parcel and technical-description plotting, unless a new evidence-backed blocker changes the dependency order.
+
+## Validation baseline
+Latest accepted checkpoint evidence is recorded in the Implementation Plan and Memory. Final project verification still requires fresh full-suite validation on the eventual release candidate plus geospatial, security/privacy, operational and visual gates.
