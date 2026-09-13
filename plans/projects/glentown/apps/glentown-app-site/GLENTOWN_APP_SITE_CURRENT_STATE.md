@@ -9,6 +9,8 @@
 - Local path: `D:\Projects\GlenTown\GlenTown-App-Site`
 - Current visual-work branch reported in development: `feat/pass-3-visual-art-direction`
 - Current Pass 3 working tree: intentionally dirty/uncommitted during visual audit.
+- TownBoss documentation reconciliation: COMPLETE.
+- Repository-local Pass 3 documentation reconciliation: PENDING.
 
 ## Engineering Baseline
 
@@ -86,15 +88,31 @@ Controlled hybrid:
 - product truth, content, branding, release behavior: GlenTown
 - scroll effect: preserve the desirable cinematic settling concept but replace the friction-heavy 300vh behavior with accessible visual waypoints
 
+## Documentation Reconciliation Status
+
+Completed in TownBoss:
+
+- parent `APP_GLENTOWN_COM.md` updated from `READY TO START` to evidence-backed implementation-in-progress / visual-recovery status;
+- dedicated reconciliation record added;
+- implementation-plan V0 updated to distinguish TownBoss reconciliation from repository-local reconciliation.
+
+Still required locally before coding:
+
+- preserve/inspect the exact dirty Pass 3 worktree;
+- update local `README.md` and `docs/APP_SITE_ARCHITECTURE.md` from that authoritative state;
+- capture exact HEAD/status/diff evidence;
+- rerun engineering validation.
+
 ## Immediate Next Gate
 
 Before broad homepage implementation:
 
-1. reconcile this TownBoss application package with repository-local docs;
-2. implement typography/foundation + hero only using named reference authorities;
-3. run engineering checks;
-4. perform human visual audit;
-5. do not continue to subsequent sections until hero visual gate passes.
+1. preserve and inspect the dirty local Pass 3 working tree without destructive Git operations;
+2. reconcile repository-local docs;
+3. capture exact local baseline and rerun engineering checks;
+4. implement typography/foundation + hero only using named reference authorities;
+5. perform human visual audit;
+6. do not continue to subsequent sections until hero visual gate passes.
 
 ## Blockers / Attention
 
