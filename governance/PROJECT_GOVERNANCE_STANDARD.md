@@ -31,6 +31,18 @@ Every substantial development task must perform:
 
 The final report must contain a Documentation Compliance Receipt listing planning documents consulted, execution re-checks, final-review documents, conflicts, approved exceptions, and documents/Memory updated.
 
+## Task checkpoint commit rule
+
+Every write-capable task that produces repository changes must create a final task-scoped Git checkpoint before its final report. The checkpoint must follow `governance/TASK_CHECKPOINT_COMMIT_POLICY.md`.
+
+The commit subject begins with the canonical identifiers:
+
+`[P<phase>][D<deliverable-id>][T<task-id>] <summary>`
+
+The checkpoint is created only after required validation, documentation updates, Memory updates, and final documentation review. It must contain only task-owned changes. Permission to commit does not imply permission to push, merge, publish, release, or deploy.
+
+If no repository changes were produced, no empty commit is required; the final report records `NO_COMMIT_REQUIRED`.
+
 ## Memory rule
 
 Memory records what actually happened and why; it is not raw terminal output. Failed and superseded approaches remain visible and are marked rather than erased.
@@ -41,4 +53,4 @@ Current State is present truth, not historical narrative. It must remain short e
 
 ## Inheritance
 
-All projects inherit `governance/DEVELOPMENT_RULES.md`. Project-specific rules may be stricter but may not silently weaken portfolio rules. Exceptions require explicit recorded authorization.
+All projects inherit `governance/DEVELOPMENT_RULES.md` and `governance/TASK_CHECKPOINT_COMMIT_POLICY.md`. Project-specific rules may be stricter but may not silently weaken portfolio rules. Exceptions require explicit recorded authorization.
