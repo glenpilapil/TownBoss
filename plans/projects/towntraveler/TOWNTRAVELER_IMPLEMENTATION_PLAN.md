@@ -1,54 +1,96 @@
-# TownTraveler Implementation Plan
+# TownTraveler Implementation Plan / Development Dashboard
 
-**Status:** DECIDED / PLANNED; greenfield implementation
+**Status:** DECIDED / PLANNED; greenfield implementation  
+**Dashboard rule:** checkboxes are authoritative completion markers.
+
+## Dashboard summary
+- [ ] Phase 0 — Product/domain contracts complete.
+- [ ] Phase 1 — Public discovery MVP complete.
+- [ ] Phase 2 — Accounts and saved travel complete.
+- [ ] Phase 3 — Trip Planner integration complete.
+- [ ] Phase 4 — Shared-service integration complete.
+- [ ] Phase 5 — Growth/content operations complete.
+- [ ] Operational acceptance gate complete.
 
 ## Mission
-
 Web-first, SEO-oriented Philippine travel discovery and planning product connected to the TownBoss ecosystem.
 
-## Product direction
+## Product direction checklist
+- [ ] Guest browsing implemented.
+- [ ] Google/Facebook and GlenTown sign-in paths designed and verified where approved.
+- [ ] Places, Experiences, Stays, Events, Food and Marketplace discovery implemented.
+- [ ] Nationwide travel coverage supported through quality-controlled content operations.
+- [ ] Shared Trip Planner/orchestration integration implemented.
+- [ ] Daily travel-business seeding process defined with provenance and quality rules.
 
-- guest browsing;
-- sign in with Google/Facebook and Sign in with GlenTown;
-- Places, Experiences, Stays, Events, Food and Marketplace discovery;
-- nationwide travel coverage;
-- Trip Planner/orchestration integration;
-- daily travel-business seeding priority.
+## Architecture principles
+- [x] TownTraveler is a web product, not merely a reskinned GlenTown Flutter route.
+- [ ] SEO/shareability/structured data/fast public pages remain first-class acceptance criteria.
+- [ ] Shared TownBoss/GlenTown APIs are consumed through explicit contracts.
+- [ ] Authoritative ownership of shared travel data is documented before implementation.
 
-## Architecture principle
+## Phase 0 — Product/domain contracts
+**Status:** NEXT
+- [ ] Decide authoritative ownership for places.
+- [ ] Decide authoritative ownership for stays.
+- [ ] Decide authoritative ownership for events.
+- [ ] Decide authoritative ownership for food.
+- [ ] Decide authoritative ownership for experiences.
+- [ ] Define GlenTown reuse vs TownTraveler-specific content.
+- [ ] Define account-linking architecture.
+- [ ] Define SEO URL taxonomy.
 
-TownTraveler is a web product, not merely a reskinned GlenTown Flutter route. SEO, shareability, structured data, fast public pages and travel-content indexing are first-class requirements. Shared TownBoss/GlenTown APIs may be consumed through explicit contracts.
+### Gate
+- [ ] Domain/ownership/SEO contract review passes.
 
-## Phases
+## Phase 1 — Public discovery MVP
+- [ ] Destination pages implemented.
+- [ ] Place/stay/food/event/experience pages implemented.
+- [ ] Search/filter implemented.
+- [ ] Maps integrated.
+- [ ] Structured data and OpenGraph implemented.
+- [ ] Guest-first browsing verified.
 
-### Phase 0 — Product/domain contracts
-- decide authoritative ownership for places, stays, events, food, and experiences;
-- define GlenTown reuse versus TownTraveler-specific content;
-- account-linking architecture;
-- SEO URL taxonomy.
+### Gate
+- [ ] Public discovery SEO/performance/quality criteria pass.
 
-### Phase 1 — Public discovery MVP
-- destination pages;
-- place, stay, food, event, and experience pages;
-- search and filter;
-- maps;
-- structured data and OpenGraph;
-- guest-first browsing.
+## Phase 2 — Accounts and saved travel
+- [ ] Sign-in implemented.
+- [ ] Favorites/saved places implemented.
+- [ ] Trip workspace implemented.
+- [ ] Cross-device persistence verified.
 
-### Phase 2 — Accounts and saved travel
-- sign-in;
-- favorites and saved places;
-- trip workspace;
-- cross-device persistence.
+### Gate
+- [ ] Account/privacy/session acceptance criteria pass.
 
-### Phase 3 — Trip Planner
-Use the shared orchestration engine for itinerary goals, constraints, dependencies, bookings and resources, route, time, cost, and exceptions.
+## Phase 3 — Trip Planner
+- [ ] Shared orchestration contract identified.
+- [ ] Itinerary goals/constraints supported.
+- [ ] Dependencies/resources/bookings modeled without duplicating authoritative systems.
+- [ ] Route/time/cost/exception handling integrated.
 
-### Phase 4 — Transaction integration
-Integrate supported GlenTown stays, services, events, and marketplace transactions without duplicating authoritative booking or order logic.
+### Gate
+- [ ] Trip Planner end-to-end acceptance passes.
 
-### Phase 5 — Growth and operations
-- nationwide content seeding;
-- business onboarding pathways;
-- analytics and SEO dashboards;
-- editorial and quality workflow.
+## Phase 4 — Shared-service integration
+- [ ] Supported GlenTown/TownBoss service integrations identified.
+- [ ] Integration contracts preserve authoritative ownership.
+- [ ] Duplicate business logic is avoided.
+
+### Gate
+- [ ] Shared-service integration review passes.
+
+## Phase 5 — Growth and operations
+- [ ] Nationwide content seeding process operational.
+- [ ] Business onboarding pathways operational.
+- [ ] Analytics/SEO dashboards operational.
+- [ ] Editorial/quality workflow operational.
+
+### Gate
+- [ ] Growth/content quality gate passes.
+
+## Operational release checklist
+- [ ] All activated phase gates passed.
+- [ ] Security/privacy/compliance review complete.
+- [ ] SEO/performance acceptance complete.
+- [ ] Memory and Current State reflect verified release state.
