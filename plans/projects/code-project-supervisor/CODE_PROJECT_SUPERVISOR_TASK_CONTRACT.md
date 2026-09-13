@@ -29,8 +29,8 @@ Every substantial task must define:
 16. **Completion contract** — conditions for IMPLEMENTED, TESTED, VERIFIED, and CHECKPOINTED.
 17. **Documentation update requirement** — documents affected by the resulting reality.
 18. **Memory update requirement** — durable knowledge that must be recorded.
-19. **Checkpoint policy** — expected commit/PR/checkpoint shape if authorized.
-20. **Final report contract** — required evidence and Documentation Compliance Receipt.
+19. **Checkpoint policy** — expected commit/PR/checkpoint shape, including canonical phase/deliverable/task identifiers.
+20. **Final report contract** — required evidence, Documentation Compliance Receipt, and checkpoint-commit receipt.
 
 ## Task Lifecycle
 
@@ -41,6 +41,20 @@ Exceptional states:
 `WAITING | BLOCKED | ATTENTION_REQUIRED | FAILED | DEFERRED | CANCELLED`
 
 A task does not become DONE merely because implementation was produced when validation or review remains outstanding.
+
+## Task Checkpoint Commit
+
+Every write-capable CPS-supervised task that produces repository changes must create a final task checkpoint commit before reporting completion, following `governance/TASK_CHECKPOINT_COMMIT_POLICY.md`.
+
+Canonical commit subject prefix:
+
+`[P<phase>][D<deliverable-id>][T<task-id>] <summary>`
+
+The phase, deliverable, and task identifiers must come from the Implementation Plan / Dashboard and this task contract. The commit is created after required validation, documentation updates, Memory update, and final documentation review.
+
+A task is not `CHECKPOINTED` while task-owned changes remain uncommitted. If the task produces no repository changes, the final report states `NO_COMMIT_REQUIRED` instead of creating an empty commit.
+
+The checkpoint commit does not authorize push, merge, release, publish, or deployment.
 
 ## Scope Change Rule
 
@@ -65,3 +79,19 @@ Every substantial final report must state:
 - Memory updated.
 
 A missing receipt prevents promotion to VERIFIED unless the task was explicitly classified as trivial or read-only.
+
+## Checkpoint Commit Receipt
+
+Every final report for a write-capable task that produced changes must state:
+
+- phase identifier;
+- deliverable identifier;
+- task identifier;
+- final checkpoint commit hash;
+- branch;
+- exact committed file scope;
+- validation evidence associated with the checkpoint;
+- post-commit `git status`;
+- push status.
+
+CPS should eventually verify this receipt and the corresponding Git object before promoting `VERIFIED -> CHECKPOINTED`.
