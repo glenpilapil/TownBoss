@@ -2,7 +2,7 @@
 
 **Status:** CANONICAL / ACTIVE  
 **Baseline date:** 2026-09-11  
-**Latest repository reconciliation:** 2026-09-12  
+**Latest repository reconciliation:** 2026-09-13  
 **Purpose:** Portfolio-level development authority for TownBoss and its projects.
 
 ## 1. Authority and Scope
@@ -47,11 +47,13 @@ Each project plan maintains:
 |---|---|---|---|
 | TownBoss Platform | DECIDED / PLANNED / partial foundations | Portfolio governance, shared capabilities and operating architecture | `projects/townboss/TOWNBOSS_PLATFORM_IMPLEMENTATION_PLAN.md` |
 | GlenTown | IMPLEMENTED in substantial areas; active Beta verification | Digital Town Operating System | `projects/glentown/GLENTOWN_IMPLEMENTATION_PLAN.md` |
-| CodeBisor | ACTIVE IMPLEMENTATION / repository-reconciled | Development supervisor / operational engineering system | `projects/codebisor/CODEBISOR_IMPLEMENTATION_PLAN.md` |
+| Code Project Supervisor | DECIDED / FOUNDATION ADOPTION | Portfolio development supervisor and coding-agent orchestration/control plane | `projects/code-project-supervisor/README.md` |
 | GeoPlotter | ACTIVE IMPLEMENTATION / remote-local reconciliation required | Geospatial real-estate/project inventory platform | `projects/geoplotter/GEOPLOTTER_IMPLEMENTATION_PLAN.md` |
 | RealWise | DECIDED / PLANNED; no canonical repo currently identified | Real-estate business platform and operating model | `projects/realwise/REALWISE_IMPLEMENTATION_PLAN.md` |
 | TownTraveler | DECIDED / PLANNED; no canonical repo currently identified | Web-first travel discovery/planning vertical | `projects/towntraveler/TOWNTRAVELER_IMPLEMENTATION_PLAN.md` |
 | Forex Quant Lab | RESEARCH / PLANNED; no canonical repo currently identified | Controlled systematic-trading research and execution lab | `projects/forex-quant-lab/FOREX_QUANT_LAB_IMPLEMENTATION_PLAN.md` |
+
+The prior `CodeBisor` project plan remains under `projects/codebisor/` as a legacy/reference artifact. It is not the preferred implementation foundation for Code Project Supervisor unless an explicit later decision reverses that direction.
 
 The first active-repository reconciliation report is `reconciliation/ACTIVE_REPOSITORY_RECONCILIATION_2026-09-12.md`.
 
@@ -128,16 +130,16 @@ Projects define their own gates, but production-facing applications should norma
 - deployment readiness gate;
 - post-deployment operational verification.
 
-### 5.3 Supervisor integration
+### 5.3 Development-supervisor integration
 
-CodeBisor should eventually consume this hierarchy so that supervisor state can resolve project -> application -> milestone -> gate -> task -> evidence rather than relying on conversation state.
+Code Project Supervisor should eventually consume this hierarchy so that supervisor state can resolve project -> application -> milestone -> gate -> task -> evidence rather than relying on conversation state. Planning documents define intended work; machine/repository evidence defines implementation status.
 
 ## 6. Portfolio Sequencing
 
 ### Current priority band
 
 1. GlenTown Beta readiness and nationwide pre-Beta seeding, with Puerto Princesa as deepest operational pilot.
-2. CodeBisor supervisor reliability and development orchestration.
+2. Code Project Supervisor foundation adoption and operational development supervision.
 3. GeoPlotter foundational implementation and RealWise integration requirements.
 4. TownBoss canonical/shared architecture where required by active projects.
 
@@ -177,11 +179,13 @@ Conflicts are resolved by explicit decision, source authority and recency—not 
 
 - [x] First repository-by-repository AS-IS reconciliation for GlenTown, CodeBisor and GeoPlotter.
 - [x] Reclassify several inferred statuses using repository evidence where available.
-- [ ] Fresh current-HEAD automated verification for GlenTown API/App and CodeBisor.
-- [ ] Reconcile GeoPlotter local PASS 0C–0I work with canonical remote Git history.
+- [x] Establish Code Project Supervisor as the current portfolio development-supervision project and retain CodeBisor as legacy/reference material.
+- [ ] Run Code Project Supervisor Agent Orchestrator adoption audit and record GO/NO-GO.
+- [ ] Fresh current-HEAD automated verification for GlenTown API/App as required by Beta readiness.
+- [ ] Reconcile GeoPlotter local implementation with canonical remote Git history as required by active work.
 - [ ] Link canonical specifications/ADRs for each project.
 - [ ] Establish cross-project dependency register.
 - [ ] Establish shared-service ownership map.
 - [ ] Establish environment/deployment inventory.
 - [ ] Establish portfolio security and observability baseline.
-- [ ] Feed application plans into CodeBisor's supervisor roadmap model.
+- [ ] Feed application plans into the eventual Code Project Supervisor roadmap model where useful.
