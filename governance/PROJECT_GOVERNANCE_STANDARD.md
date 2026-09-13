@@ -12,6 +12,7 @@ Every project inherits, at minimum:
 - `governance/TASK_CHECKPOINT_COMMIT_POLICY.md`
 - `governance/TASK_COMPLETION_COMPLIANCE_POLICY.md`
 - `governance/TASK_REPORTING_AND_MEMORY_POLICY.md`
+- `governance/TASK_CLOSEOUT_SEQUENCE.md`
 
 Project-specific rules may be stricter but may not silently weaken portfolio rules. Exceptions require explicit recorded operator authorization.
 
@@ -55,6 +56,22 @@ The final report must contain a Documentation Compliance Receipt listing plannin
 ## Task contract and safe-abort rule
 
 Every substantial write-capable task must satisfy the minimum contract in `governance/PROJECT_EXECUTION_STANDARD.md`, including an explicit **safe-abort and recovery protocol**. This protocol is mandatory and must not be omitted as an optional add-on.
+
+## Mandatory task closeout rule
+
+Every substantial write-capable task must follow `governance/TASK_CLOSEOUT_SEQUENCE.md`.
+
+In particular, before the final checkpoint commit and report, the task must:
+
+1. run required validation;
+2. update the canonical Implementation Plan / Dashboard when project truth, phase status, readiness, blockers, or next work changed;
+3. update other affected canonical project documentation and Memory;
+4. complete the Documentation Compliance Receipt;
+5. create the task checkpoint using the canonical phase/deliverable/task commit format;
+6. verify post-commit state; and
+7. return a short, concise operator-facing report rather than a long evidence dump.
+
+Documentation updates are part of the task itself, not optional follow-up work after implementation.
 
 ## Task checkpoint commit rule
 
