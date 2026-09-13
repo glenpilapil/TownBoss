@@ -12,7 +12,7 @@
 | Map | Yes | IMPLEMENTED UI; `a43442b` | Listing/media projection, physical check |
 | Cart/Around You | Yes | IMPLEMENTED; `c28feee` | Rich fixtures/projection/physical check |
 | Create | Yes | TEST_VERIFIED recovery `aa07d25` | Samsung recheck; API persistence blockers |
-| Chat | Yes | API foundation integrated; App recovery planned | E2E physical journey |
+| Chat | Yes | TEST_VERIFIED recovery `f9702ed`; API-backed direct/group/chatroom/search, safe errors and IME behavior | Representative fixtures, Message Requests IA decision, E2E physical journey |
 | You/Profile | Yes | IMPLEMENTED surfaces; recovery planned | Keyboard/routing validation |
 | Cross-screen accessibility | Yes | PLANNED | SafeArea/semantics/responsive evidence |
 | Demo/data | Yes | BLOCKED_BY_DEMO_DATA | Idempotent representative fixtures |

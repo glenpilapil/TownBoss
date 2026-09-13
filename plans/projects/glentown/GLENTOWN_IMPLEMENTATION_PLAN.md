@@ -3,7 +3,7 @@
 **Portfolio:** TownBoss
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **Current phase:** Phase 1 — Core Mobile Functional and UX Recovery
-**Current deliverable/task:** D1.5 Chat recovery / T1.5.1 canonical Chat information architecture
+**Current deliverable/task:** D1.6 You/Profile recovery / T1.6.1 Profile Setup Continue/keyboard contract
 **Phase gate:** OPEN — physical verification and remaining recovery work are incomplete.
 
 ## Status legend
@@ -16,7 +16,8 @@
 - [x] Home recovery App-side complete; physical verification pending. Evidence: `170baca` → `969abec` → `9a7861e` → `a43442b` → `c28feee` → `ff6d2e2`; 369 Flutter tests passed, analyze no issues, diff check pass.
 - [x] Explore recovery App-side complete; physical verification pending. Evidence: `3edfb0c`; 33 focused Explore tests, 9 cross-route tests, 369 Flutter tests, analyze no issues, diff check pass.
 - [x] Create recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `aa07d2586f0b7db9a440f20b6fa927fee374b4b0`; 9 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
-- [ ] `IN_PROGRESS` Next active deliverable: D1.5 Chat recovery. D1.4 physical verification and API-contract blockers remain open.
+- [x] Chat recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `f9702ed672679d6744e17a281c96c95ee312299f`; 53 focused Chat tests, 370 full Flutter tests, analyze no issues, diff check pass.
+- [ ] `IN_PROGRESS` Next active deliverable: D1.6 You/Profile recovery. D1.4/D1.5 physical verification and explicit API/data/domain blockers remain open.
 - [ ] You/Profile, cross-screen closure, API/data blockers, full mobile physical audit and Beta readiness remain open.
 
 ## D0.1 — Canonical repository/state reconciliation
@@ -88,9 +89,14 @@
 
 ## D1.5 — Chat recovery
 
-- [ ] T1.5.1 Canonical Chat information architecture and direct/group/chatroom/request/search flows.
-- [ ] T1.5.2 Composer/keyboard/loading/error/unread behavior and API-contract alignment.
-- [ ] T1.5.3 Focused validation, documentation reconciliation and physical recheck.
+**Status:** APP-SIDE COMPLETE / `READY_FOR_PHYSICAL_RECHECK`; next active deliverable is D1.6 You/Profile recovery.
+
+- [x] T1.5.1 Canonical Chat information architecture and direct/group/chatroom/search flows. Evidence: GlenTown-App `f9702ed672679d6744e17a281c96c95ee312299f`; Chat label, API-backed repositories, typed direct/group/chatroom/recommended/search routes revalidated without mock fallback.
+- [x] T1.5.2 Composer/keyboard/loading/error/unread behavior and API-contract alignment. Evidence: existing recovery `9a7861e`; focused Chat suite revalidated customer-safe retry/error handling, compact filter reachability, modal/IME behavior, and unread state.
+- [x] T1.5.3 Focused validation and documentation reconciliation. Evidence: 53 focused Chat tests passed; 370 full Flutter tests passed; full analyze no issues; `git diff --check` pass at `f9702ed`.
+- [ ] T1.5.4 Customer-facing Message Requests inbox. `BLOCKED_APP_DOMAIN_CONTRACT`; see `MESSAGE_REQUESTS_INBOX`.
+- [ ] T1.5.5 Representative direct/group/request/recommendation/read-state acceptance. `BLOCKED_BY_DEMO_DATA`; see `POPULATED_DEMO_USER`.
+- [ ] T1.5.6 Samsung two-persona/TalkBack/text-scale/connection-loss physical recheck. `ATTENTION`.
 
 ## D1.6 — You/Profile recovery
 

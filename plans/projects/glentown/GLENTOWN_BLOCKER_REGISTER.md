@@ -15,7 +15,8 @@
 | NOTIFICATION_PREFERENCES | BLOCKED_API_CONTRACT | Persisted settings | Preference contract |
 | CART_RICH_FIXTURES | BLOCKED_BY_DEMO_DATA | Cart audit | Representative fixtures |
 | HOME_RICH_DATA | BLOCKED_BY_DEMO_DATA | Home physical audit | Mixed rich fixtures |
-| POPULATED_DEMO_USER | BLOCKED_BY_DEMO_DATA | Cross-cutting audit | Stable persona/fixtures |
+| POPULATED_DEMO_USER | BLOCKED_BY_DEMO_DATA | Cross-cutting audit including Chat direct/group/request/recommendation/read-state acceptance | Stable persona/fixtures |
+| MESSAGE_REQUESTS_INBOX | BLOCKED_APP_DOMAIN_CONTRACT | Customer-facing Chat Message Requests discoverability and handling | Approved inbox information architecture, then API-field/capability verification |
 | PROVINCE_READY | BLOCKED_BY_DEMO_DATA | Nationwide readiness | Thresholds, provenance, rollout/sample evidence |
 
 Close/change a row only with evidence and synchronized dashboard, capability, Current State and Memory updates.
