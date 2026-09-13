@@ -15,7 +15,7 @@ The project is intentionally defined as a **supervisor above coding agents**, no
 
 ## Current foundation decision
 
-The new implementation should start from the open-source `Untrivial-ai/agent-orchestrator` project as the preferred upstream chassis, subject to a bounded adoption audit before implementation. The existing CodeBisor repository is preserved as a behavioral reference and source of selected governance concepts; it is not the preferred foundation for continued greenfield development.
+The new implementation starts from the open-source `Untrivial-ai/agent-orchestrator` project as the upstream chassis. Phase 0 adoption audit returned CONDITIONAL GO — ACCEPTED. The existing CodeBisor repository is preserved as a behavioral reference and source of selected governance concepts; it is not the preferred foundation for continued greenfield development.
 
 ## Canonical documents
 

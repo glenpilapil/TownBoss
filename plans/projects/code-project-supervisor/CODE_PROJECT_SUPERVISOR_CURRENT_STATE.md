@@ -1,12 +1,12 @@
 # Code Project Supervisor — Current State
 
-**Status:** FOUNDATION ADOPTION  
+**Status:** FOUNDATION ADOPTION — PHASE 0 COMPLETE
 **Date:** 2026-09-13  
 **Purpose:** Fast, current-state entry point for humans and agents.
 
 ## Current Position
 
-Code Project Supervisor (CPS) is defined as the TownBoss portfolio development supervisor. Its preferred implementation foundation is `Untrivial-ai/agent-orchestrator`, subject to a bounded adoption audit before customization.
+Code Project Supervisor (CPS) is defined as the TownBoss portfolio development supervisor. Its implementation foundation is `Untrivial-ai/agent-orchestrator`, selected after a bounded Phase 0 adoption audit.
 
 The prior CodeBisor implementation is preserved as legacy/reference evidence. It is not the default foundation for continued development.
 
@@ -16,27 +16,27 @@ The prior CodeBisor implementation is preserved as legacy/reference evidence. It
 - Portfolio-wide `governance/DEVELOPMENT_RULES.md` established.
 - Durable CPS Memory ledger established.
 - Upstream-first rule established.
-- Agent Orchestrator selected as preferred chassis pending audit.
+- Phase 0 Agent Orchestrator adoption audit completed.
+- Adoption decision: **CONDITIONAL GO — ACCEPTED**.
+- Agent Orchestrator selected as upstream chassis.
 - Documentation compliance is required at planning, execution re-check, and final review/report stages.
 
 ## Current Workstream
 
-**Next bounded milestone:** `CODE_PROJECT_SUPERVISOR_AO_FORK_ADOPTION_AUDIT`
+**Next bounded milestone:** `CPS_PHASE_1_AO_FORK_BASELINE`
 
-The audit must map every required CPS capability against Agent Orchestrator and classify it as:
-
-`INHERIT | CONFIGURE | EXTEND | PORT_FROM_LEGACY | NEW | DROP`
-
-No broad implementation or customization should begin before this audit returns GO.
+Phase 0 is complete. Phase 1 — Establish Fork and Baseline is the current active phase.
 
 ## Current Blockers
 
-None known at project-governance level.
+None at project-governance level. Phase 1 entry prerequisites:
+- Go 1.25.7 must be installed on the Windows development workstation.
+- Untouched upstream backend build and test verification on Windows must be completed and recorded.
 
 ## Deferred Work
 
-- Fork/customization of Agent Orchestrator.
-- Porting selected CodeBisor governance concepts.
+- Establish CPS fork from upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`.
+- Port selected CodeBisor governance concepts (recovery budgets, circuit breakers, completion contracts, authority model).
 - Production worker-adapter implementation.
 - CPS operational acceptance test against a real bounded product task.
 
@@ -61,6 +61,10 @@ None known at project-governance level.
 17. `CODE_PROJECT_SUPERVISOR_DOCUMENTATION_COMPLIANCE_PROTOCOL.md`
 18. `CODE_PROJECT_SUPERVISOR_OPERATIONAL_ACCEPTANCE_TEST.md`
 19. `CODE_PROJECT_SUPERVISOR_MEMORY.md`
+20. `CODE_PROJECT_SUPERVISOR_AO_ADOPTION_AUDIT.md` (Phase 0 audit)
+21. `CODE_PROJECT_SUPERVISOR_AO_CAPABILITY_GAP_MATRIX.md` (Phase 0 audit)
+22. `CODE_PROJECT_SUPERVISOR_RULE_ENFORCEMENT_MATRIX.md` (Phase 0 audit)
+23. `CODE_PROJECT_SUPERVISOR_LEGACY_CODEBISOR_MIGRATION_MAP.md` (Phase 0 audit)
 
 ## Update Rule
 

@@ -169,3 +169,30 @@ Any rule may be revised by explicit operator/portfolio decision, but the revisio
 - why;
 - effective date/checkpoint;
 - migration impact if applicable.
+
+### D11 — Agent Orchestrator adoption decision
+
+Agent Orchestrator (`Untrivial-ai/agent-orchestrator`) is the selected upstream chassis for Code Project Supervisor.
+
+Phase 0 returned **CONDITIONAL GO — ACCEPTED**. The operator accepted this recommendation on 2026-09-13.
+
+Audited baseline commit: `cadde8c9fd2079d0decca654004760ad8439328e`
+
+License: Apache-2.0. All redistribution and attribution obligations must be preserved in the fork.
+
+Remaining Phase 1 prerequisites:
+- Install Go 1.25.7 on the primary Windows development workstation.
+- Verify untouched upstream backend builds on Windows (`cd backend && go build ./...`).
+- Verify untouched upstream tests pass on Windows (`cd backend && go test ./...`).
+- Record baseline failures, if any, before CPS customization begins.
+
+Worker ecosystem:
+- Kilo, Codex, and Cline are confirmed first-class upstream adapters.
+- Gemini support remains deferred; it is not a first-release blocker.
+
+Legacy CodeBisor disposition:
+- CodeBisor remains a read-only behavioral reference.
+- Port concepts and tests, not implementation code, where upstream does not already satisfy the requirement.
+- Do not carry forward CodeBisor's custom ANSI dashboard/rendering stack, duplicate daemon/process infrastructure, or bespoke worker-launching code unless a proven gap requires it.
+
+No further upstream search is needed unless Phase 1 exposes a fundamental adoption blocker.

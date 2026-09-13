@@ -247,4 +247,41 @@ memory/
   incidents-index.md
 ```
 
+### 2026-09-13 — Phase 0 Agent Orchestrator adoption audit completed
+
+**Type:** VERIFICATION / DECISION
+**Status:** CURRENT
+**Scope:** Phase 0 adoption audit
+**Performed by:** Kilo (agent audit)
+
+**What happened**
+A complete Phase 0 adoption audit was performed against `Untrivial-ai/agent-orchestrator` at upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`. The audit covered: upstream architecture, daemon/control-plane design, project model, task model, worker/adaptor model, worktree isolation, agent lifecycle, persistence/state, events, CLI, desktop UI, planning/orchestrator behavior, concurrency, recovery/resume, CI/review integration, PR/merge handling, Windows compatibility, licensing, dependency/runtime requirements, extension points, upstream maintenance strategy, capability mapping against CPS, and TownBoss Development Rule enforcement mapping.
+
+**Why / context**
+Phase 0 of the CPS Implementation Plan requires evidence-backed GO/CONDITIONAL_GO/NO-GO before establishing the production fork. The audit was read-only; no upstream or product repositories were modified.
+
+**Result**
+- 22 capabilities classified INHERIT
+- 3 capabilities classified CONFIGURE
+- 8 capabilities classified EXTEND
+- 3 capabilities classified PORT_FROM_LEGACY
+- 4 capabilities classified NEW
+- 3 capabilities classified DROP
+- Gap severities: G0×22, G1×5, G2×8, G3×4, G4×1, G5×0
+- License: Apache-2.0 (commercial-safe, all permissive dependencies)
+- Windows: Strong support confirmed in source (ConPTY, process management, desktop binary)
+- Recommendation: **CONDITIONAL_GO**
+- Blocking condition: Go 1.25.7 not yet installed on primary Windows workstation (environment prerequisite, not upstream blocker)
+
+**Evidence**
+- Audit: `CODE_PROJECT_SUPERVISOR_AO_ADOPTION_AUDIT.md`
+- Capability matrix: `CODE_PROJECT_SUPERVISOR_AO_CAPABILITY_GAP_MATRIX.md`
+- Rule enforcement: `CODE_PROJECT_SUPERVISOR_RULE_ENFORCEMENT_MATRIX.md`
+- Legacy migration: `CODE_PROJECT_SUPERVISOR_LEGACY_CODEBISOR_MIGRATION_MAP.md`
+- Upstream clone: `D:\Projects\agent-orchestrator-audit` (HEAD cadde8c9)
+- TownBoss baseline: `main` @ `8f3ef37adf75137dda490aa9228aa4e22994631b` (clean)
+
+**Impact on future work**
+Phase 1 can proceed after Go 1.25.7 is installed on Windows. The fork should be established from upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`. Phase 3 governance extensions (R4, R5, R15, R19, R24, R28) are bounded and have clear implementation paths. CodeBisor should remain read-only as a behavioral reference; port concepts rather than code where practical.
+
 The migration must preserve all existing entries and stable references. Do not split the ledger merely for aesthetics; do so only when retrieval materially benefits.
