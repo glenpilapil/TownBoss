@@ -1,88 +1,111 @@
-# GeoPlotter Implementation Plan
+# GeoPlotter Implementation Plan / Development Dashboard
 
 **Status:** ACTIVE IMPLEMENTATION  
-**Evidence reconciliation:** 2026-09-12
+**Evidence reconciliation:** 2026-09-12  
+**Dashboard rule:** checkboxes are authoritative completion markers; do not mark complete without evidence.
+
+## Dashboard summary
+- [x] PASS 0B — canonical/default-branch foundation evidenced.
+- [ ] PASS 0C — remote feature-branch contents and completion contract reconciled.
+- [ ] PASS 0D–0I — durable remote provenance reconciled and validated.
+- [ ] Canonical full-suite verification complete after synchronization.
+- [ ] Geospatial accuracy/provenance gate complete.
+- [ ] Development inventory/state-machine gate complete.
+- [ ] CRM/routing gate complete.
+- [ ] RealWise operational pilot complete.
+- [ ] Privacy/compliance review complete.
+- [ ] Production deployment architecture complete.
 
 ## Mission
-
 Geospatial real-estate and development-project platform for parcels, hazards/elevation, project inventory, sales workflows and RealWise operations.
 
 ## Architecture baseline
-
-- Laravel/API + Next.js web + Python geospatial service direction.
-- PostgreSQL.
-- Local services must remain independently runnable where Docker/virtualization is unavailable.
+- [x] Laravel/API + Next.js web + Python geospatial-service direction established.
+- [x] PostgreSQL selected.
+- [x] Local services must remain independently runnable where virtualization/container tooling is unavailable.
 
 ## Repository AS-IS
-
 **Canonical repository:** `glenpilapil/GeoPlotter-Real-Estate`  
 **Default branch:** `main`  
-**Current default HEAD:** `bde5a05` — PASS 0B merge.
+**Reconciled default HEAD:** `bde5a05` — PASS 0B merge.
 
-### PASS 0B — CANONICAL / DEFAULT-BRANCH EVIDENCED
+### PASS 0B — canonical/default-branch evidenced
+- [x] Development foundations present.
+- [x] Local environment/infrastructure contract present.
+- [x] Python geospatial-service scaffold present.
+- [x] Health endpoint/test present.
+- [x] Baseline CI and architecture/domain documentation present.
 
-Repository evidence includes executable development foundations, local environment/infrastructure contract, Python geospatial-service scaffold, health endpoint/test, baseline CI and architecture/domain documentation.
+### PASS 0C — remote feature branch; review pending
+Remote branch `feat/pass-0c-persistence-tenancy-foundation` was reconciled at `47d5c1b`.
+- [x] Remote branch located.
+- [ ] Audit branch contents against PASS 0C completion contract.
+- [ ] Verify intended PASS 0C tests/evidence.
+- [ ] Approve controlled integration path.
 
-### PASS 0C — REMOTE FEATURE-BRANCH EVIDENCED / MERGE AND COMPLETENESS PENDING
+### PASS 0D–0I — reported later implementation; provenance pending
+A later PASS 0I checkpoint was reported locally at `33435d3`, but it was not resolved in the connected remote during the 2026-09-12 reconciliation.
+- [ ] Locate durable repository refs for PASS 0D.
+- [ ] Locate durable repository refs for PASS 0E.
+- [ ] Locate durable repository refs for PASS 0F.
+- [ ] Locate durable repository refs for PASS 0G.
+- [ ] Locate durable repository refs for PASS 0H.
+- [ ] Locate durable repository refs for PASS 0I.
+- [ ] Reconcile associated schema/migrations/tests/checkpoints.
+- [ ] Promote only evidence-backed work to canonical implementation status.
 
-Remote branch `feat/pass-0c-persistence-tenancy-foundation` exists at `47d5c1b`. Its current head includes accepted GeoPlotter CRM/TownBoss platform-boundary documentation. The branch is not merged into `main`; branch existence alone does not establish that every PASS 0C implementation/test requirement is complete or verified.
-
-### PASS 0D–0I — REPORTED LOCAL / REMOTE PROVENANCE PENDING
-
-A later PASS 0I checkpoint was reported from local development on `feat/pass-0e-projects-foundation`, commit `33435d3`, including immutable inventory-status history, explicit transition rules, service-only atomic status transitions, lot/unit status routes, tenant enforcement, database constraints and tests.
-
-That commit does not resolve in the connected GitHub repository, and the connected remote branch inventory exposes no PASS 0D–0I refs. These capabilities must therefore remain **reported local implementation**, not canonical remote implementation, until synchronized and reconciled.
-
-## Major Workstreams
+## Major workstreams
 
 ### Geospatial core
-- title/parcel plotting;
-- cadastral/geographic base layers;
-- hazards and elevation;
-- document extraction with human verification;
-- provenance and confidence handling.
+- [ ] Title/parcel plotting acceptance verified.
+- [ ] Cadastral/geographic base-layer contract verified.
+- [ ] Hazards/elevation integration verified.
+- [ ] Document extraction includes human verification where uncertainty exists.
+- [ ] Provenance/confidence handling verified.
 
-### Development projects/inventory
-- horizontal phases/blocks/lots;
-- vertical buildings/floors/units;
-- site-plan polygon generation/import;
-- inventory lifecycle/history;
-- sample computation generation;
-- later 3D selector.
+### Development projects and inventory
+- [ ] Horizontal phase/block/lot model verified.
+- [ ] Vertical building/floor/unit model verified.
+- [ ] Site-plan polygon generation/import verified.
+- [ ] Inventory lifecycle/history verified.
+- [ ] Sample-computation generation verified.
+- [ ] Later 3D selector remains deferred until separately activated.
 
-### CRM/sales routing
-- lead/customer records;
-- agent -> manager -> director -> broker routing;
-- tripping/appointments;
-- commissions/payouts;
-- listing submissions and approvals.
+### CRM / sales routing
+- [ ] Lead/customer model verified.
+- [ ] Agent -> manager -> director -> broker routing verified.
+- [ ] Tripping/appointment workflows verified.
+- [ ] Commission/payout workflow boundaries verified.
+- [ ] Listing submission/approval flow verified.
 
-GeoPlotter owns real-estate-specific CRM semantics while reusable generic CRM/omnichannel primitives should migrate toward TownBoss shared infrastructure where appropriate. TownBoss CRM is not a blocker for the GeoPlotter pilot.
+GeoPlotter owns real-estate-specific CRM semantics. Reusable generic CRM primitives may migrate toward TownBoss shared infrastructure only when semantic alignment is proven.
 
-### Content/marketing
-- blog/content management;
-- property/project publishing;
-- social-content support and webinar funnel.
+### Content / marketing
+- [ ] Blog/content management scope defined and verified.
+- [ ] Property/project publishing flow verified.
+- [ ] Social-content support bounded.
+- [ ] Webinar funnel requirements bounded.
 
 ### Integration
-Follow GeoPlotter/GlenTown integration guidelines. Prefer versioned API/contracts/events over direct database coupling. RealWise is a primary operating consumer but does not erase GeoPlotter's domain authority.
+- [ ] GeoPlotter/GlenTown integration guidance followed.
+- [ ] Versioned API/contracts/events used instead of direct database coupling where appropriate.
+- [ ] RealWise consumption preserves GeoPlotter domain authority.
 
-## Immediate Gates
-
+## Immediate gates
 - [x] PASS 0B default-branch provenance established.
 - [x] PASS 0C remote branch located.
-- [ ] Audit PASS 0C branch contents/tests against its intended checkpoint contract.
-- [ ] Establish remote provenance for PASS 0D–0I.
-- [ ] Bind PASS 0D–0I migrations/tests/checkpoints to canonical remote refs.
-- [ ] Merge intended completed passes through controlled branch/PR path.
-- [ ] Run fresh full suite after synchronization.
-- [ ] Geospatial accuracy/provenance gate.
-- [ ] Inventory concurrency/state-machine gate.
-- [ ] CRM/routing implementation gate.
-- [ ] RealWise operational pilot.
-- [ ] Security/privacy/legal review.
-- [ ] Production deployment architecture.
+- [ ] PASS 0C contents/tests audited.
+- [ ] PASS 0D–0I remote provenance established.
+- [ ] PASS 0D–0I tests/checkpoints bound to durable refs.
+- [ ] Intended completed passes integrated through controlled branch/PR path.
+- [ ] Fresh full suite passes after synchronization.
+- [ ] Geospatial accuracy/provenance gate passes.
+- [ ] Inventory concurrency/state-machine gate passes.
+- [ ] CRM/routing implementation gate passes.
+- [ ] RealWise operational pilot passes.
+- [ ] Privacy/compliance review passes.
+- [ ] Production deployment architecture approved.
+- [ ] Memory and Current State updated for release candidate.
 
-## Evidence Rule
-
-Local checkpoints establish reported implementation context. Remote repository history establishes durable implementation provenance. Default-branch ancestry establishes canonical integration. `VERIFIED` requires tests/build/runtime evidence tied to the canonical ref or release candidate.
+## Evidence rule
+Repository history proves durable implementation provenance. Default-branch ancestry establishes canonical integration. `VERIFIED` requires test/build/runtime evidence tied to the canonical ref or release candidate.
