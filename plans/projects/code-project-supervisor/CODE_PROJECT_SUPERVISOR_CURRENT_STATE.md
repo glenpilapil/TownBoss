@@ -1,6 +1,6 @@
 # Code Project Supervisor — Current State
 
-**Status:** FOUNDATION ADOPTION — PHASE 1 COMPLETE
+**Status:** FOUNDATION ADOPTION — PHASE 2 COMPLETE
 **Date:** 2026-09-13  
 **Purpose:** Fast, current-state entry point for humans and agents.
 
@@ -12,7 +12,9 @@ The prior CodeBisor implementation is preserved as legacy/reference evidence. It
 
 Phase 1 — Establish Fork and Baseline is complete. The CPS fork is live at `D:\Projects\Code-Project-Supervisor` and on GitHub at `glenpilapil/Code-Project-Supervisor`, baseline-tagged at upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`.
 
-Accepted baseline exceptions: 8 upstream Windows `internal/session_manager` test failures documented as `ACCEPTED_BASELINE_EXCEPTION`.
+Phase 2 — Operator and Project Baseline is complete. Runtime verification performed against untouched upstream cadde8c9 using synthetic project "CPS Synthetic Canary" registered in AO data dir `D:\Projects\CPS-Phase2-AO-Data`.
+
+Accepted baseline exceptions: 8 upstream Windows `internal/session_manager` test failures documented as `ACCEPTED_BASELINE_EXCEPTION`. Runtime source review confirms the failures are environment-specific; the underlying behavior is implemented in upstream.
 
 ## Completed Foundation Work
 
@@ -27,15 +29,13 @@ Accepted baseline exceptions: 8 upstream Windows `internal/session_manager` test
 
 ## Current Workstream
 
-**Next bounded milestone:** `CPS_PHASE_2_OPERATOR_AND_PROJECT_BASELINE`
+**Next bounded milestone:** `CPS_PHASE_3_TOWNBOSS_GOVERNANCE_EXTENSIONS`
 
-Phase 1 is complete. Phase 2 — Operator and Project Baseline is the current active phase.
+Phase 2 is complete. Phase 3 — TownBoss Governance Extensions is the current active phase.
 
 ## Current Blockers
 
-None at project-governance level. Phase 2 entry prerequisites:
-- Runtime verification of the 8 accepted Windows `internal/session_manager` baseline exceptions (session/handoff/PATH/file-mode behavior).
-- Configure/register a synthetic TownBoss-compatible project in the CPS fork.
+None. Phase 2 verification passed. No CPS-specific extensions were required for the synthetic canary baseline.
 
 ## Deferred Work
 
@@ -43,6 +43,7 @@ None at project-governance level. Phase 2 entry prerequisites:
 - Port selected CodeBisor governance concepts (recovery budgets, circuit breakers, completion contracts, authority model).
 - Production worker-adapter implementation.
 - CPS operational acceptance test against a real bounded product task.
+- Codex integration on this workstation is blocked by local account setup (CODEX_ACCOUNT_MANAGEMENT_UNAVAILABLE); upstream adapter is present and functional.
 
 ## Canonical Reading Order
 

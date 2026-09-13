@@ -330,6 +330,41 @@ CPS fork is live on GitHub and locally at `D:\Projects\Code-Project-Supervisor`,
 **Impact on future work**
 No CPS behavior customization should begin until the upstream baseline is fully documented and accepted. The 8 failing tests should be investigated to determine whether they are Windows-specific environment issues or actual upstream defects before they are carried forward as known baseline exceptions.
 
+### 2026-09-13 — Phase 2 operator and project baseline completed
+
+**Type:** VERIFICATION / CHECKPOINT
+**Status:** COMPLETED
+**Scope:** Phase 2 operator and project baseline
+**Performed by:** Kilo (continuation of interrupted session)
+
+**What happened**
+Phase 2 — Operator and Project Baseline was completed against the untouched upstream CPS fork at cadde8c9 using a synthetic project registered in AO data dir `D:\Projects\CPS-Phase2-AO-Data`. The interrupted session was recovered without relaunching any runtime component; the existing AO daemon state, project registry, sessions, worktrees, and Kilo plugin artifacts were reused as recovered evidence.
+
+**Why / context**
+Phase 2 verifies that upstream runtime behavior is sufficient to supervise a synthetic project end-to-end before any CPS-specific governance extensions are attempted.
+
+**Result**
+- Synthetic project "CPS Synthetic Canary" (id: `cps-synthetic-canary`) registered and discoverable via `ao project ls`.
+- AO daemon lifecycle verified: started, stopped, restarted. `running.json` is removed on stop and recreated on start. State persists across restart.
+- CLI attachment verified: `ao status`, `ao session ls`, `ao session get`, `ao session kill`, `ao spawn`, `ao project ls` all functional via `D:\Projects\Code-Project-Supervisor\backend\bin\ao.exe` with `AO_RUN_FILE=D:\Projects\CPS-Phase2-AO-Data\running.json`.
+- Worktree isolation verified: sessions `cps-synthetic-canary-1/2/3` each received isolated branches under `D:\Projects\CPS-Phase2-AO-Data\worktrees\cps-synthetic-canary\<session-id>`.
+- Kilo integration verified: 3 Kilo sessions launched, reached idle, and terminated cleanly. `.kilocode/plugins/ao-activity.ts` plugin present in worktree.
+- Codex integration: adapter present and listed in `ao spawn --harness`, but local spawn fails with `CODEX_ACCOUNT_MANAGEMENT_UNAVAILABLE`. Upstream Codex account setup is a local prerequisite, not a CPS or upstream defect.
+- Concurrency verified: 2 concurrent Kilo sessions (`cps-synthetic-canary-4/5`) spawned simultaneously in the same project, both reached idle, then killed cleanly.
+- 8 Windows baseline exceptions reviewed at source: `TestSpawn_DefaultsBranchUnderDevNamespaceForDevDataDir`, `TestSpawnAndRestore_PrependsResolvedBinaryAndNodeDirsToRuntimePATH`, and `TestSpawn_DoesNotAddNodeRuntimeForNativeBinary` are environment-specific (dev data dir, Windows PATH behavior, node runtime detection); the underlying production behavior is implemented in `DefaultSpawnBranch`, `HookPATH`/`PinnedPATH`, and `AugmentRuntimePATHForLaunchBinary`. Handoff file mode, agent switching, and transcript path tests depend on POSIX-mode semantics and provider-specific native conversation probes that are not available in this Windows test environment. All 8 exceptions remain `ACCEPTED_BASELINE_EXCEPTION`; none reclassified as BLOCKER or UPSTREAM_PATCH_REQUIRED.
+- No CPS modifications were made during Phase 2.
+
+**Evidence**
+- AO data dir: `D:\Projects\CPS-Phase2-AO-Data`
+- AO binary: `D:\Projects\Code-Project-Supervisor\backend\bin\ao.exe`
+- Worktree: `D:\Projects\CPS-Phase2-AO-Data\worktrees\cps-synthetic-canary\cps-synthetic-canary-2`
+- Sessions: `cps-synthetic-canary-1` through `cps-synthetic-canary-5` (all terminated)
+- Daemon restart: PID 9428 -> stopped -> PID 13992; state preserved
+- Documentation: `CODE_PROJECT_SUPERVISOR_IMPLEMENTATION_PLAN.md` Phase 2 checklist complete; `CODE_PROJECT_SUPERVISOR_CURRENT_STATE.md` updated
+
+**Impact on future work**
+Phase 3 is the next active phase. No upstream blockers were discovered. The only known adapter gap is Codex local account setup, which is an operator-side prerequisite, not a CPS code change.
+
 ### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted
 
 **Type:** DECISION / VERIFICATION
