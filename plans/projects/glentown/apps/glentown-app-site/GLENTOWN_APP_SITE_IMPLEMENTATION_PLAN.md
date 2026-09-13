@@ -40,12 +40,14 @@ An agent must not continue to the next major visual surface when the active surf
 ## 4. Phase V0 — Documentation and Baseline Reconciliation
 
 - [x] Establish dedicated TownBoss planning package.
-- [ ] Reconcile repository-local `README.md` and `docs/APP_SITE_ARCHITECTURE.md` with this package.
+- [x] Reconcile TownBoss parent `APP_GLENTOWN_COM.md` with the actual implementation state.
+- [x] Record repository-local documentation gaps and reconciliation requirements in `GLENTOWN_APP_SITE_DOCUMENTATION_RECONCILIATION.md`.
+- [ ] Reconcile the local dirty Pass 3 `README.md` and `docs/APP_SITE_ARCHITECTURE.md` with this package.
 - [ ] Preserve/reconcile the dirty Pass 3 branch before any destructive Git operation.
 - [ ] Capture exact implementation HEAD/working-tree status before the next coding pass.
-- [ ] Confirm current tests and production build still pass after reconciliation.
+- [ ] Confirm current tests and production build still pass after local reconciliation.
 
-**Gate V0:** planning package and implementation repository describe the same current system; no Pass 3 work is accidentally lost.
+**Gate V0:** TownBoss planning is now reconciled. V0 remains open until the authoritative local Pass 3 worktree and its repository-local documentation are reconciled and validated without losing uncommitted work.
 
 ## 5. Phase V1 — Typography + Hero
 
