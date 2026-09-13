@@ -285,3 +285,47 @@ Phase 0 of the CPS Implementation Plan requires evidence-backed GO/CONDITIONAL_G
 Phase 1 can proceed after Go 1.25.7 is installed on Windows. The fork should be established from upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`. Phase 3 governance extensions (R4, R5, R15, R19, R24, R28) are bounded and have clear implementation paths. CodeBisor should remain read-only as a behavioral reference; port concepts rather than code where practical.
 
 The migration must preserve all existing entries and stable references. Do not split the ledger merely for aesthetics; do so only when retrieval materially benefits.
+
+### 2026-09-13 — Phase 1 fork and baseline established
+
+**Type:** IMPLEMENTATION / CHECKPOINT / VERIFICATION
+**Status:** CURRENT
+**Scope:** Phase 1 establish fork and baseline
+**Performed by:** Kilo
+
+**What happened**
+- Installed Go toolchain on Windows: Go 1.27.0 windows/amd64 at `C:\Program Files\Go\bin`.
+- Verified untouched upstream backend builds cleanly on Windows (`cd backend && go build ./...`).
+- Ran untouched upstream tests on Windows (`cd backend && go test ./...`). Most packages pass; `internal/session_manager` has 8 pre-existing failures on this Windows environment:
+  - `TestBuildSourceHandoffRequestUsesCurrentNativeSessionContext`
+  - `TestSwitchAgentFreshPreservesAOIdentityAndDeliversArtifact`
+  - `TestSwitchAgentRefreshesLateSourceNativeIdentityAtStopBoundary`
+  - `TestWriteAgentHandoffFileIsPrivateAtomicAndImmutable`
+  - `TestInterfaceTransitionReservedTranscriptRequiresUntouchedTerminal` (`lookup_error` subtest)
+  - `TestSpawn_DefaultsBranchUnderDevNamespaceForDevDataDir`
+  - `TestSpawnAndRestore_PrependsResolvedBinaryAndNodeDirsToRuntimePATH`
+  - `TestSpawn_DoesNotAddNodeRuntimeForNativeBinary`
+- Created CPS fork at `D:\Projects\Code-Project-Supervisor` from upstream `Untrivial-ai/agent-orchestrator`.
+- Unshallow cloned to preserve full upstream history.
+- Configured remotes: `upstream` → Untrivial-ai/agent-orchestrator, `origin` → glenpilapil/Code-Project-Supervisor.
+- Confirmed GitHub fork `glenpilapil/Code-Project-Supervisor` exists and accepted push.
+- Pushed baseline to `origin/main`.
+- Created annotated baseline tag `baseline/cps-phase-1` and pushed to origin.
+- Apache-2.0 license/NOTICE obligations preserved from upstream.
+
+**Why / context**
+Phase 1 of the CPS Implementation Plan requires a clean fork at the audited upstream baseline with verified build/test evidence before any CPS customization begins.
+
+**Result**
+CPS fork is live on GitHub and locally at `D:\Projects\Code-Project-Supervisor`, branch `main`, HEAD `cadde8c9fd2079d0decca654004760ad8439328e`. Upstream baseline is tagged as `baseline/cps-phase-1`. No CPS-specific modifications have been made yet.
+
+**Evidence**
+- Local fork: `D:\Projects\Code-Project-Supervisor`
+- GitHub fork: `https://github.com/glenpilapil/Code-Project-Supervisor`
+- Baseline tag: `baseline/cps-phase-1`
+- Upstream audit repo: `D:\Projects\agent-orchestrator-audit` (HEAD `cadde8c9`)
+- Build: `cd backend && go build ./...` passes cleanly
+- Tests: `cd backend && go test ./...` with 8 pre-existing failures in `internal/session_manager`
+
+**Impact on future work**
+No CPS behavior customization should begin until the upstream baseline is fully documented and accepted. The 8 failing tests should be investigated to determine whether they are Windows-specific environment issues or actual upstream defects before they are carried forward as known baseline exceptions.

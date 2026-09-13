@@ -1,6 +1,6 @@
 # Code Project Supervisor — Current State
 
-**Status:** FOUNDATION ADOPTION — PHASE 0 COMPLETE
+**Status:** FOUNDATION ADOPTION — PHASE 1 COMPLETE
 **Date:** 2026-09-13  
 **Purpose:** Fast, current-state entry point for humans and agents.
 
@@ -9,6 +9,8 @@
 Code Project Supervisor (CPS) is defined as the TownBoss portfolio development supervisor. Its implementation foundation is `Untrivial-ai/agent-orchestrator`, selected after a bounded Phase 0 adoption audit.
 
 The prior CodeBisor implementation is preserved as legacy/reference evidence. It is not the default foundation for continued development.
+
+Phase 1 — Establish Fork and Baseline is complete. The CPS fork is live at `D:\Projects\Code-Project-Supervisor` and on GitHub at `glenpilapil/Code-Project-Supervisor`, baseline-tagged at upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`.
 
 ## Completed Foundation Work
 
@@ -23,19 +25,19 @@ The prior CodeBisor implementation is preserved as legacy/reference evidence. It
 
 ## Current Workstream
 
-**Next bounded milestone:** `CPS_PHASE_1_AO_FORK_BASELINE`
+**Next bounded milestone:** `CPS_PHASE_2_OPERATOR_AND_PROJECT_BASELINE`
 
-Phase 0 is complete. Phase 1 — Establish Fork and Baseline is the current active phase.
+Phase 1 is complete. Phase 2 — Operator and Project Baseline is the current active phase.
 
 ## Current Blockers
 
-None at project-governance level. Phase 1 entry prerequisites:
-- Go 1.25.7 must be installed on the Windows development workstation.
-- Untouched upstream backend build and test verification on Windows must be completed and recorded.
+None at project-governance level. Phase 2 entry prerequisites:
+- Investigate and decide whether the 8 pre-existing `internal/session_manager` test failures on Windows are acceptable baseline exceptions or must be resolved before operational use.
+- Configure/register a synthetic TownBoss-compatible project in the CPS fork.
 
 ## Deferred Work
 
-- Establish CPS fork from upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`.
+- Establish isolated CPS branding/customization layer in the fork.
 - Port selected CodeBisor governance concepts (recovery budgets, circuit breakers, completion contracts, authority model).
 - Production worker-adapter implementation.
 - CPS operational acceptance test against a real bounded product task.
