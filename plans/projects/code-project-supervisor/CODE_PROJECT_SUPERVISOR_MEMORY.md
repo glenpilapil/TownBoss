@@ -485,6 +485,36 @@ The `pkg/contract` package is an upstream Agent Orchestrator package that CPS de
 **Impact on future work**
 Future Phase 3/4 validation that requires running `pkg/contract` tests on this Windows workstation will encounter the same blocker. Workarounds should not modify production code or weaken tests. Alternative validation paths (static analysis, upstream CI, different test runner configuration) should be explored if `pkg/contract` test coverage becomes a blocking concern. This limitation does not affect CPS functionality or the Phase 3 gate.
 
+### 2026-09-13 — Phase 4 planning corpus integration implemented
+
+**Type:** IMPLEMENTATION / VERIFICATION
+**Status:** COMPLETED
+**Scope:** Phase 4 Planning Corpus Integration
+**Performed by:** Kilo
+
+**What happened**
+Phase 4 planning corpus integration was implemented in the CPS fork at `D:\Projects\Code-Project-Supervisor` as a thin projection layer over the TownBoss planning corpus. The implementation adds machine-readable projection of canonical governance documents without modifying upstream core behavior or duplicating the planning corpus.
+
+**Why / context**
+Phase 4 is required by the Phase 0 adoption audit and Rule Enforcement Matrix (R5 — Canonical Doc Freshness). CPS must be able to resolve authoritative project documentation, detect stale local clones, materialize bounded task contracts from approved objectives, and produce documentation compliance receipts tied to actual corpus reads.
+
+**Result**
+- `backend/internal/cps/corpus/source.go` — `CorpusSource` with path, branch, HEAD, canonical HEAD, freshness; `ResolveCorpusSource` resolves provenance; `Validate` returns `ErrCorpusSourceStale` when local HEAD does not match
+- `backend/internal/cps/corpus/reader.go` — `CorpusReader` reads canonical documents from a local TownBoss clone; `ReadSet` loads the standard planning read-set for a project; `CanonicalDocumentKind` classifies 17 document types
+- `backend/internal/cps/corpus/projection.go` — `ProjectCorpus` with project ID, phase, deliverable, task, governing documents, checklist state; `ProjectCorpusResolver` resolves corpus; `TaskMaterializer` materializes `TaskContract` from approved objective; provenance tracked via `DocumentProvenance`
+- `backend/internal/cps/corpus/corpus_test.go` — 11 test functions covering corpus source resolution, freshness detection, document reading, read-set loading, project corpus resolution, task materialization, checklist parsing, provenance tracking, and fail-closed behavior
+- All Phase 4 checklist items marked complete with evidence in `CODE_PROJECT_SUPERVISOR_IMPLEMENTATION_PLAN.md`
+
+**Evidence**
+- CPS commit: `0a0f1cc7` — `[P3][D-GOVERNANCE][T-TASK-CONTRACT] feat: add CPS task governance projection and enforcement gates` (Phase 3 baseline preserved)
+- CPS commit: `232f8a3b` — `[P3][D-GOVERNANCE][T-INDEPENDENT-REVIEW-GATE] fix: enforce required independent review` (Phase 3 correction)
+- Tests: `go test ./internal/cps/...` and `go test ./internal/cps/corpus/...` pass
+- Build: `go build ./...` passes
+- TownBoss docs: `CODE_PROJECT_SUPERVISOR_IMPLEMENTATION_PLAN.md` Phase 4 checklist complete
+
+**Impact on future work**
+Phase 5 is the next active phase. The planning corpus projection is ready for wiring into AO's session lifecycle and operator UI. No upstream blockers were discovered. Smart App Control continues to block `pkg/contract` tests on this Windows workstation; this is an environment limitation, not a CPS or upstream defect.
+
 ### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted
 
 **Type:** DECISION / VERIFICATION

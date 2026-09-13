@@ -43,6 +43,7 @@ If Markdown rendering does not support the symbols consistently, the checkbox re
 - [x] Phase 1 — Establish Fork and Baseline COMPLETE
 - [x] Phase 2 — Operator and Project Baseline COMPLETE
 - [x] Phase 3 — TownBoss Governance Extensions COMPLETE
+- [x] Phase 4 — Planning Corpus Integration COMPLETE
 - [ ] First operational release achieved
 - [ ] CPS feature-freeze entered after operational acceptance
 
@@ -369,44 +370,72 @@ Add only gaps proven necessary by the Phase 0 audit:
 
 # Phase 4 — Planning Corpus Integration
 
-**Phase status:** NOT STARTED
+**Phase status:** COMPLETE
 
 ## Phase checklist
 
-- [ ] Link local TownBoss governance/documentation corpus
-- [ ] Verify local TownBoss branch/HEAD/freshness before reliance
-- [ ] Load TownBoss Master Development Plan
-- [ ] Load project implementation plans
-- [ ] Load project Decisions & Rules
-- [ ] Load project Acceptance Criteria
-- [ ] Load project Memory
-- [ ] Respect repository-local instructions within their scope
-- [ ] Resolve project/milestone/task identifiers from planning documents
-- [ ] Ensure planning documents do not masquerade as implementation evidence
-- [ ] Support task creation from approved project objectives
-- [ ] Produce documentation compliance receipts
-- [ ] Update Memory
+- [x] Link local TownBoss governance/documentation corpus
+   Evidence: `backend/internal/cps/corpus/reader.go` — `CorpusReader` reads canonical documents from a local TownBoss clone; `ReadSet` loads the standard planning read-set for a project
+- [x] Verify local TownBoss branch/HEAD/freshness before reliance
+   Evidence: `backend/internal/cps/corpus/source.go` — `CorpusSource` records path, branch, HEAD, canonical HEAD, and freshness; `ResolveCorpusSource` resolves provenance; `Validate` returns `ErrCorpusSourceStale` when HEAD does not match
+- [x] Load TownBoss Master Development Plan
+   Evidence: `CorpusReader.Read` loads any canonical document by relative path; `CanonicalDocMasterPlan` kind classifies `TOWNBOSS_MASTER_DEVELOPMENT_PLAN.md`
+- [x] Load project implementation plans
+   Evidence: `ReadSet` includes implementation plan; `CanonicalDocImplementationPlan` kind classifies it; `ProjectCorpus.ImplementationPlanPath` records its location
+- [x] Load project Decisions & Rules
+   Evidence: `ReadSet` includes decisions and rules; `CanonicalDocDecisionsAndRules` kind classifies it; `ProjectCorpus.DecisionsRulesPath` records its location
+- [x] Load project Acceptance Criteria
+   Evidence: `ReadSet` includes acceptance criteria; `CanonicalDocAcceptanceCriteria` kind classifies it; `ProjectCorpus.AcceptanceCriteriaPath` records its location
+- [x] Load project Memory
+   Evidence: `ReadSet` includes Memory; `CanonicalDocMemory` kind classifies it; `ProjectCorpus.MemoryPath` records its location
+- [x] Respect repository-local instructions within their scope
+   Evidence: `CanonicalDocumentKind` includes `CanonicalDocDevRules` for `DEVELOPMENT_RULES.md`; repository-local instructions are loaded as part of the read-set when present; precedence is governed by the authority hierarchy in `AUTHORITY_MATRIX.md`
+- [x] Resolve project/milestone/task identifiers from planning documents
+   Evidence: `extractActivePhaseDeliverableTask` parses implementation plan headings; `normalizeProjectID` produces stable identifiers; `generateTaskID` combines project/phase/deliverable into a task ID
+- [x] Ensure planning documents do not masquerade as implementation evidence
+   Evidence: Planning documents are classified as `CanonicalDocumentKind` and stored in `DocumentReadSet.Planning`; implementation evidence is separate (`ExpectedEvidence` in `TaskContract`); checklist parsing distinguishes completed items from evidence text
+- [x] Support task creation from approved project objectives
+   Evidence: `TaskMaterializer.MaterializeFromObjective` converts an approved objective into a bounded `TaskContract` with governing documents, validation requirements, evidence expectations, and checkpoint policy
+- [x] Produce documentation compliance receipts
+   Evidence: `DocumentReadSet` captures planning documents consulted; `ExecutionRecheck` records execution-stage re-checks; final review documents are captured separately; `DocumentationComplianceReceipt` from Phase 3 is populated from `DocumentReadSet`
+- [x] Update Memory
+   Evidence: This entry
 
 ## Deliverables
 
-- [ ] TownBoss local documentation source configuration
-- [ ] Canonical documentation discovery/read-set mechanism
-- [ ] Planning source provenance model
-- [ ] Project/milestone/task identifier mapping
-- [ ] Task materialization from approved objective
-- [ ] Documentation compliance receipt
-- [ ] Stale/local-clone detection behavior
-- [ ] Repository-local instruction precedence behavior
+- [x] TownBoss local documentation source configuration
+   Evidence: `CorpusSource` struct with path, branch, HEAD, canonical HEAD, freshness; `ResolveCorpusSource` resolves from local clone
+- [x] Canonical documentation discovery/read-set mechanism
+   Evidence: `CorpusReader.ReadSet` loads the standard planning read-set; `CanonicalDocumentKind` classifies 17 document types; `classifyDocument` maps filenames to kinds
+- [x] Planning source provenance model
+   Evidence: `DocumentProvenance` records corpus path, HEAD, and relative path for every loaded document; `CorpusSource` records clone provenance; task IDs include project/phase/deliverable for traceability
+- [x] Project/milestone/task identifier mapping
+   Evidence: `normalizeProjectID` produces stable project IDs; `extractActivePhaseDeliverableTask` extracts phase/deliverable/task from implementation plan; `generateTaskID` produces traceable task identifiers
+- [x] Task materialization from approved objective
+   Evidence: `TaskMaterializer.MaterializeFromObjective` converts approved objective into bounded `TaskContract` with governing documents, validation, evidence, checkpoint, and memory requirements
+- [x] Documentation compliance receipt
+   Evidence: `DocumentReadSet` with `Planning`, `ExecutionRechecks`, `FinalReview`; `DocumentationComplianceReceipt` from Phase 3 consumes these fields
+- [x] Stale/local-clone detection behavior
+   Evidence: `CorpusSource.Validate` returns `ErrCorpusSourceStale` when local HEAD does not match canonical HEAD; `ResolveCorpusSource` sets `Fresh` flag
+- [x] Repository-local instruction precedence behavior
+   Evidence: `CanonicalDocDevRules` classifies `DEVELOPMENT_RULES.md`; repository-local instructions are loaded as part of the read-set; authority hierarchy is enforced by `AuthorityGate` from Phase 3
 
 ## Gate — Traceable Planning-to-Work
 
-- [ ] Approved objective can be converted into a bounded task contract
-- [ ] Every task records its governing documents
-- [ ] Documentation was checked during planning
-- [ ] Material scope/architecture changes trigger documentation re-check
-- [ ] Final report is blocked until final documentation review occurs
-- [ ] Planning docs are never counted as implementation evidence
-- [ ] Source authority/provenance remains traceable
+- [x] Approved objective can be converted into a bounded task contract
+   Evidence: `TaskMaterializer.MaterializeFromObjective` produces a validated `TaskContract` with required fields populated from corpus
+- [x] Every task records its governing documents
+   Evidence: `TaskContract.ApplicableDocumentation` is populated from `ProjectCorpus.GoverningDocuments` during materialization
+- [x] Documentation was checked during planning
+   Evidence: `DocumentReadSet.Planning` records all documents consulted during task materialization; `DocumentationComplianceReceipt` requires planning documents
+- [x] Material scope/architecture changes trigger documentation re-check
+   Evidence: `DocumentReadSet.ExecutionRechecks` records re-checks with triggers; `DocumentationComplianceReceipt` requires execution rechecks when material changes occur
+- [x] Final report is blocked until final documentation review occurs
+   Evidence: `DocumentationComplianceReceipt.ComplianceResult` returns `FAIL` when final review documents are missing; `EvaluatePromotionGate` blocks promotion when compliance fails
+- [x] Planning docs are never counted as implementation evidence
+   Evidence: Planning documents are stored in `DocumentReadSet.Planning`; implementation evidence is stored in `TaskContract.ExpectedEvidence`; checklist parsing separates evidence text from item text
+- [x] Source authority/provenance remains traceable
+   Evidence: `DocumentProvenance` records corpus path, HEAD, and relative path; `CorpusSource` records clone provenance; task IDs include project/phase/deliverable; `ProjectCorpus` records governing document paths
 
 ---
 
