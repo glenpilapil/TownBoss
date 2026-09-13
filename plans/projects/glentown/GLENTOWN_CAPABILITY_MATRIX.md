@@ -13,7 +13,7 @@
 | Cart/Around You | Yes | IMPLEMENTED; `c28feee` | Rich fixtures/projection/physical check |
 | Create | Yes | TEST_VERIFIED recovery `aa07d25` | Samsung recheck; API persistence blockers |
 | Chat | Yes | TEST_VERIFIED recovery `f9702ed`; API-backed direct/group/chatroom/search, safe errors and IME behavior | Representative fixtures, Message Requests IA decision, E2E physical journey |
-| You/Profile | Yes | IMPLEMENTED surfaces; recovery planned | Keyboard/routing validation |
+| You/Profile | Yes | TEST_VERIFIED recovery `820d0cf`; intentional Profile Setup IME/CTA and truthful Trust state | IA/data/verification blockers and Samsung recheck |
 | Cross-screen accessibility | Yes | PLANNED | SafeArea/semantics/responsive evidence |
 | Demo/data | Yes | BLOCKED_BY_DEMO_DATA | Idempotent representative fixtures |
 | Nationwide readiness | Yes | PLANNED | Thresholds, rollout, samples |

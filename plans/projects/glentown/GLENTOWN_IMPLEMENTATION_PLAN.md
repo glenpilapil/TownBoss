@@ -3,7 +3,7 @@
 **Portfolio:** TownBoss
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **Current phase:** Phase 1 — Core Mobile Functional and UX Recovery
-**Current deliverable/task:** D1.6 You/Profile recovery / T1.6.1 Profile Setup Continue/keyboard contract
+**Current deliverable/task:** D1.7 Cross-screen/accessibility closure / T1.7.1 SafeArea, keyboard overlap, horizontal clipping and raw technical errors
 **Phase gate:** OPEN — physical verification and remaining recovery work are incomplete.
 
 ## Status legend
@@ -17,7 +17,8 @@
 - [x] Explore recovery App-side complete; physical verification pending. Evidence: `3edfb0c`; 33 focused Explore tests, 9 cross-route tests, 369 Flutter tests, analyze no issues, diff check pass.
 - [x] Create recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `aa07d2586f0b7db9a440f20b6fa927fee374b4b0`; 9 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
 - [x] Chat recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `f9702ed672679d6744e17a281c96c95ee312299f`; 53 focused Chat tests, 370 full Flutter tests, analyze no issues, diff check pass.
-- [ ] `IN_PROGRESS` Next active deliverable: D1.6 You/Profile recovery. D1.4/D1.5 physical verification and explicit API/data/domain blockers remain open.
+- [x] You/Profile recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `820d0cf20b278827da6b4ff238bd7e0e8b4087cb`; 4 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
+- [ ] `IN_PROGRESS` Next active deliverable: D1.7 Cross-screen/accessibility closure. Physical verification and explicit API/data/domain blockers remain open.
 - [ ] You/Profile, cross-screen closure, API/data blockers, full mobile physical audit and Beta readiness remain open.
 
 ## D0.1 — Canonical repository/state reconciliation
@@ -100,9 +101,15 @@
 
 ## D1.6 — You/Profile recovery
 
-- [ ] T1.6.1 Fix Profile Setup Continue/keyboard premature progression.
-- [ ] T1.6.2 Reconcile orders/calendar/places/job seeker/settings and Trust/Verification/credits/help/business routes.
-- [ ] T1.6.3 Focused validation and physical recheck.
+**Status:** APP-SIDE COMPLETE / `READY_FOR_PHYSICAL_RECHECK`; next active deliverable is D1.7 Cross-screen/accessibility closure.
+
+- [x] T1.6.1 Fix Profile Setup Continue/keyboard premature progression. Evidence: GlenTown-App `820d0cf`; IME hides save/skip actions and gives explicit dismissal guidance; Save profile & continue is intentional.
+- [x] T1.6.2 Truthful Trust & Verification and preserved approved You routes. Evidence: `820d0cf`; customer-safe full-screen verification state removes fake status/action behavior. Orders/Credits/Saved/Help/workspace routes remain preserved.
+- [x] T1.6.3 Focused and full validation/documentation reconciliation. Evidence: 4 focused Profile Setup tests, 370 full Flutter tests, full analyze no issues, `git diff --check` pass at `820d0cf`.
+- [ ] T1.6.4 Calendar, Your Places, Job Seeker Profile and separate App/Account Settings IA. `BLOCKED_APP_DOMAIN_CONTRACT`; see `YOU_PROFILE_INFORMATION_ARCHITECTURE`.
+- [ ] T1.6.5 Representative Orders/Calendar/account histories and profile/media persistence acceptance. `BLOCKED_BY_DEMO_DATA`; see `POPULATED_DEMO_USER`.
+- [ ] T1.6.6 Verification account status/submission capability. `BLOCKED_API_CONTRACT`; see `ACCOUNT_VERIFICATION`.
+- [ ] T1.6.7 Samsung profile/IME/media/settings/Trust/Credits/Help physical recheck. `ATTENTION`.
 
 ## D1.7 — Cross-screen/accessibility closure
 

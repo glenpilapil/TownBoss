@@ -72,3 +72,12 @@ D1.4 is App-side complete and `READY_FOR_PHYSICAL_RECHECK`, not physically verif
 GlenTown-App `f9702ed672679d6744e17a281c96c95ee312299f` closes independently App-fixable D1.5 work. The checkpoint revalidated the approved customer label **Chat**, the real API-backed messaging repositories, typed direct/group/chatroom/recommended/search flows, customer-safe error/retry UI, unread handling, and compact filter/create-group IME behavior. Evidence: 53 focused Chat tests, 370 full Flutter tests, full analyze with no issues, and diff check pass.
 
 D1.5 is App-side complete and `READY_FOR_PHYSICAL_RECHECK`, not physically verified. Representative direct/group/request/recommendation/read-state acceptance remains `BLOCKED_BY_DEMO_DATA` through `POPULATED_DEMO_USER`; a customer-facing Message Requests inbox remains `BLOCKED_APP_DOMAIN_CONTRACT` through `MESSAGE_REQUESTS_INBOX`; two-persona Samsung/TalkBack/text-scale/connection-loss evidence remains open. Next bounded deliverable: D1.6 You/Profile recovery.
+
+## 2026-09-13 — You/Profile recovery checkpoint
+
+**Type:** IMPLEMENTATION / VERIFICATION / CHECKPOINT
+**Status:** CURRENT
+
+GlenTown-App `820d0cf20b278827da6b4ff238bd7e0e8b4087cb` closes independently App-fixable D1.6 work. Profile Setup now hides save/skip actions while the IME is open and explains keyboard dismissal before an intentional save or skip; its CTA is `Save profile & continue`. Trust & Verification is customer-facing and truthful: internal terminology, static success-like statuses, and snackbar-only actions were removed. Evidence: 4 focused Profile Setup tests, 370 full Flutter tests, full analyze with no issues, and diff check pass.
+
+D1.6 is App-side complete and `READY_FOR_PHYSICAL_RECHECK`, not physically verified. Calendar/Places/Job Seeker/separate settings IA is `BLOCKED_APP_DOMAIN_CONTRACT`; representative histories/media acceptance is `BLOCKED_BY_DEMO_DATA`; verification status/submission is `BLOCKED_API_CONTRACT`; Samsung You/Profile recheck remains open. Next bounded deliverable: D1.7 Cross-screen/accessibility closure.
