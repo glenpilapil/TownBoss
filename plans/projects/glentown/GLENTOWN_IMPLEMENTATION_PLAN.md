@@ -18,7 +18,7 @@
 - [x] Create recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `aa07d2586f0b7db9a440f20b6fa927fee374b4b0`; 9 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
 - [x] Chat recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `f9702ed672679d6744e17a281c96c95ee312299f`; 53 focused Chat tests, 370 full Flutter tests, analyze no issues, diff check pass.
 - [x] You/Profile recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `820d0cf20b278827da6b4ff238bd7e0e8b4087cb`; 4 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
-- [ ] `IN_PROGRESS` Next active deliverable: D1.7 Cross-screen/accessibility closure. Physical verification and explicit API/data/domain blockers remain open.
+- [ ] `IN_PROGRESS` Next active deliverable: D1.7 Cross-screen/accessibility closure. Bounded T1.7.1 code corrections implemented (raw customer errors mapped via `CustomerError.action`, Destination TabBar scrollable, Explore header ellipsis); physical verification and explicit API/data/domain blockers remain open.
 - [ ] You/Profile, cross-screen closure, API/data blockers, full mobile physical audit and Beta readiness remain open.
 
 ## D0.1 — Canonical repository/state reconciliation
@@ -114,6 +114,8 @@
 ## D1.7 — Cross-screen/accessibility closure
 
 - [ ] T1.7.1 SafeArea, keyboard overlap, horizontal clipping and raw technical errors.
+  - Code progress: `GoalPersonalizationScreen` and `FinancialPlannerScreen` now map failures through `CustomerError.action` (no raw `error.toString()`), `DestinationScreen` TabBar is `isScrollable: true`, and `ExploreScreen` header title is ellipsis-bounded.
+  - Remaining: full SafeArea top-edge and keyboard-overlap audit per You subpages and detail screens; physical verification pending.
 - [ ] T1.7.2 Contrast/icon consistency, responsive verification, text scale/accessibility semantics.
 - [ ] T1.7.3 Cross-screen validation and physical recheck.
 

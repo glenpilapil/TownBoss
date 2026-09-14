@@ -14,7 +14,7 @@
 | Create | Yes | TEST_VERIFIED recovery `aa07d25` | Samsung recheck; API persistence blockers |
 | Chat | Yes | TEST_VERIFIED recovery `f9702ed`; API-backed direct/group/chatroom/search, safe errors and IME behavior | Representative fixtures, Message Requests IA decision, E2E physical journey |
 | You/Profile | Yes | TEST_VERIFIED recovery `820d0cf`; intentional Profile Setup IME/CTA and truthful Trust state | IA/data/verification blockers and Samsung recheck |
-| Cross-screen accessibility | Yes | PLANNED | SafeArea/semantics/responsive evidence |
+| Cross-screen accessibility | Yes | IN_PROGRESS; bounded T1.7.1 code corrections implemented (raw customer errors mapped via `CustomerError.action`, Destination TabBar scrollable, Explore header ellipsis) | SafeArea/keyboard overlap, contrast, text-scale, semantics, and Samsung physical check |
 | Demo/data | Yes | BLOCKED_BY_DEMO_DATA | Idempotent representative fixtures |
 | Nationwide readiness | Yes | PLANNED | Thresholds, rollout, samples |
 

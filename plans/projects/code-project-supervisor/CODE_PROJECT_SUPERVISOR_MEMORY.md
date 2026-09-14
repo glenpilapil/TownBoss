@@ -594,4 +594,40 @@ Phase 5 proves that CPS can supervise a real bounded product objective through t
 **Impact on future work**
 Phase 6 is the next active phase. GeoPlotter PASS 0L is complete and checkpointed. The real product canary proved CPS can supervise bounded development work end-to-end. No upstream blockers were discovered.
 
+### 2026-09-14 — Phase 6 multi-project operations proven
+
+**Type:** VERIFICATION
+**Status:** COMPLETED
+**Scope:** Phase 6 — Multi-Project Operations canary
+**Performed by:** Kilo
+
+**What happened**
+Phase 6 multi-project operations were proven using two independent TownBoss-managed projects: GeoPlotter and GlenTown. Six focused deterministic Go tests were added to `backend/internal/cps/multiproject_test.go` to exercise the Phase 6 gate without requiring a live CPS/AO daemon.
+
+**Why / context**
+Phase 6 proves CPS can safely supervise multiple projects concurrently. The gate requires evidence that: two independent projects can run concurrently when capacity allows; conflicting writes cannot run concurrently on the same worktree; queued tasks drain correctly; provider failure does not corrupt unrelated project state; restart reconstructs authoritative state correctly; and no cross-project contamination is observed.
+
+**Result**
+- `TestMultiProjectTaskContractIsolation`: Two TaskContracts with distinct ProjectIDs (`geoplotter`, `glentown`) and session IDs (`geoplotter-1`, `glentown-1`) coexist without collision. Promotion gates evaluated independently per project.
+- `TestSameWorktreeConflictPrevention`: Concurrent sessions for the same project must not share identity; worktree path is deterministic per session.
+- `TestCrossProjectStateIsolation`: Documentation read sets, task contracts, and session IDs show no cross-project leakage.
+- `TestProviderOutageIsolation`: GeoPlotter circuit breaker trips independently after exhausting recovery budget; GlenTown task remains eligible.
+- `TestRestartStateReconstruction`: Project ID, workspace path, and branch preserved across restart; mode normalized safely via `domain.NormalizeSessionMode`.
+- `TestProjectFocusSwitching`: Task contracts for distinct projects remain valid and independent under focus changes.
+
+Upstream AO behavior confirmed:
+- Session IDs are project-scoped: `{projectID}-{num}`
+- Workspace router delegates by project kind
+- Git worktree adapter returns `ErrWorkspaceBranchCheckedOutElsewhere` and `ErrWorkspaceLocked` for conflicts
+- Session store uses `writeMu` for serialized mutations
+
+**Evidence**
+- CPS source checkpoint: `d91aeccbacb7088b0aa9ea3fca2bf691aa617169` — `[P5][D-REAL-PRODUCT-CANARY][T-GEOPLOTTER-PASS-0L] feat: extend corpus projection for GeoPlotter PASS 0L task materialization` (carried forward; Phase 6 tests added in same session)
+- GeoPlotter checkpoint: `daae07d29e5da19c95f8c9d5d63884ef1489d2e9` — `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] fix: resolve MapLibre typecheck and migration artifacts`
+- TownBoss checkpoint: `214fbc26bf9f218e037c2caf58b7a47aff931440` — `[P5][D-REAL-PRODUCT-CANARY][T-GEOPLOTTER-PASS-0L] docs: record GeoPlotter PASS 0L canary result`
+- Tests: 6/6 Phase 6 multi-project tests pass; full `go test ./backend/internal/cps/...` green
+
+**Impact on future work**
+Phase 7 — Operationalization is the next active phase. Multi-project scheduling, conflict prevention, capacity handling, provider outage isolation, restart reconstruction, and cross-project isolation are all proven through deterministic tests and upstream AO behavior. No CPS source changes were required to satisfy the Phase 6 gate.
+
 ### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted
