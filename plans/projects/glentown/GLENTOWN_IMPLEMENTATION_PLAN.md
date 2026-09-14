@@ -2,9 +2,9 @@
 
 **Portfolio:** TownBoss
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
-**Current phase:** Phase 1 — Core Mobile Functional and UX Recovery
-**Current deliverable/task:** D1.7 Cross-screen/accessibility closure / T1.7.1 SafeArea, keyboard overlap, horizontal clipping and raw technical errors
-**Phase gate:** OPEN — physical verification and remaining recovery work are incomplete.
+**Current phase:** Phase 1 — App-side recovery complete / physical verification pending
+**Current deliverable/task:** Consolidated Samsung physical re-audit
+**Phase gate:** APP-SIDE RECOVERY COMPLETE — physical verification remains pending.
 
 ## Status legend
 
@@ -18,8 +18,8 @@
 - [x] Create recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `aa07d2586f0b7db9a440f20b6fa927fee374b4b0`; 9 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
 - [x] Chat recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `f9702ed672679d6744e17a281c96c95ee312299f`; 53 focused Chat tests, 370 full Flutter tests, analyze no issues, diff check pass.
 - [x] You/Profile recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `820d0cf20b278827da6b4ff238bd7e0e8b4087cb`; 4 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
-- [ ] `IN_PROGRESS` Next active deliverable: D1.7 Cross-screen/accessibility closure. Bounded T1.7.1 code corrections implemented (raw customer errors mapped via `CustomerError.action`, Destination TabBar scrollable, Explore header ellipsis); physical verification and explicit API/data/domain blockers remain open.
-- [ ] You/Profile, cross-screen closure, API/data blockers, full mobile physical audit and Beta readiness remain open.
+- [x] D1.7 cross-screen/accessibility App-side closure. Evidence: GlenTown-App `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`; 20 focused tests and 370 full Flutter tests passed, analyze no issues, diff check pass.
+- [ ] Physical verification, explicit API/data/domain blockers, and Beta readiness remain open. Next gate: consolidated Samsung physical re-audit.
 
 ## D0.1 — Canonical repository/state reconciliation
 
@@ -113,15 +113,16 @@
 
 ## D1.7 — Cross-screen/accessibility closure
 
-- [ ] T1.7.1 SafeArea, keyboard overlap, horizontal clipping and raw technical errors.
-  - Code progress: `GoalPersonalizationScreen` and `FinancialPlannerScreen` now map failures through `CustomerError.action` (no raw `error.toString()`), `DestinationScreen` TabBar is `isScrollable: true`, and `ExploreScreen` header title is ellipsis-bounded.
-  - Remaining: full SafeArea top-edge and keyboard-overlap audit per You subpages and detail screens; physical verification pending.
-- [ ] T1.7.2 Contrast/icon consistency, responsive verification, text scale/accessibility semantics.
-- [ ] T1.7.3 Cross-screen validation and physical recheck.
+**Status:** APP-SIDE COMPLETE / `READY_FOR_PHYSICAL_RECHECK`.
+
+- [x] T1.7.1 SafeArea, keyboard overlap, horizontal clipping and raw technical errors. CROSS-A2-02 is `VERIFIED_BY_SOURCE_TEST`; CROSS-A2-03 is `READY_FOR_PHYSICAL_RECHECK`; CROSS-A2-04 is `VERIFIED_BY_SOURCE_TEST`. Evidence: `f5e4085`.
+- [x] T1.7.2 Bounded responsive/accessibility reconciliation; independently App-fixable rows are closed or explicitly blocked/deferred in the App ledger.
+- [x] T1.7.3 Automated validation: 20 focused tests and 370 full Flutter tests passed; full analyze no issues; diff check pass.
+- [ ] T1.7.4 Consolidated Samsung physical re-audit. `ATTENTION`; no physical verification is claimed.
 
 ## Phase 1 gate
 
-- [ ] D1.1–D1.7 independently implementable work complete or explicitly blocked/deferred.
+- [x] D1.1–D1.7 independently implementable App-side work complete or explicitly blocked/deferred.
 - [ ] Completed recovery surfaces physically rechecked.
 - [ ] No release-critical audit finding lacks canonical status.
 

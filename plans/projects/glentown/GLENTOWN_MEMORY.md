@@ -81,3 +81,14 @@ D1.5 is App-side complete and `READY_FOR_PHYSICAL_RECHECK`, not physically verif
 GlenTown-App `820d0cf20b278827da6b4ff238bd7e0e8b4087cb` closes independently App-fixable D1.6 work. Profile Setup now hides save/skip actions while the IME is open and explains keyboard dismissal before an intentional save or skip; its CTA is `Save profile & continue`. Trust & Verification is customer-facing and truthful: internal terminology, static success-like statuses, and snackbar-only actions were removed. Evidence: 4 focused Profile Setup tests, 370 full Flutter tests, full analyze with no issues, and diff check pass.
 
 D1.6 is App-side complete and `READY_FOR_PHYSICAL_RECHECK`, not physically verified. Calendar/Places/Job Seeker/separate settings IA is `BLOCKED_APP_DOMAIN_CONTRACT`; representative histories/media acceptance is `BLOCKED_BY_DEMO_DATA`; verification status/submission is `BLOCKED_API_CONTRACT`; Samsung You/Profile recheck remains open. Next bounded deliverable: D1.7 Cross-screen/accessibility closure.
+
+## 2026-09-14 — Cross-screen/accessibility closure
+
+**Type:** IMPLEMENTATION / VERIFICATION / CHECKPOINT
+**Status:** CURRENT
+
+Inherited Kilo D1.7 work was preserved and completed at GlenTown-App `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`. Goal Personalization and Financial Planner map customer-visible failures through `CustomerError.action`; Destination tabs scroll; the Explore scoped title is ellipsis-bounded. CROSS-A2-02 and CROSS-A2-04 are `VERIFIED_BY_SOURCE_TEST`; CROSS-A2-03 is `READY_FOR_PHYSICAL_RECHECK`. Evidence: 20 focused tests passed, 370 full Flutter tests passed with zero failures and exit 0, full analyze reported no issues with exit 0, and `git diff --check` passed.
+
+D1.7 independently achievable App work and Phase 1 App-side recovery are complete, not physically verified. Existing API/data/demo/domain blockers remain recorded in the Blocker Register. Next gate: `CONSOLIDATED_SAMSUNG_PHYSICAL_REAUDIT`.
+
+**Documentation Compliance Receipt:** Implementation Plan, Current State, Capability Matrix, Blocker Register, Memory, and the canonical App ledger were reconciled. No CPS files were touched; no physical verification was inferred from automated or source evidence.

@@ -22,3 +22,5 @@
 | PROVINCE_READY | BLOCKED_BY_DEMO_DATA | Nationwide readiness | Thresholds, provenance, rollout/sample evidence |
 
 Close/change a row only with evidence and synchronized dashboard, capability, Current State and Memory updates.
+
+D1.7 App-side reconciliation introduced no new contract blocker and closed no existing API/data/demo dependency. CROSS-A2-02 and CROSS-A2-04 are source-test verified; CROSS-A2-03 and device-dependent accessibility checks proceed to the consolidated Samsung physical re-audit.
