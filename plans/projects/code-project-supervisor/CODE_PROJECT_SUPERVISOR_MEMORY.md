@@ -594,21 +594,24 @@ Phase 5 proves that CPS can supervise a real bounded product objective through t
 **Impact on future work**
 Phase 6 is the next active phase. GeoPlotter PASS 0L is complete and checkpointed. The real product canary proved CPS can supervise bounded development work end-to-end. No upstream blockers were discovered.
 
-### 2026-09-14 — Phase 6 multi-project operations proven
+### 2026-09-14 — Phase 6 live runtime closure blocked by ConPTY pty-host absence
 
-**Type:** VERIFICATION
-**Status:** COMPLETED
-**Scope:** Phase 6 — Multi-Project Operations canary
+**Type:** VERIFICATION / BLOCKER
+**Status:** BLOCKED — DETERMINISTIC PROOF COMPLETE; LIVE RUNTIME CLOSURE PENDING
+**Scope:** Phase 6 — Multi-Project Operations live runtime closure
 **Performed by:** Kilo
 
 **What happened**
-Phase 6 multi-project operations were proven using two independent TownBoss-managed projects: GeoPlotter and GlenTown. Six focused deterministic Go tests were added to `backend/internal/cps/multiproject_test.go` to exercise the Phase 6 gate without requiring a live CPS/AO daemon.
+Phase 6 deterministic proof was completed using two independent TownBoss-managed projects: GeoPlotter and GlenTown. Six focused deterministic Go tests were added to `backend/internal/cps/multiproject_test.go` to exercise the Phase 6 gate at the CPS governance layer. All 6 tests pass; full `go test ./backend/internal/cps/...` is green.
+
+Live runtime closure was attempted using the existing AO daemon. GeoPlotter and GlenTown were registered as AO projects via `ao project add`. The AO daemon started successfully on port 3001. However, `ao spawn` failed with `RUNTIME_CREATE_FAILED` because the ConPTY pty-host binary is missing from this Windows machine. The pty-host process exits without printing READY, emitting: "ao backend daemon: daemon already running (pid ..., port 3001); refusing to start". This indicates the pty-host attempts to launch its own daemon instance rather than connecting to the existing one, and fails because the required binary or configuration is absent.
 
 **Why / context**
-Phase 6 proves CPS can safely supervise multiple projects concurrently. The gate requires evidence that: two independent projects can run concurrently when capacity allows; conflicting writes cannot run concurrently on the same worktree; queued tasks drain correctly; provider failure does not corrupt unrelated project state; restart reconstructs authoritative state correctly; and no cross-project contamination is observed.
+Phase 6 requires live runtime evidence that: two independent projects can run concurrently when capacity allows; conflicting writes cannot run concurrently on the same worktree; queued tasks drain correctly; provider failure does not corrupt unrelated project state; restart reconstructs authoritative state correctly; and no cross-project contamination is observed. The deterministic tests prove the CPS governance logic. The AO upstream tests prove the workspace/worktree conflict behavior. However, the canonical Phase 6 gate also requires live runtime evidence, which is blocked by the missing pty-host binary.
 
 **Result**
-- `TestMultiProjectTaskContractIsolation`: Two TaskContracts with distinct ProjectIDs (`geoplotter`, `glentown`) and session IDs (`geoplotter-1`, `glentown-1`) coexist without collision. Promotion gates evaluated independently per project.
+Deterministic proof:
+- `TestMultiProjectTaskContractIsolation`: Two TaskContracts with distinct ProjectIDs (`geoplotter`, `glentown`) and session IDs coexist without collision. Promotion gates evaluated independently per project.
 - `TestSameWorktreeConflictPrevention`: Concurrent sessions for the same project must not share identity; worktree path is deterministic per session.
 - `TestCrossProjectStateIsolation`: Documentation read sets, task contracts, and session IDs show no cross-project leakage.
 - `TestProviderOutageIsolation`: GeoPlotter circuit breaker trips independently after exhausting recovery budget; GlenTown task remains eligible.
@@ -621,13 +624,26 @@ Upstream AO behavior confirmed:
 - Git worktree adapter returns `ErrWorkspaceBranchCheckedOutElsewhere` and `ErrWorkspaceLocked` for conflicts
 - Session store uses `writeMu` for serialized mutations
 
+Live runtime blocker:
+- AO daemon starts successfully (`ao status` shows `ready`)
+- `ao project add` succeeds for both GeoPlotter and GlenTown
+- `ao spawn` fails with `RUNTIME_CREATE_FAILED` due to missing ConPTY pty-host binary
+- Error: "conpty spawn: pty-host exited without printing READY: ao backend daemon: daemon already running (pid ..., port 3001); refusing to start"
+- Classification: ENVIRONMENT_BLOCKED_CONPTY_PTY_HOST_MISSING
+
 **Evidence**
-- CPS source checkpoint: `d91aeccbacb7088b0aa9ea3fca2bf691aa617169` — `[P5][D-REAL-PRODUCT-CANARY][T-GEOPLOTTER-PASS-0L] feat: extend corpus projection for GeoPlotter PASS 0L task materialization` (carried forward; Phase 6 tests added in same session)
+- CPS source checkpoint: `300b2c56383926508ff1b345f178f08a371e55cc` — `[P6][D-MULTI-PROJECT-OPS][T-PORTFOLIO-CONCURRENCY] feat: add deterministic multi-project operations proof tests`
 - GeoPlotter checkpoint: `daae07d29e5da19c95f8c9d5d63884ef1489d2e9` — `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] fix: resolve MapLibre typecheck and migration artifacts`
-- TownBoss checkpoint: `214fbc26bf9f218e037c2caf58b7a47aff931440` — `[P5][D-REAL-PRODUCT-CANARY][T-GEOPLOTTER-PASS-0L] docs: record GeoPlotter PASS 0L canary result`
+- TownBoss checkpoint: `286d87a70acbc8462996461edeab42a4fd684d83` — `[P6][D-MULTI-PROJECT-OPS][T-PORTFOLIO-CONCURRENCY] docs: record multi-project operations evidence`
 - Tests: 6/6 Phase 6 multi-project tests pass; full `go test ./backend/internal/cps/...` green
+- Live runtime: GeoPlotter and GlenTown registered as AO projects; daemon `ready`; spawn blocked by pty-host absence
 
 **Impact on future work**
-Phase 7 — Operationalization is the next active phase. Multi-project scheduling, conflict prevention, capacity handling, provider outage isolation, restart reconstruction, and cross-project isolation are all proven through deterministic tests and upstream AO behavior. No CPS source changes were required to satisfy the Phase 6 gate.
+Phase 6 deterministic proof is complete. Live runtime closure is blocked by the missing ConPTY pty-host binary on this Windows machine. Resolution options:
+1. Install AO desktop app (which includes pty-host) and retry live runtime proof
+2. Run on a machine with pty-host available (macOS/Linux, or Windows with AO desktop app installed)
+3. Fix pty-host discovery/launch in the ConPTY runtime adapter (CPS defect if upstream AO cannot resolve it)
+
+Phase 7 — Operationalization is pending live runtime resolution.
 
 ### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted

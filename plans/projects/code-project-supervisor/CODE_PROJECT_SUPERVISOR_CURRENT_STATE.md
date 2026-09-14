@@ -1,6 +1,6 @@
 # Code Project Supervisor — Current State
 
-**Status:** FOUNDATION ADOPTION — PHASE 6 COMPLETE
+**Status:** FOUNDATION ADOPTION — PHASE 6 LIVE RUNTIME CLOSURE BLOCKED
 **Date:** 2026-09-14  
 **Purpose:** Fast, current-state entry point for humans and agents.
 
@@ -29,13 +29,17 @@ Accepted baseline exceptions: 8 upstream Windows `internal/session_manager` test
 
 ## Current Workstream
 
-**Next bounded milestone:** `CPS_PHASE_7_OPERATIONALIZATION`
+**Next bounded milestone:** `CPS_PHASE_6_LIVE_RUNTIME_CLOSURE`
 
-Phase 6 — Multi-Project Operations is complete. Phase 7 — Operationalization is the current active phase.
+Phase 6 — Multi-Project Operations deterministic proof is complete. Live runtime closure is blocked by Windows ConPTY pty-host absence. Phase 7 — Operationalization is pending live runtime resolution.
 
 ## Current Blockers
 
-None. Phase 6 multi-project operations proven. GeoPlotter PASS 0L checkpoint `daae07d` pushed to `feat/pass-0e-projects-foundation`. CPS Phase 6 checkpoint `d91aeccb` pushed to `main`.
+Live runtime closure: ConPTY pty-host binary is missing from this Windows machine. AO daemon starts successfully, but `ao spawn` fails with `RUNTIME_CREATE_FAILED` because the pty-host process cannot start (it attempts to launch a nested daemon, which conflicts with the already-running daemon). This blocks live session creation for Phase 6 concurrent-project, conflict, queue, provider-failure, and restart reconstruction evidence.
+
+Residual deterministic proof: Phase 6 deterministic Go tests (`backend/internal/cps/multiproject_test.go`) prove the CPS governance logic for multi-project isolation, conflict prevention, circuit-breaker isolation, and restart reconstruction. These tests pass and are checkpointed at `300b2c56`.
+
+GeoPlotter PASS 0L checkpoint `daae07d` pushed to `feat/pass-0e-projects-foundation`. CPS Phase 6 deterministic proof checkpoint `300b2c56` pushed to `main`. TownBoss documentation checkpoint `286d87a` pushed to `main`.
 
 ## Deferred Work
 

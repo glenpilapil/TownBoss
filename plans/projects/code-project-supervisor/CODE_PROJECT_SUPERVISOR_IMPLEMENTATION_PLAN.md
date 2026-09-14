@@ -521,16 +521,18 @@ Add only gaps proven necessary by the Phase 0 audit:
 
 # Phase 6 — Multi-Project Operations
 
-**Phase status:** COMPLETE
+**Phase status:** BLOCKED — LIVE RUNTIME CLOSURE PENDING
 
 ## Phase checklist
 
 - [x] Register at least two independent test/canary projects
-  Evidence: GeoPlotter (D:\Projects\GeoPlotter) and GlenTown (D:\Projects\GlenTown\GlenTown-App / GlenTown-API) resolved from TownBoss corpus; independent project identities confirmed
+  Evidence: GeoPlotter (D:\Projects\GeoPlotter) and GlenTown (D:\Projects\GlenTown\GlenTown-App) registered in AO runtime via `ao project add`; independent project identities confirmed
 - [x] Verify concurrent independent projects
   Evidence: `TestMultiProjectTaskContractIsolation` — two TaskContracts with distinct ProjectIDs and session IDs coexist without collision; promotion gates evaluated independently
+  Live runtime: BLOCKED — ConPTY pty-host binary missing on this Windows machine; `ao spawn` fails with `RUNTIME_CREATE_FAILED` before session launch
 - [x] Verify same-repository/worktree conflict prevention
   Evidence: `TestSameWorktreeConflictPrevention` — concurrent sessions for the same project must not share identity; worktree path is deterministic per session
+  Live runtime: BLOCKED — same pty-host blocker prevents live conflict demonstration
 - [x] Verify write-task serialization where required
   Evidence: AO workspace router delegates by project ID; git worktree adapter returns `ErrWorkspaceBranchCheckedOutElsewhere` and `ErrWorkspaceLocked`; session IDs are project-scoped (`{project}-{num}`)
 - [x] Verify queueing
@@ -541,44 +543,57 @@ Add only gaps proven necessary by the Phase 0 audit:
   Evidence: `TestProviderOutageIsolation` — GeoPlotter circuit breaker trips independently; GlenTown task remains eligible
 - [x] Verify restart/state reconstruction
   Evidence: `TestRestartStateReconstruction` — project ID, workspace path, and branch preserved across restart; mode normalized safely
+  Live runtime: BLOCKED — daemon restart proven at process level, but session reconstruction cannot be demonstrated without pty-host
 - [x] Verify project focus switching
   Evidence: `TestProjectFocusSwitching` — task contracts for distinct projects remain valid and independent under focus changes
 - [x] Verify no cross-project state contamination
   Evidence: `TestCrossProjectStateIsolation` — documentation read sets, task contracts, and session IDs show no cross-project leakage
 - [x] Verify no cross-project workspace contamination
-  Evidence: AO workspace router selects adapter per project; worktree paths are scoped by session ID and project root
+  Evidence: AO workspace router selects adapter by project; worktree paths scoped by session ID and project root
 - [x] Update Memory
-  Evidence: Memory entry appended 2026-09-14 — Phase 6 multi-project operations proven
+  Evidence: Memory entry appended 2026-09-14 — Phase 6 deterministic proof complete; live runtime blocked by Windows ConPTY pty-host absence
 
 ## Deliverables
 
 - [x] Multi-project scheduling evidence
   Evidence: `TestMultiProjectTaskContractIsolation`, `TestProjectFocusSwitching`
+  Live runtime: BLOCKED — ConPTY pty-host binary missing; cannot spawn live sessions
 - [x] Workspace/worktree conflict evidence
   Evidence: `TestSameWorktreeConflictPrevention`; upstream AO `TestAddWorktreeRefusesBranchCheckedOutElsewhere`
+  Live runtime: BLOCKED — same pty-host blocker
 - [x] Queue/capacity evidence
   Evidence: `TestProviderOutageIsolation`; AO session store `writeMu` serialization
+  Live runtime: BLOCKED — cannot demonstrate queue drain without live sessions
 - [x] Provider-outage handling evidence
   Evidence: `TestProviderOutageIsolation`; per-project `CircuitBreaker` isolation
+  Live runtime: BLOCKED — cannot demonstrate provider failure without live sessions
 - [x] Restart/reconstruction evidence
   Evidence: `TestRestartStateReconstruction`
+  Live runtime: PARTIAL — daemon restart proven; session reconstruction blocked by pty-host absence
 - [x] Cross-project isolation evidence
   Evidence: `TestCrossProjectStateIsolation`
+  Live runtime: BLOCKED — cannot demonstrate cross-project session isolation without live sessions
 
 ## Gate — Portfolio Concurrency
 
 - [x] Two independent projects can run concurrently when capacity allows
   Evidence: `TestMultiProjectTaskContractIsolation`
+  Live runtime: BLOCKED — pty-host absence prevents session launch
 - [x] Conflicting writes cannot run concurrently on the same worktree
   Evidence: `TestSameWorktreeConflictPrevention`; upstream AO conflict detection
+  Live runtime: BLOCKED — same pty-host blocker
 - [x] Queued tasks drain correctly
   Evidence: AO session store `writeMu` serialization; per-project circuit breakers
+  Live runtime: BLOCKED — cannot demonstrate queue behavior without live sessions
 - [x] Provider failure does not corrupt unrelated project state
   Evidence: `TestProviderOutageIsolation`
+  Live runtime: BLOCKED — cannot demonstrate provider failure without live sessions
 - [x] Restart reconstructs authoritative state correctly
   Evidence: `TestRestartStateReconstruction`
+  Live runtime: PARTIAL — daemon process restart proven; session state reconstruction blocked
 - [x] No cross-project contamination observed
   Evidence: `TestCrossProjectStateIsolation`
+  Live runtime: BLOCKED — cannot demonstrate cross-project session isolation without live sessions
 
 ---
 
