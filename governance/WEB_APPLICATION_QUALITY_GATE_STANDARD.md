@@ -149,18 +149,79 @@ Small or single-instance systems may mark specific infrastructure controls `NOT_
 - dependency/security checks required by project policy pass;
 - public forms and APIs have appropriate abuse controls before production exposure.
 
-## 11. Gate J — mobile responsiveness and accessibility
+## 11. Gate J — responsive design and accessibility
 
-- responsive layouts are verified at representative mobile, tablet, laptop and desktop widths;
+Accessibility is a release gate, not a polish item. TownBoss web products should target WCAG 2.2 AA for applicable public and application surfaces unless a stricter project or regulatory standard applies.
+
+### Keyboard-only operability
+
+A user must be able to operate the complete release-critical web experience using a keyboard alone, without requiring a mouse, touch input, pointer, hover-only interaction, or cursor-based gesture.
+
+Acceptance requires:
+
+- all interactive elements are reachable by keyboard;
+- logical tab order follows the visual/task order;
+- `Tab` and `Shift+Tab` move predictably through focusable controls;
+- `Enter` and/or `Space` activate controls according to native platform semantics;
+- arrow-key behavior is implemented where expected for menus, tabs, radio groups, listboxes, comboboxes and similar composite widgets;
+- no keyboard trap exists except an intentional temporary focus trap inside an active modal/dialog, and that trap releases correctly on close;
+- visible focus indicators are always available and are not removed without an accessible replacement;
+- focus is not lost or reset unexpectedly after navigation, validation, async updates, modal open/close, item creation/deletion, pagination, or route transitions;
+- dialogs move focus into the dialog, keep focus inside while active where appropriate, support `Escape` when dismissal is allowed, and restore focus to the invoking control after close;
+- dropdowns, popovers, menus, accordions, tabs, carousels, lightboxes and custom widgets have complete keyboard interaction, not only click handlers;
+- skip navigation / skip-to-main-content is available where repeated navigation would otherwise create a substantial keyboard burden;
+- hover-only content has a keyboard/focus equivalent;
+- drag-and-drop or pointer gestures have a keyboard-accessible alternative where they are required to complete a task;
+- all release-critical flows can be completed from start to finish with keyboard-only input.
+
+A release candidate fails this gate if a user becomes blocked from a release-critical feature because a mouse, cursor, touch gesture, or pointer hover is required.
+
+### Semantic and assistive-technology accessibility
+
+- semantic HTML/native controls are preferred over custom role emulation;
+- page regions use meaningful landmarks such as header, nav, main, aside and footer where appropriate;
+- heading hierarchy communicates document structure correctly;
+- controls have accessible names, labels and descriptions;
+- form fields have persistent labels or an equivalent accessible association;
+- validation errors identify the affected field, explain the problem and are programmatically associated with the control;
+- status changes, async completion, loading, errors and important dynamic updates are exposed to assistive technology when needed;
+- ARIA is used only when native semantics are insufficient and must not conflict with native semantics;
+- meaningful images/media have accessible alternatives; decorative media is hidden from assistive technology appropriately;
+- tables, lists and data structures use correct semantics;
+- icon-only buttons have accessible names;
+- link/button purpose is understandable from accessible name and context;
+- screen-reader reading order matches the intended content/task order;
+- authentication, checkout, booking, submission and other critical flows do not depend on sensory cues alone.
+
+### Visual and interaction accessibility
+
+- color contrast meets applicable WCAG AA expectations for text and meaningful UI boundaries/states;
+- information is not conveyed by color alone;
+- focus state is visually distinguishable from hover/active states;
+- text can scale/zoom without hiding content or controls or forcing two-dimensional scrolling except where intrinsically necessary;
+- layouts remain usable at representative mobile, tablet, laptop and desktop widths;
 - no unintended horizontal overflow;
-- primary navigation and actions remain usable on touch/mobile;
-- semantic landmarks and heading hierarchy are correct;
-- keyboard navigation works for interactive controls;
-- visible focus states are preserved;
-- color contrast is acceptable;
-- meaningful media has accessible text alternatives;
-- reduced-motion preferences are respected where animation is material;
-- dialogs, menus, dropdowns and overlays satisfy focus/escape behavior appropriate to the component.
+- touch targets are reasonably sized and spaced for mobile use;
+- reduced-motion preferences are respected where animation/motion is material;
+- flashing/strobing content that can create seizure risk is not used;
+- animations, carousels, auto-advancing content or time-based interactions provide appropriate pause/stop/control behavior where required;
+- orientation is not unnecessarily locked;
+- content remains understandable when custom styling fails or assistive modes modify presentation.
+
+### Accessibility evidence
+
+Before release, evidence must include both automated and human/manual checks where applicable:
+
+- automated accessibility scan using the project's approved tooling;
+- keyboard-only walkthrough of every release-critical user journey;
+- focus-order/focus-visibility inspection;
+- dialog/menu/dropdown/custom-widget keyboard verification;
+- representative screen-reader or accessibility-tree inspection for critical flows when applicable;
+- zoom/reflow and responsive review;
+- contrast review;
+- reduced-motion verification for motion-heavy surfaces.
+
+Automated accessibility tooling is supporting evidence only. A green automated scan does not prove keyboard completeness, screen-reader usability or accessible task completion.
 
 ## 12. Gate K — production cleanliness
 
@@ -184,6 +245,9 @@ A web release candidate must attach evidence appropriate to its route and archit
 - sitemap and robots validation for SEO-facing products;
 - image/alt-text review;
 - responsive/browser visual evidence;
+- keyboard-only end-to-end accessibility evidence for release-critical flows;
+- focus-order/focus-visibility and interactive-widget accessibility evidence;
+- automated accessibility scan plus required manual accessibility review;
 - production build evidence;
 - bundle/dependency review where relevant;
 - Core Web Vitals/Lighthouse/Web Vitals evidence for public critical pages where available;
@@ -201,7 +265,9 @@ Unless explicitly approved as a bounded exception, the following block `RELEASE_
 - accidental `noindex` or crawl blocking on intended public pages;
 - missing/invalid canonical handling that creates known duplicate-indexing risk;
 - missing sitemap/robots on a public SEO site where required;
-- severe accessibility/mobile breakage;
+- any release-critical journey that cannot be completed keyboard-only;
+- keyboard traps, invisible focus, unreachable controls or pointer-only release-critical interactions;
+- severe screen-reader/semantic, contrast, reflow, reduced-motion or responsive accessibility failure;
 - known N+1 query behavior on a release-critical path;
 - unbounded large-list/API behavior on a release-critical path;
 - material Core Web Vitals regression without accepted justification;
@@ -220,12 +286,13 @@ Before checkpoint/release promotion it must:
 1. determine which gates apply;
 2. run or request the required deterministic checks;
 3. record `PASS`, `FAIL`, or justified `NOT_APPLICABLE` for each gate family;
-4. prevent worker prose from overriding failed evidence;
-5. require human visual/browser review where user experience is material;
-6. refuse `RELEASE_READY` while release-blocking failures remain unresolved.
+4. require a keyboard-only walkthrough of all release-critical web journeys and record evidence;
+5. prevent worker prose or automated accessibility scans from overriding failed manual accessibility evidence;
+6. require human visual/browser/accessibility review where user experience is material;
+7. refuse `RELEASE_READY` while release-blocking failures remain unresolved.
 
 ## 16. Relationship to project-specific standards
 
-Project-specific acceptance criteria may add stricter requirements such as SEO route taxonomies, business-specific structured data, government-compliance checks, commerce performance thresholds or browser/device matrices.
+Project-specific acceptance criteria may add stricter requirements such as SEO route taxonomies, business-specific structured data, government-compliance checks, commerce performance thresholds or browser/device/accessibility matrices.
 
 They may not silently remove portfolio-wide requirements. Any weakening requires a documented, operator-approved exception with scope and review/expiry condition.
