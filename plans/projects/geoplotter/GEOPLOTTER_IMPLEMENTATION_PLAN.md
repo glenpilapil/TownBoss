@@ -20,7 +20,9 @@
 - [x] PASS 0I — audited inventory lifecycle implemented.
 - [x] PASS 0J — listing/publication foundation accepted (`da5604d`, closure `d991535`).
 - [x] PASS 0K — buyer requirements + deterministic matching implemented (`7ce0926`).
-- [ ] ⏳ PASS 0L — interactive project + lot map foundation is active.
+- [x] PASS 0L — interactive project + lot map foundation accepted (`7b676f3`).
+- [x] PASS 0M-PREP — structured technical-description plotting reconnaissance accepted.
+- [ ] PASS 0M-A — structured technical-description plotting contract is the next eligible implementation slice; not started.
 - [ ] Canonical/default-branch integration of later active-lineage work reconciled.
 - [ ] End-to-end operational acceptance complete.
 - [ ] Physical + visual final gate complete.
@@ -81,11 +83,16 @@ GeoPlotter is the authoritative geospatial real-estate and development-project p
 **Status:** `[x] ACCEPTED`  
 **Objective:** PostGIS/SpatialRecord -> map projection API -> MapLibre -> selectable lot UI.  
 **Required gate:** real backend projection + real API + frontend MapLibre; frontend-only mock is insufficient.  
-**Evidence:** implementation `d15a15d`; 17/17 map HTTP boundary tests pass; backend route `apps/web/src/app/api/projects/[projectId]/map/route.ts` returns authenticated spatial data; MapLibre frontend displays selectable lots.  
+**Checkpoint:** `7b676f3` (`[P0L][D-MAP-INTEGRATION][T-PASS-0L]`).
+**Evidence:** 176/176 tests across 13 files; TypeScript pass; ESLint pass (0 errors; 6 pre-existing warnings); production build pass (14 routes); migration coherence pass on `geoplotter` and `geoplotter_test`; `git diff --check` pass; clean GeoPlotter worktree. The accepted foundation links `SpatialRecord` to lot subjects; supplies a tenant-safe canonical GeoJSON project-map API; renders project/lot geometry in MapLibre; exposes inventory-status visualization, lot selection, selected-lot context, provenance/validation projection, and loading/empty/error handling.
 **Deferred:** cadastral overlays, hazards, elevation, parcel drawing/editing, vertical floor selector, 2.5D/3D.
 
-### PASS 0M — Parcel / technical-description plotting
-**Status:** `[ ]`  
+### PASS 0M-PREP — Structured technical-description plotting reconnaissance
+**Status:** `[x] ACCEPTED`
+**Outcome:** scope and pipeline are bounded: structured/manual technical description -> deterministic traverse computation -> closure/validation -> candidate polygon -> review -> `SpatialRecord`/PostGIS -> PASS 0L map rendering. OCR/document ingestion and extraction/review remain PASS 0N scope.
+
+### PASS 0M-A — Structured technical-description plotting contract
+**Status:** `[ ] NEXT ELIGIBLE IMPLEMENTATION SLICE; PASS 0M NOT STARTED`
 **Objective:** technical description -> bearing/distance parsing -> traverse -> closure/misclosure -> polygon -> SpatialRecord -> map.  
 **Gate:** geometry provenance, CRS handling, closure evidence, uncertainty surfaced; no survey-authority overclaim.
 

@@ -85,3 +85,17 @@ PASS 0M — parcel and technical-description plotting. Canonical/default-branch 
 
 ### Current handoff
 PASS 0L is complete. After PASS 0L acceptance, current orchestration priority is PASS 0M parcel/technical-description plotting unless new evidence changes dependencies. Canonical/default-branch reconciliation remains a separate portfolio gate.
+
+### 2026-09-14 — PASS 0L documentation closeout accepted
+**Type:** CHECKPOINT / DOCUMENTATION
+**Status:** COMPLETED
+
+PASS 0L — Interactive Project + Lot Map Foundation is accepted at implementation-checkpoint level on GeoPlotter branch `feat/pass-0e-projects-foundation`, checkpoint `7b676f3305d50bab03e8ddf7b35c0460d743ea5f`.
+
+**Validated checkpoint evidence**
+- GeoPlotter worktree clean; `git diff --check` passed.
+- Full tests: 176/176 across 13 test files; TypeScript passed; ESLint passed with 0 errors and 6 pre-existing warnings; Next.js production build passed with 14 routes.
+- Migration coherence passed for `geoplotter` and `geoplotter_test`; the migration journal is coherent.
+- The accepted MapLibre foundation includes `SpatialRecord` lot-subject linkage, tenant-safe canonical GeoJSON projection, project/lot rendering, inventory-status visualization, lot selection and selected-lot context, provenance/validation projection, and loading/empty/error handling.
+
+PASS 0M-PREP structured/manual technical-description plotting reconnaissance is complete. Its bounded pipeline is structured traverse -> deterministic computation -> closure/validation -> candidate polygon -> review -> `SpatialRecord`/PostGIS -> PASS 0L rendering. OCR/document ingestion and extraction/review remain PASS 0N. PASS 0M has not begun; PASS 0M-A — Structured Technical-Description Plotting Contract is the next eligible implementation slice.
