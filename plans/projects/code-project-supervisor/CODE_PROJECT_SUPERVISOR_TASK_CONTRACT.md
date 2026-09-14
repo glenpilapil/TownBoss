@@ -31,6 +31,7 @@ Every substantial task must define:
 18. **Memory update requirement** — durable knowledge that must be recorded.
 19. **Checkpoint policy** — expected commit/PR/checkpoint shape, including canonical phase/deliverable/task identifiers.
 20. **Final report contract** — required evidence, Documentation Compliance Receipt, and checkpoint-commit receipt.
+21. **Source-integrity / safe-edit policy** — for applicable web/structured-source work, the task must inherit `governance/WEB_SOURCE_INTEGRITY_AND_SAFE_EDIT_GATE.md`, identify any allowed whole-file/generated transformations, and prohibit unsafe blanket source replacement unless explicitly justified and reviewed.
 
 ## Task Lifecycle
 
@@ -66,6 +67,23 @@ If execution uncovers work outside the contract:
 - if not required, propose a future task;
 - if required and it materially changes scope or risk, amend the task contract before continuing.
 
+## Web / Structured-Source Safe-Edit Rule
+
+For applicable web tasks, the worker must follow `governance/WEB_SOURCE_INTEGRITY_AND_SAFE_EDIT_GATE.md` throughout execution.
+
+At minimum:
+
+- inspect a structured source file before materially editing it;
+- prefer bounded edits;
+- do not perform recursive/file-tree text replacement that can alter syntax or semantics unless the task contract explicitly authorizes and validates the transformation;
+- immediately review unexpected large diffs or whole-file churn;
+- validate parser/type integrity after material structural JSX/TSX edits before continuing across additional structural files;
+- treat earlier lint/typecheck/test/build output as stale after a later material source edit;
+- recheck transient dev-server parse errors against the final saved file before classifying them as defects or dismissing them;
+- include source-integrity evidence in the final report.
+
+A source-integrity failure blocks `VERIFIED` and `CHECKPOINTED` until repaired or explicitly excepted by the operator.
+
 ## Documentation Compliance Receipt
 
 Every substantial final report must state:
@@ -91,6 +109,8 @@ Every final report for a write-capable task that produced changes must state:
 - branch;
 - exact committed file scope;
 - validation evidence associated with the checkpoint;
+- source-integrity/safe-edit receipt when applicable;
+- confirmation that final validation evidence postdates the final material edit;
 - post-commit `git status`;
 - push status.
 
