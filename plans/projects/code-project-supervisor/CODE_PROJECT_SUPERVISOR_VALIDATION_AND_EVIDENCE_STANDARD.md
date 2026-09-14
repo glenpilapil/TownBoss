@@ -16,6 +16,7 @@
 9. **Independent review evidence** — separate reviewer findings and disposition.
 10. **Checkpoint evidence** — coherent commit/PR/checkpoint tied to the verified state.
 11. **Documentation evidence** — canonical documents and Memory reconciled with implementation.
+12. **Web quality evidence** — SEO/indexability, metadata, links, media, Core Web Vitals, accessibility/responsiveness, frontend performance, API/database efficiency, HTTPS/security and deployment-delivery evidence required by `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md`.
 
 ## Promotion Rules
 
@@ -51,6 +52,37 @@ Requires explicit human authorization, R3 evidence, production/deployment safegu
 - Tests must not be weakened merely to produce green status.
 - Manual evidence should be used only where automation is inadequate or where human visual/operational acceptance is inherently required.
 - Unresolved contradictions between documentation, tests, and implementation block VERIFIED status.
+- For web projects, validation captured before the final material source edit is stale for release/checkpoint promotion.
+- A green lint/typecheck/test/build suite does not substitute for applicable web-quality evidence.
+
+## Mandatory Web Project Validation Profile
+
+For any website, web application, web portal, PWA or browser-delivered product, Code Project Supervisor must inherit `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md` and classify each gate family as `PASS`, `FAIL`, or justified `NOT_APPLICABLE`.
+
+At minimum, verify where applicable:
+
+- intended public routes are not accidentally `noindex`;
+- private/staging routes are intentionally excluded from indexing;
+- unique meta titles and useful meta descriptions;
+- canonical tags/URLs;
+- exactly one primary `h1` per page unless a documented exception applies;
+- clean URL slugs and useful internal links;
+- Open Graph metadata including `og:image` for shareable public pages;
+- truthful schema markup where supported/applicable;
+- valid sitemap and robots behavior for public SEO-facing products;
+- no broken critical links or CTAs;
+- meaningful image alt text and optimized/compressed media;
+- representative Core Web Vitals/performance evidence;
+- mobile responsiveness and accessibility;
+- production minification, code splitting, lazy loading and non-critical script deferral where appropriate;
+- unnecessary re-render and unused-dependency review;
+- API caching/payload efficiency where safe;
+- database indexing, pagination/bounded lists and no known N+1 query behavior on release-critical paths;
+- expensive-query/server-side caching where safe and justified;
+- CDN, load-balancing and database connection pooling applicability based on deployment scale/architecture;
+- HTTPS, transport security, security headers/secrets/form abuse controls as appropriate.
+
+Release-critical failures in this profile block `VERIFIED`/`RELEASE_READY` unless an explicit operator-approved exception exists.
 
 ## Final Verification Checklist
 
@@ -59,6 +91,7 @@ Before final report/checkpoint:
 - Confirm target repo/worktree/branch/HEAD.
 - Review diff and unrelated changes.
 - Run required validation profile.
+- For web projects, run the mandatory web application quality gate and record PASS/FAIL/NOT_APPLICABLE evidence.
 - Confirm no prohibited scope was introduced.
 - Resolve or explicitly classify failures.
 - Perform required independent review.
