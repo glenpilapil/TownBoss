@@ -1,122 +1,187 @@
 # GlenTown App Site Current State
 
-**Status date:** 2026-09-13  
-**Overall:** IMPLEMENTED foundation / active visual redesign / NOT visually accepted
+**Status date:** 2026-09-14  
+**Overall:** IMPLEMENTED FOUNDATION / MULTI-PAGE IA RECONCILIATION APPROVED / HUMAN VISUAL AUDIT OPEN
 
 ## Repository
 
 - Implementation repo: `glenpilapil/GlenTown-App-Site`
 - Local path: `D:\Projects\GlenTown\GlenTown-App-Site`
-- Current visual-work branch reported in development: `feat/pass-3-visual-art-direction`
-- Current Pass 3 working tree: intentionally dirty/uncommitted during visual audit.
-- TownBoss documentation reconciliation: COMPLETE.
-- Repository-local Pass 3 documentation reconciliation: PENDING.
+- Latest verified implementation checkpoint reported: `723264018a7b15721b9de95ab5e281bb9da1f910`
+- Branch: `feat/v1-typography-hero`
+- Local/remote checkpoint equality was verified before the current documentation reconciliation.
+- Engineering validation at that checkpoint: lint PASS, typecheck PASS, tests 13/13 PASS, build PASS, `git diff --check` PASS.
+- Physical/human visual audit remains OPEN.
 
-## Engineering Baseline
+## Current Strategic Change
 
-Implemented and repeatedly validated during earlier passes:
+The one-page-only experiment is superseded.
 
-- Next.js 16 App Router project
-- Tailwind CSS 4
-- TypeScript
-- ESLint
-- typecheck script
-- node:test/tsx test suite
-- Webpack local dev/build workaround for Windows Application Control blocking native SWC
-- `/`, `/features`, `/download`, `/beta`
-- sitemap/robots/metadata foundation
-- release-aware CTA configuration
-- System/Light/Dark theme control
-- official GlenTown PNG branding copied locally
-- official platform marks
-- screenshot/content configuration
+Approved site architecture is now a connected multi-page product website:
 
-Recent reported validation before template-led recovery:
+- Home — narrative + concise summaries
+- Features — complete capability hub
+- For Tourists
+- For Residents
+- For Organizations
+- For Developers
+- Beta
+- Download
 
-- lint: PASS
-- typecheck: PASS
-- tests: 13/13 PASS
-- production build: PASS
-- core routes: HTTP 200 in development
+The change responds to the fact that GlenTown genuinely spans multiple connected domains; the website should reveal that breadth through clear routes and shared navigation rather than compressing all detail into one very long page.
 
-These results establish engineering viability only. They do not establish visual acceptance.
+## Header / Navigation Decision
 
-## Visual Status
+Restore a global Header with:
 
-**Visual gate: FAIL / redesign in progress.**
+`Logo | Home | Features ▾ | Beta | Download | Open Web App | Theme`
 
-Material findings from human visual review:
+Features submenu:
 
-- early marketing composition remained too black/heavy in dark mode;
-- theme control worked, but initial Pass 2 produced insufficient visual improvement;
-- active navigation required an underline rather than a dot;
-- `A Closer Look Inside` needed genuine horizontal scrolling;
-- initial generic device frames were visually poor;
-- Samsung Galaxy A55-inspired frame selected;
-- screenshot corner geometry must drive frame treatment rather than aggressive screenshot clipping;
-- random multi-phone angles looked uncomposed;
-- passive phone hover movement added no value;
-- custom AI-created hero collage produced an unacceptable result with image strips, disconnected fragments, excessive orbit/route decoration, and poor visual hierarchy;
-- site still lacked the artistic richness, flow, and media variety of selected premium references.
+- For Tourists
+- For Residents
+- For Organizations
+- For Developers
 
-## Recovery Direction
+Theme controls move from Footer back to Header.
 
-The project has moved to **template-led controlled hybrid** design.
+Hero CTA becomes:
 
-Evaluated references:
+- Join the Beta
+- Learn More
 
-1. `bohd4nx/app-landing`
-   - useful for typography, one-page restraint, screenshot gallery/lightbox mechanics, FAQ structure;
-   - rejected as sole visual authority because hero/art direction is too minimal.
+`Open Web App` returns to Header as a persistent utility action.
 
-2. `sofiyevsr/mobile-app-landing-template`
-   - useful for media diversity, device-led hero composition, photography splits, SVG/background transitions, scroll-effect concept;
-   - typography rejected for GlenTown;
-   - desktop 300vh scroll binding rejected because of wheel friction.
+## Public Terminology
 
-Premium benchmarks retained: Prooland, Allon, Appilo demos.
+- Public marketing uses `Digital Town`.
+- Do not use `DTOS` / `Digital Town Operating System` in public App Site copy.
+- Current Explore labels:
+  - Products
+  - Foods
+  - Services
+  - Tourism
+  - Events
+  - Jobs
+  - Properties
+  - Suppliers
+  - Directory
+- `Achieve` remains the approved public name.
 
-## Current Approved Design Strategy
+## Digital Town Scope Correction
 
-Controlled hybrid:
+The Digital Town must not be reduced to orchestration/planners.
 
-- typography / one-page restraint: bohd4nx
-- hero composition pattern: Sofiyev, adapted
-- lifestyle photography integration: Sofiyev-style 50/50 splits, adapted with GlenTown photography
-- screenshot gallery/lightbox: bohd4nx pattern
-- premium visual benchmark: Prooland / Allon / Appilo
-- product truth, content, branding, release behavior: GlenTown
-- scroll effect: preserve the desirable cinematic settling concept but replace the friction-heavy 300vh behavior with accessible visual waypoints
+Current documentation now requires representation, where truthful, of:
 
-## Documentation Reconciliation Status
+- Community / participation / messaging
+- Explore categories / local economy / transactions
+- Trust & Verification / reviews / reputation
+- Personal Timeline
+- private Diary
+- Memory Albums
+- Day Planner
+- Trip Planner
+- Event Planner
+- Financial Planner
+- Achieve
+- business organizations and business participation
+- government/civic-service integration
+- shared platform/developer integration capabilities
 
-Completed in TownBoss:
+Timeline/Diary/Memory privacy distinctions must remain accurate.
 
-- parent `APP_GLENTOWN_COM.md` updated from `READY TO START` to evidence-backed implementation-in-progress / visual-recovery status;
-- dedicated reconciliation record added;
-- implementation-plan V0 updated to distinguish TownBoss reconciliation from repository-local reconciliation.
+## Government / Civic Services
 
-Still required locally before coding:
+Government-service interoperability is now an explicit App Site requirement.
 
-- preserve/inspect the exact dirty Pass 3 worktree;
-- update local `README.md` and `docs/APP_SITE_ARCHITECTURE.md` from that authoritative state;
-- capture exact HEAD/status/diff evidence;
-- rerun engineering validation.
+Public content should explain that GlenTown can progressively connect users to authoritative government information/services and help with requirements, planning, verification, messaging, payments/reporting where authorized.
+
+Government systems remain authoritative. Planned or approved DICT eGov integrations must not be represented as government endorsement or as already live without evidence.
+
+## Audience Pages / Story Requirement
+
+Every Features audience page must include an audience-specific story showing connected capabilities in practice.
+
+Approved story directions:
+
+### Tourists
+
+`Discover Palawan -> Build your trip -> Book and coordinate -> Experience locally -> Keep the memories`
+
+### Residents
+
+`See what's happening -> Find what you need -> Get it done -> Stay connected -> Keep your story`
+
+### Organizations
+
+Business organizations are the primary marketing focus.
+
+`Establish your presence -> Get discovered -> Receive an inquiry/order/booking -> Serve and communicate -> Build reputation -> Grow operations`
+
+### Developers
+
+`Register interest -> Approved access when available -> Use shared capabilities -> Build a specialized experience -> Respect domain authority`
+
+Developer/partner registration interest uses an accessible modal rather than a dedicated form page.
+
+## Geography / Beta Decision
+
+Public pilot language is updated:
+
+- Palawan is the Day-1 supported pilot province.
+- Puerto Princesa is the deepest initial concentration / operational-density market.
+- Other Palawan locations may be supported from Day 1, while feature depth and local supply vary by readiness.
+- Nationwide access/registration and selected capabilities may coexist with staged local depth.
+
+Beta must include a Survey Forms / `Help shape GlenTown` section using only current authoritative form URLs.
+
+## Download Decision
+
+Download must cover:
+
+- Android
+- iOS
+- Windows
+- Web
+
+Windows is roadmap/in-development until a real authoritative package/distribution source exists.
+
+No false Windows download button is permitted.
+
+## Documentation Status
+
+TownBoss App Site planning package updated on 2026-09-14 to reflect the new IA and UI/UX requirements:
+
+- Implementation Plan — updated
+- Product Specification — updated
+- Decisions and Rules — updated
+- Acceptance Criteria — updated
+- Architecture — updated
+- Current State — updated
+
+Parent `APP_GLENTOWN_COM.md` and project Memory should also remain aligned with these decisions.
 
 ## Immediate Next Gate
 
-Before broad homepage implementation:
+Before implementation resumes:
 
-1. preserve and inspect the dirty local Pass 3 working tree without destructive Git operations;
-2. reconcile repository-local docs;
-3. capture exact local baseline and rerun engineering checks;
-4. implement typography/foundation + hero only using named reference authorities;
-5. perform human visual audit;
-6. do not continue to subsequent sections until hero visual gate passes.
+1. reconcile repository-local documentation with the updated TownBoss package;
+2. implement the shared Header/navigation/theme relocation;
+3. recompose Home to story + summaries;
+4. restore/build dedicated Features/Beta/Download routes and new audience routes;
+5. implement audience story sections;
+6. implement developer-interest modal;
+7. reconcile Palawan/Survey/Windows release presentation;
+8. run full engineering validation;
+9. perform human desktop/tablet/mobile visual audit against `GLENTOWN_APP_SITE_IMPLEMENTATION_PLAN.md` and `GLENTOWN_APP_SITE_ACCEPTANCE_CRITERIA.md`;
+10. do not claim UI/UX acceptance until the cross-check passes.
 
 ## Blockers / Attention
 
-- No approved production app-store URLs should be invented.
-- Current screenshots are usable as temporary verified app imagery but are expected to be refreshed later.
-- Framer Motion adoption remains a bounded implementation decision, not yet automatically approved as a dependency.
-- Pass 3 uncommitted work must be preserved/reconciled before a new implementation branch/checkpoint is created.
+- Current survey URLs must be verified before public rendering.
+- Current minimum OS requirement strings remain release-verification items.
+- Windows must remain non-downloadable until authoritative distribution exists.
+- Government integration claims require implementation/access evidence.
+- Current screenshots remain replaceable and should be disregarded as structural authority during the next visual audit.
+- Do not fabricate social proof, app-store availability, partner status, government endorsement, API availability, or rollout density.
