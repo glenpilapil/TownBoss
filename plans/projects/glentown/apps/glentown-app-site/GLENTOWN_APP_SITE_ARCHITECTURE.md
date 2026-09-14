@@ -1,6 +1,6 @@
 # GlenTown App Site Architecture
 
-**Status:** ACTIVE BASELINE
+**Status:** ACTIVE BASELINE / MULTI-PAGE IA APPROVED
 
 ## 1. Technical Baseline
 
@@ -15,121 +15,235 @@ Current baseline:
 - npm
 - `next-themes` for System / Light / Dark behavior
 - `lucide-react` for generic UI icons
-- official Apple/Android marks for platform identity
-- `node:test` with `tsx` for lightweight logic tests
+- node:test with `tsx` for lightweight logic tests
 - Webpack-backed local dev/build scripts on the current Windows workstation because native SWC is blocked by Application Control
 
 ## 2. Architectural Principles
 
 - SEO-first, server/static-renderable public site.
 - Static-first content where possible.
-- Marketing pages must not require GlenTown API availability to render.
+- Marketing pages must not require GlenTown operational API availability to render.
 - Release-state behavior is centrally configured.
 - Content and presentation are separated where practical.
 - Brand/media assets are local production assets; runtime paths must not depend on neighboring repositories.
-- No secrets in client-exposed environment variables or static assets.
+- No secrets in client-exposed variables or static assets.
+- Home is narrative; deeper capability content belongs on focused routes.
+- The site must feel like one connected GlenTown product website rather than unrelated microsites.
 
-## 3. Deployment Boundary
+## 3. Route Architecture
 
-Production target remains `app.glentown.com`.
+Approved primary routes:
 
-Documented direction:
+- `/`
+- `/features`
+- `/features/tourists`
+- `/features/residents`
+- `/features/organizations`
+- `/features/developers`
+- `/beta`
+- `/download`
 
-- DigitalOcean App Platform for hosting/application deployment.
-- Cloudflare for DNS/CDN/WAF/origin-protection policy consistent with TownBoss standards.
+Do not create a standalone developer-interest registration route unless a later explicit requirement supersedes the modal decision.
 
-Infrastructure implementation is a separate deployment-readiness concern and must not be inferred as complete from architecture documentation.
+Legacy redirects must be intentional and must not redirect active dedicated routes back into Home after the multi-page architecture is implemented.
 
-## 4. Relationship to Other Surfaces
+## 4. Shared Site Shell
 
-- `glentown.com` — consumer GlenTown web experience.
+### Header
+
+Approved desktop structure:
+
+`Logo | Home | Features ▾ | Beta | Download | Open Web App | Theme`
+
+Architecture requirements:
+
+- shared Header component mounted consistently across public routes;
+- Features parent item links to `/features` and exposes accessible submenu routes;
+- desktop active-route semantics include `aria-current` and underline treatment;
+- `Open Web App` uses the authoritative Web destination;
+- theme selector is hosted in Header and persisted through `next-themes`;
+- mobile navigation uses accessible expandable/collapsible behavior;
+- sticky/header-scroll visual treatment must not change route/content semantics.
+
+### Footer
+
+Footer does not own theme selection.
+
+It may expose Product, Features audience links, GlenTown Web, Help, Privacy, and Terms only when destinations are authoritative.
+
+## 5. Relationship to Other Surfaces
+
+- `glentown.com` — consumer GlenTown Web experience.
 - `help.glentown.com` — support and troubleshooting.
 - `api.glentown.com` — no hard dependency for core public rendering.
-- `biz.glentown.com` — business destination when relevant.
-- `dev.glentown.com` — developer/integration documentation.
+- `biz.glentown.com` — business destination where relevant.
+- `dev.glentown.com` — deeper developer/integration documentation where available.
 
-## 5. Release Configuration
+The App Site may explain platform/developer concepts without becoming the full developer documentation portal.
 
-The repository currently models platform release state through typed configuration sourced from environment variables. Current implementation states include `coming_soon`, `beta`, and `available`, with separate optional download/Beta URLs.
+## 6. Content Architecture
 
-CTA behavior must remain fail-safe:
+### Home
 
-- coming soon -> non-actionable status;
-- beta + authoritative URL -> Beta CTA;
-- beta without URL -> informational/fallback behavior appropriate to route context;
-- available + authoritative URL -> download CTA;
-- available without URL -> non-actionable missing-link state.
+Home should compose narrative sections and summaries, not duplicate all detailed capability data.
 
-Do not hard-code invented store URLs.
+### Features Overview
 
-## 6. Marketing Presentation Layer
+Features overview should be data-driven or content-configured where practical so category names, maturity/status copy, and audience links do not drift across pages.
 
-The presentation layer is currently under active redesign. The target is a controlled hybrid of approved reference patterns rather than freeform AI-generated composition.
+Current Explore labels:
 
-Functional architecture should survive visual replacement wherever possible, including:
+- Products
+- Foods
+- Services
+- Tourism
+- Events
+- Jobs
+- Properties
+- Suppliers
+- Directory
 
-- release configuration;
-- DownloadCTA logic;
-- theme architecture;
-- SEO/metadata;
-- screenshot/content configuration;
-- official platform assets;
-- verified brand assets;
-- tests.
+### Audience Pages
 
-Presentation components may be replaced when a reference-led implementation is stronger.
+Tourists, Residents, Organizations, and Developers should share reusable page/story primitives while preserving audience-specific copy and sequencing.
 
-## 7. Design Reference Integration
+Every audience page requires a story section demonstrating connected use of capabilities. Avoid four copies of the same card-grid template with only text substitutions.
 
-Do not import another template framework wholesale.
+## 7. Digital Town Presentation Architecture
 
-Reference patterns may be ported into Next.js/Tailwind while preserving GlenTown's existing stack. Upstream dependencies are adopted only when they materially improve an approved composition.
+Public UI uses `Digital Town` terminology.
 
-Current guidance:
+The presentation model should support capability families broader than planners:
 
-- retain Next.js rather than adopting Astro;
-- retain Tailwind without DaisyUI;
-- retain Lucide rather than React Icons for generic UI icons;
-- prefer native horizontal scrolling over Swiper for the screenshot rail;
-- add Framer Motion only if required for approved scroll-linked/reveal behavior.
+- discover/participate;
+- local economy/transactions;
+- life/memories;
+- plan/accomplish;
+- businesses/organizations;
+- government/civic services;
+- platform/developer integrations.
 
-## 8. Media Architecture
+Timeline, Diary, and Memory Album content must preserve privacy distinctions in all marketing copy/configuration.
 
-Production media categories:
+Government integration content must preserve the rule that official government systems remain authoritative and that adapters/integrations do not imply endorsement or replacement of public systems.
 
-- `/public/brand/` — approved GlenTown PNG assets.
-- `/public/screenshots/` — verified app screenshots; currently audit-era assets may be temporary.
-- `/public/platforms/` — platform marks.
-- `/public/images/hero/` — optimized website derivatives of approved lifestyle photography.
+## 8. Developer Interest Modal Architecture
 
-Source originals under local `source-assets/` are working material and should remain ignored by the implementation repository unless a later provenance/asset-storage decision explicitly changes that policy.
+Developer/partner registration interest uses an accessible modal/dialog component.
 
-## 9. DeviceFrame
+Implementation requirements:
 
-An A55-inspired DeviceFrame is permitted as a presentation primitive, not as the default medium for every screenshot.
+- can be opened from `/features/developers` and other explicitly approved CTAs;
+- no separate route required;
+- semantic dialog behavior;
+- focus management/trap;
+- Escape close;
+- close button;
+- keyboard-operable fields/actions;
+- client validation for UX plus server-side validation if submissions are enabled;
+- success/error state;
+- privacy/consent treatment as required;
+- abuse controls before production;
+- progressive enhancement/fallback if JavaScript fails where practical.
+
+Submission infrastructure must not expose secrets client-side.
+
+## 9. Release Configuration
+
+Release configuration must support truthful platform-specific states and authoritative destinations.
+
+Target presentation surfaces:
+
+- Android
+- iOS
+- Windows
+- Web
+
+Windows requires a non-downloadable roadmap/in-development state until an authoritative artifact/source exists.
+
+Web uses the authoritative GlenTown Web destination rather than release artifact logic.
+
+Do not hard-code invented store/download URLs.
+
+## 10. Beta / Survey Content Architecture
+
+Beta route may render static/product-managed rollout content without operational API dependency.
+
+Survey links should be centrally configured/content-managed where practical so obsolete URLs can be removed without rewriting multiple sections.
+
+Only verified current survey destinations may be shown.
+
+Geography copy must represent:
+
+- Palawan Day-1 support;
+- Puerto Princesa deepest initial concentration;
+- location-dependent feature depth/readiness;
+- broader nationwide registration/selected capability direction.
+
+## 11. Government / Public Data Integration Presentation
+
+The App Site may explain government/civic integration direction without calling live government APIs for basic page rendering.
+
+Where dynamic public-service metadata is introduced later:
+
+- use adapter/service boundaries;
+- preserve provenance/authority labels;
+- fail safely;
+- avoid making core marketing pages unavailable during external-government outages;
+- do not cache or restate sensitive authoritative state beyond approved policies.
+
+## 12. Media Architecture
+
+Production media categories remain local to the site repository.
+
+Use media according to story purpose:
+
+- brand assets;
+- verified screenshots;
+- optimized lifestyle photography;
+- platform marks;
+- audience-story media;
+- restrained decorative assets.
+
+Current screenshot content is replaceable. Component architecture should not assume exact current screenshot count/content.
+
+## 13. DeviceFrame
+
+A55-inspired DeviceFrame remains a permitted presentation primitive, not the default medium for every screenshot.
 
 Constraints:
 
-- no notch/Dynamic Island;
 - small centered punch-hole;
-- screenshot geometry should not be distorted to fit decorative framing;
-- multi-device arrangements must use intentional geometry;
-- passive devices should not animate on hover without functional value.
+- no notch/Dynamic Island;
+- screenshot geometry not distorted;
+- passive devices do not animate on hover without functional value.
 
-## 10. Scroll Interaction Architecture
+## 14. Scroll / Motion Architecture
 
-Scroll-linked presentation may use a small set of visual waypoints. The implementation must preserve accessibility and native-feeling control.
+Scroll-linked presentation must preserve native-feeling control and accessibility.
 
-Do not use a large artificial spacer that makes desktop wheel input feel resistant. Do not globally hijack scrolling or force strict section snapping.
+Do not globally hijack scrolling or require excessive artificial spacer height.
 
-Any scroll choreography must:
+Any choreography must:
 
-- degrade safely without JavaScript;
+- degrade safely;
 - respect `prefers-reduced-motion`;
 - avoid trapping keyboard/touch users;
-- remain responsive across mouse wheel, precision trackpad, and touch input.
+- preserve normal route navigation.
 
-## 11. Validation Architecture
+## 15. SEO Architecture
+
+Every public route requires:
+
+- meaningful title/description;
+- canonical URL;
+- appropriate Open Graph/social metadata where supported;
+- semantic heading hierarchy;
+- sitemap inclusion when intended for indexing.
+
+Features audience pages should contain unique audience-specific content/story and must not be thin duplicate SEO pages.
+
+## 16. Validation Architecture
 
 Engineering validation and visual validation are separate gates.
 
@@ -140,15 +254,18 @@ Engineering baseline:
 - tests
 - production build
 - `git diff --check`
-- route/dev-server smoke verification where applicable
+- route/dev-server smoke verification for all public routes
 
 Visual baseline:
 
-- desktop light
-- desktop dark
-- mobile light
-- mobile dark where practical
-- responsive/tablet review
+- desktop light/dark
+- tablet
+- mobile light/dark where practical
+- Header/dropdown/mobile-menu interaction
+- theme persistence
+- audience-page story readability
+- developer modal interaction
+- Beta/Download truth review
 - browser interaction review
 - human visual acceptance
 
