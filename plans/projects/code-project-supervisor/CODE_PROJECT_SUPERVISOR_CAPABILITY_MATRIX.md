@@ -53,7 +53,17 @@
 | TownBoss plan ingestion | REQUIRED | CPS | EXTEND/NEW | Planned | CPS can resolve canonical project docs/tasks |
 | Documentation freshness/local clone checks | REQUIRED | CPS | NEW | Planned | Stale governance source detected/fails closed |
 | Compliance receipt generation | REQUIRED | CPS | NEW | Planned | Final report includes documented compliance receipt |
+| UX Engine / design-governance workflow | REQUIRED for UI-bearing projects | CPS + approved upstream UX references | NEW/EXTEND | Pilot active | Product authority resolves into reviewable UX rules and correction ledger |
+| Rendered browser/device UX inspection | REQUIRED for UI-bearing projects | CPS UX Engine + browser/device tooling | NEW/EXTEND | Pilot active | UI cannot close on code/tests alone; rendered evidence is verified |
+| Multi-surface responsive UX reasoning | REQUIRED for UI-bearing projects | CPS UX Engine | NEW | Pilot active | Desktop/tablet/mobile/native surfaces are evaluated as distinct interaction contexts |
+| Agent-portable UX authority | REQUIRED for UI-bearing projects | CPS/project-local artifacts | NEW/EXTEND | Pilot active | Kilo VS Code, Kilo CLI, Codex CLI and Gemini CLI consume the same canonical UX authority |
 | Operational freeze after acceptance | REQUIRED governance behavior | CPS rules | CONFIGURE | Planned | No CPS feature work unless real product blocker |
+
+## UX Engine Reference
+
+The canonical reference audit and adoption rules for the first-class UX capability are defined in `TOWNBOSS_UX_ENGINE_REFERENCE_AUDIT.md`. The first production pilot is `GLENTOWN_APP_SITE_UX_ENGINE_PILOT` under `plans/projects/glentown-app-site/`.
+
+For UI-bearing projects, build/lint/typecheck/tests remain necessary but are not sufficient UX acceptance evidence. CPS must require rendered inspection and verification on the applicable surfaces.
 
 ## Audit Rule
 
