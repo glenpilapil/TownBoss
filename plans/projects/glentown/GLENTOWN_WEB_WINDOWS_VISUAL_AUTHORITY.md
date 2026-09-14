@@ -178,11 +178,40 @@ Approved Explore information flow:
 
 Use legitimate backend data and representative fixtures; do not make decorative frontend mocks authoritative.
 
+## Create — approved top-level page
+
+The top-level **Create** button has its own desktop workspace and retains the persistent shell.
+
+The current generated Create concept is **acceptable as a baseline**, subject to the written revisions below.
+
+### Create hero
+
+Use a substantial landscape hero/banner with the primary Create message on the left. The supporting card on the right must be pushed to the rightmost side of the hero content area with standard padding, made smaller, and rendered as a more transparent/translucent contextual surface. Remove the large quoted inspirational message from the generated concept. The supporting card must not compete with the primary Create hierarchy.
+
+### Create entry cards
+
+Community creation entries such as **Update, Looking For, Alert and Poll** remain active first-class Create actions.
+
+Commercial/livelihood entries must **not appear disabled merely because prerequisites are incomplete**. A prerequisite is not the same as an unavailable capability. Cards should retain normal active affordance and route into the appropriate continuation/setup/guidance flow.
+
+Approved product-direction principles:
+
+- **Products:** citizen Product creation defaults to the **Pre-Loved** flow. If activity becomes recurring/commercial, GlenTown guides the user toward appropriate seller/business setup rather than treating the initial capability as permanently unavailable.
+- **Services:** individuals may offer personal/livelihood services. GlenTown should progressively guide them toward applicable registration, permits, verification and formalization rather than universally requiring an existing business before entry.
+- **Food:** individuals may offer food/livelihood products where legally appropriate. GlenTown should progressively guide them toward applicable food-safety, permit, registration and business requirements rather than universally presenting Food as disabled for non-business users.
+- **Jobs:** ordinary citizens may have legitimate household/personal hiring needs and must not be forced to create a fake business identity merely to post them. Create should distinguish **household/personal hiring** from **business/organization hiring** and route each through the correct compliance flow.
+
+This supersedes the prior blanket UX assumption that `Post a Job` is categorically unavailable to citizens. Historical implementation evidence may still record that older behavior and must be treated as requiring reconciliation, not as current product authority.
+
+Do not visually use lock icons, disabled opacity, dead arrows or similar affordances when the real behavior is `continue to setup / eligibility / compliance guidance`.
+
 ## Visual-reference status
 
 The approved generated Home concept is authoritative only for broad framing/proportions after the written corrections above. Its invented labels, taxonomy, generic filler and forced landscape Community-media treatment are explicitly not authoritative.
 
 The generated Explore concept is **strongly approved as the top-level Explore visual baseline**, subject to this document's exact shell, taxonomy, data-truthfulness and interaction rules.
+
+The generated Create concept is **acceptable as the top-level Create visual baseline**, subject to the Create hero/card corrections and prerequisite-routing rules above.
 
 ## Verification rule
 
