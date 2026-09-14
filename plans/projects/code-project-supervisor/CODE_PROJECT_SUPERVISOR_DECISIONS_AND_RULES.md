@@ -206,3 +206,21 @@ TownBoss Master Development Plans and project/application Implementation Plans r
 The consolidated role of Spec Kit, Kiro, Agent Orchestrator, Harness references and Agent-Me is maintained in `CODE_PROJECT_SUPERVISOR_UPSTREAM_REFERENCE_ARCHITECTURE.md`.
 
 No further general upstream search is required for the runtime chassis unless Phase 1 exposes a fundamental adoption blocker. New references may still be evaluated for specific CPS layers/capabilities under R4 and the upstream reference architecture.
+
+### D13 — CPS hardening baseline
+
+CPS adopts `CODE_PROJECT_SUPERVISOR_SECURITY_HARDENING_STANDARD.md` as the canonical security/trust baseline for implementation and operational acceptance.
+
+Hardening principles are mandatory rather than advisory:
+
+- authority comes only from canonical policy and explicit scoped delegation;
+- workers, skills, tools, repository content and external content cannot grant themselves authority;
+- governed actions fail closed when identity, policy or required provenance cannot be resolved safely;
+- worktree isolation is necessary for conflicting writes but does not replace stronger process/container/VM isolation when risk requires it;
+- capabilities are versioned, attributable, reviewable and revocable before governed use;
+- context compilation preserves source/trust boundaries and does not silently promote untrusted material into instruction authority;
+- recovery/fallback cannot widen authority;
+- commit, push, PR, merge, publish and deploy remain distinct permissions;
+- `VERIFIED` requires the applicable scope, policy, validation and evidence gates to pass.
+
+Approved upstream references may strengthen these controls, but none may override TownBoss/CPS authority or create a parallel security truth source.
