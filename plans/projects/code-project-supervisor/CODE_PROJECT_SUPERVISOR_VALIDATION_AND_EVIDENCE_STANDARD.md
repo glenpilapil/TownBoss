@@ -54,6 +54,7 @@ Requires explicit human authorization, R3 evidence, production/deployment safegu
 - Unresolved contradictions between documentation, tests, and implementation block VERIFIED status.
 - For web projects, validation captured before the final material source edit is stale for release/checkpoint promotion.
 - A green lint/typecheck/test/build suite does not substitute for applicable web-quality evidence.
+- A green automated accessibility scan does not prove keyboard-only operability, correct focus behavior, screen-reader usability or end-to-end accessible task completion.
 
 ## Mandatory Web Project Validation Profile
 
@@ -74,6 +75,11 @@ At minimum, verify where applicable:
 - meaningful image alt text and optimized/compressed media;
 - representative Core Web Vitals/performance evidence;
 - mobile responsiveness and accessibility;
+- complete keyboard-only operability across release-critical journeys, with no mouse/cursor/touch dependency;
+- logical focus order, visible focus states, no keyboard traps and correct modal/menu/dropdown/custom-widget keyboard behavior;
+- appropriate semantic structure, accessible names/labels, form-error association and dynamic-state announcements;
+- representative screen-reader/accessibility-tree inspection for critical flows where applicable;
+- zoom/reflow, contrast and reduced-motion behavior;
 - production minification, code splitting, lazy loading and non-critical script deferral where appropriate;
 - unnecessary re-render and unused-dependency review;
 - API caching/payload efficiency where safe;
@@ -81,6 +87,8 @@ At minimum, verify where applicable:
 - expensive-query/server-side caching where safe and justified;
 - CDN, load-balancing and database connection pooling applicability based on deployment scale/architecture;
 - HTTPS, transport security, security headers/secrets/form abuse controls as appropriate.
+
+For keyboard accessibility specifically, CPS must require a human or equivalent interactive walkthrough proving that every release-critical task can be completed from start to finish with keyboard input alone. Automated scanners may supplement but may not replace this evidence.
 
 Release-critical failures in this profile block `VERIFIED`/`RELEASE_READY` unless an explicit operator-approved exception exists.
 
@@ -92,6 +100,7 @@ Before final report/checkpoint:
 - Review diff and unrelated changes.
 - Run required validation profile.
 - For web projects, run the mandatory web application quality gate and record PASS/FAIL/NOT_APPLICABLE evidence.
+- For release-critical web flows, attach keyboard-only accessibility evidence and record any accessibility defects separately from generic visual defects.
 - Confirm no prohibited scope was introduced.
 - Resolve or explicitly classify failures.
 - Perform required independent review.
