@@ -2,7 +2,7 @@
 
 **Status:** ACTIVE
 
-The GlenTown App Site also inherits the portfolio-wide `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md`. These criteria add GlenTown-specific product, UX and release requirements and do not replace the portfolio web gates.
+The GlenTown App Site inherits the portfolio-wide `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md` and `governance/WEB_SOURCE_INTEGRITY_AND_SAFE_EDIT_GATE.md`. These criteria add GlenTown-specific product, UX and release requirements and do not replace the portfolio web gates.
 
 ## 1. Product Truth
 
@@ -247,6 +247,23 @@ Required before acceptance:
 
 Engineering PASS alone is not visual PASS and does not satisfy the portfolio web-quality gate by itself.
 
+### Web source integrity
+
+This App Site additionally inherits `governance/WEB_SOURCE_INTEGRITY_AND_SAFE_EDIT_GATE.md`.
+
+For JSX/TSX/JS/TS source changes:
+
+- broad recursive text replacement that can alter syntax or semantics is prohibited unless explicitly justified and reviewed;
+- bounded edits are preferred;
+- unexpected whole-file rewrites or large diff churn must be reviewed before acceptance;
+- modified structural files must be inspected for duplicate imports/exports, duplicate/spliced component bodies, malformed JSX, conflict remnants and accidental transcript/session content;
+- parser/typecheck/build evidence must reflect the final saved source state;
+- any validation run before a later material edit is stale for checkpoint/release promotion;
+- transient hot-reload errors may be rechecked after writes complete, but persistent errors against the final saved state are real failures;
+- source-integrity failures block `VERIFIED`, checkpoint approval and `RELEASE_READY`.
+
+Before checkpoint approval, the final report must include a source-integrity receipt identifying material structural files edited, any whole-file rewrites and their justification, diff-review status, final validation-after-last-edit evidence, and any transient/recovered source-integrity incidents.
+
 ## 15. Performance / SEO / Deployment
 
 This section is governed by `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md` and is release-blocking where applicable.
@@ -317,7 +334,7 @@ Before UI/UX acceptance, a reviewer must be able to confirm:
 
 ## 17. Portfolio Web Gate Completion
 
-Before the App Site can be classified `RELEASE_READY`, attach a completed portfolio web gate receipt covering the applicable families from `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md`.
+Before the App Site can be classified `RELEASE_READY`, attach a completed portfolio web gate receipt covering the applicable families from `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md` plus the Web Source Integrity and Safe Edit Gate.
 
 At minimum the receipt must show:
 
@@ -329,6 +346,7 @@ At minimum the receipt must show:
 - keyboard-only accessibility: PASS/FAIL;
 - semantic/screen-reader accessibility: PASS/FAIL;
 - responsive/reflow/contrast/reduced-motion accessibility: PASS/FAIL;
+- web source integrity/safe editing: PASS/FAIL;
 - API/database efficiency: PASS/FAIL/NOT_APPLICABLE;
 - caching/CDN/load-balancing/pooling applicability: PASS/FAIL/NOT_APPLICABLE;
 - HTTPS/security: PASS/FAIL;
