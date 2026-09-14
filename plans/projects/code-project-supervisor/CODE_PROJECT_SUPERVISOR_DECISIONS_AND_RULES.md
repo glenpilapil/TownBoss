@@ -195,4 +195,14 @@ Legacy CodeBisor disposition:
 - Port concepts and tests, not implementation code, where upstream does not already satisfy the requirement.
 - Do not carry forward CodeBisor's custom ANSI dashboard/rendering stack, duplicate daemon/process infrastructure, or bespoke worker-launching code unless a proven gap requires it.
 
-No further upstream search is needed unless Phase 1 exposes a fundamental adoption blocker.
+### D12 — GitHub Spec Kit reference decision
+
+`github/spec-kit` is an **APPROVED HIGH-PRIORITY UPSTREAM SPECIFICATION, IMPLEMENTATION-GOVERNANCE AND CONVERGENCE REFERENCE** for CPS. It is not an architectural authority or automatic production dependency.
+
+CPS should mine Constitution/invariant-policy patterns; specify->clarify->plan->checklist->tasks progression; cross-artifact analysis; implementation convergence; brownfield/evolving-spec support; and extensible workflow/gate patterns.
+
+TownBoss Master Development Plans and project/application Implementation Plans remain authoritative above this layer. CPS must not create a duplicate Spec-Kit planning truth source. Spec-Kit-like artifacts should refine, compile or link canonical TownBoss intent into executable feature/change work.
+
+The consolidated role of Spec Kit, Kiro, Agent Orchestrator, Harness references and Agent-Me is maintained in `CODE_PROJECT_SUPERVISOR_UPSTREAM_REFERENCE_ARCHITECTURE.md`.
+
+No further general upstream search is required for the runtime chassis unless Phase 1 exposes a fundamental adoption blocker. New references may still be evaluated for specific CPS layers/capabilities under R4 and the upstream reference architecture.
