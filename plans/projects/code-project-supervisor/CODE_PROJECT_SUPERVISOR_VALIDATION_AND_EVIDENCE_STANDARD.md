@@ -17,6 +17,7 @@
 10. **Checkpoint evidence** — coherent commit/PR/checkpoint tied to the verified state.
 11. **Documentation evidence** — canonical documents and Memory reconciled with implementation.
 12. **Web quality evidence** — SEO/indexability, metadata, links, media, Core Web Vitals, accessibility/responsiveness, frontend performance, API/database efficiency, HTTPS/security and deployment-delivery evidence required by `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md`.
+13. **Web source-integrity evidence** — bounded-edit/diff review, structural-source validation, final-state validation freshness, and recovery evidence required by `governance/WEB_SOURCE_INTEGRITY_AND_SAFE_EDIT_GATE.md`.
 
 ## Promotion Rules
 
@@ -55,10 +56,11 @@ Requires explicit human authorization, R3 evidence, production/deployment safegu
 - For web projects, validation captured before the final material source edit is stale for release/checkpoint promotion.
 - A green lint/typecheck/test/build suite does not substitute for applicable web-quality evidence.
 - A green automated accessibility scan does not prove keyboard-only operability, correct focus behavior, screen-reader usability or end-to-end accessible task completion.
+- Worker claims of PASS are invalid when current repository evidence shows malformed, duplicated/spliced, or otherwise unreviewed structured source.
 
 ## Mandatory Web Project Validation Profile
 
-For any website, web application, web portal, PWA or browser-delivered product, Code Project Supervisor must inherit `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md` and classify each gate family as `PASS`, `FAIL`, or justified `NOT_APPLICABLE`.
+For any website, web application, web portal, PWA or browser-delivered product, Code Project Supervisor must inherit `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md` and `governance/WEB_SOURCE_INTEGRITY_AND_SAFE_EDIT_GATE.md`, and classify each applicable gate family as `PASS`, `FAIL`, or justified `NOT_APPLICABLE`.
 
 At minimum, verify where applicable:
 
@@ -86,9 +88,17 @@ At minimum, verify where applicable:
 - database indexing, pagination/bounded lists and no known N+1 query behavior on release-critical paths;
 - expensive-query/server-side caching where safe and justified;
 - CDN, load-balancing and database connection pooling applicability based on deployment scale/architecture;
-- HTTPS, transport security, security headers/secrets/form abuse controls as appropriate.
+- HTTPS, transport security, security headers/secrets/form abuse controls as appropriate;
+- current structured-source files were inspected before material mutation;
+- bounded edits were used where practical rather than blanket recursive replacement;
+- whole-file rewrites, when used, were justified and diff-reviewed;
+- modified JSX/TSX or equivalent source has no duplicate/spliced component bodies or malformed structural markup;
+- validation evidence was generated after the final material source edit;
+- transient hot-reload errors were rechecked against the completed saved state before classification.
 
 For keyboard accessibility specifically, CPS must require a human or equivalent interactive walkthrough proving that every release-critical task can be completed from start to finish with keyboard input alone. Automated scanners may supplement but may not replace this evidence.
+
+For web source integrity, CPS must block continuation/checkpoint promotion when deterministic evidence shows malformed source, unexpected duplicate/spliced component bodies, unexplained whole-file churn for a bounded task, or stale validation evidence. Unexpected broad source mutation must trigger diff review before promotion.
 
 Release-critical failures in this profile block `VERIFIED`/`RELEASE_READY` unless an explicit operator-approved exception exists.
 
@@ -100,6 +110,8 @@ Before final report/checkpoint:
 - Review diff and unrelated changes.
 - Run required validation profile.
 - For web projects, run the mandatory web application quality gate and record PASS/FAIL/NOT_APPLICABLE evidence.
+- For web-source tasks, attach the Web Source Integrity and Safe Edit receipt required by `governance/WEB_SOURCE_INTEGRITY_AND_SAFE_EDIT_GATE.md`.
+- Confirm final validation was run after the final material source edit rather than before it.
 - For release-critical web flows, attach keyboard-only accessibility evidence and record any accessibility defects separately from generic visual defects.
 - Confirm no prohibited scope was introduced.
 - Resolve or explicitly classify failures.
