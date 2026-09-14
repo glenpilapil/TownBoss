@@ -3,7 +3,7 @@
 **Portfolio:** TownBoss
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **Current phase:** Phase 1 — App-side recovery complete / physical verification pending
-**Current deliverable/task:** Consolidated Samsung physical re-audit
+**Current deliverable/task:** Consolidated Samsung physical re-audit — READY
 **Phase gate:** APP-SIDE RECOVERY COMPLETE — physical verification remains pending.
 
 ## Status legend
@@ -20,6 +20,7 @@
 - [x] You/Profile recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `820d0cf20b278827da6b4ff238bd7e0e8b4087cb`; 4 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
 - [x] D1.7 cross-screen/accessibility App-side closure. Evidence: GlenTown-App `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`; 20 focused tests and 370 full Flutter tests passed, analyze no issues, diff check pass.
 - [ ] Physical verification, explicit API/data/domain blockers, and Beta readiness remain open. Next gate: consolidated Samsung physical re-audit.
+- [x] Consolidated Samsung physical re-audit preparation is ready. Evidence worksheet: GlenTown-App `dd1ecf637c2eb7471d1c9029fc05b40a21e7837d`, `docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`; 75 ordered checks, blocker/non-failure boundaries, demo credentials, evidence fields, and ADB reverse run instructions.
 
 ## D0.1 — Canonical repository/state reconciliation
 
@@ -118,7 +119,7 @@
 - [x] T1.7.1 SafeArea, keyboard overlap, horizontal clipping and raw technical errors. CROSS-A2-02 is `VERIFIED_BY_SOURCE_TEST`; CROSS-A2-03 is `READY_FOR_PHYSICAL_RECHECK`; CROSS-A2-04 is `VERIFIED_BY_SOURCE_TEST`. Evidence: `f5e4085`.
 - [x] T1.7.2 Bounded responsive/accessibility reconciliation; independently App-fixable rows are closed or explicitly blocked/deferred in the App ledger.
 - [x] T1.7.3 Automated validation: 20 focused tests and 370 full Flutter tests passed; full analyze no issues; diff check pass.
-- [ ] T1.7.4 Consolidated Samsung physical re-audit. `ATTENTION`; no physical verification is claimed.
+- [ ] T1.7.4 Consolidated Samsung physical re-audit. `READY`; the 75-check session worksheet is prepared, but no physical verification is claimed.
 
 ## Phase 1 gate
 

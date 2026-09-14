@@ -92,3 +92,12 @@ Inherited Kilo D1.7 work was preserved and completed at GlenTown-App `f5e40858b6
 D1.7 independently achievable App work and Phase 1 App-side recovery are complete, not physically verified. Existing API/data/demo/domain blockers remain recorded in the Blocker Register. Next gate: `CONSOLIDATED_SAMSUNG_PHYSICAL_REAUDIT`.
 
 **Documentation Compliance Receipt:** Implementation Plan, Current State, Capability Matrix, Blocker Register, Memory, and the canonical App ledger were reconciled. No CPS files were touched; no physical verification was inferred from automated or source evidence.
+
+## 2026-09-14 — Consolidated Samsung physical re-audit ready
+
+**Type:** VERIFICATION PREPARATION / CHECKPOINT
+**Status:** CURRENT
+
+GlenTown-App `dd1ecf637c2eb7471d1c9029fc05b40a21e7837d` adds `docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`, the canonical session worksheet for physical review of UI checkpoint `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`. It sequences 75 checks from fresh-install/auth through Profile Setup, shell, Home, Notifications, Cart, Community, Around You, Map, Explore, Create, Chat, You/Profile, and cross-screen stress. Every ledger issue row carrying physical-recheck semantics is referenced. API/data/demo/domain/architecture/external blockers are explicitly `KNOWN_BLOCKER — NOT A PHYSICAL FAILURE`.
+
+No device was connected during preparation, so no physical result is claimed. The worksheet records the Maria demo credential, screenshot/result fields, localhost API configuration through `adb reverse tcp:8000 tcp:8000`, and the development-only verification-bypass boundary. Phase 1 App-side recovery remains complete; consolidated Samsung physical re-audit execution is the next gate.
