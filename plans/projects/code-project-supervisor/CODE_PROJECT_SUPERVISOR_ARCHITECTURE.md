@@ -6,9 +6,23 @@ Code Project Supervisor is a **development control plane above coding agents**. 
 
 ## Preferred upstream chassis
 
-Preferred foundation: `Untrivial-ai/agent-orchestrator` (Apache-2.0), subject to a formal adoption audit.
+Preferred foundation: `Untrivial-ai/agent-orchestrator` (Apache-2.0), subject to the accepted formal adoption audit and remaining Phase 1 baseline validation.
 
 Reason: it already implements the same broad product category—project-level orchestration of multiple coding agents, persistent daemon operation, task delegation, isolated workspaces/worktrees, worker/session lifecycle, review/CI feedback and operator interfaces.
+
+## Layered upstream reference model
+
+AO is the **runtime chassis**, not the sole source of CPS design patterns. CPS also maintains a layered upstream-reference architecture in `CODE_PROJECT_SUPERVISOR_UPSTREAM_REFERENCE_ARCHITECTURE.md`.
+
+Current high-priority layers are:
+
+- `github/spec-kit` — specification, cross-artifact analysis and convergence patterns;
+- Kiro — controlled spec-driven execution, permissions, hooks and reviewer loops;
+- `revfactory/harness` — team-topology patterns;
+- `twaldin/harness` — normalized heterogeneous worker request/result contracts;
+- `jzjzzzzzzz/agent-me` — typed evidence, verification, deterministic evaluation and abstention patterns.
+
+These references do not outrank TownBoss planning authority and do not automatically become dependencies. Before importing a subsystem, prove that AO plus narrow CPS extensions cannot satisfy the requirement.
 
 ## High-level structure
 
@@ -23,12 +37,15 @@ Persistent Supervisor Daemon / Control Plane
    |
    +-- Portfolio & Project Registry
    +-- Planning / Task Graph
+   +-- Specification / Artifact Consistency Gates
+   +-- Team-Topology Policy
    +-- Scheduler / Queue / Worktree Isolation
    +-- Authority & Decision Gates
    +-- Worker Adapter Layer
+   +-- Typed Result / Evidence Contracts
    +-- Recovery / Resource Governance
-   +-- Validation / Completion Contracts
-   +-- Independent Review
+   +-- Validation / Convergence Contracts
+   +-- Independent Review / Verification
    +-- Checkpoint / PR / Merge Governance
    +-- Events / Evidence / Audit Trail
    |
@@ -55,12 +72,16 @@ Persistent Supervisor Daemon / Control Plane
 ### Code Project Supervisor extensions should own
 
 - TownBoss portfolio/project policy integration;
-- explicit completion contracts;
+- feature/change contracts beneath canonical plans;
+- cross-artifact consistency and coverage gates;
+- team-topology selection policy;
+- typed completion/evidence contracts;
+- explicit completion and convergence contracts;
 - evidence-backed status promotion;
 - operator decision model and authority levels where upstream behavior is insufficient;
 - provider/resource budgets and no-progress circuit breakers;
 - project-specific validation profiles;
-- independent review policy;
+- independent review/verification policy;
 - checkpoint governance rules;
 - TownBoss planning-corpus linkage;
 - cross-project operating rules not already supplied upstream.
@@ -69,7 +90,7 @@ Persistent Supervisor Daemon / Control Plane
 
 - scoped implementation/review work delegated by the supervisor;
 - tool use allowed by their task/permission contract;
-- reporting evidence and completion claims.
+- reporting typed evidence and completion claims.
 
 Workers do not own canonical project/task authority.
 
@@ -77,11 +98,12 @@ Workers do not own canonical project/task authority.
 
 Target conceptual hierarchy:
 
-`Portfolio -> Project -> Objective/Milestone -> Task -> Subtask/Worker -> Evidence -> Review -> Checkpoint`
+`Portfolio -> Project -> Objective/Milestone -> Feature/Change Contract -> Task -> Subtask/Worker -> Evidence -> Review/Verification -> Convergence -> Checkpoint`
 
 Supporting concepts:
 
 - dependency;
+- team topology;
 - worktree/repository lease;
 - provider/session;
 - resource budget;
@@ -122,11 +144,14 @@ Use structured durable events rather than scraping terminal text. Events should 
 - recovery;
 - decisions;
 - validation;
-- review;
+- review/verification;
+- convergence;
 - checkpoints;
 - failures and blocks.
 
-Human-facing interfaces are projections of authoritative state/events.
+A worker's prose assertion is not evidence when machine-verifiable evidence exists. Insufficient evidence must remain explicitly unverified/blocked rather than being promoted to success.
+
+Human-facing interfaces are projections of authoritative state/events. Operational traces and evidence may be exposed; private model chain-of-thought is not a CPS dependency or artifact.
 
 ## Operator interface principle
 
@@ -143,6 +168,7 @@ Secrets remain outside prompts/logs/state where possible and are supplied throug
 The TownBoss master plan and project implementation plans define planning authority. The supervisor may ingest/link that hierarchy, but must distinguish:
 
 - planning decision;
+- specification/change contract;
 - implementation state;
 - machine-verified evidence.
 
@@ -150,4 +176,4 @@ Documentation alone never proves implementation.
 
 ## Legacy CodeBisor relationship
 
-The existing Python CodeBisor implementation is a reference source for tests, policies and lessons learned. Port only capabilities that are both valuable and absent/inadequate upstream. Do not transplant legacy architecture wholesale.
+The existing Python CodeBisor implementation is a read-only reference source for tests, policies and lessons learned. Port only capabilities that are both valuable and absent/inadequate upstream. Do not transplant legacy architecture wholesale or create new CodeBisor work items.
