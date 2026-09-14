@@ -59,8 +59,12 @@ Validation must match the claim being made. Each project should define reusable 
 
 Focused validation proves focused behavior. Full-suite/runtime/physical/security evidence is required where the promoted status demands it.
 
+For any browser-delivered project, website, portal, or web application, the applicable validation profile must inherit `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md`. SEO, accessibility, mobile responsiveness, frontend performance, link integrity, media optimization, backend/API efficiency, HTTPS/security and applicable deployment-performance gates are release criteria rather than optional polish.
+
 ## 7. Operational acceptance
 For product projects, module-level tests are insufficient for release readiness. Each project that ships a usable product must maintain an operational acceptance test covering the critical end-to-end journeys, representative personas/environments, persistence/state continuity, failure states, and applicable security/readiness gates.
+
+For web products, operational acceptance must additionally include the applicable web quality gate evidence defined in `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md`.
 
 ## 8. Risk register
 Projects with material product, security, financial, privacy, external-integration, deployment or operational risk must maintain a living risk register. Critical/high risk cannot be silently accepted by workers or supervisors. Acceptance requires operator authority and a recorded scope/review condition.
@@ -101,5 +105,38 @@ Material changes must update the appropriate project capability/blocker/risk/cur
 ## 12. Evidence and checkpoints
 A checkpoint/commit is evidence of repository state, not proof of correctness. Completion status must reference the relevant test/runtime/review/physical evidence. Follow `governance/TASK_CHECKPOINT_COMMIT_POLICY.md` for write-capable task checkpoints.
 
+For web products, evidence gathered before the final source state is stale for release promotion; the final web-quality validation must run after the last material source edit.
+
 ## 13. Exceptions
 Project-specific rules may be stricter. Any exception that weakens this standard must be explicit, scoped, justified, operator-approved and recorded with a review/expiry condition. No project document may silently supersede portfolio governance.
+
+## 14. Mandatory web application gate
+
+Every TownBoss-produced web application, public website, landing site, web portal, PWA, or browser-delivered product inherits `governance/WEB_APPLICATION_QUALITY_GATE_STANDARD.md`.
+
+Before `RELEASE_READY`, the project must record `PASS`, `FAIL`, or justified `NOT_APPLICABLE` for the standard's gate families, including where relevant:
+
+- indexing/noindex correctness;
+- meta titles and descriptions;
+- alt text and media optimization;
+- Core Web Vitals/frontend performance;
+- sitemap and robots;
+- Open Graph metadata;
+- zero broken critical links;
+- heading hierarchy;
+- clean URL slugs and internal linking;
+- canonical handling;
+- HTTPS/security;
+- schema markup where truthful/applicable;
+- search-engine verification for SEO-facing products;
+- mobile responsiveness/accessibility;
+- API response caching and payload efficiency where safe;
+- database indexing and elimination of N+1 queries on critical paths;
+- loading skeletons where useful;
+- expensive-query caching where safe;
+- code splitting/minification/lazy loading/non-critical script deferral;
+- pagination/bounded lists;
+- unused dependency cleanup;
+- database connection pooling/load balancing/CDN/server-side caching where architecture and scale make them applicable.
+
+A project may not waive an applicable web gate merely because lint, tests and build are green.
