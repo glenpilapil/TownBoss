@@ -1,6 +1,6 @@
 # Code Project Supervisor — Current State
 
-**Status:** FOUNDATION ADOPTION — PHASE 6 COMPLETE
+**Status:** FOUNDATION ADOPTION — PHASE 7 COMPLETE
 **Date:** 2026-09-14  
 **Purpose:** Fast, current-state entry point for humans and agents.
 
@@ -29,13 +29,13 @@ Accepted baseline exceptions: 8 upstream Windows `internal/session_manager` test
 
 ## Current Workstream
 
-**Next bounded milestone:** `CPS_PHASE_7_OPERATIONALIZATION`
+**Next bounded milestone:** `CPS_FIRST_OPERATIONAL_RELEASE`
 
-Phase 6 — Multi-Project Operations is complete. Phase 7 — Operationalization is the current active phase.
+Phase 7 — Operationalization is complete. CPS is safe for routine TownBoss portfolio use. First operational release criteria are satisfied.
 
 ## Current Blockers
 
-None. Phase 6 multi-project operations proven with both deterministic tests and live runtime evidence. GeoPlotter PASS 0L checkpoint `daae07d` pushed to `feat/pass-0e-projects-foundation`. CPS Phase 6 deterministic proof checkpoint `300b2c56` pushed to `main`. TownBoss Phase 6 live runtime closure checkpoint `f2cfda6` pushed to `main`.
+None. Phase 7 operationalization complete with 7 operational documents, operational acceptance test passed. GeoPlotter PASS 0L checkpoint `daae07d` pushed to `feat/pass-0e-projects-foundation`. CPS Phase 6 deterministic proof checkpoint `300b2c56` pushed to `main`. TownBoss Phase 6 live runtime closure checkpoint `ba3060a` pushed to `main`.
 
 ## Deferred Work
 

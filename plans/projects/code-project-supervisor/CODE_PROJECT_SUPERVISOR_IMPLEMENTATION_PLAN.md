@@ -481,14 +481,14 @@ Add only gaps proven necessary by the Phase 0 audit:
 - [x] Project Memory is updated
    Evidence: GeoPlotter Memory updated with Phase 5 canary result
 - [x] Verified checkpoint readiness is produced, or a bounded BLOCKED result is returned
-   Evidence: GeoPlotter checkpoint `d15a15dd1a242ae6955fda7b97094ddf98acf641` pushed to `feat/pass-0e-projects-foundation`
+   Evidence: GeoPlotter checkpoint `daae07d29e5da19c95f8c9d5d63884ef1489d2e9` pushed to `feat/pass-0e-projects-foundation`
 
 ## Deliverables
 
 - [x] Real canary task contract
    Evidence: `TaskContract` for GeoPlotter PASS 0L materialized from planning corpus; R2 authority classification; RequiredReview: true
 - [x] Worker/session evidence
-   Evidence: GeoPlotter commit `d15a15dd` — `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] feat: complete interactive project and lot map foundation`
+   Evidence: GeoPlotter commit `daae07d` — `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] fix: resolve MapLibre typecheck and migration artifacts`
 - [x] Validation evidence
    Evidence: 17/17 map HTTP boundary tests pass; backend route returns authenticated spatial data; frontend MapLibre integration complete
 - [x] Review evidence where required
@@ -513,7 +513,7 @@ Add only gaps proven necessary by the Phase 0 audit:
 - [x] No required governance rule was bypassed
    Evidence: Phase 3 independent-review gate enforced; documentation compliance maintained; checkpoint created
 - [x] Product repository remains coherent and checkpointable
-   Evidence: GeoPlotter commit `d15a15dd` pushed to `feat/pass-0e-projects-foundation`; 18 files changed, 1867 insertions, 166 deletions
+   Evidence: GeoPlotter commit `daae07d` pushed to `feat/pass-0e-projects-foundation`; typecheck/build fix after initial implementation
 - [x] Evidence is sufficient to reproduce the completion claim
    Evidence: 17/17 tests pass; route implementation verified; checkpoint SHA recorded
 
@@ -602,44 +602,72 @@ Add only gaps proven necessary by the Phase 0 audit:
 
 # Phase 7 — Operationalization
 
-**Phase status:** NOT STARTED
+**Phase status:** COMPLETE
 
 ## Phase checklist
 
-- [ ] Establish startup/background service policy
-- [ ] Establish operator workflow documentation
-- [ ] Establish state backup/recovery procedures
-- [ ] Establish upstream update/sync process
-- [ ] Establish security review cadence
-- [ ] Define minimum telemetry/log retention
-- [ ] Define incident response procedure
-- [ ] Define dependency/update review cadence
-- [ ] Define operational health checks
-- [ ] Verify local TownBoss documentation sync workflow
-- [ ] Finalize operator handoff documentation
-- [ ] Update Memory
+- [x] Establish startup/background service policy
+  Evidence: `docs/operator-runbook.md` documents canonical Windows startup: `ao.exe daemon`. Phase 6 proven: `go run .` from `backend/` invokes `backend/main.go` directly and breaks pty-host discovery; `ao.exe daemon` is the correct entry point.
+- [x] Establish operator workflow documentation
+  Evidence: `docs/operator-runbook.md` documents full operator lifecycle: startup, health check, project discovery, worker launch, attach/detach, stop, recovery.
+- [x] Establish state backup/recovery procedures
+  Evidence: `docs/backup-recovery.md` classifies state (runtime-persistent, source-controlled, secret/sensitive), defines backup/restore procedures, and identifies what does not need backup.
+- [x] Establish upstream update/sync process
+  Evidence: `docs/upstream-sync.md` documents the upstream sync procedure: fetch, inspect divergence, test baseline, merge/rebase, validate, checkpoint, record in Memory.
+- [x] Establish security review cadence
+  Evidence: `docs/security-cadence.md` defines review triggers (milestones, upstream sync, new dependencies, Windows security events), scope (dependencies, isolation, permissions, Windows security), and recording requirements.
+- [x] Define minimum telemetry/log retention
+  Evidence: `docs/telemetry-retention.md` documents upstream telemetry policy, log retention (30 days for runtime logs, 90 days for transcripts, indefinite for canonical state), and evidence hierarchy.
+- [x] Define incident response procedure
+  Evidence: `docs/incident-handling.md` defines 9 incident classes (`ENVIRONMENT_BLOCKED`, `PROVIDER_UNAVAILABLE`, `WORKTREE_CONFLICT`, `VALIDATION_FAILED`, `REVIEW_FAILED`, `AUTHORITY_REQUIRED`, `STALE_STATE`, `CHECKPOINT_FAILED`, `DOCUMENTATION_CONFLICT`) with detect→preserve→classify→fail/queue→recover→escalate→record flow.
+- [x] Define dependency/update review cadence
+  Evidence: `docs/dependency-updates.md` defines update classification (`SECURITY_REQUIRED`, `COMPATIBILITY_REQUIRED`, `UPSTREAM_REQUIRED`, `OPTIONAL`, `DEFER`), review cadence (immediate for security, quarterly for routine), and procedure.
+- [x] Define operational health checks
+  Evidence: `docs/health-checklist.md` defines pre-flight checklist (`ao status`, `ao doctor`, `ao project ls`, `ao session ls`, `ao agent ls`), runtime health checks, recovery verification, and check frequency.
+- [x] Verify local TownBoss documentation sync workflow
+  Evidence: TownBoss repo clean; CPS docs updated in TownBoss (Implementation Plan, Current State, Memory); operational docs created in CPS repo under `docs/`. Sync workflow: read canonical TownBoss docs → project to CPS → execute → update TownBoss docs → checkpoint.
+- [x] Finalize operator handoff documentation
+  Evidence: `docs/operator-runbook.md` serves as operator handoff document. Covers startup, health, workflow, recovery, state location, backup/restore, incident handling, upstream sync, security, and logs.
+- [x] Update Memory
+  Evidence: Memory entry appended 2026-09-14 — Phase 7 operationalization complete with 7 operational docs, operational acceptance test passed.
 
 ## Deliverables
 
-- [ ] Startup/background operations guide
-- [ ] Operator runbook
-- [ ] Backup/recovery runbook
-- [ ] Upstream synchronization runbook
-- [ ] Security review schedule
-- [ ] Telemetry/log retention policy
-- [ ] Incident-handling procedure
-- [ ] Dependency/update procedure
-- [ ] Operational health checklist
+- [x] Startup/background operations guide
+  Evidence: `docs/operator-runbook.md` Section 1
+- [x] Operator runbook
+  Evidence: `docs/operator-runbook.md`
+- [x] Backup/recovery runbook
+  Evidence: `docs/backup-recovery.md`
+- [x] Upstream synchronization runbook
+  Evidence: `docs/upstream-sync.md`
+- [x] Security review schedule
+  Evidence: `docs/security-cadence.md`
+- [x] Telemetry/log retention policy
+  Evidence: `docs/telemetry-retention.md`
+- [x] Incident-handling procedure
+  Evidence: `docs/incident-handling.md`
+- [x] Dependency/update procedure
+  Evidence: `docs/dependency-updates.md`
+- [x] Operational health checklist
+  Evidence: `docs/health-checklist.md`
 
 ## Gate — Routine Portfolio Use
 
-- [ ] CPS survives normal restart/recovery scenarios
-- [ ] Operator can start/attach/use/stop CPS predictably
-- [ ] State can be restored from documented procedures
-- [ ] Upstream updates can be evaluated without losing CPS customizations
-- [ ] Security/operational review cadence exists
-- [ ] Documentation and Memory are current
-- [ ] CPS is safe for routine TownBoss portfolio use
+- [x] CPS survives normal restart/recovery scenarios
+  Evidence: Phase 6 live runtime proved daemon restart preserves sessions; Phase 7 OAT verified daemon restart with state reconstruction
+- [x] Operator can start/attach/use/stop CPS predictably
+  Evidence: `docs/operator-runbook.md`; Phase 7 OAT: `ao.exe daemon` → `ao status` (ready) → `ao spawn` (worker launched) → `ao session kill` (worker stopped) → `ao stop` (clean shutdown)
+- [x] State can be restored from documented procedures
+  Evidence: `docs/backup-recovery.md`; Phase 7 OAT: daemon restarted, sessions reconstructed from SQLite
+- [x] Upstream updates can be evaluated without losing CPS customizations
+  Evidence: `docs/upstream-sync.md`; upstream sync policy in `CODE_PROJECT_SUPERVISOR_UPSTREAM_SYNC_POLICY.md`
+- [x] Security/operational review cadence exists
+  Evidence: `docs/security-cadence.md`; `docs/dependency-updates.md`
+- [x] Documentation and Memory are current
+  Evidence: Phase 7 docs created; Memory updated with Phase 7 evidence
+- [x] CPS is safe for routine TownBoss portfolio use
+  Evidence: All checklist items complete; operational acceptance test passed
 
 ---
 

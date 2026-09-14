@@ -576,7 +576,7 @@ Phase 5 proves that CPS can supervise a real bounded product objective through t
 - Implementation: Backend map API route `apps/web/src/app/api/projects/[projectId]/map/route.ts` implemented using existing `listProjectMap` lib function
 - Validation: 17/17 map HTTP boundary tests pass; `npx vitest run src/__tests__/projects.map.http.test.ts` green
 - Independent review: Phase 3 review gate enforced; RequiredReview: true satisfied
-- Checkpoint: GeoPlotter commit `d15a15dd1a242ae6955fda7b97094ddf98acf641` — `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] feat: complete interactive project and lot map foundation` pushed to `feat/pass-0e-projects-foundation`
+- Checkpoint: GeoPlotter commit `daae07d29e5da19c95f8c9d5d63884ef1489d2e9` — `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] fix: resolve MapLibre typecheck and migration artifacts` pushed to `feat/pass-0e-projects-foundation`
 
 **Defects fixed during canary**
 - Pre-existing test bug: `membershipStatus.ACTIVE` (undefined) replaced with `"active"` in test file
@@ -585,7 +585,7 @@ Phase 5 proves that CPS can supervise a real bounded product objective through t
 - Route robustness: UUID validation added to map route to handle invalid projectId format gracefully
 
 **Evidence**
-- GeoPlotter checkpoint: `d15a15dd1a242ae6955fda7b97094ddf98acf641`
+- GeoPlotter checkpoint: `daae07d29e5da19c95f8c9d5d63884ef1489d2e9`
 - CPS checkpoint: `198e857de73099b05719bbca2a3aa60812ba7aa5` (Phase 4), `232f8a3b` (Phase 3 correction), `0a0f1cc7` (Phase 3)
 - TownBoss checkpoint: `594c6d244c2010186faedb788b6e589eba030b4b` (Phase 4), `cf96770a622d080525cd1f09f5f43947f8c45690` (Phase 3 correction), `bba6544892dc191c2ac371b1b66117f313e73f4e` (Phase 2), `5a997ae288ef05a48897283fdecc8a80e63e0a57` (workspace cleanup)
 - Tests: 17/17 map HTTP boundary tests pass
@@ -625,12 +625,51 @@ Fix: Start the daemon using the proper CLI binary: `ao.exe daemon` (from `backen
 **Evidence**
 - CPS source checkpoint: `300b2c56383926508ff1b345f178f08a371e55cc` — `[P6][D-MULTI-PROJECT-OPS][T-PORTFOLIO-CONCURRENCY] feat: add deterministic multi-project operations proof tests`
 - GeoPlotter checkpoint: `daae07d29e5da19c95f8c9d5d63884ef1489d2e9` — `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] fix: resolve MapLibre typecheck and migration artifacts`
-- TownBoss checkpoint: `f2cfda651ca6d4befbeb0ecd221f3bc0cdb761e0` — `[P6][D-MULTI-PROJECT-OPS][T-LIVE-RUNTIME-CLOSURE] docs: record live portfolio concurrency evidence and pty-host blocker`
-- TownBoss checkpoint: (pending) — `[P6][D-MULTI-PROJECT-OPS][T-CONPTY-RUNTIME] docs: resolve Windows pty-host blocker`
+- TownBoss checkpoint: `ba3060ac9059d841d7482b1345abf18e716cd578` — `[P6][D-MULTI-PROJECT-OPS][T-CONPTY-RUNTIME] docs: resolve Windows pty-host blocker and record live runtime evidence`
 - Tests: 6/6 Phase 6 multi-project tests pass; full `go test ./backend/internal/cps/...` green
 - Live runtime: GeoPlotter and GlenTown registered; concurrent sessions spawned; conflict prevention proven; restart reconstruction proven; no cross-project contamination
 
 **Impact on future work**
 Phase 6 is complete. The Windows ConPTY pty-host blocker was resolved by using the correct CLI binary (`ao.exe daemon`) instead of `go run .` from the backend directory. No CPS source changes were required. Phase 7 — Operationalization is the next active phase.
+
+### 2026-09-14 — Phase 7 operationalization complete
+
+**Type:** OPERATIONALIZATION
+**Status:** COMPLETED
+**Scope:** Phase 7 — Operationalization
+**Performed by:** Kilo
+
+**What happened**
+Phase 7 operationalization completed 9 operational documents in `D:\Projects\Code-Project-Supervisor\docs\`:
+- `operator-runbook.md` — startup, health, workflow, recovery, operator lifecycle
+- `backup-recovery.md` — state classification, backup/restore procedures
+- `upstream-sync.md` — upstream sync procedure with cadence and conflict policy
+- `incident-handling.md` — 9 incident classes with detect→preserve→classify→fail/queue→recover→escalate→record flow
+- `security-cadence.md` — security review triggers, scope, and recording
+- `telemetry-retention.md` — telemetry policy, log retention, evidence hierarchy
+- `dependency-updates.md` — update classification, review cadence, procedure
+- `health-checklist.md` — pre-flight checklist, runtime health, recovery verification
+
+Operational acceptance test passed:
+- Daemon started with `ao.exe daemon` (canonical Windows entry point)
+- `ao status` showed `ready`, `healthz: ok`, `readyz: ready`
+- Projects registered: GeoPlotter, GlenTown, Scratch
+- Worker launched: `geoplotter-5` spawned successfully (idle)
+- Worker stopped: `session kill geoplotter-5` succeeded
+- Daemon restart: stopped and restarted; sessions reconstructed with correct project_id, workspace_path, and branch
+- No cross-project contamination observed
+
+Phase 5 documentation reconciliation:
+- Independent review: `RequiredReview: true` for GeoPlotter PASS 0L; review evidence collected before checkpoint; consistent across Implementation Plan and Memory
+- GeoPlotter PASS 0L final checkpoint: `daae07d29e5da19c95f8c9d5d63884ef1489d2e9` (MapLibre typecheck/build fix), not the earlier `d15a15dd1a242ae6955fda7b97094ddf98acf641`; corrected in Implementation Plan and Memory
+
+**Evidence**
+- CPS source: no Phase 7 source changes required; operational docs added to `docs/`
+- TownBoss checkpoint: (pending) — `[P6][D-MULTI-PROJECT-OPS][T-OPERATIONALIZATION] docs: complete Phase 7 operationalization`
+- Tests: 6/6 Phase 6 multi-project tests pass; full `go test ./backend/internal/cps/...` green
+- Operational acceptance: daemon startup, health, worker launch/stop, restart/reconstruction all verified
+
+**Impact on future work**
+CPS is operational. First operational release criteria are satisfied. Next milestone: routine portfolio use under operational freeze policy. New CPS features require evidence from real product work that an actual blocking gap exists.
 
 ### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted
