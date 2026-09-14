@@ -92,6 +92,23 @@ During the normal path, the operator must not need to manually open and prompt t
 - Queue/worker capacity is understandable.
 - Project focus/UI attachment does not create duplicate work.
 
+### K. Security hardening
+
+- Canonical policy and explicit scoped delegation are the only sources of executable authority.
+- Missing/ambiguous identity or policy blocks governed side effects.
+- Untrusted repository/external/capability content cannot override canonical authority.
+- Capabilities used in governed work are approved, attributable, pinned/versioned where practical, and revocable.
+- Task recovery or provider fallback cannot expand repository, network, secret, environment or Git authority.
+- Worktree isolation is supplemented by stronger isolation when the task risk profile requires it.
+- External writes require an authorized target/scope.
+- Production/destructive actions remain denied unless explicitly authorized by the applicable high-risk policy.
+- A task cannot become `VERIFIED` while mandatory scope, policy, provenance, validation or evidence gates are incomplete.
+- A verified checkpoint can be traced to its task lineage, worker/session, relevant capability versions, governance decisions and validation evidence.
+- Cross-project concurrency does not share uncontrolled credentials, workspaces, task state or evidence.
+- Security/circuit-breaker state needed for safe recovery survives supervisor restart.
+
+The detailed authority for this gate is `CODE_PROJECT_SUPERVISOR_SECURITY_HARDENING_STANDARD.md`.
+
 ## Operator UX acceptance
 
 The exact UI is not a release blocker if upstream tooling already provides a usable operator surface. Minimum UX requirements:
