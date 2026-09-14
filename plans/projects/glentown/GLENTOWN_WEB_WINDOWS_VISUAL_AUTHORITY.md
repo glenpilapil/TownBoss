@@ -180,19 +180,46 @@ Use legitimate backend data and representative fixtures; do not make decorative 
 
 ## Create — approved top-level page
 
-The top-level **Create** button has its own desktop workspace and retains the persistent shell.
+The top-level **Create** button has its own desktop workspace and retains the persistent shell. Create is a **choice-first creation hub**: it should help a resident quickly identify what they want to contribute, offer, request or publish, rather than dropping them directly into one oversized generic form.
 
-The current generated Create concept is **acceptable as a baseline**, subject to the written revisions below.
+The current generated Create concept is **acceptable as the top-level visual baseline**, subject to the written revisions below.
+
+### Create main-content composition
+
+The approved main-content flow is:
+
+**Create hero → primary Community creation cards → livelihood/commerce/hiring creation cards → lightweight creation guidance**
+
+The page should remain visually spacious and scannable. Creation types are represented as substantial visual cards with clear title, short purpose statement and an obvious active continuation affordance. The cards are navigation into the corresponding specialized creation/setup flows; the top-level Create page itself does not need to expose every internal field for those flows.
+
+The first row gives strong prominence to the established citizen/community actions:
+
+- **Update** — share news, stories or what is on the resident's mind.
+- **Looking For** — ask the community for people, items, services or opportunities.
+- **Alert** — create urgent or important local/community information using Alert-specific semantics rather than treating Alert as a cosmetic generic post type.
+- **Poll** — ask the community a structured question; the eventual Poll flow must preserve the established requirement for at least two real persisted options.
+
+A second visual group provides entry into creation that may involve livelihood, commerce, organizational or hiring prerequisites, including **Product / Item, Service, Food and Job**. These remain normal active cards and progressively route according to the user's actual context and eligibility.
+
+A lightweight help/guidance area may sit below the card groups for residents who are unsure what to create, including access to posting guidance. It should remain subordinate to the creation choices and must not become decorative filler.
 
 ### Create hero
 
-Use a substantial landscape hero/banner with the primary Create message on the left. The supporting card on the right must be pushed to the rightmost side of the hero content area with standard padding, made smaller, and rendered as a more transparent/translucent contextual surface. Remove the large quoted inspirational message from the generated concept. The supporting card must not compete with the primary Create hierarchy.
+Use a substantial landscape hero/banner with the primary Create message on the left. The accepted concept uses the direction **“Share. Offer. Help. Build a stronger community.”** with concise supporting copy inviting the resident to choose what they want to create.
 
-### Create entry cards
+The supporting card on the right must be pushed to the rightmost side of the hero content area with standard padding, made smaller, and rendered as a more transparent/translucent contextual surface. Remove the large quoted inspirational message from the generated concept. If supporting content remains there, keep it concise and contextual. The card must not compete with the primary Create hierarchy or obscure the destination photography unnecessarily.
+
+### Create entry-card visual behavior
+
+The Community cards and livelihood/commerce/hiring cards belong to the same usable creation system. Visual differentiation may communicate category or context, but it must not falsely communicate that a capability is unavailable.
 
 Community creation entries such as **Update, Looking For, Alert and Poll** remain active first-class Create actions.
 
-Commercial/livelihood entries must **not appear disabled merely because prerequisites are incomplete**. A prerequisite is not the same as an unavailable capability. Cards should retain normal active affordance and route into the appropriate continuation/setup/guidance flow.
+Commercial/livelihood/hiring entries must **not appear disabled merely because prerequisites are incomplete**. A prerequisite is not the same as an unavailable capability. Cards should retain normal active affordance, imagery/icon treatment, readable text and continuation cues, then route into the appropriate continuation/setup/guidance flow.
+
+Do not use faded card opacity, lock icons, dead arrows or other disabled-state language when the real behavior is `continue to setup / eligibility / compliance guidance`.
+
+### Product, livelihood and hiring continuation rules
 
 Approved product-direction principles:
 
@@ -203,7 +230,9 @@ Approved product-direction principles:
 
 This supersedes the prior blanket UX assumption that `Post a Job` is categorically unavailable to citizens. Historical implementation evidence may still record that older behavior and must be treated as requiring reconciliation, not as current product authority.
 
-Do not visually use lock icons, disabled opacity, dead arrows or similar affordances when the real behavior is `continue to setup / eligibility / compliance guidance`.
+### Responsive/interaction intent
+
+The desktop grid may use the available width to present several creation choices at once, but it must collapse responsively rather than shrinking cards into unreadable tiles. All cards require deliberate desktop hover/focus/cursor/keyboard states consistent with the shared Web/Windows interaction rules. The persistent sidebar and topbar remain the shell authority while Create changes only the main workspace.
 
 ## Visual-reference status
 
@@ -211,7 +240,7 @@ The approved generated Home concept is authoritative only for broad framing/prop
 
 The generated Explore concept is **strongly approved as the top-level Explore visual baseline**, subject to this document's exact shell, taxonomy, data-truthfulness and interaction rules.
 
-The generated Create concept is **acceptable as the top-level Create visual baseline**, subject to the Create hero/card corrections and prerequisite-routing rules above.
+The generated Create concept is **acceptable as the top-level Create visual baseline**, subject to the complete Create composition, hero/card corrections and prerequisite-routing rules above.
 
 ## Verification rule
 
