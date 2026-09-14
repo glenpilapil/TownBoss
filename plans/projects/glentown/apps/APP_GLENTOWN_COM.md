@@ -1,273 +1,209 @@
 # app.glentown.com — GlenTown App Website
 
-**Status:** IMPLEMENTATION IN PROGRESS / VISUAL RECOVERY  
+**Status:** IMPLEMENTATION IN PROGRESS / MULTI-PAGE IA RECONCILIATION  
 **Surface:** `https://app.glentown.com`  
-**Role:** Public product, download and acquisition website for the downloadable GlenTown application.  
-**Not the consumer web app:** `glentown.com` remains the GlenTown Flutter Web consumer platform.  
+**Role:** Public product, download, Beta, and acquisition website for GlenTown.  
+**Not the consumer web app:** `glentown.com` remains the GlenTown Web experience.  
 **Detailed planning package:** `./glentown-app-site/README.md`
 
 ## 1. Purpose
 
-`app.glentown.com` is the canonical public website for GlenTown as an installable/downloadable application. It explains the app, presents its capabilities, provides trusted download/install paths, communicates Beta/release status, and routes users to support, privacy, legal and web-platform destinations.
+`app.glentown.com` is the canonical public website for GlenTown as an installable/downloadable application and connected **Digital Town** product. It explains the product, presents capabilities and audience-specific stories, provides trusted access/download paths, communicates Beta/rollout status, surfaces current survey/feedback opportunities, and routes users to Web, support, privacy, legal, business, and developer destinations.
 
-The site must be useful before public app-store release. During Beta it can provide approved Android Beta installation/access instructions while clearly distinguishing official builds from future Google Play / Apple App Store distribution.
+Public marketing copy should use **Digital Town** rather than `DTOS` / `Digital Town Operating System`.
 
 ## 2. Current Implementation State
 
-A dedicated implementation repository now exists at `glenpilapil/GlenTown-App-Site`. The application foundation is implemented and has repeatedly passed its reported engineering checks, including lint, typecheck, tests and production build during earlier checkpoints.
+A dedicated implementation repository exists at `glenpilapil/GlenTown-App-Site`.
 
-Implemented foundations include:
+Latest verified implementation checkpoint reported before this planning reconciliation:
 
-- Next.js 16 App Router, React, TypeScript and Tailwind CSS 4;
-- dedicated `/`, `/features`, `/download` and `/beta` routes;
-- centralized release-aware CTA configuration;
-- System / Light / Dark theme support;
-- metadata, robots and sitemap foundations;
-- official GlenTown brand assets and official platform marks;
-- real GlenTown application screenshots and approved lifestyle-media derivatives;
-- responsive header/footer/navigation and reusable marketing components.
+- branch: `feat/v1-typography-hero`
+- SHA: `723264018a7b15721b9de95ab5e281bb9da1f910`
+- lint: PASS
+- typecheck: PASS
+- tests: 13/13 PASS
+- build: PASS
+- local/remote SHA match: verified
+- physical/human visual audit: OPEN
 
-**Visual acceptance is separate from engineering validation.** The current human visual gate is not passed. The project is in a template-led controlled-hybrid visual recovery after the earlier freeform marketing composition failed visual review.
+The previous one-page-only consolidation is now superseded by a connected multi-page information architecture. Existing one-page work remains useful as design/content material but is not the final site architecture.
 
-The authoritative current-state, design-authority, audit and evidence details live in `./glentown-app-site/`.
+## 3. Approved Site Architecture
 
-## 3. Architecture Decision
+### Global Header
 
-Use a conventional SEO-first web application/site rather than Flutter Web.
+Target desktop structure:
 
-Implemented baseline:
+`Logo | Home | Features ▾ | Beta | Download | Open Web App | Theme`
 
-- Next.js 16 App Router with TypeScript;
-- responsive semantic HTML/CSS with Tailwind CSS 4;
-- componentized GlenTown design system/tokens;
-- optimized images and verified device screenshots;
-- static-first public pages where possible;
-- metadata, Open Graph and structured-data support;
-- analytics/consent only through an explicit privacy decision;
-- Cloudflare-proxied production DNS and HTTPS target;
-- deployment independent from `GlenTown-App` and `GlenTown-API`.
+Features submenu:
 
-No application login is required for the MVP. Authentication should only be introduced when a concrete product need exists, such as authenticated Beta enrollment or device/release management.
+- For Tourists
+- For Residents
+- For Organizations
+- For Developers
 
-## 4. Relationship to Other GlenTown Surfaces
+Theme control belongs in Header, not Footer.
 
-| Destination | Relationship |
-|---|---|
-| `glentown.com` | "Use GlenTown on the web" / canonical consumer Flutter Web experience |
-| Android/iOS GlenTown | Primary product being presented and distributed |
-| `help.glentown.com` | Support, installation help, FAQs and troubleshooting |
-| `api.glentown.com` | No direct public dependency for basic marketing pages; dynamic release/Beta data may use controlled APIs later |
-| `dev.glentown.com` | Developer/integration documentation, not end-user app documentation |
-| `biz.glentown.com` | Business portal destination where relevant |
+Hero uses:
 
-## 5. MVP Information Architecture
+- Join the Beta
+- Learn More
 
-### `/` — App home
+`Open Web App` is a persistent Header utility action rather than a Hero CTA.
 
-- GlenTown brand and clear app value proposition.
-- Primary Android install/download CTA according to current release state.
-- iOS/App Store state when applicable.
-- "Use GlenTown on the web" secondary CTA to `glentown.com`.
-- Product screenshots/device previews.
-- Core capability overview.
-- Nationwide availability language while identifying Puerto Princesa as the deepest operational pilot where relevant.
-- Trust/safety/privacy summary.
-- Support and legal links.
+### Primary Routes
 
-### `/features`
+- `/` — Home story + summaries
+- `/features` — complete capability hub
+- `/features/tourists`
+- `/features/residents`
+- `/features/organizations`
+- `/features/developers`
+- `/beta`
+- `/download`
 
-Organize by user intent rather than exposing internal module architecture. Candidate groups:
+Developer/partner registration interest uses a modal rather than a standalone form route.
 
-- Community and local discovery;
-- Marketplace, Pre-Loved and Food;
-- Services and professionals;
-- Travel, events and places;
-- Messages and notifications;
-- planning/orchestration capabilities as they become release-ready.
+## 4. Home Role
 
-Only advertise capabilities that are actually available in the referenced release/Beta channel.
+Home tells the persuasive GlenTown story and summarizes deeper content rather than containing every feature.
 
-### `/download`
+Recommended narrative:
 
-- Current supported distribution channels.
-- Android installation path.
-- Future Google Play CTA when live.
-- Future Apple App Store CTA when live.
-- Current version/build identifier when appropriate.
-- Minimum supported OS/device guidance.
-- Integrity guidance for identifying the official GlenTown build/source.
-- Installation troubleshooting link when the canonical Help destination is available.
+1. Header / navigation
+2. Hero
+3. Why GlenTown / local-life fragmentation
+4. real-life editorial stories
+5. Discover / Connect / Get Things Done
+6. concise Features summary
+7. concise Digital Town summary
+8. Trust / product proof
+9. concise Beta summary
+10. concise Download summary
+11. FAQ where useful
+12. compact final CTA
+13. Footer
 
-### `/beta`
+## 5. Features Scope
 
-- Beta availability and scope.
-- Eligibility/access instructions if gated.
-- What Beta users should expect.
-- Feedback/reporting path.
-- Privacy and diagnostic-data disclosure appropriate to the Beta.
+The Digital Town story must be broader than the planner/orchestration layer.
 
-This route may be hidden from primary navigation once general availability supersedes Beta.
+Relevant capability families include:
 
-### `/privacy` and `/terms`
+- Community / participation / messaging
+- current Explore taxonomy: Products, Foods, Services, Tourism, Events, Jobs, Properties, Suppliers, Directory
+- Pre-Loved / commerce / orders / bookings where supported
+- reviews / reputation / Trust & Verification
+- Personal Timeline
+- private Diary
+- Memory Albums
+- Day Planner
+- Trip Planner
+- Event Planner
+- Financial Planner
+- Achieve
+- businesses / organizations
+- government/civic-service integration
+- shared platform/developer capabilities
 
-Prefer canonical legal documents/URLs shared across GlenTown when available rather than maintaining conflicting copies.
+Current-vs-future maturity must remain explicit and truthful.
 
-### `/releases`
+## 6. Audience Features Pages
 
-Not required for first public deployment. Add only with a reliable release publishing workflow.
+Every audience page requires both feature groups and a story section showing connected capabilities in practice.
 
-## 6. Homepage Content Model
+### Tourists
 
-The homepage may remain a concise one-page marketing experience. Current visual implementation must follow the detailed design-authority matrix rather than freeform AI composition.
+Story direction:
+`Discover Palawan -> Build your trip -> Book and coordinate -> Experience locally -> Keep the memories`
 
-Recommended narrative remains:
+### Residents
 
-1. Header / navigation.
-2. Hero — app value proposition + release-aware CTA.
-3. Product/device presentation where useful.
-4. "Your town, connected" value story.
-5. Local life / discovery.
-6. Commerce / services.
-7. Planning / travel / community using release-ready capabilities only.
-8. Trust/privacy/safety.
-9. Screenshot gallery / closer look where it improves understanding.
-10. Download/Beta CTA.
-11. Footer.
+Story direction:
+`See what's happening -> Find what you need -> Get it done -> Stay connected -> Keep your story`
 
-Media should deliberately vary among photography, device presentation, raw/cropped UI, icons, typography and decorative artwork. The site must not devolve into repeated phone mockups.
+### Organizations
 
-Official GlenTown brand assets must remain unchanged. Product screenshots should come from verified builds whenever possible and may be refreshed after later physical-device audits.
+The underlying taxonomy remains Organizations, but public marketing focus is business organizations first.
 
-## 7. Current Visual Design Authority
+Story direction:
+`Establish your presence -> Get discovered -> Receive an inquiry/order/booking -> Serve and communicate -> Build reputation -> Grow operations`
 
-The approved direction is a **template-led controlled hybrid**:
+### Developers
 
-- `bohd4nx/app-landing` — typography, concise one-page restraint, screenshot gallery/lightbox mechanics and selected structural patterns;
-- `sofiyevsr/mobile-app-landing-template` — adapted hero/media composition, photography-led split sections, decorative transitions and scroll-effect study;
-- Prooland / Allon / Appilo — premium visual benchmarks;
-- GlenTown — authoritative product truth, content, brand, release state and owned/approved media.
+Story direction:
+`Register interest -> Approved access when available -> Use shared capabilities -> Build a specialized experience -> Respect domain authority`
 
-Visual sections must name their source-pattern authority. Engineering success does not promote a section to visually accepted status.
+Do not imply unrestricted API access.
 
-## 8. Release-State Model
+## 7. Government / Civic Integration
 
-The site must not assume app-store availability before it exists.
+Government services are a major Digital Town direction.
 
-Supported product-level presentation states remain:
+The site may explain integration with authoritative government information/services, requirements, planning, identity/verification, messaging, payments/reporting, and related workflows where authorized and implemented.
 
-- `PRE_BETA`
-- `PRIVATE_BETA`
-- `PUBLIC_BETA_ANDROID`
-- `STORE_RELEASE_ANDROID`
-- `STORE_RELEASE_IOS`
-- `GENERAL_AVAILABILITY`
+Government systems remain authoritative. GlenTown must not imply government authority or endorsement.
 
-The implementation currently uses centralized release configuration and safe URL fallbacks so labels/actions do not fabricate unavailable distribution paths.
+High-priority interoperability references include approved DICT eGov ecosystem capabilities such as eGov SSO, eVerify/PhilSys, eMessage, eGovPay, liveness, citizen reports, and DBM Compass, subject to access and implementation truth.
 
-## 9. Content and Data Boundaries
+## 8. Geography / Beta
 
-The public site may contain static/product-managed content without depending on GlenTown authentication or operational APIs.
+Approved public framing:
 
-If dynamic data is introduced later, it may include public release/version metadata, maintenance advisories, Beta availability and authoritative app-store links. API-backed content must fail gracefully and must not make the marketing site unavailable when operational APIs are degraded.
+- Palawan is the Day-1 supported pilot province.
+- Puerto Princesa is the deepest initial concentration / operational-density market.
+- Other Palawan locations may be supported from Day 1 while local supply/feature depth varies.
+- Nationwide registration/selected capabilities may coexist with staged local depth.
 
-## 10. SEO, Sharing and Accessibility
+`/beta` must include a current Survey Forms / `Help shape GlenTown` section using only verified active form URLs.
 
-MVP requirements remain:
+## 9. Download
 
-- indexable public pages;
-- canonical URLs;
-- page-specific titles/descriptions;
-- Open Graph/social preview metadata;
-- sitemap and robots policy;
-- semantic headings and landmarks;
-- keyboard-accessible navigation/actions;
-- adequate contrast;
-- meaningful alt text;
-- responsive layouts for phone, tablet and desktop;
-- performance budgets for hero/media assets;
-- reduced-motion behavior for motion-dependent presentation.
+`/download` is the authoritative release/access page and must cover:
 
-Avoid doorway/location SEO pages until there is useful unique content and a deliberate search strategy.
+- Android
+- iOS
+- Windows
+- Web
 
-## 11. Security and Privacy Baseline
+Windows is represented as planned/in development until an authoritative package/source exists. No false Windows download action is permitted.
 
-- HTTPS only in production.
-- Cloudflare-proxied DNS/origin protection consistent with TownBoss policy.
-- No secrets embedded in client assets.
-- Content Security Policy and appropriate security headers.
-- No arbitrary executable download links.
-- Official Android distribution links/builds require documented provenance.
-- Third-party analytics, pixels or session-replay tools require explicit approval and privacy disclosure.
-- Contact/support forms, if introduced, require abuse controls and server-side validation.
+Release/download actions remain configuration-driven.
 
-## 12. Implementation Phases
+## 10. Product Truth / Evidence Rules
 
-### Phase 0 — Foundation
+Do not fabricate:
 
-- [x] Establish dedicated repository (`GlenTown-App-Site`).
-- [x] Select and implement SEO-first framework (Next.js 16 App Router).
-- [x] Establish lint/typecheck/test/build workflow.
-- [x] Import approved GlenTown brand assets without modification.
-- [x] Establish reusable responsive layout/component foundation.
-- [x] Define centralized environment/release-state configuration.
-- [ ] Establish preview deployment strategy.
+- app-store or Windows artifacts
+- downloads/users
+- ratings/reviews/testimonials
+- social proof
+- partner logos/endorsements
+- government endorsement
+- merchant/provider density
+- unrestricted API availability
+- scarcity/waitlist urgency
 
-**Engineering gate:** previously reported PASS at multiple checkpoints.  
-**Visual gate:** not implied by engineering success.
+Future capability direction must not be promoted as current release truth.
 
-### Phase 1 — Public MVP
+## 11. UI/UX Cross-Check Authority
 
-- [x] Home route foundation.
-- [x] Features route foundation.
-- [x] Download route foundation.
-- [x] Beta route foundation.
-- [ ] Verify final Help/legal routing.
-- [x] Responsive header/footer/navigation baseline.
-- [x] SEO/social metadata baseline.
-- [ ] Complete final accessibility verification after visual redesign.
-- [ ] Production DNS/deployment for `app.glentown.com`.
+The detailed `GLENTOWN_APP_SITE_IMPLEMENTATION_PLAN.md` and `GLENTOWN_APP_SITE_ACCEPTANCE_CRITERIA.md` under `./glentown-app-site/` are the primary requirements against which the next human UI/UX audit should be cross-checked.
 
-**Current visual gate:** FAIL / recovery in progress.
+Engineering PASS does not equal visual PASS.
 
-### Phase 2 — Release Integration
+## 12. Immediate Next Actions
 
-- [x] Centralized release metadata / CTA decision logic baseline.
-- [ ] Configure authoritative app-store badges/links only when real destinations exist.
-- [ ] Release notes workflow.
-- [ ] Deep-link/install attribution strategy if approved.
-- [ ] Optional Beta enrollment workflow.
-
-### Phase 3 — Growth
-
-- [ ] Localized landing content where justified.
-- [ ] Campaign-specific landing pages.
-- [ ] Referral/deep-link campaigns.
-- [ ] Experimentation/feature-flag support where appropriate.
-- [ ] Conversion analytics under approved privacy controls.
-
-## 13. Definition of Done for Initial Launch
-
-`app.glentown.com` may be classified DEPLOYED only when:
-
-1. dedicated repository and ownership are established;
-2. production build and automated quality checks pass;
-3. official branding is used correctly;
-4. advertised capabilities correspond to the active release state;
-5. download/install CTAs point only to approved official distribution paths;
-6. Privacy, Terms and Help destinations are valid;
-7. mobile and desktop layouts pass explicit human visual verification;
-8. accessibility and metadata checks pass;
-9. Cloudflare/DNS/TLS configuration is verified;
-10. production URL is smoke-tested after deployment.
-
-`OPERATIONAL` additionally requires a defined owner for content/release updates and a repeatable deployment/release process.
-
-## 14. Current Next Actions
-
-1. Preserve and inspect the dirty local `feat/pass-3-visual-art-direction` working tree; do not destructively reset it.
-2. Reconcile the local `README.md` and `docs/APP_SITE_ARCHITECTURE.md` with the TownBoss package and current visual-audit decisions.
-3. Capture exact local HEAD/status/diff evidence and rerun engineering validation.
-4. Implement only the bounded **V1 Typography + Hero** scope using named reference authorities.
-5. Run automated engineering validation.
-6. Perform explicit human desktop/mobile visual audit.
-7. Do not proceed to subsequent homepage sections until the V1 visual gate passes.
+1. reconcile repository-local docs with the updated TownBoss package;
+2. restore shared Header/nav/theme control;
+3. recompose Home around story + summaries;
+4. implement/restore dedicated Features/Beta/Download routes and audience subroutes;
+5. implement audience story sections;
+6. implement developer-interest modal;
+7. update Beta geography/surveys;
+8. add Windows release surface truthfully;
+9. run engineering validation;
+10. perform desktop/tablet/mobile human visual audit against the implementation plan and acceptance criteria;
+11. do not checkpoint as visually accepted until the cross-check passes.
