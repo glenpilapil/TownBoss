@@ -338,3 +338,21 @@ When the accepted objective is achieved with sufficient evidence, checkpoint it 
 Project-owned auxiliary artifacts such as runtime data, canaries, audit clones, worktrees, logs, state, references, and temporary files must live beneath the owning project unless the operator explicitly authorizes an external location.
 
 Legitimate project roots are established by the operator or by explicit project-creation workflow. A directory is not a project root merely because it contains source code.
+
+## 32. Web Source Integrity and Safe Editing
+
+All web-source changes governed by TownBoss inherit `governance/WEB_SOURCE_INTEGRITY_AND_SAFE_EDIT_GATE.md`.
+
+For JSX/TSX/JS/TS and equivalent structured web source:
+
+- prefer bounded edits over whole-file rewrites;
+- do not use blanket recursive text replacement when it can affect syntax or semantics;
+- inspect the current file before structural mutation;
+- inspect the resulting diff after material structural edits;
+- validate parser/type integrity before proceeding across additional structural files;
+- treat validation output as stale after any later material source edit;
+- distinguish transient hot-reload errors during active writes from persistent final-state source failures;
+- require final validation against the final saved source state;
+- block `VERIFIED`/`CHECKPOINTED` on malformed, duplicated, spliced, unexplained or unreviewed source churn.
+
+Unsafe editing methods are rule violations when they create or materially risk source corruption. Repeated source-integrity incidents must be escalated from symptom repair to workflow/process correction.
