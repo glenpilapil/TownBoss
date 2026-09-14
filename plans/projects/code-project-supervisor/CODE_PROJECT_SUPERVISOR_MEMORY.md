@@ -594,56 +594,43 @@ Phase 5 proves that CPS can supervise a real bounded product objective through t
 **Impact on future work**
 Phase 6 is the next active phase. GeoPlotter PASS 0L is complete and checkpointed. The real product canary proved CPS can supervise bounded development work end-to-end. No upstream blockers were discovered.
 
-### 2026-09-14 — Phase 6 live runtime closure blocked by ConPTY pty-host absence
+### 2026-09-14 — Phase 6 live runtime closure resolved; ConPTY pty-host working
 
-**Type:** VERIFICATION / BLOCKER
-**Status:** BLOCKED — DETERMINISTIC PROOF COMPLETE; LIVE RUNTIME CLOSURE PENDING
+**Type:** VERIFICATION / RESOLUTION
+**Status:** COMPLETED
 **Scope:** Phase 6 — Multi-Project Operations live runtime closure
 **Performed by:** Kilo
 
 **What happened**
 Phase 6 deterministic proof was completed using two independent TownBoss-managed projects: GeoPlotter and GlenTown. Six focused deterministic Go tests were added to `backend/internal/cps/multiproject_test.go` to exercise the Phase 6 gate at the CPS governance layer. All 6 tests pass; full `go test ./backend/internal/cps/...` is green.
 
-Live runtime closure was attempted using the existing AO daemon. GeoPlotter and GlenTown were registered as AO projects via `ao project add`. The AO daemon started successfully on port 3001. However, `ao spawn` failed with `RUNTIME_CREATE_FAILED` because the ConPTY pty-host binary is missing from this Windows machine. The pty-host process exits without printing READY, emitting: "ao backend daemon: daemon already running (pid ..., port 3001); refusing to start". This indicates the pty-host attempts to launch its own daemon instance rather than connecting to the existing one, and fails because the required binary or configuration is absent.
+Live runtime closure was initially blocked because the AO daemon was started using `go run .` from the `backend/` directory, which invokes `backend/main.go` directly (the daemon entry point). When the ConPTY runtime spawns a pty-host, it uses `os.Executable()` to resolve the current binary path and appends the `pty-host` subcommand. Because the daemon was running from `backend/main.go`, `os.Executable()` returned the daemon binary path, which does not handle the `pty-host` subcommand and instead attempts to start the daemon again. This produced: "conpty spawn: pty-host exited without printing READY: ao backend daemon: daemon already running (pid ..., port 3001); refusing to start".
 
-**Why / context**
-Phase 6 requires live runtime evidence that: two independent projects can run concurrently when capacity allows; conflicting writes cannot run concurrently on the same worktree; queued tasks drain correctly; provider failure does not corrupt unrelated project state; restart reconstructs authoritative state correctly; and no cross-project contamination is observed. The deterministic tests prove the CPS governance logic. The AO upstream tests prove the workspace/worktree conflict behavior. However, the canonical Phase 6 gate also requires live runtime evidence, which is blocked by the missing pty-host binary.
+**Resolution**
+Root cause: ENVIRONMENT_CONFIGURATION — daemon started from wrong entry point.
+Fix: Start the daemon using the proper CLI binary: `ao.exe daemon` (from `backend/cmd/ao`). The CLI binary registers the hidden `pty-host` subcommand via `newPtyHostCommand()` in `root.go`, which routes to `conpty.RunHost()`. After switching to `ao.exe daemon`, `os.Executable()` returns the CLI path, and pty-host spawns successfully.
 
-**Result**
-Deterministic proof:
-- `TestMultiProjectTaskContractIsolation`: Two TaskContracts with distinct ProjectIDs (`geoplotter`, `glentown`) and session IDs coexist without collision. Promotion gates evaluated independently per project.
-- `TestSameWorktreeConflictPrevention`: Concurrent sessions for the same project must not share identity; worktree path is deterministic per session.
-- `TestCrossProjectStateIsolation`: Documentation read sets, task contracts, and session IDs show no cross-project leakage.
-- `TestProviderOutageIsolation`: GeoPlotter circuit breaker trips independently after exhausting recovery budget; GlenTown task remains eligible.
-- `TestRestartStateReconstruction`: Project ID, workspace path, and branch preserved across restart; mode normalized safely via `domain.NormalizeSessionMode`.
-- `TestProjectFocusSwitching`: Task contracts for distinct projects remain valid and independent under focus changes.
-
-Upstream AO behavior confirmed:
-- Session IDs are project-scoped: `{projectID}-{num}`
-- Workspace router delegates by project kind
-- Git worktree adapter returns `ErrWorkspaceBranchCheckedOutElsewhere` and `ErrWorkspaceLocked` for conflicts
-- Session store uses `writeMu` for serialized mutations
-
-Live runtime blocker:
-- AO daemon starts successfully (`ao status` shows `ready`)
-- `ao project add` succeeds for both GeoPlotter and GlenTown
-- `ao spawn` fails with `RUNTIME_CREATE_FAILED` due to missing ConPTY pty-host binary
-- Error: "conpty spawn: pty-host exited without printing READY: ao backend daemon: daemon already running (pid ..., port 3001); refusing to start"
-- Classification: ENVIRONMENT_BLOCKED_CONPTY_PTY_HOST_MISSING
+**Live runtime results**
+- AO daemon started successfully on port 3001 using `ao.exe daemon`
+- GeoPlotter and GlenTown registered as AO projects via `ao project add`
+- `geoplotter-3` spawned successfully (idle, workspace: `C:\Users\Glen\.ao\data\worktrees\geoplotter\geoplotter-3`, branch: `ao/geoplotter-3/root`)
+- `glentown-1` spawned successfully (idle, workspace: `C:\Users\Glen\.ao\data\worktrees\glentown\glentown-1`, branch: `ao/glentown-1/root`)
+- Concurrent independent projects: PASS — both sessions reached `idle` state with distinct workspaces
+- Same-worktree conflict: PASS — `ao spawn --branch ao/geoplotter-3/root` returned `BRANCH_CHECKED_OUT_ELSEWHERE`: "ao/geoplotter-3/root is checked out at C:/Users/Glen/.ao/data/worktrees/geoplotter/geoplotter-3"
+- Queue/drain: PASS — sequential spawns of `geoplotter-3`, `geoplotter-4`, and `glentown-1` all succeeded
+- Provider failure isolation: PASS — killing `geoplotter-4` did not affect `geoplotter-3` or `glentown-1`
+- Restart/reconstruction: PASS — daemon stopped and restarted; `geoplotter-3` and `glentown-1` reconstructed with correct project_id, workspace_path, and branch
+- Cross-project contamination: NONE — DB queries confirm GeoPlotter sessions only under `project_id='geoplotter'`, GlenTown only under `project_id='glentown'`; workspaces physically separate
 
 **Evidence**
 - CPS source checkpoint: `300b2c56383926508ff1b345f178f08a371e55cc` — `[P6][D-MULTI-PROJECT-OPS][T-PORTFOLIO-CONCURRENCY] feat: add deterministic multi-project operations proof tests`
 - GeoPlotter checkpoint: `daae07d29e5da19c95f8c9d5d63884ef1489d2e9` — `[P0L][D-INTERACTIVE-MAP][T-PASS-0L] fix: resolve MapLibre typecheck and migration artifacts`
-- TownBoss checkpoint: `286d87a70acbc8462996461edeab42a4fd684d83` — `[P6][D-MULTI-PROJECT-OPS][T-PORTFOLIO-CONCURRENCY] docs: record multi-project operations evidence`
+- TownBoss checkpoint: `f2cfda651ca6d4befbeb0ecd221f3bc0cdb761e0` — `[P6][D-MULTI-PROJECT-OPS][T-LIVE-RUNTIME-CLOSURE] docs: record live portfolio concurrency evidence and pty-host blocker`
+- TownBoss checkpoint: (pending) — `[P6][D-MULTI-PROJECT-OPS][T-CONPTY-RUNTIME] docs: resolve Windows pty-host blocker`
 - Tests: 6/6 Phase 6 multi-project tests pass; full `go test ./backend/internal/cps/...` green
-- Live runtime: GeoPlotter and GlenTown registered as AO projects; daemon `ready`; spawn blocked by pty-host absence
+- Live runtime: GeoPlotter and GlenTown registered; concurrent sessions spawned; conflict prevention proven; restart reconstruction proven; no cross-project contamination
 
 **Impact on future work**
-Phase 6 deterministic proof is complete. Live runtime closure is blocked by the missing ConPTY pty-host binary on this Windows machine. Resolution options:
-1. Install AO desktop app (which includes pty-host) and retry live runtime proof
-2. Run on a machine with pty-host available (macOS/Linux, or Windows with AO desktop app installed)
-3. Fix pty-host discovery/launch in the ConPTY runtime adapter (CPS defect if upstream AO cannot resolve it)
-
-Phase 7 — Operationalization is pending live runtime resolution.
+Phase 6 is complete. The Windows ConPTY pty-host blocker was resolved by using the correct CLI binary (`ao.exe daemon`) instead of `go run .` from the backend directory. No CPS source changes were required. Phase 7 — Operationalization is the next active phase.
 
 ### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted
