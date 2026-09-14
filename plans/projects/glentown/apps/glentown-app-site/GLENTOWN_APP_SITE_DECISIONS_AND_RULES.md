@@ -92,7 +92,7 @@ The prior one-page-only approach is superseded.
 
 Home remains a concise narrative/acquisition page; deeper content moves to focused routes.
 
-Approved route family:
+Approved current route family:
 
 - `/`
 - `/features`
@@ -104,6 +104,26 @@ Approved route family:
 - `/download`
 
 Home must summarize Features, Beta, and Download without duplicating their complete content.
+
+### Deferred Explore Category Route Family
+
+The following dedicated Explore-category pages are **APPROVED but DEFERRED** until the current multi-page architecture has passed human UI/UX acceptance and reached a clean committed/pushed checkpoint:
+
+- `/features/products`
+- `/features/foods`
+- `/features/services`
+- `/features/tourism`
+- `/features/events`
+- `/features/jobs`
+- `/features/properties`
+- `/features/suppliers`
+- `/features/directory`
+
+These routes must not be added to implementation-agent prompts before that checkpoint. Their canonical implementation requirements are defined in `GLENTOWN_APP_SITE_EXPLORE_CATEGORY_PAGES_PLAN.md`.
+
+The category pages are intended to provide substantive product explanation, realistic category-specific stories, Digital Town cross-connections, and unique SEO search-intent surfaces. They must not be thin doorway pages.
+
+Do not automatically add all nine category links to the compact Header Features dropdown. `/features` is the primary discovery hub for them. A future mega-menu requires separate UI/UX acceptance.
 
 ## Features / Digital Town Scope
 
@@ -262,6 +282,7 @@ Current controlled hybrid references remain:
 - No fake urgency, scarcity, testimonials, ratings, metrics, press, or partner logos.
 - Trust/product proof should precede high-commitment conversion where practical.
 - Connected stories should demonstrate why GlenTown's breadth belongs in one Digital Town.
+- Explore-category pages, once activated, answer `What can I do in this part of GlenTown?`; audience pages answer `Why is GlenTown useful to someone like me?`. Do not collapse the two page families into duplicate content.
 
 ## Engineering vs Visual Gates
 
@@ -275,4 +296,5 @@ Current controlled hybrid references remain:
 - Later explicit user decisions supersede earlier assumptions.
 - Superseded rules must be reconciled, not silently duplicated.
 - Update Current State, Implementation Plan, Visual Audit Ledger, and Memory after material changes.
-- The Implementation Plan is the primary UI/UX cross-check document for the next architecture pass.
+- The Implementation Plan is the primary UI/UX cross-check document for the current architecture pass.
+- `GLENTOWN_APP_SITE_EXPLORE_CATEGORY_PAGES_PLAN.md` is the implementation authority for the deferred nine-category page phase after the prerequisite checkpoint.
