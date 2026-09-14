@@ -15,12 +15,12 @@ GlenTown project-specific rules may be stricter but do not silently weaken portf
 
 ## Binding project rules
 
-1. Puerto Princesa remains the deepest operational pilot, while nationwide access and nationwide pre-Beta seeding are valid rollout goals.
+1. **Palawan is the Day-1 supported pilot province. Puerto Princesa remains the deepest initial concentration and operational-density market.** Other Palawan towns/municipalities may be supported from Day 1 while capability depth and local supply vary by readiness. Nationwide access/registration and nationwide pre-Beta seeding remain valid rollout goals outside Palawan, with staged local depth.
 2. Repository history proves implementation existence; higher verification states require fresh evidence tied to a concrete canonical ref/release candidate and applicable validation profile.
 3. Messaging is already integrated in the canonical API lineage and must not be treated as absent without contrary repository evidence.
 4. Client UI must not become authoritative for security, tenancy, pricing, completion, or protected state transitions.
 5. Realistic seed content must use legitimate/publicly supportable sources and must preserve provenance and claimable-business semantics.
-6. Government and other external integrations remain adapter-based; authoritative external systems remain authoritative.
+6. Government and other external integrations remain adapter-based; authoritative external systems remain authoritative. GlenTown must not imply government authority or endorsement merely because an integration is planned or approved.
 7. New shared capabilities should use TownBoss shared infrastructure only when semantics genuinely align; avoid premature centralization.
 8. Physical-device verification remains a release gate for critical mobile journeys.
 9. UI/UX or infrastructure improvements discovered during bounded work do not silently expand scope.
@@ -29,6 +29,10 @@ GlenTown project-specific rules may be stricter but do not silently weaken portf
 12. Capability status promotion must follow `GLENTOWN_CAPABILITY_MATRIX.md` and the applicable `GLENTOWN_VALIDATION_PROFILES.md` evidence requirements.
 13. Every substantial write-capable task must include the mandatory TownBoss safe-abort/recovery protocol from `governance/PROJECT_EXECUTION_STANDARD.md`.
 14. Material risk acceptance, product/UX authority supersession, destructive actions, external publication/deployment, and rule exceptions require the authority defined by the portfolio standard and `GLENTOWN_AUTHORITY_MATRIX.md`.
+15. **Public product marketing should prefer `Digital Town` rather than `DTOS` / `Digital Town Operating System`.** Internal architecture may retain technical terminology where useful.
+16. **Current public Explore taxonomy labels are Products, Foods, Services, Tourism, Events, Jobs, Properties, Suppliers, Directory.** Superseded public labels `Shopping`, `Food & Dining`, and `Travel & Tours` must not be reintroduced unless a later explicit decision supersedes this rule.
+17. `Achieve` is the approved public product name; do not revert public UI/marketing to `Aspirations`.
+18. The Digital Town concept must not be reduced to the orchestration/planner layer. It includes connected community, discovery, commerce, trusted interactions, personal timeline/diary/memories, planning/goal execution, businesses/organizations, government/civic interoperability, and shared platform capabilities according to implementation truth.
 
 ## Documentation rule
 
