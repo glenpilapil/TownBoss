@@ -169,16 +169,70 @@ Acceptance requires:
 
 ## 13. Accessibility / Responsive
 
+The GlenTown App Site must satisfy the inherited portfolio accessibility gate, including keyboard-only completion of release-critical journeys. Accessibility is release-blocking where a defect prevents task completion.
+
+### Keyboard-only operation
+
+A user must be able to use the full public App Site without a mouse, touch input or cursor.
+
+Acceptance requires:
+
+- all links, buttons, dropdowns, theme controls, carousel controls, modal controls and other interactive elements are reachable with keyboard input;
+- tab order is logical and follows the page/task flow;
+- `Shift+Tab` works predictably in reverse order;
+- `Enter`, `Space`, arrow keys and `Escape` behave according to native/expected widget semantics;
+- visible focus states are always present;
+- no keyboard trap exists;
+- Features dropdown is fully operable by keyboard;
+- mobile/alternate navigation has an equivalent keyboard path on desktop/web contexts;
+- theme controls are keyboard operable;
+- `Learn More` remains keyboard activatable and its smooth-scroll behavior respects reduced motion;
+- screenshot carousel/lightbox can be entered, navigated, dismissed and exited by keyboard;
+- Developer Interest modal moves focus correctly, traps focus while active where appropriate, supports `Escape`, and restores focus to the invoking control;
+- all Beta, Download, survey, navigation and acquisition CTAs are keyboard reachable and activatable;
+- hover-only information has a keyboard/focus equivalent;
+- every primary route can be traversed and all release-critical actions can be completed keyboard-only.
+
+### Semantic / assistive-technology accessibility
+
 - semantic headings/landmarks;
-- keyboard-accessible controls;
-- visible focus states;
-- useful alt text;
-- acceptable color contrast;
+- one meaningful `main` landmark per page;
+- useful `nav`, header and footer semantics;
+- heading hierarchy remains logical;
+- controls expose meaningful accessible names;
+- icon-only controls have accessible labels;
+- useful alt text for meaningful media and empty/decorative semantics for decorative media;
+- form inputs use associated labels;
+- form validation errors are programmatically associated with affected fields;
+- dynamic status/error/success content is announced where necessary;
+- ARIA is not used to replace native semantics unnecessarily;
+- screen-reader/accessibility-tree reading order matches the visual/task order.
+
+### Visual / responsive accessibility
+
+- acceptable WCAG AA-level color contrast for applicable text and meaningful controls/states;
+- information is not communicated by color alone;
 - no unintended horizontal page overflow;
-- reasonable layout at ~390px, ~768px, and desktop widths;
+- reasonable layout at ~390px, ~768px, laptop and desktop widths;
+- zoom/reflow does not hide content or controls;
 - reduced-motion support where material;
+- focus styles remain distinguishable in both light and dark themes;
+- touch targets are reasonably sized/spaced on mobile;
 - accessible Header dropdown/mobile navigation;
 - accessible developer-interest modal.
+
+### Accessibility evidence
+
+Before App Site release acceptance:
+
+- run the approved automated accessibility scan;
+- manually traverse Home, Features, all four audience pages, Beta and Download using keyboard only;
+- verify the Header, dropdown, theme control, carousel/lightbox and Developer Interest modal by keyboard;
+- inspect focus visibility and order;
+- inspect representative screen-reader/accessibility-tree output for critical interactions where applicable;
+- verify zoom/reflow, contrast and reduced-motion behavior.
+
+A green automated accessibility scan alone is insufficient.
 
 ## 14. Functional / Engineering Gate
 
@@ -272,10 +326,12 @@ At minimum the receipt must show:
 - broken-link/navigation integrity: PASS/FAIL;
 - media/alt/optimization: PASS/FAIL;
 - Core Web Vitals/frontend performance: PASS/FAIL;
+- keyboard-only accessibility: PASS/FAIL;
+- semantic/screen-reader accessibility: PASS/FAIL;
+- responsive/reflow/contrast/reduced-motion accessibility: PASS/FAIL;
 - API/database efficiency: PASS/FAIL/NOT_APPLICABLE;
 - caching/CDN/load-balancing/pooling applicability: PASS/FAIL/NOT_APPLICABLE;
 - HTTPS/security: PASS/FAIL;
-- responsive/accessibility: PASS/FAIL;
 - production cleanliness/dependency review: PASS/FAIL.
 
 Any `FAIL` in an applicable release-blocking gate prevents `RELEASE_READY` unless the operator records an explicit bounded exception.
