@@ -20,6 +20,7 @@
 | YOU_PROFILE_INFORMATION_ARCHITECTURE | BLOCKED_APP_DOMAIN_CONTRACT | Calendar, Your Places, Job Seeker Profile and separated App/Account Settings destinations | Approved routes/models and eligible information architecture |
 | ACCOUNT_VERIFICATION | BLOCKED_API_CONTRACT | Account verification status/submission flow | Authoritative status and submission contract |
 | PROVINCE_READY | BLOCKED_BY_DEMO_DATA | Nationwide readiness | Thresholds, provenance, rollout/sample evidence |
+| HOME_RECOVERY_CURRENT_HEAD_VALIDATION | ATTENTION_ENVIRONMENT_VALIDATION | Coordinated post-Samsung Home checkpoint | One completed API current-HEAD full-suite result with explicit exit code and summary; historical test output is insufficient |
 
 Close/change a row only with evidence and synchronized dashboard, capability, Current State and Memory updates.
 
