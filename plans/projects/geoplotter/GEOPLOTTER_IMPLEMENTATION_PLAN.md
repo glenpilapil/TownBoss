@@ -22,7 +22,7 @@
 - [x] PASS 0K — buyer requirements + deterministic matching implemented (`7ce0926`).
 - [x] PASS 0L — interactive project + lot map foundation accepted (`7b676f3`).
 - [x] PASS 0M-PREP — structured technical-description plotting reconnaissance accepted.
-- [ ] PASS 0M-A — structured technical-description plotting contract is the next eligible implementation slice; not started.
+- [x] PASS 0M-A — structured technical-description plotting contract is complete; checkpointed at 51f27e6.
 - [ ] Canonical/default-branch integration of later active-lineage work reconciled.
 - [ ] End-to-end operational acceptance complete.
 - [ ] Physical + visual final gate complete.
@@ -92,8 +92,8 @@ GeoPlotter is the authoritative geospatial real-estate and development-project p
 **Outcome:** scope and pipeline are bounded: structured/manual technical description -> deterministic traverse computation -> closure/validation -> candidate polygon -> review -> `SpatialRecord`/PostGIS -> PASS 0L map rendering. OCR/document ingestion and extraction/review remain PASS 0N scope.
 
 ### PASS 0M-A — Structured technical-description plotting contract
-**Status:** `[ ] NEXT ELIGIBLE IMPLEMENTATION SLICE; PASS 0M NOT STARTED`
-**Objective:** technical description -> bearing/distance parsing -> traverse -> closure/misclosure -> polygon -> SpatialRecord -> map.  
+**Status:** `[x] ACCEPTED` — checkpoint `51f27e6`
+**Objective:** Define the structured plotting contract for technical descriptions: machine-readable bearing, finite distance with explicit units, structured reference point, truthful known/unknown CRS, provenance, structured ERROR/WARNING/REVIEW_REQUIRED findings, candidate result distinct from canonical SpatialRecord, user confirmation distinct from professional verification. No persistence, no plotting UI, no 0M-B work.  
 **Gate:** geometry provenance, CRS handling, closure evidence, uncertainty surfaced; no survey-authority overclaim.
 
 ### PASS 0N — Document ingestion + OCR review
