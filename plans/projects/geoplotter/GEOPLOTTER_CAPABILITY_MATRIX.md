@@ -21,7 +21,7 @@
 | Inventory-status visualization | Inventory lifecycle + Map UI | IMPLEMENTED | 0L | status-aware lot visualization at accepted checkpoint | lifecycle remains authority |
 | Selected-lot context | Map UI + Lot | IMPLEMENTED | 0L | selected-lot information panel at accepted checkpoint | no commercial/publication authority duplication |
 | Provenance/validation projection | SpatialRecord/PostGIS | IMPLEMENTED | 0L | provenance/validation exposed in accepted map projection | do not imply survey certainty |
-| Parcel/technical plotting | Spatial/geospatial service | PLANNED | 0M-A | 0M-PREP accepted; implementation not started | bearing/distance traverse + closure |
+| Parcel/technical plotting | Spatial/geospatial service | IMPLEMENTED | 0M-A | 0M-A accepted; PASS 0M-B (traverse computation) next | bearing/distance traverse + closure |
 | OCR/document extraction | Document/OCR | PLANNED | 0N | — | add human review/confidence |
 | Verification/evidence | Evidence | PLANNED | 0O | — | attribute/source/date/state |
 | Hazards/elevation | Property Intelligence | PLANNED | 0P | — | sourced overlays/provenance |
