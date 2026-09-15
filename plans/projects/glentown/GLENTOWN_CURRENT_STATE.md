@@ -3,6 +3,8 @@
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **Authoritative dashboard:** `GLENTOWN_IMPLEMENTATION_PLAN.md`
 
+**Current Home authority:** Historical `ff6d2e2` evidence is pre-Samsung only. The 2026-09-14 Samsung audit reopened Home; post-audit recovery remains active and is not a physical pass.
+
 Phase 0 governance/planning foundations are substantially established. Phase 1 App-side recovery is complete: Home/floating-navigation, Explore, Create, Chat, You/Profile, and D1.7 cross-screen/accessibility recovery have recorded automated evidence. The consolidated 75-check Samsung physical re-audit worksheet is ready at GlenTown-App `dd1ecf6`; physical verification remains pending and has not been claimed. The next mobile gate remains execution/reconciliation of that re-audit.
 
 Home recovery evidence ends at `ff6d2e2` (369 Flutter tests, analyze clean, diff check pass). Explore recovery at `3edfb0c` records 33 focused Explore tests, 9 cross-route tests, 369 full tests, analyze clean and diff check pass. These are historical recovery checkpoints, not current release verification. Fresh API current-HEAD full suite/database verification and App current-HEAD release validation remain open.

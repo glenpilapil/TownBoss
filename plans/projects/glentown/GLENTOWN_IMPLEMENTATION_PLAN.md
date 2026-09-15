@@ -2,6 +2,7 @@
 
 **Portfolio:** TownBoss
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
+**2026-09-15 current recovery authority:** Historical D1.2 automated evidence is preserved, but the subsequent Samsung audit reopened Home. The coordinated post-audit Home recovery is `IN_PROGRESS` and is not physically approved; current-HEAD App/API validation is required before it can advance.
 **Current phase:** Phase 1 — App-side recovery complete / physical verification pending
 **Current deliverable/task:** Consolidated Samsung physical re-audit — READY
 **Phase gate:** APP-SIDE RECOVERY COMPLETE — physical verification remains pending.
