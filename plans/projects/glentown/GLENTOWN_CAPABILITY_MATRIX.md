@@ -5,8 +5,8 @@
 | Capability | Critical | Current status/evidence | Next evidence |
 |---|---|---|---|
 | Auth/onboarding | Yes | IMPLEMENTED; `be202c5a` | Physical gate; SMTP external |
-| Home/navigation | Yes | HISTORICAL_TEST_VERIFIED lineage `ff6d2e2`; post-Samsung recovery `IN_PROGRESS` | Current-HEAD App/API validation, Samsung recheck, rich data |
-| Community/notifications | Yes | HISTORICAL_IMPLEMENTED; post-Samsung contract recovery `IN_PROGRESS` | Current-HEAD contract validation and physical evidence |
+| Home/navigation | Yes | POST_SAMSUNG_AUTOMATED_VERIFIED; App `4010f1f`, API `738e8ac`, API full 1,336 / 4,633 / 0 failures | Orchestrator source review, Samsung physical gate, rich data |
+| Community/notifications | Yes | POST_SAMSUNG_AUTOMATED_VERIFIED; API `738e8ac` contracts and fixtures | Orchestrator source review and physical evidence |
 | Explore/discovery | Yes | TEST_VERIFIED recovery lineage `3edfb0c` | Physical check and API/data closure |
 | Universal Search | Yes | BLOCKED_API_CONTRACT | Geographic cross-domain contract |
 | Map | Yes | IMPLEMENTED UI; `a43442b` | Listing/media projection, physical check |

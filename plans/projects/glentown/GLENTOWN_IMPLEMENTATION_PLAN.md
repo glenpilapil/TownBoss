@@ -2,7 +2,7 @@
 
 **Portfolio:** TownBoss
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
-**2026-09-15 current recovery authority:** Historical D1.2 automated evidence is preserved, but the subsequent Samsung audit reopened Home. The coordinated post-audit Home recovery is `IN_PROGRESS` and is not physically approved; current-HEAD App/API validation is required before it can advance.
+**2026-09-15 current recovery authority:** Historical D1.2 automated evidence is preserved, and the subsequent Samsung audit reopened Home. The coordinated post-audit Home recovery is `HOME_RECOVERY_IMPLEMENTED_AND_AUTOMATED_VERIFIED`; it is not physically approved. Orchestrator source review remains required before any physical-audit decision.
 **Current phase:** Phase 1 — App-side recovery complete / physical verification pending
 **Current deliverable/task:** Consolidated Samsung physical re-audit — READY
 **Phase gate:** APP-SIDE RECOVERY COMPLETE — physical verification remains pending.
@@ -14,6 +14,7 @@
 ## Current summary
 
 - [x] Phase 0 governance/planning foundations substantially established. Evidence: GlenTown control corpus and 2026-09-13 governance adoption.
+- [x] Post-Samsung coordinated Home recovery is `HOME_RECOVERY_IMPLEMENTED_AND_AUTOMATED_VERIFIED`. App: `4010f1fcf19b58eaafe828e0b4abeac72421e7fb`; API: `738e8ac124854e7ef95f4a8472424c941da32b91`. API complete canonical suite: 1,336 tests / 4,633 assertions / 0 failures, executed in bounded equivalent PHPUnit-path batches under the same `phpunit.xml` after the host wrapper cut off monolithic output. API focused recovery: 26 / 116; Pint, changed-PHP syntax, and diff check passed. Physical verification is still pending.
 - [x] Home recovery App-side complete; physical verification pending. Evidence: `170baca` → `969abec` → `9a7861e` → `a43442b` → `c28feee` → `ff6d2e2`; 369 Flutter tests passed, analyze no issues, diff check pass.
 - [x] Explore recovery App-side complete; physical verification pending. Evidence: `3edfb0c`; 33 focused Explore tests, 9 cross-route tests, 369 Flutter tests, analyze no issues, diff check pass.
 - [x] Create recovery is App-side complete; physical verification pending. Evidence: GlenTown-App `aa07d2586f0b7db9a440f20b6fa927fee374b4b0`; 9 focused tests, 370 full Flutter tests, analyze no issues, diff check pass.
@@ -26,7 +27,7 @@
 ## D0.1 — Canonical repository/state reconciliation
 
 - [x] T0.1.1 Reconcile TownBoss planning authority and dashboard ownership. Evidence: canonical files under `plans/projects/glentown/`.
-- [ ] T0.1.2 Fresh GlenTown-API current-HEAD full suite/database verification. `ATTENTION`.
+- [x] T0.1.2 Fresh GlenTown-API current-HEAD full-suite verification. Evidence: API `738e8ac`; 1,336 tests / 4,633 assertions / 0 failures; same `phpunit.xml` suite paths, bounded only to retain terminal evidence.
 - [ ] T0.1.3 Fresh GlenTown-App current-HEAD analyze/full-suite verification. `ATTENTION`; historical recovery checkpoints are not release verification.
 
 ## D0.2 — Audit authority, capability/blocker controls, and governance adoption

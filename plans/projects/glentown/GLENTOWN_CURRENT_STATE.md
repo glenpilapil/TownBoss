@@ -3,11 +3,13 @@
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **Authoritative dashboard:** `GLENTOWN_IMPLEMENTATION_PLAN.md`
 
-**Current Home authority:** Historical `ff6d2e2` evidence is pre-Samsung only. The 2026-09-14 Samsung audit reopened Home; post-audit recovery remains active and is not a physical pass.
+**Current Home authority:** Historical `ff6d2e2` evidence is pre-Samsung only. The 2026-09-14 Samsung audit reopened Home. The post-audit recovery is `HOME_RECOVERY_IMPLEMENTED_AND_AUTOMATED_VERIFIED` at App `4010f1fcf19b58eaafe828e0b4abeac72421e7fb` and API `738e8ac124854e7ef95f4a8472424c941da32b91`; it is not a physical pass.
 
 Phase 0 governance/planning foundations are substantially established. Phase 1 App-side recovery is complete: Home/floating-navigation, Explore, Create, Chat, You/Profile, and D1.7 cross-screen/accessibility recovery have recorded automated evidence. The consolidated 75-check Samsung physical re-audit worksheet is ready at GlenTown-App `dd1ecf6`; physical verification remains pending and has not been claimed. The next mobile gate remains execution/reconciliation of that re-audit.
 
 Home recovery evidence ends at `ff6d2e2` (369 Flutter tests, analyze clean, diff check pass). Explore recovery at `3edfb0c` records 33 focused Explore tests, 9 cross-route tests, 369 full tests, analyze clean and diff check pass. These are historical recovery checkpoints, not current release verification. Fresh API current-HEAD full suite/database verification and App current-HEAD release validation remain open.
+
+The current API recovery checkpoint completed the canonical `phpunit.xml` suite at `738e8ac`: 1,336 tests / 4,633 assertions / 0 failures. The host wrapper cut off monolithic silent PHPUnit output, so the same configured test paths were run in bounded complete batches with terminal Laravel JSON summaries; no tests were excluded. Focused post-recovery contracts passed 26 tests / 116 assertions; Pint, changed-PHP syntax, and `git diff --check` passed. Physical verification remains pending, and an orchestrator independent source review is required before any physical-audit decision.
 
 Create evidence is GlenTown-App `aa07d25`; Chat evidence is `f9702ed`; You/Profile evidence is `820d0cf`. D1.7 evidence is `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`: 20 focused tests and 370 full Flutter tests passed, full analyze reported no issues, and diff check passed. CROSS-A2-02 and CROSS-A2-04 are source-test verified; CROSS-A2-03 is ready for physical recheck. Existing API/data/demo/domain blockers remain authoritative. Full mobile physical audit is pending; Beta is not release ready.
 

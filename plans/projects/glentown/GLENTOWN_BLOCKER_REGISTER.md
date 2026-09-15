@@ -20,7 +20,7 @@
 | YOU_PROFILE_INFORMATION_ARCHITECTURE | BLOCKED_APP_DOMAIN_CONTRACT | Calendar, Your Places, Job Seeker Profile and separated App/Account Settings destinations | Approved routes/models and eligible information architecture |
 | ACCOUNT_VERIFICATION | BLOCKED_API_CONTRACT | Account verification status/submission flow | Authoritative status and submission contract |
 | PROVINCE_READY | BLOCKED_BY_DEMO_DATA | Nationwide readiness | Thresholds, provenance, rollout/sample evidence |
-| HOME_RECOVERY_CURRENT_HEAD_VALIDATION | ATTENTION_ENVIRONMENT_VALIDATION | Coordinated post-Samsung Home checkpoint | One completed API current-HEAD full-suite result with explicit exit code and summary; historical test output is insufficient |
+| HOME_RECOVERY_CURRENT_HEAD_VALIDATION | RESOLVED_AUTOMATED | Coordinated post-Samsung Home checkpoint | API `738e8ac`: 1,336 tests / 4,633 assertions / 0 failures under the canonical `phpunit.xml` paths; physical verification is separate and pending |
 
 Close/change a row only with evidence and synchronized dashboard, capability, Current State and Memory updates.
 
