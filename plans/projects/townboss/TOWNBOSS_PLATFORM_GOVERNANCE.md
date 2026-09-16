@@ -15,6 +15,19 @@ TownBoss Platform inherits `governance/DEVELOPMENT_RULES.md` and `governance/PRO
 - Portfolio governance must help projects ship; governance work must not become an open-ended product of its own.
 - Material work must update the implementation dashboard, Current State, and Memory before handoff.
 
+## TownBoss Sites governance
+
+`TOWNBOSS_SITES_PLATFORM` is governed by `TOWNBOSS_SITES_PLATFORM_ARCHITECTURE.md` plus this baseline.
+
+- Sites owns generic website composition/platform concerns; it must not absorb authoritative horizontal or vertical business semantics merely for implementation convenience.
+- TownTraveler is Pilot #1 and must prove the minimum useful abstraction before broad extraction.
+- Typed blocks/configuration are declarative; domain data should bind to authoritative providers through explicit contracts.
+- Plugins/extensions require manifests, least-privilege capabilities/permissions, tenant isolation, provenance, compatibility, lifecycle controls, auditability, resource controls and explicit entitlements.
+- Arbitrary uploaded server-side plugin execution is prohibited absent a later explicit architecture/security approval.
+- First-party extensions precede any third-party ecosystem. A public marketplace requires separate security, publisher, compatibility, signing/provenance, rollback, billing and operational-governance acceptance.
+- Site-plan features, plugin entitlements and usage metering must remain distinguishable concepts.
+- Future multi-surface extension contracts may be designed for compatibility, but unneeded surfaces must not inflate the initial implementation scope.
+
 ## Acceptance criteria
 
 TownBoss Platform reaches its first operational governance milestone when:
@@ -41,6 +54,7 @@ Before substantial TownBoss Platform work, consult at minimum:
 - `plans/projects/townboss/TOWNBOSS_PLATFORM_CURRENT_STATE.md`;
 - this governance baseline;
 - `plans/projects/townboss/TOWNBOSS_PLATFORM_MEMORY.md`;
+- `plans/projects/townboss/TOWNBOSS_SITES_PLATFORM_ARCHITECTURE.md` when Sites is affected;
 - relevant architecture/capability registries and project documents for affected consumers;
 - repository-local instructions for any implementation repository involved.
 

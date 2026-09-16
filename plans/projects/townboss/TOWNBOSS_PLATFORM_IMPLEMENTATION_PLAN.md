@@ -10,6 +10,7 @@
 - [ ] Phase 3 — AI/tool gateway complete where justified.
 - [ ] Phase 4 — Cross-product identity/integration complete where justified.
 - [ ] Shared-service extraction decisions evidence-backed.
+- [x] `TOWNBOSS_SITES_PLATFORM` architecture direction registered; TownTraveler designated Pilot #1.
 
 ## Mission
 Provide the portfolio-level operating architecture that allows TownBoss projects to share capabilities deliberately without collapsing into one tightly coupled application.
@@ -41,8 +42,25 @@ Each item requires an explicit ownership/build-vs-project decision before implem
 - [ ] Government-integration adapter ownership decided.
 - [ ] Developer/integration standards established.
 
+## TownBoss Sites capability workstream
+`TOWNBOSS_SITES_PLATFORM` is an approved platform direction documented in `TOWNBOSS_SITES_PLATFORM_ARCHITECTURE.md`.
+
+- [x] Managed multi-tenant sites/platform direction approved.
+- [x] TownTraveler designated Reference Implementation / Pilot #1.
+- [x] Arbitrary uploaded server-side plugin execution rejected for the governed extension model.
+- [x] Site-plan entitlements distinguished from plugin entitlements and usage metering.
+- [ ] TownTraveler Phase 0 domain/source ownership decisions completed.
+- [ ] Sites Core MVP contract validated against TownTraveler requirements.
+- [ ] Typed block/dynamic binding contract approved.
+- [ ] Plugin manifest/capability/permission contract approved.
+- [ ] Tenant isolation and plugin trust-boundary review passed.
+- [ ] TownTraveler extraction matrix validated against implementation evidence.
+- [ ] Sites Core implementation authorized after architecture gate.
+
+TownBoss Sites owns generic website composition/platform concerns. It must consume horizontal business services and vertical-domain authority through explicit contracts rather than duplicating them. First-party extensions precede any third-party ecosystem.
+
 ## Architecture rule
-A capability becomes a TownBoss shared service only when at least two products have sufficiently aligned semantics and centralization creates more value than coupling cost. Otherwise it remains project-owned behind an explicit API/contract.
+A capability becomes a TownBoss shared service only when at least two products have sufficiently aligned semantics and centralization creates more value than coupling cost. Otherwise it remains project-owned behind an explicit API/contract. TownBoss Sites is justified initially by the approved organization-website direction plus TownTraveler as its proving consumer; implementation remains incremental and must prove abstractions through real consumers.
 
 ## Phase 0 — Portfolio architecture inventory
 **Status:** NEXT
