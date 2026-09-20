@@ -21,6 +21,8 @@
 | ACCOUNT_VERIFICATION | BLOCKED_API_CONTRACT | Account verification status/submission flow | Authoritative status and submission contract |
 | PROVINCE_READY | BLOCKED_BY_DEMO_DATA | Nationwide readiness | Thresholds, provenance, rollout/sample evidence |
 | HOME_RECOVERY_CURRENT_HEAD_VALIDATION | RESOLVED_AUTOMATED | Coordinated post-Samsung Home checkpoint | API `738e8ac`: 1,336 tests / 4,633 assertions / 0 failures under the canonical `phpunit.xml` paths; physical verification is separate and pending |
+| FLUTTER_TOOLCHAIN_PINNING | DEFERRED | Canonical Flutter SDK pinning | Pinned Flutter SDK version recorded in canonical project configuration |
+| DART_REPOSITORY_FORMAT_NORMALIZATION | DEFERRED | Repository-wide Dart formatter debt | Separate governed migration after toolchain pinning; do not conflate with current-formatting gate |
 
 Close/change a row only with evidence and synchronized dashboard, capability, Current State and Memory updates.
 

@@ -109,6 +109,30 @@ During the normal path, the operator must not need to manually open and prompt t
 
 The detailed authority for this gate is `CODE_PROJECT_SUPERVISOR_SECURITY_HARDENING_STANDARD.md`.
 
+## Closeout acceptance check
+
+Before a supervised task is promoted to `CHECKPOINTED` or `DONE`, verify:
+
+### Worktree hygiene
+
+- no unauthorized top-level directories were created under `D:\Projects`;
+- temporary worktrees use the approved temporary root `D:\Worktrees\<repository>\<task-or-branch>`;
+- active worktrees have an identified purpose;
+- completed worktrees are lifecycle-reconciled;
+- no abandoned worktree contains unique unpushed work.
+
+### Checkpoint evidence
+
+- final checkpoint commit hash is recorded;
+- branch is recorded;
+- exact committed file scope is recorded;
+- validation evidence postdates the final material edit;
+- `git status --short` is clean or only contains expected untracked files;
+- Documentation Compliance Receipt is present;
+- Checkpoint Commit Receipt is present.
+
+A task that fails worktree hygiene or lacks required checkpoint evidence is not `CHECKPOINTED`.
+
 ## Operator UX acceptance
 
 The exact UI is not a release blocker if upstream tooling already provides a usable operator surface. Minimum UX requirements:

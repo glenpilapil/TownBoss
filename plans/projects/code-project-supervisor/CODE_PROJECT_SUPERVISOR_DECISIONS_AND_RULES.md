@@ -147,6 +147,88 @@ Permission to modify or commit does not imply permission to push, merge, publish
 
 Where project workflow uses Git checkpoints, record the checkpoint identifier together with validation evidence.
 
+## Worktree location and lifecycle rules
+
+### R23 — Canonical project root reservation
+
+`D:\Projects` is reserved for canonical long-lived project repositories.
+
+Temporary/isolated Git worktrees must NOT be created as sibling pseudo-projects under `D:\Projects` unless the user explicitly authorizes that exact location.
+
+Default temporary worktree root:
+
+```
+D:\Worktrees\<repository>\<task-or-branch>
+```
+
+Examples:
+
+```
+D:\Worktrees\TownBoss\<task>
+D:\Worktrees\GlenTown-App\<task>
+D:\Worktrees\GlenTown-API\<task>
+```
+
+A separate worktree should only be created when isolation is materially required, such as:
+
+- canonical worktree contains unrelated dirty work;
+- concurrent writers require isolation;
+- integration/reconciliation requires a clean environment;
+- risky operations require isolation.
+
+If the canonical repository is clean and isolation is unnecessary, prefer a normal branch in the canonical repository.
+
+### R24 — Worktree preflight
+
+Before any agent creates a temporary worktree, the task contract must include:
+
+```
+REPOSITORY:
+SOURCE SHA:
+BRANCH:
+PROPOSED WORKTREE PATH:
+WHY ISOLATION IS REQUIRED:
+```
+
+Invariant:
+
+```
+NO_NEW_TOP_LEVEL_PROJECT_DIRECTORY_WITHOUT_EXPLICIT_USER_AUTHORIZATION
+```
+
+Prompts involving worktrees must carry this automatically. This must not depend on conversational memory.
+
+### R25 — Worktree lifecycle and cleanup
+
+Every temporary worktree must have:
+
+- parent repository
+- purpose
+- branch
+- source SHA
+- path
+- active/completed status
+- cleanup condition
+
+A task using a temporary worktree is not fully closed until its lifecycle is reconciled.
+
+Before cleanup verify:
+
+- `git status --short`
+- unique commits
+- remote/push state
+
+Normal cleanup must use:
+
+```
+git worktree remove <path>
+git worktree prune
+```
+
+Do NOT use blind directory deletion as the normal mechanism.
+
+Existing temporary worktrees under `D:\Projects` are NOT to be deleted in this pass. They require a later bounded inventory/cleanup operation.
+
 ## Upstream maintenance rules
 
 ### R21 — Keep upstream relationship healthy
