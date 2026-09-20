@@ -30,7 +30,7 @@ GlenTown project-specific rules may be stricter but do not silently weaken portf
 13. Every substantial write-capable task must include the mandatory TownBoss safe-abort/recovery protocol from `governance/PROJECT_EXECUTION_STANDARD.md`.
 14. Material risk acceptance, product/UX authority supersession, destructive actions, external publication/deployment, and rule exceptions require the authority defined by the portfolio standard and `GLENTOWN_AUTHORITY_MATRIX.md`.
 15. **Public product marketing should prefer `Digital Town` rather than `DTOS` / `Digital Town Operating System`.** Internal architecture may retain technical terminology where useful.
-16. **Current public Explore taxonomy labels are Products, Foods, Services, Tourism, Events, Jobs, Properties, Suppliers, Directory.** Superseded public labels `Shopping`, `Food & Dining`, and `Travel & Tours` must not be reintroduced unless a later explicit decision supersedes this rule.
+16. **Current public Explore taxonomy labels are Products, Foods, Services, Tourism, Jobs, Events, Properties, Suppliers, Directory.** `Shopping`, `Food & Dining`, `Travel & Tours`, `Places`, and `Professionals` must not be reintroduced as primary categories unless a later explicit decision supersedes this rule. Places and Professionals remain valid concepts outside the primary taxonomy.
 17. `Achieve` is the approved public product name; do not revert public UI/marketing to `Aspirations`.
 18. The Digital Town concept must not be reduced to the orchestration/planner layer. It includes connected community, discovery, commerce, trusted interactions, personal timeline/diary/memories, planning/goal execution, businesses/organizations, government/civic interoperability, and shared platform capabilities according to implementation truth.
 19. **Web/Windows visual and interaction authority is canonicalized in `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md`.** Desktop work must preserve the four primary navigation authorities Home/Explore/Create/Chat, the established Explore taxonomy, the location-contextual Map behavior, topbar utility order Notifications → Calendar → Cart, and the written Home/Explore/Create/Chat/Profile desktop composition rules. Generated concept images are visual references only; written authority supersedes image-generation drift.
@@ -45,6 +45,13 @@ GlenTown project-specific rules may be stricter but do not silently weaken portf
 28. **Organization Glen AI in Chat is an optional future capability.** Organizations may configure Glen AI to answer inquiries using approved organization knowledge and permitted native GlenTown actions. AI identity must be disclosed; human escalation/handoff and organization controls are required; Glen AI must not become an alternate authority for pricing, inventory, availability, payments, refunds, protected account state or other backend-authoritative operations.
 29. **Owner and public Profile share one desktop architecture.** They use the same main-column/right-rail size structure and profile framework. Differences are driven by viewer permissions, privacy and context rather than separate page designs. Public mode removes private management and exposes only permitted public information/actions.
 30. **Profile tabs are Overview, Timeline, Activity, Details, Posts, Saved, Followers, Following.** Timeline is the personal chronological history surface; Activity represents cross-GlenTown interactions/actions; Posts contains Community posts owned/published by the profile user; Details carries profile/about information. Visibility in public mode remains privacy/capability dependent.
+
+## Supersession authority
+
+`GLENTOWN_SUPERSESSION_REGISTER.md` is the canonical project-specific record of
+replaced product and documentation decisions. It preserves historical evidence
+without overriding the TownBoss master plan, the current implementation plan,
+or later explicit GlenTown authority.
 
 ## Documentation rule
 
