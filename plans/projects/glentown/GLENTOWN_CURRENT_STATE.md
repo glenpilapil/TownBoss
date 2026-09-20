@@ -1,5 +1,82 @@
 # GlenTown Current State
 
+## ORCHESTRATION ENTRY POINT AND CURRENT-STATE RESOLUTION PROTOCOL
+
+**GLENTOWN_CURRENT_STATE.md is the single operational entry point for determining current GlenTown state.** It does not replace domain authority documents; it directs the reader to them and records the current accepted refs, active workstreams, blockers, and validation freshness.
+
+### Resolution Order
+
+When resolving questions about current, latest, remaining, pending, already fixed, accepted, implemented, verified, or next action state:
+
+1. **GLENTOWN_CURRENT_STATE** — this document; accepted refs and pointers only
+2. **GLENTOWN_DECISIONS_AND_RULES** — binding product and implementation rules
+3. **GLENTOWN_SUPERSESSION_REGISTER** — explicit overrides of older decisions
+4. **Relevant authority/domain/app documents** — e.g., `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md`, app-specific authority
+5. **Current implementation evidence** — concrete code refs at accepted checkpoints
+6. **Validation/audit evidence tied to exact checkpoints** — physical/device/browser evidence bound to exact SHAs
+
+Conversational or model memory is discovery context only, not project authority.
+
+### Authority Pointers
+
+- Product/decision authority: `GLENTOWN_DECISIONS_AND_RULES.md`, `GLENTOWN_SUPERSESSION_REGISTER.md`
+- Implementation plan/dashboard: `GLENTOWN_IMPLEMENTATION_PLAN.md`
+- Capability/status: `GLENTOWN_CAPABILITY_MATRIX.md`
+- Blockers: `GLENTOWN_BLOCKER_REGISTER.md`
+- Validation requirements: `GLENTOWN_VALIDATION_PROFILES.md`
+- Web/Windows visual authority: `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md`
+- Web/Windows Chat/Profile authority: `GLENTOWN_WEB_WINDOWS_CHAT_PROFILE_AUTHORITY.md`
+- App visual audit ledger (persistent issue ledger): `plans/projects/glentown/apps/glentown-app-site/GLENTOWN_APP_SITE_VISUAL_AUDIT_LEDGER.md`
+- Mobile physical audit: GlenTown-App `dd1ecf6` (`docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`)
+- Memory: `GLENTOWN_MEMORY.md`
+- TownBoss portfolio governance: `governance/*.md`, `plans/TOWNBOSS_MASTER_DEVELOPMENT_PLAN.md`
+- CPS governance: `plans/projects/code-project-supervisor/*.md`
+
+### Current Accepted Checkpoints
+
+- **TownBoss canonical checkpoint:** `ede731578ce63fbdd9db6945014ac00259870627` (origin/main)
+- **GlenTown-App accepted post-Samsung recovery:** `4010f1fcf19b58eaafe828e0b4abeac72421e7fb`
+- **GlenTown-API accepted recovery:** `738e8ac124854e7ef95f4a8472424c941da32b91`
+- **API full-suite checkpoint:** `738e8ac` (1,336 tests / 4,633 assertions / 0 failures, canonical `phpunit.xml` paths)
+- **Home recovery:** `ff6d2e2` → `4010f1f` (369 tests, analyze clean, diff check pass)
+- **Explore recovery:** `3edfb0c` (33 focused Explore tests, 9 cross-route tests, 369 full tests)
+- **Create recovery:** `aa07d25` (9 focused tests, 370 full tests)
+- **Chat recovery:** `f9702ed` (53 focused tests, 370 full tests)
+- **You/Profile recovery:** `820d0cf` (4 focused tests, 370 full tests)
+- **D1.7 cross-screen/accessibility:** `f5e4085` (20 focused tests, 370 full tests)
+- **Samsung physical re-audit worksheet:** GlenTown-App `dd1ecf6` (75-check session; no physical result claimed)
+
+### Active Workstreams
+
+- D1.2–D1.7 App-side recovery: COMPLETE / AWAITING CONSOLIDATED SAMSUNG PHYSICAL RE-AUDIT
+- Web/Windows visual/IA recovery: ACTIVE (distinct from Samsung/mobile stream)
+- API/data/demo/domain blockers: OPEN (see Blocker Register)
+- Fresh API current-HEAD full-suite verification: OPEN
+- Fresh App current-HEAD release validation: OPEN
+
+### Current Validation Freshness
+
+- API recovery validation: BOUND TO `738e8ac`; not inherited by later SHAs
+- App recovery validations: BOUND TO respective checkpoints; not inherited by later SHAs
+- Physical/browser acceptance: NOT_RUN for current HEAD; separate requirement
+- Automated tests/builds: DO NOT ESTABLISH BROWSER/DEVICE VISUAL ACCEPTANCE
+
+### Unresolved Blockers
+
+See `GLENTOWN_BLOCKER_REGISTER.md` for current authoritative blocker list.
+Active blockers include: CONNECTED_SEARCH, MAP_LISTINGS, DESTINATION_HERO_MEDIA, DISCOVERY_RICHNESS, COMMUNITY_MEDIA, POPULATED_DEMO_USER, MESSAGE_REQUESTS_INBOX, YOU_PROFILE_INFORMATION_ARCHITECTURE, ACCOUNT_VERIFICATION, PROVINCE_READY.
+
+### Latest Visual-Audit Ledger
+
+- App Site (persistent issue ledger): `plans/projects/glentown/apps/glentown-app-site/GLENTOWN_APP_SITE_VISUAL_AUDIT_LEDGER.md`
+- Mobile/App: Samsung physical re-audit worksheet at GlenTown-App `dd1ecf6` (`docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`); 75-check session READY; no physical result claimed
+
+### Supersession Pointer
+
+`GLENTOWN_SUPERSESSION_REGISTER.md` records explicit overrides. Later explicit supersession overrides older decisions. Historical evidence remains as evidence but does not become current authority after supersession.
+
+---
+
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **Authoritative dashboard:** `GLENTOWN_IMPLEMENTATION_PLAN.md`
 

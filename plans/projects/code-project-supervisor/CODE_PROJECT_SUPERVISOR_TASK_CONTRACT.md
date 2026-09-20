@@ -67,6 +67,26 @@ If execution uncovers work outside the contract:
 - if not required, propose a future task;
 - if required and it materially changes scope or risk, amend the task contract before continuing.
 
+## Prompt Provenance Contract
+
+Every substantial implementation, correction, audit, verification, reconciliation, or acceptance prompt must include an:
+
+```
+AUTHORITATIVE INPUTS
+- TownBoss canonical SHA/checkpoint:
+- Target repository starting SHA:
+- Current-state authority:
+- Product/decision authority:
+- Supersession authority:
+- Relevant implementation/audit authority:
+```
+
+And the rule:
+
+> Anything older that conflicts with these authorities is superseded.
+
+Prompts must not depend on conversational memory as authoritative project state.
+
 ## Web / Structured-Source Safe-Edit Rule
 
 For applicable web tasks, the worker must follow `governance/WEB_SOURCE_INTEGRITY_AND_SAFE_EDIT_GATE.md` throughout execution.

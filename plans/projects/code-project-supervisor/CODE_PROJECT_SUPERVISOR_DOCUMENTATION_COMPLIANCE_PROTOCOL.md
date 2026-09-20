@@ -102,3 +102,36 @@ Agents should read only the documentation relevant to the current task, but the 
 ## 7. Future Machine Enforcement
 
 CPS should eventually generate required documentation read-sets automatically from project and task metadata, verify that mandatory documents were consulted, check freshness, and require a complete compliance receipt before final verification.
+
+## 8. Reconciliation Invariant
+
+Before an orchestrator/agent answers or acts on questions equivalent to:
+
+- What is current?
+- What is latest?
+- What remains?
+- What is still pending?
+- Is this fixed?
+- Is this accepted?
+- What should happen next?
+- What did the latest audit find?
+
+the relevant current-state, decision, supersession, implementation, and validation/audit evidence must be reconciled against the authoritative documents listed in the Planning Gate.
+
+If reconciliation is incomplete, the result must be explicitly `PROVISIONAL` / `REQUIRES_RECONCILIATION` rather than presented as authoritative current state. Conversational/model memory is discovery context only, not project authority.
+
+## 9. Documentation Reconciliation as Acceptance Gate
+
+A work pass is not fully accepted if it materially changes:
+
+- current state
+- decisions
+- supersessions
+- blockers
+- capability status
+- validation status
+- visual-audit disposition
+
+without reconciling the corresponding canonical documentation.
+
+Documentation reconciliation is an acceptance gate, not optional post-pass cleanup. Avoid requiring unnecessary doc churn for changes that genuinely do not affect canonical state.
