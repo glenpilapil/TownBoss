@@ -54,7 +54,7 @@ Conversational or model memory is discovery context only, not project authority.
   - TESTS: 483 total / 483 passed / 0 failed.
   - WEB RELEASE BUILD: PASS.
   - ANDROID APK RELEASE BUILD: PASS.
-  - WEB BROWSER ACCEPTANCE: NOT RUN.
+  - WEB BROWSER ACCEPTANCE: PARTIAL — headless Chrome 153 release-build pass at `ad543644`; branded GlenTown loaded, SPA /explore deep-link and refresh retained, Back/Forward between /explore and /create, Explore taxonomy exact, real-mode unavailable truthful, no fabricated cards, no horizontal overflow at 599/600/899/900/1199/1200/1440, floating nav through 1199, full desktop shell at >=1200. Environment-dependent items DEFERRED: production API connectivity, production CORS, production server auth/session, server-backed uploads, real cart/notification behavior. Web Maps OPEN: Android key approved for temporary Web reuse; current build used GLENTOWN_MAPS_KEY_PLACEHOLDER; actual key must not be committed; production domain/referrer restrictions pending; Maps JavaScript API runtime verification pending.
   - ANDROID PHYSICAL ACCEPTANCE: NOT RUN.
   - Responsive desktop threshold corrected to >=1200.
   - Manifest cleanup verified.

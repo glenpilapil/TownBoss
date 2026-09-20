@@ -9,6 +9,20 @@ This ledger is the persistent source of truth for all actionable Flutter Android
 
 Every actionable visual finding receives a stable ID. IDs are not arbitrarily renumbered between audits.
 
+## Counts
+
+| Status | Count |
+|---|---|
+| `OPEN` | 11 |
+| `CODE_FIXED_NOT_PHYSICALLY_VERIFIED` | 53 |
+| `VERIFIED_FIXED` | 0 |
+| `ACCEPTED` | 0 |
+| `SUPERSEDED` | 0 |
+| `DEFERRED` | 5 |
+| `NOT_REPRODUCED` | 0 |
+| `PENDING` | 1 |
+| **Total** | **70** |
+
 ## Status Vocabulary
 
 | Status | Meaning |
