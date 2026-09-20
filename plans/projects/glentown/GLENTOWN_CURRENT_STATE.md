@@ -26,7 +26,7 @@ Conversational or model memory is discovery context only, not project authority.
 - Validation requirements: `GLENTOWN_VALIDATION_PROFILES.md`
 - Web/Windows visual authority: `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md`
 - Web/Windows Chat/Profile authority: `GLENTOWN_WEB_WINDOWS_CHAT_PROFILE_AUTHORITY.md`
-- App visual audit ledger (persistent issue ledger): `plans/projects/glentown/apps/glentown-app-site/GLENTOWN_APP_SITE_VISUAL_AUDIT_LEDGER.md`
+- App visual audit ledger (persistent issue ledger): `plans/projects/glentown/apps/glentown-app/GLENTOWN_FLUTTER_APP_VISUAL_AUDIT_LEDGER.md`
 - Mobile physical audit: GlenTown-App `dd1ecf6` (`docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`)
 - Memory: `GLENTOWN_MEMORY.md`
 - TownBoss portfolio governance: `governance/*.md`, `plans/TOWNBOSS_MASTER_DEVELOPMENT_PLAN.md`
@@ -36,6 +36,7 @@ Conversational or model memory is discovery context only, not project authority.
 
 - **TownBoss canonical checkpoint:** `ede731578ce63fbdd9db6945014ac00259870627` (origin/main)
 - **GlenTown-App accepted post-Samsung recovery:** `4010f1fcf19b58eaafe828e0b4abeac72421e7fb`
+- **GlenTown-Flutter accepted shared baseline:** `ad54364452958870ae3aa25286605b5ea5f98a70`
 - **GlenTown-API accepted recovery:** `738e8ac124854e7ef95f4a8472424c941da32b91`
 - **API full-suite checkpoint:** `738e8ac` (1,336 tests / 4,633 assertions / 0 failures, canonical `phpunit.xml` paths)
 - **Home recovery:** `ff6d2e2` → `4010f1f` (369 tests, analyze clean, diff check pass)
@@ -45,6 +46,21 @@ Conversational or model memory is discovery context only, not project authority.
 - **You/Profile recovery:** `820d0cf` (4 focused tests, 370 full tests)
 - **D1.7 cross-screen/accessibility:** `f5e4085` (20 focused tests, 370 full tests)
 - **Samsung physical re-audit worksheet:** GlenTown-App `dd1ecf6` (75-check session; no physical result claimed)
+- **GlenTown-Flutter accepted shared baseline:** `ad54364452958870ae3aa25286605b5ea5f98a70`
+  - Changed-Dart-files gate passed.
+  - 5 changed Dart files checked.
+  - 0 required formatting.
+  - ANALYZE: 0 errors, 0 warnings, 0 infos.
+  - TESTS: 483 total / 483 passed / 0 failed.
+  - WEB RELEASE BUILD: PASS.
+  - ANDROID APK RELEASE BUILD: PASS.
+  - WEB BROWSER ACCEPTANCE: NOT RUN.
+  - ANDROID PHYSICAL ACCEPTANCE: NOT RUN.
+  - Responsive desktop threshold corrected to >=1200.
+  - Manifest cleanup verified.
+  - Scoped changed-Dart CI format gate.
+  - `.gitattributes` Dart LF policy.
+  - Android R8 correction for uCrop optional OkHttp references.
 
 ### Active Workstreams
 
@@ -68,7 +84,7 @@ Active blockers include: CONNECTED_SEARCH, MAP_LISTINGS, DESTINATION_HERO_MEDIA,
 
 ### Latest Visual-Audit Ledger
 
-- App Site (persistent issue ledger): `plans/projects/glentown/apps/glentown-app-site/GLENTOWN_APP_SITE_VISUAL_AUDIT_LEDGER.md`
+- Flutter App (persistent issue ledger): `plans/projects/glentown/apps/glentown-app/GLENTOWN_FLUTTER_APP_VISUAL_AUDIT_LEDGER.md`
 - Mobile/App: Samsung physical re-audit worksheet at GlenTown-App `dd1ecf6` (`docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`); 75-check session READY; no physical result claimed
 
 ### Supersession Pointer

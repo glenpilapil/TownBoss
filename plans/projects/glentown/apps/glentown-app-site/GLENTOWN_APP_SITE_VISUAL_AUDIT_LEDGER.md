@@ -97,16 +97,6 @@ Each actionable finding record supports:
 
 ---
 
-## Mobile/App Findings
-
-Mobile/App visual findings are sourced from dated Samsung physical re-audit worksheets and device observations. They are recorded here as the persistent issue ledger; the worksheet remains the evidence source.
-
-| ID | Finding | Status | Platform | Surface | Authority/Source | First Observed | Last Observed | Implementation Status | Automated Validation | Browser/Device Validation | Issue Status | Fixed-at SHA | Verified-at SHA | Evidence/Reference | Notes/Supersession |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| MOBILE-SHELL-001 | Residual/background/floor layer behind the floating bottom navigation obscures or reserves content; nav auto-hide may leave unnecessary reserved bottom space; intentional black-to-transparent contrast scrim must be distinguished from an opaque/content-blocking floor; modal/sheet layering relative to floating navigation requires physical verification. | OPEN | Android | Shell / Bottom navigation | Samsung physical re-audit worksheet (pending execution); GLENTOWN_IMPLEMENTATION_PLAN.md D1.2–D1.7 | 2026-09-14 | 2026-09-14 | Not claimed | D1.7 automated: 20 focused tests, 370 full tests, analyze clean | NOT_RUN | OPEN | — | — | GlenTown-App `dd1ecf6` (`docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`); GLENTOWN_IMPLEMENTATION_PLAN.md | Requires Samsung physical verification. The four sub-conditions (floor layer, auto-hide reserved space, scrim vs. opaque floor distinction, modal/sheet layering) are distinct verification requirements. Do not close from automated evidence or code inspection alone. |
-
----
-
 ## Visual Audit Gates
 
 These gates define required human visual verification before acceptance of major surfaces. They are not findings themselves; they are acceptance criteria for future verification.
