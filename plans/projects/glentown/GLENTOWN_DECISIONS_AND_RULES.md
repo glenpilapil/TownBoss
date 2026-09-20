@@ -30,9 +30,16 @@ GlenTown project-specific rules may be stricter but do not silently weaken portf
 13. Every substantial write-capable task must include the mandatory TownBoss safe-abort/recovery protocol from `governance/PROJECT_EXECUTION_STANDARD.md`.
 14. Material risk acceptance, product/UX authority supersession, destructive actions, external publication/deployment, and rule exceptions require the authority defined by the portfolio standard and `GLENTOWN_AUTHORITY_MATRIX.md`.
 15. **Public product marketing should prefer `Digital Town` rather than `DTOS` / `Digital Town Operating System`.** Internal architecture may retain technical terminology where useful.
-16. **Current public Explore taxonomy labels are Products, Foods, Services, Tourism, Events, Jobs, Properties, Suppliers, Directory.** Superseded public labels `Shopping`, `Food & Dining`, and `Travel & Tours` must not be reintroduced unless a later explicit decision supersedes this rule.
+16. **Current public Explore taxonomy labels are Products, Foods, Services, Tourism, Jobs, Events, Properties, Suppliers, Directory.** `Shopping`, `Food & Dining`, `Travel & Tours`, `Places`, and `Professionals` must not be reintroduced as primary categories unless a later explicit decision supersedes this rule. Places and Professionals remain valid concepts outside the primary taxonomy.
 17. `Achieve` is the approved public product name; do not revert public UI/marketing to `Aspirations`.
 18. The Digital Town concept must not be reduced to the orchestration/planner layer. It includes connected community, discovery, commerce, trusted interactions, personal timeline/diary/memories, planning/goal execution, businesses/organizations, government/civic interoperability, and shared platform capabilities according to implementation truth.
+
+## Supersession authority
+
+`GLENTOWN_SUPERSESSION_REGISTER.md` is the durable canonical record of replaced
+product/documentation decisions. It preserves historical evidence while making
+the current navigation, Create, Explore, geography, rollout, platform, and
+persistence authority explicit.
 
 ## Documentation rule
 
