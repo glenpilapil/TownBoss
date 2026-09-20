@@ -99,3 +99,37 @@ PASS 0L — Interactive Project + Lot Map Foundation is accepted at implementati
 - The accepted MapLibre foundation includes `SpatialRecord` lot-subject linkage, tenant-safe canonical GeoJSON projection, project/lot rendering, inventory-status visualization, lot selection and selected-lot context, provenance/validation projection, and loading/empty/error handling.
 
 PASS 0M-PREP structured/manual technical-description plotting reconnaissance is complete. Its bounded pipeline is structured traverse -> deterministic computation -> closure/validation -> candidate polygon -> review -> `SpatialRecord`/PostGIS -> PASS 0L rendering. OCR/document ingestion and extraction/review remain PASS 0N. PASS 0M has not begun; PASS 0M-A — Structured Technical-Description Plotting Contract is the next eligible implementation slice.
+
+### 2026-09-15 — PASS 0M-A documentation closeout accepted
+**Type:** CHECKPOINT / DOCUMENTATION
+**Status:** COMPLETED
+
+PASS 0M-A — Structured Technical-Description Plotting Contract is accepted at implementation-checkpoint level on GeoPlotter branch `feat/pass-0e-projects-foundation`, checkpoint `51f27e69985f1a10690847074b56176eb21572cc`.
+
+**Validated checkpoint evidence**
+- GeoPlotter repository: `D:\Projects\GeoPlotter`, branch `feat/pass-0e-projects-foundation`.
+- GeoPlotter implementation checkpoint: `51f27e6`.
+- GeoPlotter local SHA and remote SHA match after push.
+- Focused tests: 19/19 passed in `plotting-contract.test.ts`.
+- TypeScript: clean (`npx tsc --noEmit`).
+- ESLint: clean on affected files.
+- Next.js production build: succeeded.
+- `git diff --check`: clean.
+- Persistence introduced: NO.
+- Schema/migration: NONE.
+- Working tree: clean after checkpoint commit.
+
+**Validated scope**
+- Structured plotting input/result contract.
+- Machine-readable normalized bearing (`normalizedDegrees`).
+- Finite distance with explicit units (`meter` | `foot`).
+- Structured reference point (`PointReference` with `coordinates`, `sourceCrs`, `crsKnown`).
+- Truthful known/unknown CRS handling (`crsKnown === false || sourceCrs !== null`).
+- Provenance preservation (`organizationId`, `projectId`, `subjectType`, `subjectId`, `sourceReference`).
+- Structured ERROR / WARNING / REVIEW_REQUIRED findings (`PlottingFinding.severity`).
+- Candidate result distinct from canonical SpatialRecord (`PlottingResult` separate type).
+- User confirmation distinct from professional verification (`reviewState` transitions).
+- No persistence, no plotting UI, no 0M-B work.
+
+**Next eligible work**
+PASS 0M-B — Deterministic Traverse Computation Engine. It is the next eligible implementation slice; it has NOT been started. Persistence remains PASS 0M-D.
