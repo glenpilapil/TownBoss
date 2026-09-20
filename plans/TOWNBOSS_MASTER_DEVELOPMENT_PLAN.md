@@ -161,7 +161,36 @@ Priority is revisable by explicit portfolio decision; it is not inferred from do
 - Licensing must be checked before code/data/model incorporation.
 - Production integrations require provenance, security, legal/compliance and failure-mode review appropriate to risk.
 
-## 8. Canonical Source Material to Reconcile
+## 8. Identity and Authority Supersession
+
+### 8.1 Canonical project identities
+
+| Current term | Status | Scope |
+| --- | --- | --- |
+| Code Project Supervisor / CPS | CURRENT_INTERNAL | Architecture, implementation, governance, internal technical references |
+| Project Supervisor | CURRENT_PUBLIC_PRODUCT_NAME | Installed application, user-facing product identity |
+| Agent Orchestrator / AO | INHERITED_UPSTREAM_CHASSIS | Execution runtime, inherited implementation, upstream provenance |
+| CodeBisor | SUPERSEDED | Former project name/direction |
+
+### 8.2 Authority boundary
+
+TownBoss/CPS canonical planning and governance documents outrank upstream AO
+product decisions for product direction. Source/code wins for describing actual
+current executable behavior. When two layers disagree, reconcile explicitly
+rather than silently choosing stale upstream prose.
+
+Machine-readable agent guidance in CPS repositories (`AGENTS.md`, `CLAUDE.md`,
+`SUPERSESSION_REGISTER.md`) is the CPS authority layer for agents. It supersedes
+upstream AO agent instructions for repository-local behavior.
+
+### 8.3 Upstream compatibility
+
+AO runtime names, CLI surfaces, state directories (`~/.ao`), and implementation
+patterns remain valid for compatibility. Do not rename these merely to change
+branding. The separate product-convergence pass will handle full installer/binary
+convergence.
+
+## 10. Canonical Source Material to Reconcile
 
 The implementation corpus must continue reconciling existing artifacts, including:
 
@@ -175,7 +204,7 @@ The implementation corpus must continue reconciling existing artifacts, includin
 
 Conflicts are resolved by explicit decision, source authority and recency—not by silently overwriting historical documents.
 
-## 9. Immediate Masterplan Workstream
+## 10. Immediate Masterplan Workstream
 
 - [x] First repository-by-repository AS-IS reconciliation for GlenTown, CodeBisor and GeoPlotter.
 - [x] Reclassify several inferred statuses using repository evidence where available.
