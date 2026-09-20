@@ -161,19 +161,34 @@ Priority is revisable by explicit portfolio decision; it is not inferred from do
 - Licensing must be checked before code/data/model incorporation.
 - Production integrations require provenance, security, legal/compliance and failure-mode review appropriate to risk.
 
-## 8. Canonical Source Material to Reconcile
+## 8. Identity and Authority Supersession
 
-The implementation corpus must continue reconciling existing artifacts, including:
+### 8.1 Canonical project identities
 
-- GlenTown Operating Blueprint;
-- Management Guidelines v2.1;
-- Managing Director Guidelines — Master Summary v2.1;
-- GeoPlotter & GlenTown Integration Guidelines v2.1;
-- TownBoss IP & Legal Validation Gate Map;
-- repository specifications, ADRs, issues, checkpoints and test evidence;
-- approved decision ledger and project-specific plans.
+| Current term | Status | Scope |
+| --- | --- | --- |
+| Code Project Supervisor / CPS | CURRENT_INTERNAL | Architecture, implementation, governance, internal technical references |
+| Project Supervisor | CURRENT_PUBLIC_PRODUCT_NAME | Installed application, user-facing product identity |
+| Agent Orchestrator / AO | INHERITED_UPSTREAM_CHASSIS | Execution runtime, inherited implementation, upstream provenance |
+| CodeBisor | SUPERSEDED | Former project name/direction |
 
-Conflicts are resolved by explicit decision, source authority and recency—not by silently overwriting historical documents.
+### 8.2 Authority boundary
+
+TownBoss/CPS canonical planning and governance documents outrank upstream AO
+product decisions for product direction. Source/code wins for describing actual
+current executable behavior. When two layers disagree, reconcile explicitly
+rather than silently choosing stale upstream prose.
+
+Machine-readable agent guidance in CPS repositories (`AGENTS.md`, `CLAUDE.md`,
+`SUPERSESSION_REGISTER.md`) is the CPS authority layer for agents. It supersedes
+upstream AO agent instructions for repository-local behavior.
+
+### 8.3 Upstream compatibility
+
+AO runtime names, CLI surfaces, state directories (`~/.ao`), and implementation
+patterns remain valid for compatibility. Do not rename these merely to change
+branding. The separate product-convergence pass will handle full installer/binary
+convergence.
 
 ## 9. Immediate Masterplan Workstream
 
