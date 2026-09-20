@@ -76,6 +76,7 @@ Conversational or model memory is discovery context only, not project authority.
 - App recovery validations: BOUND TO respective checkpoints; not inherited by later SHAs
 - Physical/browser acceptance: NOT_RUN for current HEAD; separate requirement
 - Automated tests/builds: DO NOT ESTABLISH BROWSER/DEVICE VISUAL ACCEPTANCE
+- API-off device audit: PENDING_VALIDATION; Samsung API-off scenarios and hardcoded/demo/cache/empty/connection-state coverage defined but not executed (formerly GT-MOBILE-OFF-001, reclassified from visual ledger to validation tracking)
 
 ### Unresolved Blockers
 

@@ -20,8 +20,7 @@ Every actionable visual finding receives a stable ID. IDs are not arbitrarily re
 | `SUPERSEDED` | 0 |
 | `DEFERRED` | 5 |
 | `NOT_REPRODUCED` | 0 |
-| `PENDING` | 1 |
-| **Total** | **70** |
+| **Total** | **69** |
 
 ## Status Vocabulary
 
@@ -217,7 +216,6 @@ Each actionable finding record supports:
 | ID | Finding | Status | Platform | Surface | Authority/Source | First Observed | Last Observed | Implementation Status | Automated Validation | Browser/Device Validation | Issue Status | Fixed-at SHA | Verified-at SHA | Evidence/Reference | Notes/Supersession |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | GT-MOBILE-ERR-001 | Raw technical exception/framework text is rendered to customers in several customer-facing screens. | CODE_FIXED_NOT_PHYSICALLY_VERIFIED | Android | Cross-screen / Error handling | GlenTown-App `docs/audits/screenshot-ux-auditor-evaluation.md` F-01 | 2026-09-11 | 2026-09-11 | Blind screenshot UX audit (45 screenshots); static observation only | Screenshot audit | NOT_RUN | CODE_FIXED_NOT_PHYSICALLY_VERIFIED | — | — | GlenTown-App `docs/audits/screenshot-ux-auditor-evaluation.md` F-01 | Static screenshot evidence; runtime/device interaction needed to confirm each retry and fallback/exit route works. Consolidated under CHAT-02, ERR-01, and CROSS-A2-04 for specific screens. |
-| GT-MOBILE-OFF-001 | API-off device audit is a formal mode covering hardcoded/demo leakage, cache/stale-content behavior, empty/connection states, guest usability, recovery actions, and unnecessary API coupling. Previously retrieved API-backed content should be cached where appropriate; Community Advisory must not appear falsely live. | PENDING | Android | Cross-screen / Offline | GlenTown-App `docs/UI_REGRESSION_RECOVERY_LEDGER.md` OFF-01 | 2026-09-11 | 2026-09-14 | Audit authority; code audit | Code audit | NOT_RUN | PENDING | — | — | GlenTown-App `docs/UI_REGRESSION_RECOVERY_LEDGER.md` OFF-01 | Define scenarios and run Samsung audit. |
 | GT-MOBILE-CACHE-001 | Add device caching for appropriate API-backed content and visibly distinguish live, cached, stale, demo/mock, and unavailable states. Investigate Community Advisory provenance; fixed Explore featured listings need authoritative data binding. | OPEN | Android | Cross-screen / Cache | GlenTown-App `docs/UI_REGRESSION_RECOVERY_LEDGER.md` CACHE-01 | 2026-09-11 | 2026-09-14 | Code audit; offline audit authority | Code audit | NOT_RUN | OPEN | — | — | GlenTown-App `docs/UI_REGRESSION_RECOVERY_LEDGER.md` CACHE-01 | Define provenance and presentation contract. Superseded by accepted persistent-content-cache PLANNED status. |
 
 ---
