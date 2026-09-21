@@ -5,6 +5,12 @@
 **Portfolio:** TownBoss  
 **Purpose:** Durable project-development memory and historical execution ledger
 
+## 2026-09-21 — Cross-agent governance bootstrap and deterministic preflight
+
+TownBoss-governed repositories received concise agent bootstrap pointers rather than duplicated policy corpora: repository `AGENTS.md` is the shared entry point, Cline receives concise `.clinerules`, and Antigravity receives `.agents/rules/` reinforcement. `TownBoss/governance/Test-TownBossTaskGovernance.ps1` is a read-only, process-local checker for governed-path, Git-worktree, Phase/Deliverable/Task, expected branch/SHA, dirty-state, and closeout-receipt/remote-SHA consistency. It supplements—not replaces—the CPS task contract and planned lifecycle enforcement. CodeBisor is explicitly archived/reference-only.
+
+Development Rule 32 now makes UX authority/reference lifecycle and visual acceptance part of the TownBoss task contract. The checker can require declared UX authority, reference state, target, expected visible change, rendered evidence, and independent-review receipt, but cannot self-certify visual quality; that remains an independent review gate.
+
 ## 1. Purpose
 
 This document is the durable written memory of the Code Project Supervisor project.
