@@ -13,5 +13,9 @@ The authoritative bootstrap is Rule 33 plus repository `AGENTS.md`, concise Clin
 
 Codex, Kilo, and Cline fresh discovery are proven. Antigravity remains `ENVIRONMENT_BLOCKED` because no legitimate active session provides `ANTIGRAVITY_LS_ADDRESS`; follow up with `ANTIGRAVITY_RULE_DISCOVERY_RECOVERY` only when it is actively launched. The approved UX Engine reference audit remains authority for references. Future bounded work: lifecycle/provenance registry for UX references, MCP registry, first-party Skills pack, and GitHub CLI/`gh skill` evaluation.
 
+## 2026-09-21 â€” Codex global bootstrap implementation
+
+`governance/agent-bootstrap/CODEX_GLOBAL_AGENTS.md` is the versioned, concise universal entry contract for Codex sessions launched beneath `D:\Projects`; it explicitly distinguishes the orchestration root from a project repository and leaves repository-specific rules to each repository `AGENTS.md`. `governance/Test-CodexGlobalBootstrap.ps1` is intentionally separate from the portable task-governance checker because it verifies machine-local Codex home state without exposing configuration contents. `CODEX_GLOBAL_BOOTSTRAP = IMPLEMENTED`; discovery statuses remain pending until fresh read-only session evidence is collected. Antigravity remains `ENVIRONMENT_BLOCKED`.
+
 ## Current handoff
 The next platform phase is the portfolio architecture inventory defined in TOWNBOSS_PLATFORM_IMPLEMENTATION_PLAN.md.
