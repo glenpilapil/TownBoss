@@ -173,6 +173,13 @@
 - [ ] T5.1.1 Accessibility, auth/tenancy/privacy, commerce financial boundaries and private-media leakage.
 - [ ] T5.1.2 External/government adapters, production ingress, independent review and risk reconciliation.
 
+## D5.2 — Flutter design-system decoupling modernization
+- [ ] T5.2.1 After the fixture-backed Android/Web UI recovery and visual-acceptance work is stable, evaluate and perform an isolated Flutter upgrade from the current 3.44.x generation to a supported 3.47+ generation. Do not combine the toolchain/design-package migration with active UI recovery.
+- [ ] T5.2.2 Audit dependencies for legacy `package:flutter/material.dart` / `package:flutter/cupertino.dart` types exposed through public APIs; evaluate the standalone first-party `material_ui` and `cupertino_ui` packages and compatibility-bridge requirements before migration.
+- [ ] T5.2.3 Preserve GlenTown's own design-system and canonical UX authority while migrating imports with official Flutter migration tooling only after the compatibility gate is green.
+- [ ] T5.2.4 Validate the modernization checkpoint independently across Android, Web and Windows: analyzer, full tests, platform release builds, golden/visual-regression coverage, Samsung physical acceptance, and browser responsive/design QA.
+- [ ] T5.2.5 If dependency compatibility remains materially risky, keep the supported SDK-bundled compatibility path and defer the package migration rather than destabilizing Beta/RC.
+
 ## Phase 5 gate
 - [ ] No unaccepted critical/high risk remains.
 
