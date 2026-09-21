@@ -5,6 +5,10 @@
 **Portfolio:** TownBoss  
 **Purpose:** Durable project-development memory and historical execution ledger
 
+## 2026-09-21 — Cross-agent bootstrap reconciliation
+
+`governance/Test-TownBossTaskGovernance.ps1` provides read-only deterministic preflight/closeout evidence checks and supplements—not replaces—the CPS task contract. Repository `AGENTS.md`, Cline rules, and Antigravity rules are operational pointers below canonical documentation. Codex, Kilo, and Cline fresh discovery are proven; Antigravity remains environment-blocked. GlenTown App/API governance branches are remotely checkpointed but not merged into their product baselines.
+
 ## 1. Purpose
 
 This document is the durable written memory of the Code Project Supervisor project.

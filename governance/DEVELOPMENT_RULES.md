@@ -356,3 +356,11 @@ For JSX/TSX/JS/TS and equivalent structured web source:
 - block `VERIFIED`/`CHECKPOINTED` on malformed, duplicated, spliced, unexplained or unreviewed source churn.
 
 Unsafe editing methods are rule violations when they create or materially risk source corruption. Repeated source-integrity incidents must be escalated from symptom repair to workflow/process correction.
+
+## 33. Agent Bootstrap, UX Evidence, and Tool Authority
+
+Canonical TownBoss and project documentation is authority. Persistent agent rules operationalize that authority; first-party TownBoss Skills encode repeatable procedures; approved third-party Skills and MCP tools provide bounded capability; deterministic gates verify/enforce compliance. No lower layer may silently supersede canonical product, project, or design authority.
+
+Substantial tasks use a repository bootstrap that requires project-repository documentation first, TownBoss reconciliation second, preflight evidence, bounded ownership, safe Git/recovery behavior, the applicable validation profile, exact evidence SHAs, and compliant checkpoint/remote verification. A task with required closeout pending is not DONE.
+
+UI tasks also inherit `plans/projects/code-project-supervisor/TOWNBOSS_UX_ENGINE_REFERENCE_AUDIT.md` and the applicable project UX/design authority. External references are subordinate pattern sources: record their lifecycle and implementation SHA; use explicit fixture/real-data state; collect governed rendered evidence; and require independent visual review. Builds, tests, and golden images alone do not confer visual acceptance.

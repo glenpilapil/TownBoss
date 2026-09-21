@@ -1,0 +1,3 @@
+TownBoss governance is mandatory. Read root `AGENTS.md` and the listed governance documents before write-capable work. Require repository/branch/SHA/status and Phase/Deliverable/Task preflight; preserve unrelated dirty work; prohibit destructive Git recovery by default. Do not report DONE without validation, project docs/Memory, TownBoss reconciliation when applicable, compliant checkpoint, and verified remote SHA.
+
+For UI work, apply the canonical TownBoss UX Engine reference audit and project UX authority before considering external patterns. References are subordinate; record lifecycle and implementation SHA, make fixture/real state explicit, collect rendered evidence, and require independent visual review. Tests and golden images alone are not visual acceptance.

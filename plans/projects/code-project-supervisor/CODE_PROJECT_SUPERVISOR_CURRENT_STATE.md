@@ -10,6 +10,8 @@ Code Project Supervisor (CPS) is defined as the TownBoss portfolio development s
 
 The prior CodeBisor implementation is preserved as legacy/reference evidence. It is not the default foundation for continued development.
 
+Cross-agent bootstrap authority is canonical TownBoss/project documentation, then persistent rules, first-party Skills, approved third-party Skills/MCP tools, and deterministic verification. The bootstrap is checkpointed; Codex/Kilo/Cline discovery is proven, while Antigravity remains environment-blocked pending a legitimate active service address.
+
 Phase 1 — Establish Fork and Baseline is complete. The CPS fork is live at `D:\Projects\Code-Project-Supervisor` and on GitHub at `glenpilapil/Code-Project-Supervisor`, baseline-tagged at upstream commit `cadde8c9fd2079d0decca654004760ad8439328e`.
 
 Phase 2 — Operator and Project Baseline is complete. Runtime verification was performed against untouched upstream cadde8c9 using synthetic project "CPS Synthetic Canary". Phase 2 runtime artifacts are archived under `D:\Projects\Code-Project-Supervisor\.cps-local\runtime\phase2-ao-data`.
