@@ -23,6 +23,7 @@
 | HOME_RECOVERY_CURRENT_HEAD_VALIDATION | RESOLVED_AUTOMATED | Coordinated post-Samsung Home checkpoint | API `738e8ac`: 1,336 tests / 4,633 assertions / 0 failures under the canonical `phpunit.xml` paths; physical verification is separate and pending |
 | FLUTTER_TOOLCHAIN_PINNING | DEFERRED | Canonical Flutter SDK pinning | Pinned Flutter SDK version recorded in canonical project configuration |
 | DART_REPOSITORY_FORMAT_NORMALIZATION | DEFERRED | Repository-wide Dart formatter debt | Separate governed migration after toolchain pinning; do not conflate with current-formatting gate |
+| WEB_WAVE2_RESPONSIVE_QA | DEFERRED | Final Web responsive/adaptive acceptance | Complete major Web elements first; then resolve F-W2-005 at 1199px, obtain SHA-bound F-W2-008 evidence, and capture valid real-API visual evidence |
 
 Close/change a row only with evidence and synchronized dashboard, capability, Current State and Memory updates.
 

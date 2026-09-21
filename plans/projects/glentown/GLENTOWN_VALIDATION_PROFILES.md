@@ -52,6 +52,13 @@ Do not claim "all tests pass" or vague counts such as "380+". Record exact count
 - Screenshot audit when visual authority is involved.
 - Samsung/representative physical-device verification for mobile release-critical behavior.
 - Reconcile canonical UX/regression documentation before final report.
+- For live Android/Web UI work, use a healthy accepted API server where available;
+  real API is preferred and fixture mode must be explicit. Keep Android visible
+  on the physical device and Web visible in the browser. A user-flagged UI
+  finding is bounded to the affected widget/layout; any backend/API need is
+  recorded for a separately authorized API pass rather than silently expanded.
+- Do not treat fixture-equivalent captures as real-API evidence. Browser visual
+  acceptance requires fresh rendered evidence bound to the implementation SHA.
 
 ## Laravel API / domain contract
 - Focused feature/unit tests for changed contract.

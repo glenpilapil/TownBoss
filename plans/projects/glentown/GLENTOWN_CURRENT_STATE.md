@@ -27,6 +27,7 @@ Conversational or model memory is discovery context only, not project authority.
 - Web/Windows visual authority: `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md`
 - Web/Windows Chat/Profile authority: `GLENTOWN_WEB_WINDOWS_CHAT_PROFILE_AUTHORITY.md`
 - App visual audit ledger (persistent issue ledger): `plans/projects/glentown/apps/glentown-app/GLENTOWN_FLUTTER_APP_VISUAL_AUDIT_LEDGER.md`
+- Current App/Web shared-baseline reconciliation: `GLENTOWN_APP_WEB_WAVE2_BASELINE_RECONCILIATION_2026-09-21.md`
 - Mobile physical audit: GlenTown-App `dd1ecf6` (`docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`)
 - Memory: `GLENTOWN_MEMORY.md`
 - TownBoss portfolio governance: `governance/*.md`, `plans/TOWNBOSS_MASTER_DEVELOPMENT_PLAN.md`
@@ -34,6 +35,8 @@ Conversational or model memory is discovery context only, not project authority.
 
 ### Current Accepted Checkpoints
 
+- **GlenTown-App reconciled shared baseline candidate:** `8e17b297b7a3b2e5b0a35eafebcefe9409f37759` (`reconcile/web-wave2-governance-20260921`)
+- **Web recovery implementation checkpoint:** `f5267d9ae12dd1e08a457e1c85639544ba8dc3ad`; Web feature completeness and final responsive/browser acceptance remain pending.
 - **TownBoss canonical checkpoint:** `ede731578ce63fbdd9db6945014ac00259870627` (origin/main)
 - **GlenTown-App accepted post-Samsung recovery:** `4010f1fcf19b58eaafe828e0b4abeac72421e7fb`
 - **GlenTown-Flutter accepted shared baseline:** `ad54364452958870ae3aa25286605b5ea5f98a70`
@@ -65,7 +68,9 @@ Conversational or model memory is discovery context only, not project authority.
 ### Active Workstreams
 
 - D1.2–D1.7 App-side recovery: COMPLETE / AWAITING CONSOLIDATED SAMSUNG PHYSICAL RE-AUDIT
-- Web/Windows visual/IA recovery: ACTIVE (distinct from Samsung/mobile stream)
+- Android implementation: READY TO RESUME after App + TownBoss baseline convergence.
+- Web/Windows feature/completeness work: ACTIVE; the responsive micro-correction loop is intentionally parked until major Web elements are implemented.
+- Final responsive/adaptive Web QA: DEFERRED; F-W2-005 remains open at 1199px, F-W2-008 requires fresh SHA-bound visual verification, and real-API visual sanity requires fresh valid evidence.
 - API/data/demo/domain blockers: OPEN (see Blocker Register)
 - Fresh API current-HEAD full-suite verification: OPEN
 - Fresh App current-HEAD release validation: OPEN

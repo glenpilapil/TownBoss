@@ -5,9 +5,9 @@
 | Capability | Critical | Current status/evidence | Next evidence |
 |---|---|---|---|
 | Auth/onboarding | Yes | IMPLEMENTED; `be202c5a` | Physical gate; SMTP external |
-| Home/navigation | Yes | POST_SAMSUNG_AUTOMATED_VERIFIED; App `4010f1f`, API `738e8ac`, API full 1,336 / 4,633 / 0 failures | Orchestrator source review, Samsung physical gate, rich data |
+| Home/navigation | Yes | Shared App baseline `8e17b297`; Web recovery implementation `f5267d9`; historical mobile/API evidence retained | Android physical gate; later comprehensive responsive/adaptive Web QA |
 | Community/notifications | Yes | POST_SAMSUNG_AUTOMATED_VERIFIED; API `738e8ac` contracts and fixtures | Orchestrator source review and physical evidence |
-| Explore/discovery | Yes | TEST_VERIFIED recovery lineage `3edfb0c` | Physical check and API/data closure |
+| Explore/discovery | Yes | Shared App baseline `8e17b297`; F-W2-005 open/deferred at 1199px; F-W2-008 final SHA-bound visual verification deferred | Web feature completeness; comprehensive responsive/adaptive QA; API/data closure |
 | Universal Search | Yes | BLOCKED_API_CONTRACT | Geographic cross-domain contract |
 | Map | Yes | IMPLEMENTED UI; `a43442b` | Listing/media projection, physical check |
 | Cart/Around You | Yes | IMPLEMENTED; `c28feee` | Rich fixtures/projection/physical check |

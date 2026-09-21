@@ -39,6 +39,27 @@ The implementation plan records canonical API and Flutter branch evidence, inclu
 ## Current handoff
 The active frontend recovery sequence remains bounded: completed Home/navigation/notifications/community/map/cart/Around You work requires physical recheck; Explore canonical audit backlog is the next major screen recovery, followed by remaining Create/Chat/You findings. Cross-repo/data/architecture blockers must be resolved or tracked through the canonical blocker register while realistic demo/Beta data and release-readiness gates progress in parallel where dependencies permit.
 
+## 2026-09-21 — GlenTown-App shared baseline and TownBoss reconciliation
+
+**Type:** GOVERNANCE / CURRENT-STATE RECONCILIATION
+**Status:** CURRENT
+
+GlenTown-App `8e17b297b7a3b2e5b0a35eafebcefe9409f37759` is the reconciled shared
+baseline candidate, preserving Web recovery implementation
+`f5267d9ae12dd1e08a457e1c85639544ba8dc3ad`. It is not final Web visual
+acceptance or feature-completeness evidence. F-W2-003 and F-W2-013 remain
+visually closed; F-W2-005 remains open/deferred for the 1199px Explore
+navigation/banner overlap; F-W2-008 is implemented but needs fresh SHA-bound
+visual verification. `REAL_API_VISUAL_SANITY` is unverified because correction-03
+purported real-API captures were byte-identical to fixture captures.
+
+Current sequence: converge App and TownBoss, resume Android as a first-class
+lane, continue bounded Web feature/completeness work, use live real-API QA with
+explicit fixture mode, then complete responsive/adaptive QA after major Web
+elements exist. The baseline record retains the canonical navigation, taxonomy,
+jobs/hiring and `>=1200` desktop-breakpoint authority and records the live-QA
+and project-folder operating rules.
+
 ## 2026-09-13 — Live dashboard backfill and recovery chain reconciliation
 
 **Type:** IMPLEMENTATION / VERIFICATION / CHECKPOINT

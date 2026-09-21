@@ -3,8 +3,9 @@
 **Portfolio:** TownBoss
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **2026-09-15 current recovery authority:** Historical D1.2 automated evidence is preserved, and the subsequent Samsung audit reopened Home. The coordinated post-audit Home recovery is `HOME_RECOVERY_IMPLEMENTED_AND_AUTOMATED_VERIFIED`; it is not physically approved. Orchestrator source review remains required before any physical-audit decision.
-**Current phase:** Phase 1 — App-side recovery complete / physical verification pending
-**Current deliverable/task:** Consolidated Samsung physical re-audit — READY
+**2026-09-21 shared-baseline authority:** GlenTown-App `8e17b297b7a3b2e5b0a35eafebcefe9409f37759` is the reconciled shared baseline candidate. See `GLENTOWN_APP_WEB_WAVE2_BASELINE_RECONCILIATION_2026-09-21.md`; it does not establish final Web visual acceptance or Web feature completeness.
+**Current phase:** Phase 1 — App-side recovery complete / Android resumption and Web feature-completeness work ready; physical and comprehensive responsive QA pending
+**Current deliverable/task:** Android implementation resumption and bounded Web feature/completeness work — READY; final responsive/adaptive QA deferred until major Web elements exist
 **Phase gate:** APP-SIDE RECOVERY COMPLETE — physical verification remains pending.
 
 ## Status legend
@@ -23,6 +24,8 @@
 - [x] D1.7 cross-screen/accessibility App-side closure. Evidence: GlenTown-App `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`; 20 focused tests and 370 full Flutter tests passed, analyze no issues, diff check pass.
 - [ ] Physical verification, explicit API/data/domain blockers, and Beta readiness remain open. Next gate: consolidated Samsung physical re-audit.
 - [x] Consolidated Samsung physical re-audit preparation is ready. Evidence worksheet: GlenTown-App `dd1ecf637c2eb7471d1c9029fc05b40a21e7837d`, `docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`; 75 ordered checks, blocker/non-failure boundaries, demo credentials, evidence fields, and ADB reverse run instructions.
+- [x] GlenTown-App shared baseline reconciled. Evidence: `8e17b297b7a3b2e5b0a35eafebcefe9409f37759`; Web recovery checkpoint `f5267d9ae12dd1e08a457e1c85639544ba8dc3ad`; see the 2026-09-21 baseline reconciliation record for deferred evidence and QA boundaries.
+- [ ] Web feature/completeness remains pending. F-W2-005 remains open/deferred, F-W2-008 needs final SHA-bound visual verification, and real-API visual sanity needs fresh valid evidence during later comprehensive responsive/adaptive QA.
 
 ## D0.1 — Canonical repository/state reconciliation
 
@@ -85,7 +88,7 @@
 
 - [x] T1.4.1 Establish Create audit authority/bounded recovery contract. Evidence: canonical App ledger CREATE-A2-01 through CREATE-A2-07 reconciled at `aa07d25`.
 - [x] T1.4.2 Create layout/hierarchy and canonical Community taxonomy. Evidence: CREATE-A2-01/03 remain code-reconciled from `969abec`; shared taxonomy is preserved and validated by the D1.4 focused suite.
-- [x] T1.4.3 Citizen Product → Pre-Loved; commercial category → business setup gating; citizen Post a Job restriction. Evidence: CREATE-A2-02; D1.4 focused suite covers citizen, seller, and employer paths.
+- [x] T1.4.3 Historical checkpoint: citizen Product → Pre-Loved and commercial category → business setup gating. The former citizen Post a Job restriction is superseded: current authority permits both household/personal and business/organization hiring through their respective eligibility/compliance flows. Evidence: CREATE-A2-02; D1.4 focused suite covers citizen, seller, and employer paths.
 - [x] T1.4.4 Truthful Trust/Verification routing and customer-safe Create gates. Evidence: `aa07d25`; contextual claim entry opens the full-screen Trust & Verification gate and cannot simulate uploaded evidence or a successful claim.
 - [ ] T1.4.5 Media persistence/poll special-type publishing. `BLOCKED_API_CONTRACT`; see `COMMUNITY_MEDIA` and `COMMUNITY_CATEGORY_PERSISTENCE`.
 - [ ] T1.4.6 Samsung physical recheck of Create layout, IME/CTA, validation/error layers, and permission flows. `ATTENTION`.
