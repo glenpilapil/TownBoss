@@ -99,8 +99,8 @@ to legacy folders.
 
 ## Documentation Compliance Receipt
 
-**Phase:** P-GOV  
-**Deliverable:** D-GLENTOWN-BASELINE  
+**Phase:** P-GOV
+**Deliverable:** D-GLENTOWN-BASELINE
 **Task:** T-GLENTOWN-TOWNBOSS-RECONCILIATION-20260921
 
 Planning review covered the TownBoss governance corpus and GlenTown Current
