@@ -122,3 +122,14 @@ D1.7 independently achievable App work and Phase 1 App-side recovery are complet
 GlenTown-App `dd1ecf637c2eb7471d1c9029fc05b40a21e7837d` adds `docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`, the canonical session worksheet for physical review of UI checkpoint `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`. It sequences 75 checks from fresh-install/auth through Profile Setup, shell, Home, Notifications, Cart, Community, Around You, Map, Explore, Create, Chat, You/Profile, and cross-screen stress. Every ledger issue row carrying physical-recheck semantics is referenced. API/data/demo/domain/architecture/external blockers are explicitly `KNOWN_BLOCKER â€” NOT A PHYSICAL FAILURE`.
 
 No device was connected during preparation, so no physical result is claimed. The worksheet records the Maria demo credential, screenshot/result fields, localhost API configuration through `adb reverse tcp:8000 tcp:8000`, and the development-only verification-bypass boundary. Phase 1 App-side recovery remains complete; consolidated Samsung physical re-audit execution is the next gate.
+
+  ## 2026-09-22 — GlenTown-App Android Home Freeze Reconciliation
+
+  **Type:** GOVERNANCE RECONCILIATION
+  **Status:** CURRENT
+
+  Android Home live-QA has reached an accepted visual baseline (FROZEN) at checkpoint 73f72010d546658f08731aece5150b6ea8b77c4f. The canonical Home order is recorded as: Welcome/Alert, Explore, Around You, Personal Tools, Quick Create Community Post, Community filters, Community feed. Personal Tools uses Home-only aliases (Achieve, Finance, Travel, Today) with an 'All Tools' action.
+
+  The user approved a future explicit reopening of the Home visual baseline for one bounded color/image refinement pass (Welcome card background, alert style, Explore card backgrounds, Around You card gutters, and collapsed floating navigation). This pass must not be implemented in TownBoss.
+
+  Functional followups remain open/deferred: GPS fallback, missing Personal Tools destinations, All Tools hub destination, Around You/API media completeness, onboarding background regression, and first-install Welcome-card verification.

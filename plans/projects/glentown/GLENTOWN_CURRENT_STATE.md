@@ -102,7 +102,7 @@ Active blockers include: CONNECTED_SEARCH, MAP_LISTINGS, DESTINATION_HERO_MEDIA,
 **Status:** ACTIVE DEVELOPMENT / BETA READINESS RECOVERY
 **Authoritative dashboard:** `GLENTOWN_IMPLEMENTATION_PLAN.md`
 
-**Current Home authority:** Historical `ff6d2e2` evidence is pre-Samsung only. The 2026-09-14 Samsung audit reopened Home. The post-audit recovery is `HOME_RECOVERY_IMPLEMENTED_AND_AUTOMATED_VERIFIED` at App `4010f1fcf19b58eaafe828e0b4abeac72421e7fb` and API `738e8ac124854e7ef95f4a8472424c941da32b91`; it is not a physical pass.
+**Current Home authority:** Android Home live-QA has reached an ACCEPTED VISUAL BASELINE (FROZEN) at GlenTown-App checkpoint `73f72010d546658f08731aece5150b6ea8b77c4f`. A future explicit reopening is approved for one bounded color/image refinement pass (Welcome card background, alert style, Explore card backgrounds, Around You card gutters, and collapsed floating navigation). Deferred functional followups (GPS fallback, missing Personal Tools destinations, All Tools hub, API media, onboarding) remain explicitly unresolved.
 
 Phase 0 governance/planning foundations are substantially established. Phase 1 App-side recovery is complete: Home/floating-navigation, Explore, Create, Chat, You/Profile, and D1.7 cross-screen/accessibility recovery have recorded automated evidence. The consolidated 75-check Samsung physical re-audit worksheet is ready at GlenTown-App `dd1ecf6`; physical verification remains pending and has not been claimed. The next mobile gate remains execution/reconciliation of that re-audit.
 

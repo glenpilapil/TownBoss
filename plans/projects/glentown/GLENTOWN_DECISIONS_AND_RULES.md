@@ -57,3 +57,36 @@ or later explicit GlenTown authority.
 ## Documentation rule
 
 Substantial work must consult the implementation plan, app-specific plans, relevant TownBoss governance, Authority Matrix, Capability Matrix, Blocker Register, Validation Profiles, Risk Register, Memory, Current State, applicable architecture/decision documents, `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md` for Web/Windows work, and repository-local instructions before action and before final reporting.
+
+## Android Home Canonical Baseline
+
+**Status:** ACCEPTED VISUAL BASELINE (FROZEN)
+
+The canonical Android Home order is:
+1. Welcome / Alert premium card
+2. Explore
+3. Around You
+4. Personal Tools
+5. Quick Create Community Post
+6. Community feed filters
+7. Community feed posts
+
+Home Personal Tools presentation aliases:
+- Achieve -> Achieve
+- Financial Planner -> Finance
+- Trip Planner -> Travel
+- Day Planner -> Today
+*(Note: These aliases are HOME-ONLY. They do not rename underlying features/routes/domain concepts.)*
+
+Personal Tools Home action: **All Tools**
+
+Accepted visual details include:
+- Explore compact bento cards
+- Products / Foods / Services / Tourism
+- Tourism uses canonical beach-umbrella icon
+- Around You heading is AROUND YOU
+- Explore scope header and Home section actions have reconciled typography
+- Compact Quick Community composer
+- Intentional Community filter-to-first-post spacing
+- Corrected circular You/avatar navigation treatment
+- Splash tagline: Your Town, Connected.

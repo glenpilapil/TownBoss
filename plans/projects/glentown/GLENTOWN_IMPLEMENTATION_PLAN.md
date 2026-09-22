@@ -65,7 +65,8 @@
 - [x] T1.2.4 Map recovery. Evidence: `a43442b75916e805b44af2af62f38233112882a7`.
 - [x] T1.2.5 Cart + Around You recovery. Evidence: `c28feee029834fe3be6678da0b81ab11c329c64d`.
 - [x] T1.2.6 Final Home reconciliation. Evidence: `ff6d2e2e502a0fa91d19a799b46a8d7ca0523428`; 369 tests, analyze no issues, diff check pass.
-- [ ] T1.2.7 Samsung physical recheck. `ATTENTION`.
+  - [ ] T1.2.7 Samsung physical recheck. `ATTENTION`.
+  - [x] T1.2.8 Android Home live-QA accepted baseline (FROZEN). Evidence: `73f72010d546658f08731aece5150b6ea8b77c4f`. Future explicit reopening approved for bounded visual refinement.
 
 ## D1.3 — Explore / Discovery recovery
 
