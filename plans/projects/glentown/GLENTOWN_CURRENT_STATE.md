@@ -74,6 +74,17 @@ Conversational or model memory is discovery context only, not project authority.
 - API/data/demo/domain blockers: OPEN (see Blocker Register)
 - Fresh API current-HEAD full-suite verification: OPEN
 - Fresh App current-HEAD release validation: OPEN
+- Auth bootstrap/logout correctness: ATTENTION / PENDING IMPLEMENTATION; Live QA observed inconsistent Home/Login routing across restart/resume. API/network unavailability must remain distinct from logout.
+- Home Welcome contextual briefing refinement: APPROVED / PENDING; stable greeting, three-line contextual subtitle, and bottom-right pill CTA rules are canonical.
+- Looking For + Glen AI contextual social participation: DECIDED / PLANNED / NON-BLOCKING unless promoted; includes grounded Looking For auto-help, explicit first-comment AI disclosure, Glen AI Community profile, and selective privacy-safe birthday/celebration participation.
+- Trusted uninstall/reinstall restoration + biometric/fingerprint login: DEFERRED to D5.3; no current guarantee of silent reinstall restoration.
+
+### 2026-09-25 product/UX decisions pending implementation
+
+- **Welcome card:** Slide 1 is a context-aware personal briefing surface. Imminent scheduled activity outranks approaching personal occasion/event, which outranks upcoming holiday/event, which outranks the default subtitle. Contextual copy stays concise within the three-line budget. CTA is a high-contrast bottom-right pill: `Make Plans` for routable planning contexts, `View Calendar` for imminent scheduled activity, otherwise hidden when no truthful action exists.
+- **Auth:** persisted sign-in must remain stable across ordinary lifecycle events and temporary API/network outage. Startup/resume requires an initializing state rather than routing transient null auth to Login. You -> Logout must clear local state, terminate/revoke the current session where supported, and return to Login. Uninstall/reinstall trusted restoration remains deferred to biometric/trusted-device work.
+- **Looking For:** canonical user-facing demand expression; older `I Need...` / `Requests Lite` wording is superseded for normal UI. GlenTown may structure and route the need across domains behind the user-facing post.
+- **Glen AI Community:** future Glen AI may selectively auto-comment on Looking For with grounded real-data suggestions, explicitly introduce itself on its first thread comment, and maintain a resident-style social profile with permanent AI/system identity. Selective birthday/celebration posts/comments are approved subject to birthday visibility, privacy and AI/social preferences; generic auto-engagement on every post is not approved.
 
 ### Current Validation Freshness
 

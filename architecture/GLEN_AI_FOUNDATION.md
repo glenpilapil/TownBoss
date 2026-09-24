@@ -84,6 +84,27 @@ A canonical AI interaction follows:
 
 The lifecycle may stop early when the request can be answered safely without model invocation, when required context is unavailable, when authority is insufficient, or when clarification is necessary.
 
+## Product-triggered contextual interactions
+
+Glen AI Foundation may be invoked not only by direct user prompts but also by a product-owned, policy-governed contextual trigger. This enables product experiences such as a grounded response to a newly published demand/request or a privacy-permitted celebratory context without turning Glen AI into an indiscriminate background poster.
+
+A product-triggered interaction must identify, at minimum:
+
+- the triggering product event and authoritative source;
+- the subject/user/resource scope;
+- the permitted purpose and output surface;
+- the privacy/consent or product-policy basis for using the context;
+- the relevant skill and grounding sources;
+- rate, duplicate/idempotency and suppression controls;
+- the applicable AI Authority and authorization policy;
+- material moderation/safety and audit requirements.
+
+The trigger itself does not create authority. Generating advice or candidate social copy may remain A0/A1, while actually publishing a comment, post, message or other persisted product record is a state mutation and therefore requires the applicable bounded execution/standing-policy authority under the portfolio AI Authority model. Public or interpersonal AI output must use an attributable AI/system service identity and remain clearly disclosed as AI.
+
+Products must provide suppression and preference boundaries appropriate to the context. A private date, hidden profile attribute, unrelated user data, or mere model inference is not permission to initiate a social interaction. Product-triggered behavior must be selective and useful rather than generic engagement automation.
+
+The GlenTown-specific Glen AI Community profile, Looking For auto-comment behavior, first-comment disclosure, birthday/celebration participation, and resident privacy rules are owned by GlenTown product authority; they do not make a social profile a generic requirement for every TownBoss product adapter.
+
 ## Open-domain versus product-domain behavior
 
 Glen AI may support open-domain informational interaction, but open-domain capability does not override product boundaries.

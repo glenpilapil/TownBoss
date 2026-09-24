@@ -15,6 +15,9 @@
 ## Current summary
 
 - [ ] Foods Meal Planner capability: PLANNED. Its Foods topbar entry point is APPROVED / PENDING IMPLEMENTATION; no planner route or functional contract is implemented.
+- [ ] Auth session bootstrap/logout consistency: `ATTENTION`. Live QA observed nondeterministic Home/Login routing across restart/resume, including API-off behavior. Network unavailability must not be treated as logout; You -> Logout requires end-to-end verification/fix.
+- [ ] Home Welcome contextual briefing: APPROVED / PENDING REFINEMENT. Preserve stable greeting/holiday greeting, use concise three-line contextual subtitle, and place truthful action CTAs in a bottom-right pill (`Make Plans`, `View Calendar`, or the real slide action).
+- [ ] Looking For + Glen AI contextual social participation: DECIDED / PLANNED. `Looking For` is the canonical customer-facing demand concept; grounded Glen AI first-response comments, AI social profile/disclosure, and selective birthday/celebration participation are future implementation work.
 
 - [x] Phase 0 governance/planning foundations substantially established. Evidence: GlenTown control corpus and 2026-09-13 governance adoption.
 - [x] Post-Samsung coordinated Home recovery is `HOME_RECOVERY_IMPLEMENTED_AND_AUTOMATED_VERIFIED`. App: `4010f1fcf19b58eaafe828e0b4abeac72421e7fb`; API: `738e8ac124854e7ef95f4a8472424c941da32b91`. API complete canonical suite: 1,336 tests / 4,633 assertions / 0 failures, executed in bounded equivalent PHPUnit-path batches under the same `phpunit.xml` after the host wrapper cut off monolithic output. API focused recovery: 26 / 116; Pint, changed-PHP syntax, and diff check passed. Physical verification is still pending.
@@ -58,6 +61,13 @@
 - [x] T1.1.2 Implement development-only email-verification bypass. Evidence: `GLENTOWN_DEV_BYPASS_EMAIL_VERIFICATION`, default off and disabled in release builds.
 - [ ] T1.1.3 Real SMTP/email verification E2E. `BLOCKED_EXTERNAL` pending SMTP/delivery account.
 - [ ] T1.1.4 Physical onboarding/auth recheck. `ATTENTION`.
+- [ ] T1.1.5 Deterministic auth bootstrap/session continuity audit and fix. `ATTENTION`; distinguish initializing, authenticated, guest, unauthenticated, authoritative invalid/revoked, and network/API-unavailable states. Persisted signed-in state must survive ordinary restart/process death/reboot/update/background-resume and temporary API outage.
+- [ ] T1.1.6 Make You -> Logout authoritative and verifiable: clear local auth/restoration state, revoke/terminate the current server session where supported, route to Login, and prove the old session does not silently reappear. Explicit logout and server-authoritative suspension/revocation/security invalidation may end access; connectivity failure alone may not.
+- [ ] T1.1.7 Physical auth lifecycle matrix: signed-in/API-on relaunch, signed-in/API-off relaunch, API-off background/foreground, API restoration, guest/API-off relaunch, explicit logout/relaunch, and authoritative-invalid-session behavior.
+
+### D1.1 auth continuity gate
+
+- [ ] `AUTH_SESSION_BOOTSTRAP_LOGOUT_READY`: deterministic bootstrap has no Splash -> Login/Home race, API/network failure does not erase a valid persisted session, guest restoration is stable, explicit You Logout works end to end, authoritative invalidation still terminates access, focused tests pass, and Samsung lifecycle QA passes.
 
 ## D1.2 — Home + Floating Navigation recovery
 
@@ -69,6 +79,8 @@
 - [x] T1.2.6 Final Home reconciliation. Evidence: `ff6d2e2e502a0fa91d19a799b46a8d7ca0523428`; 369 tests, analyze no issues, diff check pass.
   - [ ] T1.2.7 Samsung physical recheck. `ATTENTION`.
   - [x] T1.2.8 Android Home live-QA accepted baseline (FROZEN). Evidence: `73f72010d546658f08731aece5150b6ea8b77c4f`. Future explicit reopening approved for bounded visual refinement.
+  - [ ] T1.2.9 Welcome-card contextual briefing refinement. Preserve the accepted Slide 1 greeting hierarchy; add/verify natural wrapping without ordinary ellipsis; use a stable bottom-right pill CTA independent of the left text-safe column; prioritize imminent calendar activity, approaching personal occasion/event, upcoming holiday/event, then default subtitle; use `Make Plans` for routable planning opportunities and `View Calendar` for imminent scheduled activity; hide CTA when no truthful destination exists.
+  - [ ] T1.2.10 Samsung Welcome-card recheck across default, holiday, approaching-event and calendar-reminder states, including supported text scaling and artwork/CTA overlap.
 
 ## D1.3 — Explore / Discovery recovery
 
@@ -160,6 +172,21 @@
 ## D3.2 — Messaging and planners
 - [ ] T3.2.1 Messaging journey.
 - [ ] T3.2.2 Trip Planner, Event Planner and Financial Planner journeys.
+
+## D3.3 — Looking For demand matching and Glen AI contextual social participation
+
+**Status:** DECIDED / PLANNED / NON-BLOCKING unless explicitly promoted into Beta/RC scope.
+
+- [ ] T3.3.1 Preserve `Looking For` as the canonical customer-facing demand concept and map free-form needs into structured, reviewable cross-domain intent/constraints without requiring the resident to choose the internal domain first.
+- [ ] T3.3.2 Implement grounded Glen AI first-response assistance for eligible Looking For posts: real GlenTown matches only, no fabricated providers/listings/availability/prices, useful no-match/refinement behavior, and explicit first-comment AI introduction/disclosure.
+- [ ] T3.3.3 Implement Glen AI Community profile presence using the resident-profile framework with permanent `Glen AI` + AI Assistant/system identity markers, profile view, and governed post/comment/reply capability; never represent Glen AI as a human resident.
+- [ ] T3.3.4 Implement selective contextual social participation beyond Looking For, including privacy-permitted birthday/celebration comments or profile posts using the resident's permitted first name/display name. Respect birthday visibility and AI/social preferences; do not infer or reveal private dates; do not auto-comment on every post.
+- [ ] T3.3.5 Add moderation/safety, privacy, rate limiting, duplicate/idempotency protection, auditability, grounding/provenance, user controls and AI Authority enforcement for automated Community writes. Publishing an AI comment/post is a governed state mutation even when the text itself is advisory.
+- [ ] T3.3.6 Validate Looking For -> interpretation -> matching -> Glen AI comment -> resident/provider response -> resolution/closure, plus no-match, disabled-AI-social, private-birthday, duplicate-trigger and moderation cases.
+
+### D3.3 gate
+
+- [ ] `LOOKING_FOR_GLEN_AI_CONTEXTUAL_SOCIAL_PARTICIPATION_READY`: canonical Looking For semantics, grounded matching, first-comment disclosure, Glen AI social profile identity, selective privacy-safe social participation, moderation/rate/idempotency controls, auditability, and applicable App/API/E2E evidence all pass on concrete refs.
 
 ## Phase 3 gate
 - [ ] Beta-critical journeys pass on concrete App/API refs with authoritative boundaries.

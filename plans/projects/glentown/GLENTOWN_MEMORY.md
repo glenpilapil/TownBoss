@@ -176,3 +176,26 @@ Canonical authority:
 - `architecture/TOWNBOSS_SITES_PLATFORM.md`
 - `architecture/PUBLIC_DATA_GATEWAY_CANDIDATES.md`
 - TownTraveler implementation/current-state documentation
+
+## 2026-09-25 — Welcome, Auth Continuity, Looking For, and Glen AI Social Participation
+
+**Type:** DECISION / UX AUTHORITY / FUTURE CAPABILITY
+**Status:** CURRENT
+
+Mobile Live-QA refined the Home Welcome card into a context-aware personal briefing surface. The accepted greeting/daypart or same-day holiday greeting remains stable. The subtitle may instead surface the highest-priority concise context in this order: imminent scheduled activity, approaching personal occasion/event, applicable upcoming holiday/event, then the default "What would you like to do in your Town today?" style prompt. Contextual copy should remain informative within the three-line budget and should wrap rather than normally ellipsize. Welcome action CTAs use a compact filled pill at the bottom-right, independent of the left text-safe column. Planning opportunities use the generic `Make Plans` label so long event names remain in the subtitle; imminent scheduled activity uses `View Calendar`; CTAs are hidden when no truthful route/action exists. Slide 2 and Slide 3 use the same stable CTA treatment when their real actions are available.
+
+Live QA also identified inconsistent auth bootstrap behavior: restart/resume sometimes lands at Home and sometimes at Login, including an API-off/background-resume case. Canonical behavior is now explicit: persisted signed-in state survives ordinary restart, process death, reboot, app update, background/foreground transitions and temporary API/network loss. Initializing/unknown auth and connectivity failure are not unauthenticated states. You -> Logout must work end to end, clear local restoration state, revoke/terminate the current server session where supported, and return to Login; authoritative suspension/revocation/security invalidation may also end access. Silent trusted restoration after uninstall/reinstall is not part of this pass and remains deferred to the D5.3 biometric/fingerprint + trusted-device implementation.
+
+The customer-facing demand concept is `Looking For`, superseding the older `I Need...` / `Requests Lite` wording. Looking For lets the resident describe a concern or need without knowing GlenTown's internal domain; GlenTown may structure and route it across relevant supply, providers, listings, opportunities and orchestrators while preserving internal request/demand lifecycle primitives as implementation details.
+
+A future Glen AI contextual social-participation capability is approved. Glen AI may selectively auto-comment on eligible Looking For posts by interpreting the need and grounding suggestions in real permitted GlenTown data. It must not fabricate matches; no-match behavior should be truthful and may offer refinement/broader search. On the first Glen AI comment in a thread, it explicitly introduces/discloses itself as GlenTown's AI assistant. Glen AI will have a Community profile using the resident-profile framework but with permanent AI Assistant/system identity markers, and it may post/comment/reply as that clearly disclosed system account.
+
+Glen AI participation may extend selectively beyond Looking For. Privacy-permitted birthday and celebration contexts are approved examples: Glen AI may comment on an explicit birthday post or create a short birthday post on the celebrant's profile, using the resident's permitted first name/display name. Birthday visibility and AI/social preferences govern the behavior; private dates must not be inferred or revealed. Glen AI must not comment on every post or generate empty engagement. Automated Community writes require moderation/safety, rate and duplicate/idempotency controls, auditability, grounding/provenance where material, and TownBoss AI Authority enforcement.
+
+Canonical authority updated in:
+- `GLENTOWN_DECISIONS_AND_RULES.md`
+- `GLENTOWN_SUPERSESSION_REGISTER.md`
+- `GLENTOWN_IMPLEMENTATION_PLAN.md`
+- `GLENTOWN_CAPABILITY_MATRIX.md`
+- `GLENTOWN_CURRENT_STATE.md`
+- `architecture/GLEN_AI_FOUNDATION.md`
