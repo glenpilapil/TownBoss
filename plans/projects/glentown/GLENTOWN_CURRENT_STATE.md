@@ -26,6 +26,7 @@ Conversational or model memory is discovery context only, not project authority.
 - Validation requirements: `GLENTOWN_VALIDATION_PROFILES.md`
 - Web/Windows visual authority: `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md`
 - Web/Windows Chat/Profile authority: `GLENTOWN_WEB_WINDOWS_CHAT_PROFILE_AUTHORITY.md`
+- Meal Planner / Activity Plan product authority: `GLENTOWN_MEAL_ACTIVITY_PLANNING.md`
 - App visual audit ledger (persistent issue ledger): `plans/projects/glentown/apps/glentown-app/GLENTOWN_FLUTTER_APP_VISUAL_AUDIT_LEDGER.md`
 - Current App/Web shared-baseline reconciliation: `GLENTOWN_APP_WEB_WAVE2_BASELINE_RECONCILIATION_2026-09-21.md`
 - Mobile physical audit: GlenTown-App `dd1ecf6` (`docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`)
@@ -77,6 +78,7 @@ Conversational or model memory is discovery context only, not project authority.
 - Auth bootstrap/logout correctness: ATTENTION / PENDING IMPLEMENTATION; Live QA observed inconsistent Home/Login routing across restart/resume. API/network unavailability must remain distinct from logout.
 - Home Welcome contextual briefing refinement: APPROVED / PENDING; stable greeting, three-line contextual subtitle, and bottom-right pill CTA rules are canonical.
 - Looking For + Glen AI contextual social participation: DECIDED / PLANNED / NON-BLOCKING unless promoted; includes grounded Looking For auto-help, explicit first-comment AI disclosure, Glen AI Community profile, and selective privacy-safe birthday/celebration participation.
+- Meal Planner + Activity Plan: DECIDED / PLANNED / NON-BLOCKING unless promoted; includes Budget/Goal/Calendar/Recipe entry modes, evidence-backed non-prescriptive Eating Pattern information, Recipe content, Calendar projection, private Meal Check-ins/photos, Achieve linkage, Activity Plan, and professional referral.
 - Trusted uninstall/reinstall restoration + biometric/fingerprint login: DEFERRED to D5.3; no current guarantee of silent reinstall restoration.
 
 ### 2026-09-25 product/UX decisions pending implementation
@@ -85,6 +87,9 @@ Conversational or model memory is discovery context only, not project authority.
 - **Auth:** persisted sign-in must remain stable across ordinary lifecycle events and temporary API/network outage. Startup/resume requires an initializing state rather than routing transient null auth to Login. You -> Logout must clear local state, terminate/revoke the current session where supported, and return to Login. Uninstall/reinstall trusted restoration remains deferred to biometric/trusted-device work.
 - **Looking For:** canonical user-facing demand expression; older `I Need...` / `Requests Lite` wording is superseded for normal UI. GlenTown may structure and route the need across domains behind the user-facing post.
 - **Glen AI Community:** future Glen AI may selectively auto-comment on Looking For with grounded real-data suggestions, explicitly introduce itself on its first thread comment, and maintain a resident-style social profile with permanent AI/system identity. Selective birthday/celebration posts/comments are approved subject to birthday visibility, privacy and AI/social preferences; generic auto-engagement on every post is not approved.
+- **Meal Planner:** Foods-owned household food orchestration with Today/Week/2 Weeks/Month planning, budget/goal/calendar/recipe entry modes, and first-class Recipe content. Eating patterns are resident-selected informational options supported by research/provenance and visible `Consult Your Doctor/Nutritionist-Dietitian` guidance; GlenTown does not prescribe or diagnose.
+- **Calendar / check-ins:** accepted meal/activity plans may project source-linked entries/reminders into Calendar. Meal Check-ins may include an optional private photo, but an image is not authoritative nutrition/medical proof.
+- **Achieve / Activity Plan:** Achieve owns the goal; Meal Planner and Activity Plan may support it. `Activity Plan` is broader than a workout plan and includes walking and other resident-selected intentional movement. Professional doctor/nutritionist-dietitian discovery/contact/booking should be exposed where supported by real GlenTown data/capabilities.
 
 ### Current Validation Freshness
 

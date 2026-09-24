@@ -118,7 +118,7 @@ Expansion of recurrence into concrete occurrences is a derived view and must pre
 
 TownBoss Scheduling provides the logical boundary for a shared resource calendar across planners and products.
 
-The shared calendar may combine authorized schedule projections from Trip Planner, Event Planner, Day Planner, Achieve, service bookings, property viewings, deliveries, professional appointments, and future product workflows.
+The shared calendar may combine authorized schedule projections from Trip Planner, Event Planner, Day Planner, Achieve, Meal Planner, Activity Plan, service bookings, property viewings, deliveries, professional appointments, and future product workflows.
 
 The shared view is a coordination surface, not a new source of truth. Each entry retains its source capability/domain reference.
 
@@ -127,6 +127,8 @@ The shared view is a coordination surface, not a new source of truth. Each entry
 A calendar entry may be authoritative within a product or a projection of another domain record. Projection entries must preserve source reference and synchronization state.
 
 Deleting or editing a projection must not silently mutate the source domain unless the operation is explicitly routed through the owning domain with authorization.
+
+For GlenTown Meal Planner and Activity Plan, Scheduling may project resident-approved meals, preparation/reminder windows, and intentional activities while retaining the originating plan/goal reference. Calendar may also expose authorized busy/commitment context back to the planner so it can avoid obvious conflicts. A Calendar projection does not make Calendar the owner of the meal/activity plan, and an Activity/Meal check-in remains separate from schedule truth.
 
 ## External calendar integration
 

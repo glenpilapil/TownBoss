@@ -15,6 +15,7 @@
 ## Current summary
 
 - [ ] Foods Meal Planner capability: PLANNED. Its Foods topbar entry point is APPROVED / PENDING IMPLEMENTATION; no planner route or functional contract is implemented.
+- [ ] Meal Planner + Activity Plan product contract: DECIDED / PLANNED. Canonical direction now includes budget/goal/calendar/recipe entry modes, Eating Pattern evidence library, first-class recipes and disclosed brand content, Calendar projection, optional Meal Check-ins/photos, Achieve linkage, broad Activity Plan, and professional referral without medical prescription.
 - [ ] Auth session bootstrap/logout consistency: `ATTENTION`. Live QA observed nondeterministic Home/Login routing across restart/resume, including API-off behavior. Network unavailability must not be treated as logout; You -> Logout requires end-to-end verification/fix.
 - [ ] Home Welcome contextual briefing: APPROVED / PENDING REFINEMENT. Preserve stable greeting/holiday greeting, use concise three-line contextual subtitle, and place truthful action CTAs in a bottom-right pill (`Make Plans`, `View Calendar`, or the real slide action).
 - [ ] Looking For + Glen AI contextual social participation: DECIDED / PLANNED. `Looking For` is the canonical customer-facing demand concept; grounded Glen AI first-response comments, AI social profile/disclosure, and selective birthday/celebration participation are future implementation work.
@@ -187,6 +188,25 @@
 ### D3.3 gate
 
 - [ ] `LOOKING_FOR_GLEN_AI_CONTEXTUAL_SOCIAL_PARTICIPATION_READY`: canonical Looking For semantics, grounded matching, first-comment disclosure, Glen AI social profile identity, selective privacy-safe social participation, moderation/rate/idempotency controls, auditability, and applicable App/API/E2E evidence all pass on concrete refs.
+
+## D3.4 — Meal Planner, Activity Plan, Achieve and Calendar orchestration
+
+**Status:** DECIDED / PLANNED / NON-BLOCKING unless explicitly promoted into Beta/RC scope.
+
+- [ ] T3.4.1 Implement Meal Planner entry modes for Budget, Goal, Calendar context, Recipes, and Continue Current Plan, with Today/This Week/2 Weeks/This Month horizons.
+- [ ] T3.4.2 Implement budget/household planning with estimated spend, household composition, meal coverage, cook/order balance, preparation time, local availability, ingredient reuse/leftovers, and Calendar-conflict awareness. Checkout/order prices remain authoritative to commerce.
+- [ ] T3.4.3 Establish Recipe as a first-class Foods content type with provenance, media, ingredients/steps, servings, timing, substitutions, estimated local cost when supportable, and `Add to Meal Plan`. Distinguish curated, creator, business/restaurant, Community, and disclosed brand-partner/sponsored content.
+- [ ] T3.4.4 Implement Eating Pattern information library with research/provenance links, studied context/populations where supportable, limitations/uncertainty, last-reviewed metadata, and persistent `Consult Your Doctor/Nutritionist-Dietitian` style disclaimer. No diagnosis, individualized medical prescription, or AI-selected "best diet" for the resident.
+- [ ] T3.4.5 Integrate accepted Meal Plans with Calendar/Scheduling using source-linked projections for meals, preparation and reminders. Calendar changes must not silently rewrite the source plan.
+- [ ] T3.4.6 Implement Meal Check-ins with `Take a Photo`, `Done`, `Changed Meal`, and `Skipped`; photos private by default and never treated as authoritative proof of ingredients, portion, calories, nutrition or medical compliance.
+- [ ] T3.4.7 Integrate Achieve as goal owner and Meal Planner/Activity Plan as supporting plans. `Activity Plan` is the canonical broad label and may cover walking, active commuting, cycling, hiking, swimming, sports, household activity, workouts and other resident-selected intentional movement.
+- [ ] T3.4.8 Implement professional-help handoff to eligible GlenTown doctor/nutritionist-dietitian discovery/contact/booking surfaces where actual data/capabilities exist; professional credentials and advice remain domain-authoritative.
+- [ ] T3.4.9 Add Glen AI assistance for explanation, research summarization, recipe/plan suggestion, Calendar conflict handling and replanning while enforcing evidence, health-safety, AI Authority, no-fabrication and non-prescriptive boundaries.
+- [ ] T3.4.10 Validate privacy for goals/Calendar/health-adjacent inputs/photos, sponsorship disclosure, research provenance, no fabricated providers/listings/prices/research, transaction authority boundaries, and representative Meal Plan + Activity Plan + Achieve + Calendar E2E journeys.
+
+### D3.4 gate
+
+- [ ] `MEAL_ACTIVITY_PLANNING_READY`: Meal Planner core flow, Recipe content/provenance, Eating Pattern evidence/disclaimer boundary, Calendar integration, private Meal Check-ins, Achieve ownership, Activity Plan, professional handoff, Glen AI non-prescriptive behavior, privacy/sponsorship controls, and applicable App/API/E2E evidence all pass on concrete refs.
 
 ## Phase 3 gate
 - [ ] Beta-critical journeys pass on concrete App/API refs with authoritative boundaries.

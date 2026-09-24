@@ -18,7 +18,10 @@
 | Cross-screen accessibility | Yes | APP-SIDE COMPLETE / TEST_VERIFIED at `f5e4085`; 20 focused and 370 full tests passed, analyze clean | Consolidated Samsung SafeArea, keyboard, contrast, text-scale, semantics, and responsive physical re-audit |
 | Demo/data | Yes | BLOCKED_BY_DEMO_DATA | Idempotent representative fixtures |
 | Nationwide readiness | Yes | PLANNED | Thresholds, rollout, samples |
-| Foods Meal Planner | No | PLANNED; approved UI entry point pending implementation | Household/budget/local-availability planner contract and implementation evidence |
+| Foods Meal Planner | No | DECIDED / PLANNED; approved Foods topbar entry pending implementation; canonical process/safety contract in `GLENTOWN_MEAL_ACTIVITY_PLANNING.md` | Budget/goal/calendar/recipe flow, Recipe content, evidence-backed Eating Pattern library, Calendar integration, private check-ins, professional handoff, App/API/E2E evidence |
+| Recipes / Foods content | No | DECIDED / PLANNED; first-class Recipe content with provenance and disclosed sponsorship | Recipe schema/content provenance/media and `Add to Meal Plan` evidence |
+| Activity Plan | No | DECIDED / PLANNED; broad intentional-movement support under Achieve, not limited to workouts | Activity plan contract, Calendar projection, check-ins and Achieve integration evidence |
+| Meal/Activity + Achieve orchestration | No | DECIDED / PLANNED; Achieve owns goal, Meal/Activity plans support it | `MEAL_ACTIVITY_PLANNING_READY` |
 | Contextual Welcome briefing | No | DECIDED / PENDING REFINEMENT; stable greeting plus concise event/reminder subtitle and bottom-right pill CTA | Automated state/text-layout checks and Samsung default/holiday/event/calendar-reminder QA |
 | Looking For demand matching | No | DECIDED / PLANNED; canonical customer-facing evolution of `I Need...` / `Requests Lite` | Structured cross-domain intent/matching contract and E2E demand-resolution evidence |
 | Glen AI contextual social participation | No | DECIDED / PLANNED; grounded Looking For first-response, AI social profile/disclosure, selective birthday/celebration participation | App/API implementation, privacy/moderation/rate/idempotency controls, AI Authority audit, E2E gate |

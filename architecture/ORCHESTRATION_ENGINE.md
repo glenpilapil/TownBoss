@@ -274,6 +274,27 @@ Consumers should provide thin adapters declaring domain-specific:
 
 Adapters must not fork the canonical orchestration lifecycle or weaken platform invariants.
 
+### GlenTown Achieve / Meal Planner / Activity Plan pattern
+
+GlenTown may use the canonical lifecycle for a resident-owned Achieve goal with multiple supporting plans.
+
+Example:
+
+`Achieve goal -> Meal Plan + Activity Plan -> Calendar bindings -> Check-ins -> Progress -> Replanning`
+
+In this pattern:
+
+- Achieve remains the goal owner;
+- Meal Planner owns meal-plan semantics;
+- Activity Plan owns resident-selected activity-plan semantics;
+- Scheduling/Calendar owns shared time coordination/projections;
+- check-ins are completion/progress inputs, not medical or professional proof;
+- Glen AI may explain, draft, compare evidence, and propose revisions within AI Authority;
+- professional health/nutrition judgment is not manufactured by orchestration;
+- a resident's goal does not itself authorize medical prescription, purchasing, booking, or protected-state mutation.
+
+The same orchestration may support purely budget/household meal planning with no health goal.
+
 ## Current implementation truth
 
 GlenTown contains implemented domain orchestration patterns, including Travel `BookingOrchestrator`, availability validation, conflict detection, itinerary generation, and calendar synchronization. These are implementation evidence and proving-ground patterns, not proof that the complete portfolio Orchestration Engine contract is implemented.

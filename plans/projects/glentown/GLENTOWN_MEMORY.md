@@ -199,3 +199,22 @@ Canonical authority updated in:
 - `GLENTOWN_CAPABILITY_MATRIX.md`
 - `GLENTOWN_CURRENT_STATE.md`
 - `architecture/GLEN_AI_FOUNDATION.md`
+
+## 2026-09-25 — Meal Planner, Recipes, Activity Plan, and Health-Safety Boundary
+
+**Type:** DECISION / PRODUCT ARCHITECTURE
+**Status:** CURRENT
+
+Meal Planner direction was expanded from the earlier high-level household/budget/local-availability concept into a documented Foods planning capability. The planner may begin from Budget, Goal, Calendar context, Recipes, or an existing plan and supports Today, This Week, 2 Weeks, and This Month horizons. Budget planning may consider household composition, meal coverage, cook/order balance, preparation time, local availability, ingredient reuse/leftovers and Calendar conflicts. Monthly planning should normally use a monthly budget envelope with rolling weekly detail.
+
+Recipes are approved as a first-class Foods content type with source/provenance, ingredients/steps, servings, timing, media, substitutions, estimated local cost when supportable, and `Add to Meal Plan`. Curated, local-creator, business/restaurant, Community, and brand-partner/sponsored recipe content may coexist, but commercial sponsorship must be clearly disclosed and must not masquerade as an independent Glen AI recommendation.
+
+Meal Planner may expose common eating patterns/nutrition approaches as informational resident-selectable options, including examples such as intermittent fasting, but GlenTown does not prescribe an eating pattern, diagnose, or provide individualized medical/nutrition treatment. Eating Pattern surfaces require research/provenance links, limitations/context, last-reviewed metadata, and a visible `Consult Your Doctor/Nutritionist-Dietitian` style disclaimer. Health-sensitive circumstances such as pregnancy, medication use or medical conditions must not be converted into AI diagnosis/prescription; the product should surface real professional discovery/contact/booking paths where supported.
+
+Calendar integration is fundamental. Accepted Meal Plans and Activity Plans may create source-linked Calendar projections for meals, preparation, reminders and resident-selected activity. Calendar may provide authorized conflict context back to planners but does not become plan owner.
+
+Meal Check-ins are approved with lightweight states such as `Take a Photo`, `Done`, `Changed Meal`, and `Skipped`. Photos are private by default and serve as personal check-in artifacts, not authoritative proof of ingredients, portions, calories, nutrition, eating-pattern compliance or medical suitability.
+
+Achieve remains goal owner. Meal Planner and the approved broad `Activity Plan` concept are supporting plans. Activity Plan intentionally includes walking, active commuting, cycling, hiking, swimming, sports, household activity, workouts and other intentional movement rather than being limited to a `Workout Plan`.
+
+The new canonical product detail is `plans/projects/glentown/GLENTOWN_MEAL_ACTIVITY_PLANNING.md`. The Implementation Plan now carries D3.4 and gate `MEAL_ACTIVITY_PLANNING_READY`. Scheduling and Orchestration architecture were reconciled so Meal/Activity plan projections and Achieve goal orchestration preserve capability ownership, evidence, privacy, AI Authority and professional-health boundaries.
