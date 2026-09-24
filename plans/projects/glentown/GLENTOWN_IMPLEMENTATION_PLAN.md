@@ -186,6 +186,20 @@
 - [ ] T5.2.4 Validate the modernization checkpoint independently across Android, Web and Windows: analyzer, full tests, platform release builds, golden/visual-regression coverage, Samsung physical acceptance, and browser responsive/design QA.
 - [ ] T5.2.5 If dependency compatibility remains materially risky, keep the supported SDK-bundled compatibility path and defer the package migration rather than destabilizing Beta/RC.
 
+## D5.3 — Trusted account/session restoration and biometric login
+
+**Status:** DEFERRED / FUTURE AUTH-SECURITY PASS. Not part of the current Mobile UI recovery gate and must not be implemented as an app-only shortcut.
+
+- [ ] T5.3.1 Establish production-grade actual-account session/device-trust prerequisites. Preserve signed-in state across ordinary app restart, process death, device reboot, app update, and temporary API/network unavailability; do not treat uninstall/reinstall as locally restorable by default.
+- [ ] T5.3.2 Add biometric login/unlock, including fingerprint where the platform exposes it, through approved platform biometric APIs and device-secure credential storage. Biometrics must unlock or authorize a device-bound credential/session; never persist or recover a raw account password.
+- [ ] T5.3.3 Add trusted account/session restoration after uninstall/reinstall only with authoritative account/backend support for trusted-device/session registration, expiry, re-enrollment, revocation, device loss, and security-event handling. Do not rely on incidental Android app-backup behavior as authentication authority.
+- [ ] T5.3.4 Integrate explicit Logout and account-security events with trusted-device/biometric state. Explicit Logout must revoke/clear the current device session and prevent silent biometric/trusted restoration until the user authenticates and enrolls trust again; suspension, revocation, password/security reset, or equivalent authoritative account events must also invalidate restoration as defined by the account-security contract.
+- [ ] T5.3.5 Validate fallback authentication, biometric unavailable/changed states, revoked/suspended accounts, offline behavior, reinstall restoration, explicit logout, device loss/revocation, Samsung physical behavior, and security/privacy boundaries on concrete App/API refs.
+
+## D5.3 gate
+
+- [ ] `TRUSTED_ACCOUNT_SESSION_RESTORATION_BIOMETRIC_LOGIN_READY`: actual-account backend/device-trust support, biometric/fingerprint login, trusted reinstall restoration, explicit-logout/revocation semantics, fallback authentication, and security/physical QA all pass on concrete refs. `DEFERRED`; this gate is not a current Mobile UI/Beta blocker unless explicitly promoted into release scope.
+
 ## Phase 5 gate
 - [ ] No unaccepted critical/high risk remains.
 
