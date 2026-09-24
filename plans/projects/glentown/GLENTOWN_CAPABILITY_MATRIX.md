@@ -17,5 +17,6 @@
 | Cross-screen accessibility | Yes | APP-SIDE COMPLETE / TEST_VERIFIED at `f5e4085`; 20 focused and 370 full tests passed, analyze clean | Consolidated Samsung SafeArea, keyboard, contrast, text-scale, semantics, and responsive physical re-audit |
 | Demo/data | Yes | BLOCKED_BY_DEMO_DATA | Idempotent representative fixtures |
 | Nationwide readiness | Yes | PLANNED | Thresholds, rollout, samples |
+| Foods Meal Planner | No | PLANNED; approved UI entry point pending implementation | Household/budget/local-availability planner contract and implementation evidence |
 
 `RELEASE_READY` requires applicable automated, runtime, physical, security/compliance, data and operational evidence.

@@ -14,6 +14,8 @@
 
 ## Current summary
 
+- [ ] Foods Meal Planner capability: PLANNED. Its Foods topbar entry point is APPROVED / PENDING IMPLEMENTATION; no planner route or functional contract is implemented.
+
 - [x] Phase 0 governance/planning foundations substantially established. Evidence: GlenTown control corpus and 2026-09-13 governance adoption.
 - [x] Post-Samsung coordinated Home recovery is `HOME_RECOVERY_IMPLEMENTED_AND_AUTOMATED_VERIFIED`. App: `4010f1fcf19b58eaafe828e0b4abeac72421e7fb`; API: `738e8ac124854e7ef95f4a8472424c941da32b91`. API complete canonical suite: 1,336 tests / 4,633 assertions / 0 failures, executed in bounded equivalent PHPUnit-path batches under the same `phpunit.xml` after the host wrapper cut off monolithic output. API focused recovery: 26 / 116; Pint, changed-PHP syntax, and diff check passed. Physical verification is still pending.
 - [x] Home recovery App-side complete; physical verification pending. Evidence: `170baca` → `969abec` → `9a7861e` → `a43442b` → `c28feee` → `ff6d2e2`; 369 Flutter tests passed, analyze no issues, diff check pass.

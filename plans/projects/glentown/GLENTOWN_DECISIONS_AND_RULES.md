@@ -90,3 +90,9 @@ Accepted visual details include:
 - Intentional Community filter-to-first-post spacing
 - Corrected circular You/avatar navigation treatment
 - Splash tagline: Your Town, Connected.
+
+## 2026-09-24 approved planned capability and commercial direction
+
+Meal Planner belongs to Foods and is **APPROVED PRODUCT DIRECTION / PLANNED CAPABILITY**: household, budget and local-availability oriented; not medical nutrition authority; Glen AI may orchestrate but cannot create transaction authority. The Foods topbar entry point is currently approved pending implementation: Back | Foods | Meal Planner | Filter | Cart. Meal Planner is a Lucide-labelled action immediately before Filter, not a filter, pill, category, search mode, route, or implemented planner.
+
+Commercial authority is Products 5%, Food 8%, Services 10%, Event Tickets 4%, Venue/Event-Service Reservations 8%, and individual accommodation/tours/experiences 10% or less. TownTraveler-operated packages use variable margin; delivery/courier is separate logistics with 0% marketplace commission. GlenTown Beta payment direction is context-aware Pay-At plus a licensed replaceable provider adapter (PayMongo primary; Xendit comparison/fallback). Purchased Credits and manual credit proof/top-up are deferred.

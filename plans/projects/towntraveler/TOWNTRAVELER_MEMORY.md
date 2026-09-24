@@ -14,3 +14,9 @@ TownTraveler now inherits the TownBoss Development Rules and Project Governance 
 
 ### Current handoff
 TownTraveler remains a greenfield, web-first, SEO-oriented travel product. Immediate planning focus is authoritative content ownership, GlenTown reuse boundaries, account linking and SEO taxonomy before public discovery implementation.
+
+### 2026-09-24 — commercial and Sites pilot authority
+**Type:** DECISION
+**Status:** CURRENT / PLANNED
+
+Individual accommodation/tours use commission of 10% or less; TownTraveler-operated packages use variable margin. TownTraveler is TownBoss Sites Pilot #1 while retaining tourism authority.

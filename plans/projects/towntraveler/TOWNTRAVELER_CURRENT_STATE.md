@@ -11,6 +11,7 @@ TownTraveler is a web-first, SEO-oriented Philippine travel discovery and planni
 - Define GlenTown reuse versus TownTraveler-specific content.
 - Define account-linking architecture.
 - Define SEO URL taxonomy and structured-data approach.
+- Preserve approved commercial models and the Sites Pilot #1 boundary in the implementation plan.
 
 ## Next action
 Take the first unchecked Phase 0 item in the implementation-plan dashboard under TownBoss development rules.

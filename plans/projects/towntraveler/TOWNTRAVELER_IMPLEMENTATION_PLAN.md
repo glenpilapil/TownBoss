@@ -29,6 +29,14 @@ Web-first, SEO-oriented Philippine travel discovery and planning product connect
 - [ ] Shared TownBoss/GlenTown APIs are consumed through explicit contracts.
 - [ ] Authoritative ownership of shared travel data is documented before implementation.
 
+## Commercial authority
+
+Individual accommodation and tours/experiences use standard commission of 10% or less. TownTraveler-operated packages use variable **margin**, not commission. Agency/marketplace (provider remains merchant), reseller/contracted inventory (TownTraveler sells; supplier payable remains separate), and TownTraveler-operated packages (component costs separately traceable) are distinct models.
+
+## TownBoss Sites pilot
+
+TownTraveler is Reference Implementation / Pilot #1 for `TOWNBOSS_SITES_PLATFORM`. Keep tourism discovery, ranking, content semantics, and Trip Planner domain behavior vertical. Apply extract now / contract now / extract later / keep vertical based on implementation evidence; SEO, structured data, performance, and public discoverability remain first-class.
+
 ## Phase 0 — Product/domain contracts
 **Status:** NEXT
 - [ ] Decide authoritative ownership for places.

@@ -138,6 +138,11 @@ Code Project Supervisor should eventually consume this hierarchy so that supervi
 
 ### Current priority band
 
+### Canonical platform and public-data pointers
+
+- **TownBoss Sites Platform:** approved reusable managed multi-tenant website/platform capability; canonical authority is `architecture/TOWNBOSS_SITES_PLATFORM.md`. TownTraveler is Pilot / Reference Implementation #1. Sites owns generic composition/platform concerns; GlenTown Biz and vertical products retain domain authority.
+- **Public Data Gateway candidates:** `architecture/PUBLIC_DATA_GATEWAY.md` remains the portfolio boundary and `architecture/PUBLIC_DATA_GATEWAY_CANDIDATES.md` records approved candidates. PHIVOLCS ArcGIS REST is high-priority and DENR-BMB PAIS is approved; both are **NOT IMPLEMENTED** pending source, provenance, licensing, freshness, query, and adapter review.
+
 1. GlenTown Beta readiness and nationwide pre-Beta seeding, with Puerto Princesa as deepest operational pilot.
 2. Code Project Supervisor foundation adoption and operational development supervision.
 3. GeoPlotter foundational implementation and RealWise integration requirements.

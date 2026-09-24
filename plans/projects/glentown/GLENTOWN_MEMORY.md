@@ -123,7 +123,7 @@ GlenTown-App `dd1ecf637c2eb7471d1c9029fc05b40a21e7837d` adds `docs/audits/PHYSIC
 
 No device was connected during preparation, so no physical result is claimed. The worksheet records the Maria demo credential, screenshot/result fields, localhost API configuration through `adb reverse tcp:8000 tcp:8000`, and the development-only verification-bypass boundary. Phase 1 App-side recovery remains complete; consolidated Samsung physical re-audit execution is the next gate.
 
-  ## 2026-09-22 � GlenTown-App Android Home Freeze Reconciliation
+  ## 2026-09-22 — GlenTown-App Android Home Freeze Reconciliation
 
   **Type:** GOVERNANCE RECONCILIATION
   **Status:** CURRENT
@@ -133,3 +133,46 @@ No device was connected during preparation, so no physical result is claimed. Th
   The user approved a future explicit reopening of the Home visual baseline for one bounded color/image refinement pass (Welcome card background, alert style, Explore card backgrounds, Around You card gutters, and collapsed floating navigation). This pass must not be implemented in TownBoss.
 
   Functional followups remain open/deferred: GPS fallback, missing Personal Tools destinations, All Tools hub destination, Around You/API media completeness, onboarding background regression, and first-install Welcome-card verification.
+
+## 2026-09-24 — Foods Meal Planner and Commercial/Platform Documentation Reconciliation
+
+**Type:** DECISION / GOVERNANCE RECONCILIATION
+**Status:** CURRENT
+
+GlenTown approved Meal Planner as a planned Foods capability focused on
+household needs, budget, and local food availability. The current Mobile UI
+decision approves a Meal Planner action in the Foods topbar immediately before
+Filter; that entry point is pending implementation. Full Meal Planner
+functionality remains planned/unimplemented and does not establish medical or
+therapeutic nutrition authority.
+
+The current GlenTown commercial baseline is Products 5%, Food 8%, Services
+10%, Event Tickets 4%, Venue/Event-Service Reservations 8%, individual
+Accommodation 10% or less, and individual Tours/Experiences 10% or less.
+TownTraveler-operated travel packages use a variable margin rather than a
+standard commission. Delivery/courier fare remains separate from marketplace
+commission.
+
+The GlenTown Beta payment direction is context-aware Pay-At plus licensed,
+replaceable payment-provider infrastructure. PayMongo is the primary Philippine
+candidate and Xendit remains fallback/comparison. Purchased GlenTown Credits
+and the earlier GlenTown Beta manual-credit-top-up/proof posture are
+deferred/superseded. Generic TownBoss Payments & Credits support for separately
+approved manual-proof workflows remains valid outside that superseded GlenTown
+Beta posture.
+
+TownBoss Sites is canonical platform architecture, with TownTraveler as Pilot /
+Reference Implementation #1. PHIVOLCS ArcGIS REST is an approved high-priority
+government GIS integration candidate, and DENR-BMB PAIS is an approved
+government data/integration candidate. Both remain NOT IMPLEMENTED and subject
+to source-access, provenance, vintage, licensing/reuse, freshness,
+query-capability, and adapter validation before automated ingestion.
+
+Canonical authority:
+- `GLENTOWN_DECISIONS_AND_RULES.md`
+- `GLENTOWN_IMPLEMENTATION_PLAN.md`
+- `GLENTOWN_SUPERSESSION_REGISTER.md`
+- `architecture/PAYMENTS_CREDITS.md`
+- `architecture/TOWNBOSS_SITES_PLATFORM.md`
+- `architecture/PUBLIC_DATA_GATEWAY_CANDIDATES.md`
+- TownTraveler implementation/current-state documentation

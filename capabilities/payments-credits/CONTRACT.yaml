@@ -338,8 +338,10 @@ implementation_truth:
       - withdrawal-engine
 
 beta_posture:
-  full-provider-integration-required-before-beta: false
-  manual-credit-top-up-direction-supported: true
+  glentown-current-direction: context-aware-pay-at-plus-licensed-replaceable-provider
+  full-provider-integration-required-before-beta: true
+  manual-credit-top-up-direction-supported: false
+  purchased-glentown-credits: deferred-pending-readiness
   shared-runtime-extraction-required-before-physical-audit: false
 
 extraction:

@@ -401,7 +401,7 @@ Therefore the canonical capability is **designed here**, while GlenTown remains 
 
 ## Initial GlenTown posture
 
-For GlenTown Beta, the architecture allows the currently approved manual credit top-up + proof + admin approval direction without requiring a full external payment gateway before Beta.
+For GlenTown Beta, this earlier manual credit top-up + proof + admin approval direction is superseded. Current direction is context-aware Pay-At plus a licensed, replaceable provider adapter (PayMongo primary candidate; Xendit comparison/fallback). Purchased GlenTown Credits and manual proof workflows are deferred pending readiness safeguards.
 
 When implemented, the minimum safe path should include:
 
