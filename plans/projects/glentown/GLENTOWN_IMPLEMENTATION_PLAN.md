@@ -92,11 +92,13 @@
 - [x] T1.3.5 Full Flutter checkpoint. Evidence: 369 tests passed.
 - [x] T1.3.6 Analyzer. Evidence: no issues.
 - [ ] T1.3.7 Samsung physical recheck. `ATTENTION`.
-- [ ] T1.3.8 Connected universal Search; geographic scope-bound discovery/ranking; nationwide scope queries. `BLOCKED_API_CONTRACT`; see `CONNECTED_SEARCH`.
+- [ ] T1.3.8 Connected universal Search; geographic scope-bound discovery/ranking; nationwide scope queries. Geographic boundary semantics are PARTIALLY IMPLEMENTED in API: Town/Province/National selection now includes eligible descendants for `/api/v1/places` and shared `LocationScopedDiscovery` consumers; universal Search/ranking and remaining separate contracts are still open. See `CONNECTED_SEARCH`.
 - [ ] T1.3.9 Destination hero media. `BLOCKED_API_DATA`; see `DESTINATION_HERO_MEDIA`.
-- [ ] T1.3.10 Real map listing projection. `BLOCKED_API_CONTRACT`; see `MAP_LISTINGS`.
+- [ ] T1.3.10 Real map listing projection. API contract is PARTIALLY IMPLEMENTED / APP+DEMO BLOCKED: `GET /api/v1/map-listings` provides privacy-safe descendant-scoped Property/Event markers only when exact location is explicitly public and coordinates exist; Home map insertion, Explore-category marker rendering, demo map fixtures, viewport bounds, additional category public-location contracts, and Samsung verification remain open. See `MAP_LISTINGS`.
 - [ ] T1.3.11 Seeded destination/discovery richness. `BLOCKED_BY_DEMO_DATA`; see `DISCOVERY_RICHNESS`.
 - [ ] T1.3.12 Jobs/Directory detail fallback. Pending App recovery unless evidence proves otherwise.
+- [ ] T1.3.13 Authoritative Place media contract and Tourism discovery-card media. API + App contract implemented locally and physically demonstrated at Puerto Princesa scope: `featured_media` is nullable, authoritative, and uses existing Media architecture; two demo Place cards render media and null-media Places remain text-only. Combined automated closeout/checkpoint evidence remains pending.
+- [ ] T1.3.14 Tourism Browse Mode controls and persistent mode toggle. Implement `Tourism (Browse Mode)` topbar with persistent Browse/Plan toggle, Browse banner/search, Town `All | Places | Experiences | Stays | Deals`, Province/National `All | Destinations | Experiences | Stays | Deals`, Deals secondary filters, and context-sensitive Sort. Browse search must never implicitly enter Plan Mode; unsupported lanes remain truthful.
 
 ## D1.4 — Create recovery
 
@@ -207,6 +209,26 @@
 ### D3.4 gate
 
 - [ ] `MEAL_ACTIVITY_PLANNING_READY`: Meal Planner core flow, Recipe content/provenance, Eating Pattern evidence/disclaimer boundary, Calendar integration, private Meal Check-ins, Achieve ownership, Activity Plan, professional handoff, Glen AI non-prescriptive behavior, privacy/sponsorship controls, and applicable App/API/E2E evidence all pass on concrete refs.
+
+
+## D3.5 — Tourism Plan Mode and Trip Planner orchestration
+
+**Status:** DECIDED / PLANNED / DEFERRED until the bounded Browse Mode pass is accepted. Canonical detail: `GLENTOWN_TOURISM_TRIP_PLANNER.md`.
+
+- [ ] T3.5.1 Implement persistent Tourism Plan Mode with Planning Destination distinct from the app-wide geographic browsing scope, natural-language planning search, inclusive dates, Adults/Kids, Rooms where applicable, and trip Budget.
+- [ ] T3.5.2 Implement conditional Step 0 Destination resolution with ordered multi-destination selection, route-feasibility validation, and resident-adjustable destination ordering/date allocation.
+- [ ] T3.5.3 Implement Step 1 Experiences as multi-select with duration, authoritative availability, participant eligibility, schedule-conflict and budget awareness.
+- [ ] T3.5.4 Implement Step 2 Stay + room/unit selection using authoritative availability, party/room needs, selected Experience locations/times, budget, and structured inclusions such as Breakfast and Airport Transfer.
+- [ ] T3.5.5 Implement optional Food Stops using Foods/Restaurants/eligible providers, respecting included meals and open trip meal windows rather than requiring every meal to be preplanned.
+- [ ] T3.5.6 Implement trip Start Point / End Point configuration for Airport or Local Address; when Airport is selected capture airport/date/time and optional airline/flight number. Start and end may differ.
+- [ ] T3.5.7 Implement transport-gap orchestration: honor Stay/Experience/package pickup/drop-off inclusions; expose informational Commute Options while Riders/on-demand dispatch is unavailable; resolve inter-destination transport as a hard dependency.
+- [ ] T3.5.8 Implement conditional Vehicle Rental recommendations using authoritative inventory and availability, with minimum rental duration of 8 hours for cars and 24 hours for motorcycles; consider party/luggage, pickup/drop-off, self-drive/driver, deposit, fuel/mileage and budget.
+- [ ] T3.5.9 Implement Free Time orchestration after hard commitments: identify genuine schedule gaps, offer optional cross-domain suggestions (Tourism, Places, Foods, Services, Events and eligible activities), preserve Rest/Do Nothing as a valid choice, and recalculate schedule/budget/transport when a suggestion is accepted.
+- [ ] T3.5.10 Integrate accepted Trip Plan selections with Scheduling/Calendar using source-linked projections, buffers, transport dependencies, inclusions and authoritative booking state; Calendar does not become trip owner.
+
+### D3.5 gate
+
+- [ ] `TOURISM_TRIP_PLANNER_ORCHESTRATION_READY`: Browse/Plan mode boundary, destination routing, Experiences, Stay/room, Food Stops, start/end configuration, transport-gap logic, vehicle-rental minimums, free-time suggestions, Scheduling/Calendar integration, no-fabrication/privacy rules, and representative multi-destination E2E journeys all pass on concrete App/API refs.
 
 ## Phase 3 gate
 - [ ] Beta-critical journeys pass on concrete App/API refs with authoritative boundaries.
