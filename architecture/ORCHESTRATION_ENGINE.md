@@ -295,6 +295,30 @@ In this pattern:
 
 The same orchestration may support purely budget/household meal planning with no health goal.
 
+
+### GlenTown Tourism / Trip Planner pattern
+
+GlenTown Tourism Plan Mode uses the canonical lifecycle as a dependency-aware travel orchestrator rather than a sequence of isolated OTA filters.
+
+Conceptual flow:
+
+`Trip intent -> Destination route -> Experiences -> Stay/room -> Food Stops -> Transport-gap resolution -> Free Time suggestions -> Calendar/itinerary -> Replanning`
+
+Key rules:
+
+- Browse Mode and Plan Mode are explicit, persistent modes; Browse search never silently enters Plan Mode.
+- The Trip Planning Destination is a plan-owned context separate from the resident's global GlenTown geographic browsing scope.
+- Step 0 may contain an ordered multi-destination route. Consecutive destinations require a feasible transport dependency; route order and date allocation may be revised.
+- Experience, Stay, Food, and transport components contribute authoritative schedule, location, availability, inclusion, and fulfillment facts.
+- Stay breakfast/airport-transfer inclusions and Experience/package pickup/drop-off rules are consumed before recommending duplicate add-ons.
+- Until Riders/on-demand dispatch exists, simple one-way/round-trip travel gaps are informational Commute Options rather than dispatch transactions.
+- Vehicle Rentals are a conditional commerce capability backed by authoritative availability, with approved minimum rental duration of 8 hours for cars and 24 hours for motorcycles.
+- Free Time is a first-class optional orchestration layer after hard commitments and buffers. Cross-domain suggestions remain non-authoritative until the resident accepts them; Rest/Do Nothing is valid.
+- Selecting a suggestion or changing a destination/experience/stay causes dependent schedule, budget, transport, and free-time calculations to be recomputed.
+- Scheduling/Calendar coordinates time and buffers but does not become the owner of the Trip Plan or authoritative booking state.
+
+Detailed product authority is maintained in `plans/projects/glentown/GLENTOWN_TOURISM_TRIP_PLANNER.md`.
+
 ## Current implementation truth
 
 GlenTown contains implemented domain orchestration patterns, including Travel `BookingOrchestrator`, availability validation, conflict detection, itinerary generation, and calendar synchronization. These are implementation evidence and proving-ground patterns, not proof that the complete portfolio Orchestration Engine contract is implemented.
