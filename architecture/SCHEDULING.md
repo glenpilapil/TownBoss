@@ -130,6 +130,15 @@ Deleting or editing a projection must not silently mutate the source domain unle
 
 For GlenTown Meal Planner and Activity Plan, Scheduling may project resident-approved meals, preparation/reminder windows, and intentional activities while retaining the originating plan/goal reference. Calendar may also expose authorized busy/commitment context back to the planner so it can avoid obvious conflicts. A Calendar projection does not make Calendar the owner of the meal/activity plan, and an Activity/Meal check-in remains separate from schedule truth.
 
+
+For GlenTown Tourism Plan Mode, Scheduling coordinates the inclusive travel window, ordered destination segments, Experience durations, Stay check-in/check-out, room occupancy windows, Food Stops, required transfers, flight/airport timing, pickup/drop-off windows, and optional Free Time items while retaining source-domain references. Trip components may declare transport or meal inclusions; Scheduling must not duplicate a covered transfer or meal as a required task.
+
+Multi-destination trips require feasible inter-destination connections and buffers. A route such as Puerto Princesa -> El Nido may use an eligible overland transfer; El Nido -> Coron requires an authoritative ferry/flight/other connection that fits the dates. Apparent free time must exclude required checkout, terminal/airport check-in, luggage, transfer, pickup and setup buffers before suggestions are offered.
+
+Free Time suggestions are soft proposals until accepted. Once accepted, they become schedule inputs and dependent travel time, budget, transport coverage and remaining free windows are recomputed. Rest/Do Nothing is a valid outcome and the scheduler must not optimize toward filling every empty interval.
+
+Vehicle-rental eligibility also consumes scheduling truth: a recommended car rental must cover at least the approved 8-hour minimum and a motorcycle rental at least the approved 24-hour minimum, in addition to authoritative inventory availability for the required interval.
+
 ## External calendar integration
 
 Google Calendar, Microsoft 365, Apple Calendar, operator calendars, booking providers, government appointment systems, and other external systems remain authoritative for their own records.
