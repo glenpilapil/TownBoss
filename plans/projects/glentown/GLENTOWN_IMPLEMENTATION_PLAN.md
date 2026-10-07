@@ -7,6 +7,7 @@
 **Current phase:** Phase 1 — App-side recovery complete / Android resumption and Web feature-completeness work ready; physical and comprehensive responsive QA pending
 **Current deliverable/task:** Android implementation resumption and bounded Web feature/completeness work — READY; final responsive/adaptive QA deferred until major Web elements exist
 **Phase gate:** APP-SIDE RECOVERY COMPLETE — physical verification remains pending.
+**Pre-Beta validation authority (2026-10-07):** Public Beta promotion now includes the Synthetic Population / Scenario Validation Gate defined in `GLENTOWN_SYNTHETIC_POPULATION_PRE_BETA_GATE.md`. MiroFish + OASIS is the initial candidate stack, subject to audit/benchmarking; synthetic evidence does not substitute for physical QA or real-user evidence.
 
 ## Status legend
 
@@ -184,14 +185,25 @@
 - [ ] T5.2.4 Validate the modernization checkpoint independently across Android, Web and Windows: analyzer, full tests, platform release builds, golden/visual-regression coverage, Samsung physical acceptance, and browser responsive/design QA.
 - [ ] T5.2.5 If dependency compatibility remains materially risky, keep the supported SDK-bundled compatibility path and defer the package migration rather than destabilizing Beta/RC.
 
+## D5.3 — Synthetic Population / Scenario Validation Pre-Beta Gate
+
+- [ ] T5.3.1 Audit/benchmark the selected MiroFish/OASIS or successor stack for maintenance, licensing, privacy, reproducibility, model/API cost, observability, and practical scale.
+- [ ] T5.3.2 Build the documented Puerto Princesa calibration population and weighting model from legitimate statistics, GlenTown survey evidence, seeded inventory, and explicit assumptions.
+- [ ] T5.3.3 Execute the required pre-Beta scenario families at a practical calibrated scale; record exact simulator/model/config/data checkpoints and run artifacts.
+- [ ] T5.3.4 Reconcile critical/high-confidence findings into implementation, blocker, risk, or explicitly accepted Beta-experiment work.
+- [ ] T5.3.5 Produce the final synthetic-population findings/experiment backlog and obtain release-authority acceptance of residual simulation risk.
+- [ ] T5.3.6 Preserve the boundary that synthetic results are hypothesis/risk evidence, not proof of real user behavior; define the post-Beta telemetry/research recalibration plan.
+
 ## Phase 5 gate
 - [ ] No unaccepted critical/high risk remains.
+- [ ] Synthetic Population / Scenario Validation Pre-Beta Gate passes on the candidate release state with material findings dispositioned.
 
 # Phase 6 — RC Operational Acceptance
 
 ## D6.1 — Release evidence and acceptance
 - [ ] T6.1.1 Release refs and full validation.
 - [ ] T6.1.2 Operational acceptance, Samsung physical audit, browser/web checks, release evidence manifest and documentation closeout.
+- [ ] T6.1.3 Confirm `SYNTHETIC_POPULATION_ACCEPTANCE: PASS` for the exact candidate or document why an unaffected later SHA legitimately retains the accepted evidence.
 
 ## Phase 6 gate
 - [ ] Operational Acceptance Test passes on concrete release refs.
