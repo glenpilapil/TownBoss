@@ -17,5 +17,6 @@
 | Cross-screen accessibility | Yes | APP-SIDE COMPLETE / TEST_VERIFIED at `f5e4085`; 20 focused and 370 full tests passed, analyze clean | Consolidated Samsung SafeArea, keyboard, contrast, text-scale, semantics, and responsive physical re-audit |
 | Demo/data | Yes | BLOCKED_BY_DEMO_DATA | Idempotent representative fixtures |
 | Nationwide readiness | Yes | PLANNED | Thresholds, rollout, samples |
+| Synthetic population / scenario validation | Yes | PLANNED PRE-BETA GATE; MiroFish + OASIS initial candidate, tool-agnostic contract | Puerto Princesa calibration model; stack audit/benchmark; scenario execution; findings disposition |
 
-`RELEASE_READY` requires applicable automated, runtime, physical, security/compliance, data and operational evidence.
+`RELEASE_READY` requires applicable automated, runtime, physical, security/compliance, data, synthetic-population/scenario, and operational evidence. Synthetic validation is hypothesis/risk evidence and never substitutes for observed human research or Beta telemetry.
