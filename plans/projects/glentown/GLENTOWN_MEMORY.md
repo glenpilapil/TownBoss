@@ -11,7 +11,7 @@ This is GlenTown's durable development-memory ledger. It records material decisi
 - Planned work is not implemented; implemented work is not verified without evidence.
 - Update before substantial milestone handoff.
 
-## 2026-09-13 — TownBoss-level GlenTown implementation strategy strengthened
+## 2026-09-13 â€” TownBoss-level GlenTown implementation strategy strengthened
 
 **Type:** DECISION / IMPLEMENTATION
 **Status:** CURRENT
@@ -22,14 +22,14 @@ GlenTown adopted the strongest applicable Code Project Supervisor governance pat
 
 The documentation-compliance protocol now requires structured receipts and mandatory safe-abort/recovery behavior in substantial agent task contracts. Known blockers must be reconciled into the canonical Blocker Register instead of remaining scattered through agent reports or conversations.
 
-## 2026-09-13 — TownBoss project-governance baseline adopted
+## 2026-09-13 â€” TownBoss project-governance baseline adopted
 
 **Type:** DECISION / IMPLEMENTATION
 **Status:** CURRENT
 
 GlenTown inherits `governance/DEVELOPMENT_RULES.md` and `governance/PROJECT_GOVERNANCE_STANDARD.md`. The implementation plan is the operator dashboard. Substantial work must perform planning-document review, execution re-checks when assumptions change, final documentation review, and a Documentation Compliance Receipt.
 
-## 2026-09-12 — Canonical implementation evidence reconciled
+## 2026-09-12 â€” Canonical implementation evidence reconciled
 
 **Type:** VERIFICATION
 **Status:** CURRENT
@@ -39,7 +39,7 @@ The implementation plan records canonical API and Flutter branch evidence, inclu
 ## Current handoff
 The active frontend recovery sequence remains bounded: completed Home/navigation/notifications/community/map/cart/Around You work requires physical recheck; Explore canonical audit backlog is the next major screen recovery, followed by remaining Create/Chat/You findings. Cross-repo/data/architecture blockers must be resolved or tracked through the canonical blocker register while realistic demo/Beta data and release-readiness gates progress in parallel where dependencies permit.
 
-## 2026-09-21 — GlenTown-App shared baseline and TownBoss reconciliation
+## 2026-09-21 â€” GlenTown-App shared baseline and TownBoss reconciliation
 
 **Type:** GOVERNANCE / CURRENT-STATE RECONCILIATION
 **Status:** CURRENT
@@ -60,23 +60,23 @@ elements exist. The baseline record retains the canonical navigation, taxonomy,
 jobs/hiring and `>=1200` desktop-breakpoint authority and records the live-QA
 and project-folder operating rules.
 
-## 2026-09-13 — Live dashboard backfill and recovery chain reconciliation
+## 2026-09-13 â€” Live dashboard backfill and recovery chain reconciliation
 
 **Type:** IMPLEMENTATION / VERIFICATION / CHECKPOINT
 **Status:** CURRENT
 
-TownBoss rebuilt the implementation plan as a live phase/deliverable/task dashboard with gates, blockers, evidence and next work. It records the Home chain `170baca` → `969abec` → `9a7861e` → `a43442b` → `c28feee` → `ff6d2e2` (369 Flutter tests, analyze clean, diff check pass), audit backlog normalization `9db4f88`, and Explore recovery `3edfb0c` (33 focused Explore tests, 9 cross-route tests, 369 full tests, analyze clean, diff check pass). No physical verification is claimed. Next eligible implementation work is D1.4 Create recovery; it was deliberately not started in this documentation checkpoint.
+TownBoss rebuilt the implementation plan as a live phase/deliverable/task dashboard with gates, blockers, evidence and next work. It records the Home chain `170baca` â†’ `969abec` â†’ `9a7861e` â†’ `a43442b` â†’ `c28feee` â†’ `ff6d2e2` (369 Flutter tests, analyze clean, diff check pass), audit backlog normalization `9db4f88`, and Explore recovery `3edfb0c` (33 focused Explore tests, 9 cross-route tests, 369 full tests, analyze clean, diff check pass). No physical verification is claimed. Next eligible implementation work is D1.4 Create recovery; it was deliberately not started in this documentation checkpoint.
 
 **Documentation Compliance Receipt:** planning review covered TownBoss governance, the CPS dashboard reference, all required GlenTown controls, and read-only App/API history; execution re-check covered Git baseline/branch evidence and blocker/capability alignment; final review covers this dashboard, Current State, Capability Matrix, Blocker Register, Memory, acceptance criteria, and checkpoint policy. Conflicts: none; exceptions: none; Risk Register: no material risk truth changed; validation: documentation diff review and `git diff --check`; safe-abort event: patch engine removed four task-owned docs during a rejected replacement, immediately restored as the intended replacements and verified before checkpoint.
 
-## 2026-09-13 — Dashboard integrated on canonical TownBoss main
+## 2026-09-13 â€” Dashboard integrated on canonical TownBoss main
 
 **Type:** CHECKPOINT
 **Status:** CURRENT
 
 The evidence-backed live dashboard was integrated on TownBoss `main` through merge commit `66efa2e`. Its current phase remains Phase 1 and next eligible implementation work remains D1.4 Create recovery; no Create work was begun by the integration.
 
-## 2026-09-13 — Create recovery checkpoint
+## 2026-09-13 â€” Create recovery checkpoint
 
 **Type:** IMPLEMENTATION / VERIFICATION / CHECKPOINT
 **Status:** CURRENT
@@ -85,7 +85,7 @@ GlenTown-App `aa07d2586f0b7db9a440f20b6fa927fee374b4b0` closes independently App
 
 D1.4 is App-side complete and `READY_FOR_PHYSICAL_RECHECK`, not physically verified. Community category/media/poll persistence and business-claim persistence remain `BLOCKED_API_CONTRACT`; Create IME/CTA and permission flows require Samsung verification. Next bounded deliverable: D1.5 Chat recovery.
 
-## 2026-09-13 — Chat recovery checkpoint
+## 2026-09-13 â€” Chat recovery checkpoint
 
 **Type:** IMPLEMENTATION / VERIFICATION / CHECKPOINT
 **Status:** CURRENT
@@ -94,7 +94,7 @@ GlenTown-App `f9702ed672679d6744e17a281c96c95ee312299f` closes independently App
 
 D1.5 is App-side complete and `READY_FOR_PHYSICAL_RECHECK`, not physically verified. Representative direct/group/request/recommendation/read-state acceptance remains `BLOCKED_BY_DEMO_DATA` through `POPULATED_DEMO_USER`; a customer-facing Message Requests inbox remains `BLOCKED_APP_DOMAIN_CONTRACT` through `MESSAGE_REQUESTS_INBOX`; two-persona Samsung/TalkBack/text-scale/connection-loss evidence remains open. Next bounded deliverable: D1.6 You/Profile recovery.
 
-## 2026-09-13 — You/Profile recovery checkpoint
+## 2026-09-13 â€” You/Profile recovery checkpoint
 
 **Type:** IMPLEMENTATION / VERIFICATION / CHECKPOINT
 **Status:** CURRENT
@@ -103,7 +103,7 @@ GlenTown-App `820d0cf20b278827da6b4ff238bd7e0e8b4087cb` closes independently App
 
 D1.6 is App-side complete and `READY_FOR_PHYSICAL_RECHECK`, not physically verified. Calendar/Places/Job Seeker/separate settings IA is `BLOCKED_APP_DOMAIN_CONTRACT`; representative histories/media acceptance is `BLOCKED_BY_DEMO_DATA`; verification status/submission is `BLOCKED_API_CONTRACT`; Samsung You/Profile recheck remains open. Next bounded deliverable: D1.7 Cross-screen/accessibility closure.
 
-## 2026-09-14 — Cross-screen/accessibility closure
+## 2026-09-14 â€” Cross-screen/accessibility closure
 
 **Type:** IMPLEMENTATION / VERIFICATION / CHECKPOINT
 **Status:** CURRENT
@@ -114,16 +114,16 @@ D1.7 independently achievable App work and Phase 1 App-side recovery are complet
 
 **Documentation Compliance Receipt:** Implementation Plan, Current State, Capability Matrix, Blocker Register, Memory, and the canonical App ledger were reconciled. No CPS files were touched; no physical verification was inferred from automated or source evidence.
 
-## 2026-09-14 — Consolidated Samsung physical re-audit ready
+## 2026-09-14 â€” Consolidated Samsung physical re-audit ready
 
 **Type:** VERIFICATION PREPARATION / CHECKPOINT
 **Status:** CURRENT
 
-GlenTown-App `dd1ecf637c2eb7471d1c9029fc05b40a21e7837d` adds `docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`, the canonical session worksheet for physical review of UI checkpoint `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`. It sequences 75 checks from fresh-install/auth through Profile Setup, shell, Home, Notifications, Cart, Community, Around You, Map, Explore, Create, Chat, You/Profile, and cross-screen stress. Every ledger issue row carrying physical-recheck semantics is referenced. API/data/demo/domain/architecture/external blockers are explicitly `KNOWN_BLOCKER — NOT A PHYSICAL FAILURE`.
+GlenTown-App `dd1ecf637c2eb7471d1c9029fc05b40a21e7837d` adds `docs/audits/PHYSICAL_REAUDIT_2026-09-14.md`, the canonical session worksheet for physical review of UI checkpoint `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`. It sequences 75 checks from fresh-install/auth through Profile Setup, shell, Home, Notifications, Cart, Community, Around You, Map, Explore, Create, Chat, You/Profile, and cross-screen stress. Every ledger issue row carrying physical-recheck semantics is referenced. API/data/demo/domain/architecture/external blockers are explicitly `KNOWN_BLOCKER â€” NOT A PHYSICAL FAILURE`.
 
 No device was connected during preparation, so no physical result is claimed. The worksheet records the Maria demo credential, screenshot/result fields, localhost API configuration through `adb reverse tcp:8000 tcp:8000`, and the development-only verification-bypass boundary. Phase 1 App-side recovery remains complete; consolidated Samsung physical re-audit execution is the next gate.
 
-  ## 2026-09-22 � GlenTown-App Android Home Freeze Reconciliation
+  ## 2026-09-22 — GlenTown-App Android Home Freeze Reconciliation
 
   **Type:** GOVERNANCE RECONCILIATION
   **Status:** CURRENT
@@ -133,3 +133,16 @@ No device was connected during preparation, so no physical result is claimed. Th
   The user approved a future explicit reopening of the Home visual baseline for one bounded color/image refinement pass (Welcome card background, alert style, Explore card backgrounds, Around You card gutters, and collapsed floating navigation). This pass must not be implemented in TownBoss.
 
   Functional followups remain open/deferred: GPS fallback, missing Personal Tools destinations, All Tools hub destination, Around You/API media completeness, onboarding background regression, and first-install Welcome-card verification.
+
+## 2026-10-07 — Synthetic Population / Scenario Validation Pre-Beta Gate
+
+- Adopted a mandatory GlenTown **Synthetic Population / Scenario Validation** gate before public Beta.
+- Canonical contract: `GLENTOWN_SYNTHETIC_POPULATION_PRE_BETA_GATE.md`.
+- Initial candidate stack: MiroFish + OASIS, subject to repository/security/license/compute/reproducibility benchmarking; the gate itself remains tool-agnostic.
+- Puerto Princesa is the first calibration environment, not the scope ceiling. Planned progression may expand through Palawan and broader weighted Philippine simulations.
+- Planning scale ladder: 50–200 micro-simulation; 2,000–5,000 Puerto Princesa calibration; 5,000–20,000 Palawan; 20,000–50,000 regional/multi-province; 50,000–250,000 weighted Philippines; larger stress experiments only after practical benchmarking.
+- Synthetic agents may carry statistical/analytical weights; one agent need not equal one real person.
+- Raw population size does not outrank calibration quality.
+- Synthetic output is hypothesis/risk/experiment evidence only. It does not prove real usability, demand, conversion, retention, trust, or product-market fit.
+- Gate PASS requires material findings to be fixed, mitigated, explicitly accepted, or converted into governed Beta experiments.
+- Real Beta telemetry, surveys, qualitative research, support/safety outcomes, and marketplace data must later recalibrate or invalidate simulation assumptions.
