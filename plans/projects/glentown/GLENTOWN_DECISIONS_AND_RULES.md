@@ -46,6 +46,7 @@ GlenTown project-specific rules may be stricter but do not silently weaken portf
 29. **Owner and public Profile share one desktop architecture.** They use the same main-column/right-rail size structure and profile framework. Differences are driven by viewer permissions, privacy and context rather than separate page designs. Public mode removes private management and exposes only permitted public information/actions.
 30. **Profile tabs are Overview, Timeline, Activity, Details, Posts, Saved, Followers, Following.** Timeline is the personal chronological history surface; Activity represents cross-GlenTown interactions/actions; Posts contains Community posts owned/published by the profile user; Details carries profile/about information. Visibility in public mode remains privacy/capability dependent.
 31. **TownBoss/GlenTown must not add parallel supervisor/current-state documents when an existing canonical artifact already owns the responsibility.** Specifically reject creation of `GLENTOWN_SUPERVISOR_STATE.md` or equivalent unless a future explicit architecture decision supersedes this rule. `GLENTOWN_CURRENT_STATE.md` remains the orchestration entry point. Historical evidence remains in its canonical location; do not duplicate it into a new status document.
+32. **Synthetic Population / Scenario Validation is a mandatory pre-Beta gate.** Follow `GLENTOWN_SYNTHETIC_POPULATION_PRE_BETA_GATE.md`. Puerto Princesa is the first calibration environment, not the geographic ceiling. MiroFish + OASIS is the initial candidate stack but is not permanent architecture; it must be audited and benchmarked before use. Synthetic agents may be weighted to represent larger populations, and nationally representative runs may use tens or hundreds of thousands of calibrated agents when practical. Raw scale does not outrank calibration quality. Synthetic output may create hypotheses, risks, experiments and mitigation work, but must never be represented as proof of real user behavior, usability, demand, conversion, retention, trust, or product-market fit. Material findings must be dispositioned before gate PASS, and post-Beta observed evidence must recalibrate or invalidate simulation assumptions.
 
 ## Supersession authority
 
@@ -56,7 +57,7 @@ or later explicit GlenTown authority.
 
 ## Documentation rule
 
-Substantial work must consult the implementation plan, app-specific plans, relevant TownBoss governance, Authority Matrix, Capability Matrix, Blocker Register, Validation Profiles, Risk Register, Memory, Current State, applicable architecture/decision documents, `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md` for Web/Windows work, and repository-local instructions before action and before final reporting.
+Substantial work must consult the implementation plan, app-specific plans, relevant TownBoss governance, Authority Matrix, Capability Matrix, Blocker Register, Validation Profiles, Risk Register, Memory, Current State, applicable architecture/decision documents, `GLENTOWN_SYNTHETIC_POPULATION_PRE_BETA_GATE.md` for pre-Beta simulation work, `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md` for Web/Windows work, and repository-local instructions before action and before final reporting.
 
 ## Android Home Canonical Baseline
 
