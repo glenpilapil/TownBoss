@@ -24,6 +24,7 @@ Conversational or model memory is discovery context only, not project authority.
 - Capability/status: `GLENTOWN_CAPABILITY_MATRIX.md`
 - Blockers: `GLENTOWN_BLOCKER_REGISTER.md`
 - Validation requirements: `GLENTOWN_VALIDATION_PROFILES.md`
+- Pre-Beta synthetic-population/scenario gate: `GLENTOWN_SYNTHETIC_POPULATION_PRE_BETA_GATE.md`
 - Web/Windows visual authority: `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md`
 - Web/Windows Chat/Profile authority: `GLENTOWN_WEB_WINDOWS_CHAT_PROFILE_AUTHORITY.md`
 - App visual audit ledger (persistent issue ledger): `plans/projects/glentown/apps/glentown-app/GLENTOWN_FLUTTER_APP_VISUAL_AUDIT_LEDGER.md`
@@ -113,6 +114,14 @@ The current API recovery checkpoint completed the canonical `phpunit.xml` suite 
 Create evidence is GlenTown-App `aa07d25`; Chat evidence is `f9702ed`; You/Profile evidence is `820d0cf`. D1.7 evidence is `f5e40858b6ea1d16c2b8d5a7fcd4da5af051c654`: 20 focused tests and 370 full Flutter tests passed, full analyze reported no issues, and diff check passed. CROSS-A2-02 and CROSS-A2-04 are source-test verified; CROSS-A2-03 is ready for physical recheck. Existing API/data/demo/domain blockers remain authoritative. Full mobile physical audit is pending; Beta is not release ready.
 
 The historical Create recovery checkpoint included a blanket citizen `Post a Job` restriction. That remains evidence of the earlier implementation, but current product authority supersedes it: GlenTown now supports both household/personal hiring and business/organization hiring with separate eligibility/compliance flows. App/API behavior must be reconciled before release.
+
+## Pre-Beta Synthetic Population / Scenario Validation — planned
+
+Public Beta promotion now requires the canonical `GLENTOWN_SYNTHETIC_POPULATION_PRE_BETA_GATE.md` after prerequisite functional/runtime/physical/browser/critical-journey/geography/security evidence is mature enough to simulate a credible candidate. MiroFish + OASIS is the initial candidate stack, subject to audit and benchmarking rather than permanent architectural commitment.
+
+Puerto Princesa is the first calibration environment, not the simulation scope ceiling. Planned progression is Puerto Princesa calibration, then Palawan/multi-Town scenarios, then broader weighted Philippine simulations where useful and computationally justified. Synthetic results are explicitly non-human evidence: they may identify risks and generate experiments, but they cannot establish real usability, demand, conversion, retention, trust, or product-market fit. Material findings must be dispositioned before gate PASS, and real Beta telemetry/research must later recalibrate or invalidate the simulation assumptions.
+
+Current status: **NOT_STARTED / PLANNED PRE-BETA GATE**. This is not an active Phase-1 blocker and does not alter the immediate Android/Web recovery sequence.
 
 ## Web/Windows visual-audit stream — active
 
