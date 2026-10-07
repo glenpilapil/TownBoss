@@ -19,6 +19,7 @@ Validation dimensions are distinguishable and must be recorded independently:
 - **WEB_BUILD** — Web build success
 - **WEB_BROWSER_ACCEPTANCE** — browser runtime acceptance (human or interactive evidence)
 - **ANDROID_PHYSICAL_ACCEPTANCE** — physical Android/device acceptance (human or interactive evidence)
+- **SYNTHETIC_POPULATION_ACCEPTANCE** — pre-Beta multi-agent scenario validation with population assumptions, run artifacts, findings disposition, and explicit separation from observed human evidence
 
 ### Example Semantic Model
 
@@ -32,6 +33,7 @@ ANDROID_BUILD: PASS
 WEB_BUILD: PASS
 WEB_BROWSER_ACCEPTANCE: NOT_RUN
 ANDROID_PHYSICAL_ACCEPTANCE: NOT_RUN
+SYNTHETIC_POPULATION_ACCEPTANCE: NOT_RUN
 ```
 
 Do not claim "all tests pass" or vague counts such as "380+". Record exact counts from the terminal output for the exact checkpoint being validated.
@@ -94,6 +96,17 @@ Do not claim "all tests pass" or vague counts such as "380+". Record exact count
 - Flutter/API contract alignment.
 - Physical-device end-to-end verification for release gate.
 
+## Synthetic population / scenario validation
+
+- Required before public Beta promotion after functional, runtime, physical/browser, critical-journey, geography-readiness, and security/compliance evidence is mature enough to simulate a credible candidate.
+- Follow `GLENTOWN_SYNTHETIC_POPULATION_PRE_BETA_GATE.md`.
+- Initial candidate stack is MiroFish + OASIS or an equivalent audited successor; the validation contract is tool-agnostic.
+- Use explicit population strata, weights, scenario inputs, provenance, simulator/model versions, activation assumptions, and compute/cost records.
+- Puerto Princesa is the first calibration environment, not the scope ceiling. Later runs may expand to Palawan, regional, and nationally representative weighted populations.
+- Synthetic findings generate risks, hypotheses, experiments, and mitigation work. They do not prove real usability, demand, conversion, retention, trust, or product-market fit.
+- Gate PASS requires disposition of material findings; merely completing a run is insufficient.
+- After Beta, compare simulations with observed research/telemetry and recalibrate or invalidate assumptions.
+
 ## Security/privacy/compliance
 - Authentication/authorization review.
 - Tenant/ownership isolation.
@@ -111,5 +124,6 @@ Do not claim "all tests pass" or vague counts such as "380+". Record exact count
 - Required physical-device/browser checks bound to exact checkpoint SHA.
 - Security/privacy/compliance gate.
 - Nationwide seed/readiness gate for enabled geography.
+- Synthetic Population / Scenario Validation Pre-Beta Gate completed with material findings dispositioned.
 - Known blockers/deferrals explicitly recorded.
 - Release evidence manifest completed.
