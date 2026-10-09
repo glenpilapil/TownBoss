@@ -164,3 +164,21 @@ The user reviewed conceptual mobile discovery mockups for three selected Explore
 **Governance reconciliation:** TownBoss Decisions and Rules, Implementation Plan and Current State are being proposed on a separate **documentation review branch**, not silently amended on main. No app or backend source implementation was changed; no analyzer, runtime/browser, visual screenshot or Android physical acceptance is asserted. Phase 1 recovery and ongoing Web/Android execution sequence are unchanged until separately authorized.
 
 **Next gate:** review and merge the documentation PRs through governance; reconcile exact component tokens/Welcome ratio, Jobs salary/household posting, Properties price/rush/compare and Events date/organizer/admission/Calendar contract; then issue independent bounded implementation tasks with mandated real-data, visual and physical QA.
+
+
+## 2026-10-09 — Explore Services consolidated landing and two card variants
+
+**Type:** DECISION / DOCUMENTATION  
+**Status:** USER-APPROVED DESIGN CONCEPT / REVIEW BRANCH / NOT IMPLEMENTED
+
+The user first accepted the **refined Compact Service Card** for information-first services such as repairs, maintenance, cleaning, tutoring and professional consultation, then accepted the **refined Visual Service Card** for portfolio/work-sample-driven services such as beauty, photography, styling, design and renovation. Subsequently, the user explicitly approved the **consolidated Explore > Services mobile landing** containing both cards in one mixed feed.
+
+Approved hierarchy: Back/Services/Filters/Create Service topbar → full-width Town/Province/National selector → contextual service/provider/skills search → **Available Today, Home Visits, At Provider, Online** shortcuts → sponsored local service banner at actual Home Welcome-card aspect ratio → **Explore by Need** three contextual tiles (Home Repairs, Beauty & Care, Professional Help) → Browse Services/grounded Map View → normalized one-row horizontal category pills → **Availability: Any Time** always displayed even under All → optional conditional **Service Type: All** → Service Listings with real data and Sort → mixed Compact/Visual cards.
+
+Approved card distinction: Compact has a substantial responsive square thumbnail beside mode/locality/brief copy, avoiding giant repetitive photos. Visual has a large genuine provider work/portfolio image above mode/locality/two-line excerpt, without a real-estate image scrim. Both share title/provider, separate Save/Heart, genuine category/delivery/location, the global **STARTING AT** eyebrow with an actual price/unit/basis, clearly separate availability, and full-width **View Service**. Presentation variant selection depends on imagery's actual usefulness/rights, not rigid service-sector assignment or an invented consumer toggle.
+
+Existing Services Booking, Availability & Appointment Management UX Architecture still governs **Open Now versus Available Now versus Next Available**, request-based mode, real appointment slots, staff/branch choice, queue/waitlist and provider scheduling. No universal Book Now or false live capacity. Source inspection revealed unsafe default/fallback prices, 4.8 ratings, verification=true and Available Today claims in the current accessible Flutter model/detail; these need separate contract checks. Individual lawful livelihood provider access remains supported with progressive verification and compliance, not a fabricated company identity.
+
+**App-local detailed source:** GlenTown-App `docs/SERVICES_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` on review branch `docs/properties-mobile-ui-authority-20261009` (draft PR #33). **TownBoss governance:** Decisions and Rules, Implementation Plan, Current State and this Memory are reconciled on `docs/glentown-explore-three-category-ux-20261009` (draft PR #35); approval/review is not merge or physical PASS. No Flutter/API implementation, tests, device screenshots or browser QA was performed here.
+
+**Next conceptual category:** Products. The following design requires its own separate visual approval; do not invent Product specifics or silently treat Services approval as Products approval.
