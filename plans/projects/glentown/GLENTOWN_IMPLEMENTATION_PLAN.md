@@ -83,6 +83,10 @@
 - [ ] T1.3.10 Real map listing projection. `BLOCKED_API_CONTRACT`; see `MAP_LISTINGS`.
 - [ ] T1.3.11 Seeded destination/discovery richness. `BLOCKED_BY_DEMO_DATA`; see `DISCOVERY_RICHNESS`.
 - [ ] T1.3.12 Jobs/Directory detail fallback. Pending App recovery unless evidence proves otherwise.
+- [x] T1.3.13 Explore mobile Properties / Jobs / Events **design-authority documentation drafted and user-approved** (2026-10-09), not code-implemented: GlenTown-App draft PR #33, three detailed `docs/*_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` files; TownBoss decision/pointer reconciliation in review. Explicitly separate Properties image/scrim+Map, Jobs text-first/household-hiring, Events date-first/calendar+poster-safe cards.
+- [ ] T1.3.14 Implement approved category-specific **mobile UI** in three separately scoped lanes after live local worktree/API/design-token preflight, reference lifecycle review and project ownership approval. Preserve global pills, eyebrow, reduced radii, existing Welcome banner ratio, Town/Province/National selector, real-data/fixture modes and focused auth/routing gates. **PLANNED / NOT STARTED.**
+- [ ] T1.3.15 Reconcile cross-domain API/capability gaps: structured Jobs salary/household-employer roles, Properties rush/price/compare state, Events date-range/calendar completeness, admission/RSVP/ticketing and organizer identity. Never fabricate unsupported data or actions. **PLANNED / OPEN; scope requires backend authority.**
+- [ ] T1.3.16 Independent mobile screenshot/UI audit, responsive/edge-case tests and Samsung physical-device acceptance for implemented Properties, Jobs and Events, separately from automated analyzer/tests and from later desktop/Web adaptation. **NOT RUN / NOT APPROVED.**
 
 ## D1.4 — Create recovery
 
