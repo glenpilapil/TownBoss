@@ -76,6 +76,17 @@ Conversational or model memory is discovery context only, not project authority.
 - Fresh API current-HEAD full-suite verification: OPEN
 - Fresh App current-HEAD release validation: OPEN
 
+
+### 2026-10-09 Explore mobile category designs — concept accepted, not implemented
+
+- **User-approved mobile UX concepts:** Explore > Properties, Explore > Jobs and Explore > Events have distinct detailed documentation in GlenTown-App draft PR #33, branch `docs/properties-mobile-ui-authority-20261009`.
+- **Canonical TownBoss decision/plan reconciliation:** Proposed in TownBoss review branch `docs/glentown-explore-three-category-ux-20261009`. It must be merged through governance before treating the branch material as main-branch canonical state.
+- **Properties:** Buy/Rent/Rush/Projects, contextual popular locations, normalized property type pills/conditional subtype, in-image transaction badge and bottom gradient with complete width-fitting features, left price/eyebrow and icon-only Compare.
+- **Jobs:** Full-Time/Part-Time/Remote/Internships, Hiring Highlights, normalized sectors/conditional Job Role, text-first cards and genuine personal/household hiring eligibility; authored Job summary and salary must be actual backend-authoritative data.
+- **Events:** Today/Weekend/Free/Online, Upcoming Highlights, date-first category discovery, always-available When selector, Calendar View and event image date badge; no unsupported Free/RSVP/ticket claims, no Event Planner/publishing conflation.
+- **Acceptance status:** `DESIGN_CONCEPT_APPROVED / DOCS_REVIEW`; Flutter/API implementation `NOT_STARTED`; browser/Android screenshots and physical-device audit `NOT_RUN`; no new release-ready status. The active mainline Android/Web recovery sequence remains unchanged.
+- **Next:** Finish review/governance merge, then independently preflight and authorize bounded UI implementation and capability truthfulness for each category, followed by source/automated/visual/physical validation.
+
 ### Current Validation Freshness
 
 - API recovery validation: BOUND TO `738e8ac`; not inherited by later SHAs
