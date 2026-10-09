@@ -146,3 +146,21 @@ No device was connected during preparation, so no physical result is claimed. Th
 - Synthetic output is hypothesis/risk/experiment evidence only. It does not prove real usability, demand, conversion, retention, trust, or product-market fit.
 - Gate PASS requires material findings to be fixed, mitigated, explicitly accepted, or converted into governed Beta experiments.
 - Real Beta telemetry, surveys, qualitative research, support/safety outcomes, and marketplace data must later recalibrate or invalidate simulation assumptions.
+
+
+## 2026-10-09 — Explore Properties, Jobs, Events mobile UX acceptance
+
+**Type:** DECISION / DOCUMENTATION  
+**Status:** USER-APPROVED CONCEPT / DOCS UNDER REVIEW / NOT IMPLEMENTED
+
+The user reviewed conceptual mobile discovery mockups for three selected Explore categories. GlenTown should reuse category-specific topbar, full-width location selector, search, four icon shortcuts, Home Welcome-aspect-ratio sponsored banner, normalized scrolling pills, global eyebrow type and reduced-radius tokens while avoiding mechanical one-size-fits-all cards and secondary sections.
+
+- **Properties:** Buy/Rent/Rush/Projects; Popular Locations; horizontal All/Residential/Commercial/Industrial/Agricultural pills; conditional Property Type; Map View. Image-led property card places For Sale/Rent/Rush badge **inside image upper-left**, separate listing-owner badge, transparent-to-black in-image lower scrim, unlimited count of **fully fitting** contextual features on one row, left price with global eyebrow and right **icon-only stateful Compare**; description two lines, View Property.
+- **Jobs:** Full-Time/Part-Time/Remote/Internships; Hiring Highlights (New Openings/Nearby Work/Household Jobs); normalized job-sector pills and conditional Job Role; information-driven cards with real employer/public-safe household identity, work conditions, structured salary eyebrow, two-line preview, Save and View Job. Must respect current TownBoss citizen/household posting rule, not fabricate company registration. Jobs app-local specification was **audited for detail parity** and already has 532 lines, 24 sections, 36 acceptance checklist items; no padding/approved-design rewrite was needed.
+- **Events:** Today/Weekend/Free/Online; Upcoming Highlights; category pills; **always-visible When: Upcoming** date filter even on All; Calendar View prioritized over Map; image-led event cards with date badge **inside upper-left image**, poster-sensitive image treatment and schedule/location/admission **below image**, global eyebrow, two-line excerpt and View Event. Accurate timezones, calendar multi-day projection and cancellation/status; missing pricing does **not** mean Free. Current client has no authoritative RSVP/ticket capability; Create Event and Event Planner must remain distinct.
+
+**Documentation evidence (GlenTown-App):** draft PR #33, branch `docs/properties-mobile-ui-authority-20261009`; detailed files `docs/PROPERTIES_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` (508 lines), `docs/JOBS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` (532 lines), and `docs/EVENTS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` (781 lines). All files were fetched back and verified on that branch. Detailed acceptance, unresolved API/data needs, accessibility, error states, responsive tests and implementation handoffs are preserved in those records.
+
+**Governance reconciliation:** TownBoss Decisions and Rules, Implementation Plan and Current State are being proposed on a separate **documentation review branch**, not silently amended on main. No app or backend source implementation was changed; no analyzer, runtime/browser, visual screenshot or Android physical acceptance is asserted. Phase 1 recovery and ongoing Web/Android execution sequence are unchanged until separately authorized.
+
+**Next gate:** review and merge the documentation PRs through governance; reconcile exact component tokens/Welcome ratio, Jobs salary/household posting, Properties price/rush/compare and Events date/organizer/admission/Calendar contract; then issue independent bounded implementation tasks with mandated real-data, visual and physical QA.
