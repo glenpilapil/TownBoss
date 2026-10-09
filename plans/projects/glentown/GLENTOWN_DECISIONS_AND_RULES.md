@@ -73,7 +73,7 @@ GlenTown project-specific rules may be stricter but do not silently weaken portf
 - `docs/EVENTS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md`
 - `docs/SERVICES_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md`
 
-The three design docs include responsive/component rules, screen hierarchies, UX decisions, domain/capability truthfulness, edge cases, acceptance criteria, tests, proposed implementation sequencing and explicitly unresolved items. Those app documents are the detailed handoff but not proof of code, functional validation or physical QA. Before implementation, verify the current accepted Welcome-card ratio, pills/tokens, actual App/API branch contracts, privacy/eligibility and TownBoss UX evidence lifecycle. Their GitHub review/merge status must be verified independently.
+The four design docs include responsive/component rules, screen hierarchies, UX decisions, domain/capability truthfulness, edge cases, acceptance criteria, tests, proposed implementation sequencing and explicitly unresolved items. Those app documents are the detailed handoff but not proof of code, functional validation or physical QA. Before implementation, verify the current accepted Welcome-card ratio, pills/tokens, actual App/API branch contracts, privacy/eligibility and TownBoss UX evidence lifecycle. Their GitHub review/merge status must be verified independently.
 
 ## Supersession authority
 
