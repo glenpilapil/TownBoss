@@ -77,7 +77,9 @@ Conversational or model memory is discovery context only, not project authority.
 - Fresh App current-HEAD release validation: OPEN
 
 
-### 2026-10-09–10 Explore mobile category designs — concepts/structure accepted, not implemented
+#- **Directory (approved 2026-10-10):** Compact contact/entity-first mobile landing with Back/Directory/Filters/Suggest Entry; resolved location selector without helper; Search; Government/Health/Education/Community shortcuts; image-only sponsored banner at actual Home Welcome ratio; Featured Directory; searchable All Categories picker; Access All Entries/Open Today/24-7/Online Services; Directory Listings/Sort. Compact full-width cards have leading authentic logo or category icon, real name/entity type, Save, locality, verified service-specific hours/contact, two-line summary, up to three conditional Call/Directions/Website/Email shortcuts, and View Entry. **Open Today/24-7/Online** must be supported by real hours/service data; website alone isn't an online service, generic hospital 24-7 doesn't certify all departments. Suggest Entry is moderated and separately permissioned from Claim Entry; local preview does not publish. App spec `docs/DIRECTORY_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md` on GlenTown-App draft PR #33; governance draft PR #35. **DESIGN_APPROVED / NOT_IMPLEMENTED / NOT_PHYSICALLY_VERIFIED.**
+
+## 2026-10-09–10 Explore mobile category designs — concepts/structure accepted, not implemented
 
 - **User-approved mobile UX concepts:** Explore > Properties, Jobs, Events, Services, Products and Suppliers have distinct detailed documentation in GlenTown-App draft PR #33, branch `docs/properties-mobile-ui-authority-20261009`.
 - **Canonical TownBoss decision/plan reconciliation:** Proposed in TownBoss review branch `docs/glentown-explore-three-category-ux-20261009`. It must be merged through governance before treating the branch material as main-branch canonical state.
