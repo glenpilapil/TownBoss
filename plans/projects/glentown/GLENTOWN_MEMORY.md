@@ -210,3 +210,25 @@ User rejected the first generated graphic as not the same kind of in-chat UI moc
 **Implementation:** No new Flutter/API code, tests, screenshot audit, Samsung physical-device visual acceptance, checkout/payment confirmation or publication was executed by the documentation effort. Do not mark implementation complete merely because the user approves the visual mockup.
 
 **Next unapproved Explore concepts:** Foods, Suppliers, Tourism and Directory; preserve the selective shared hierarchy but determine domain-specific cards and fulfillment behaviors separately.
+
+
+## 2026-10-10 — Foods structural approval; imagery unseen
+
+**Type:** UX STRUCTURE DECISION / DOCUMENTATION  
+**Status:** STRUCTURE_APPROVED / IMAGERY_VISUAL_REVIEW_PENDING / NOT CODE IMPLEMENTED
+
+The user requested an **actual in-chat interactive mobile Foods landing mockup**, matching prior Explore category visual-review workflows, **not** an AI-generated screenshot or a text-and-image outline. The assistant presented a dish-led Foods screen. The user replied explicitly: **“I don't see the images but the structure is approved. Document it. Make it as detailed as possible in the documentations.”** This authorizes detailed recording of the hierarchy, component anatomy and controls, but **does not authorize approval of ad or dish imagery**, which was invisible to the user. Never elevate structural approval to full photograph/pixel-level visual approval; re-render actual visible imagery and request separate user review of sponsored creative, featured food thumbnails and Food Card photo crop/ratio.
+
+**Approved composition:** Topbar Back/Foods/Filters/Cart/Offer Food; full-width actual Town/Province/National selector **without Explore Foods In eyebrow**; search dishes, cuisines or food sellers; four quick shortcuts **Delivery / Pickup / Dine-In / Pre-Order**; authorized **image-only sponsored banner** at actual Home Welcome-card ratio, with Sponsored/Ad disclosure outside; **Featured Dishes** horizontal mini photo/title/price carousel; **Browse Foods** and a searchable **All Categories** picker; distinct **Order Timing: All Foods / Order Now / Pre-Order** one-row horizontal selector; Food Listings real count/Sort; full-width **one-column mobile Food Card**.
+
+**Food Card structural contract:** Large photo region with independent Heart and optional true Pre-Order badge. Unlike the approved Products card, **dish title/provider and global PRICE/amount are BELOW the image**, not on a square-photo bottom price gradient. Beneath follow public-safe locality/category, actual Delivery/Pickup/Dine-In chips, short description, genuine Order Status/preparation, and full-width **View Food**. Sample images/photos did **not** display; even the mock's approx. 4:3 card ratio/cover crop remains provisional until user can view it.
+
+**Product-domain guardrails:** Pre-Order is timing, not fulfillment; it should synchronize with the order-timing selector, while Delivery/Pickup/Dine-In are fulfillment modes. Kitchen Open Now != Accepting Orders Now != Food Item Available != Preparation Duration != Pickup Ready != Delivery ETA != Confirmed Order. Current inspected main FoodItem mock mapping has unsafe production-use fallbacks for **4.8 rating, 15–25 min prep, Available Now, Pickup and Delivery, verified=true and null price as ₱0**; these must be gated/reconciled. No fake verified kitchen, food safety, dietary/allergen or local delivery claims. Home-based/individual lawful food livelihoods remain eligible with progressive applicable food permits, sanitary compliance and formalization, not an invented business prerequisite.
+
+**App source:** GlenTown-App docs/FOODS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md under existing review branch docs/properties-mobile-ui-authority-20261009 and draft PR #33. App-local doc details the accepted structure, 44 separate future acceptance checks, 40 scenario tests, image review gate, actual API contract investigation and implementation plan.
+
+**TownBoss pointers:** Decisions and Rules adds Foods structure-only authority; Implementation Plan adds separate design, implementation, API safety, image-review and physical QA work; Current State keeps correct caveat; this Memory preserves exact approval. All on existing governance review branch docs/glentown-explore-three-category-ux-20261009 and draft PR #35. Draft documentation is not merged app code or QA.
+
+**Next gate:** re-present food and ad images so user can actually see them, then record a distinct FOODS_IMAGES_APPROVED or correction decision. Separately perform real API, Flutter tests, accessibility/screenshots and Samsung physical Android QA before ever declaring production-ready. Do not issue an implementation agent prompt while another related one is pending.
+
+**Remaining unapproved Explore screen proposals:** Suppliers, Tourism and Directory.
