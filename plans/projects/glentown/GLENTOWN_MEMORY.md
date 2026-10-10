@@ -182,3 +182,31 @@ Existing Services Booking, Availability & Appointment Management UX Architecture
 **App-local detailed source:** GlenTown-App `docs/SERVICES_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` on review branch `docs/properties-mobile-ui-authority-20261009` (draft PR #33). **TownBoss governance:** Decisions and Rules, Implementation Plan, Current State and this Memory are reconciled on `docs/glentown-explore-three-category-ux-20261009` (draft PR #35); approval/review is not merge or physical PASS. No Flutter/API implementation, tests, device screenshots or browser QA was performed here.
 
 **Next conceptual category:** Products. The following design requires its own separate visual approval; do not invent Product specifics or silently treat Services approval as Products approval.
+
+
+## 2026-10-10 — Approved Explore Products interactive design
+
+**Type:** USER-APPROVED UX DECISION / DOCUMENTATION  
+**Status:** DESIGN CONCEPT APPROVED / REVIEW BRANCH / NOT IMPLEMENTED / NOT PHYSICALLY VERIFIED
+
+User rejected the first generated graphic as not the same kind of in-chat UI mockup used for earlier categories, and rejected the subsequent disconnected line/text/image outline. The first spatial, interactive Products mockup was then explicitly refined before approval. **The final refined interactive screen is the only approved Products visual direction**; the preceding image and textual outlines are historical rejected iterations.
+
+**Approved landing:**
+1. Topbar Back / Products / Filters / Cart / Sell Product.
+2. Full-width Town/Province/National location selector containing **only the resolved location and icon/chevron**, omitting the "Explore Products In" helper label.
+3. Contextual Search products, brands, or sellers.
+4. Quick shortcuts **New Arrivals / Pre-Loved / Local Makers / Deals**, independent freshness, item condition, producer provenance and promotion facets.
+5. **Sponsored banner creative is image-only** (its designer-provided words, if any, are contained within the image asset), with external small Sponsored/Ad attribution; must use actual Home Welcome-card aspect ratio in production, never duplicate native advertising title and CTA overlay.
+6. **Featured Finds** compact horizontally scrolling small-photo/title/price product carousel and supported See All.
+7. **Browse Products** paired with **All Categories** searchable, scalable category picker/sheet, supporting real API category IDs and true hierarchy if contract exists. A flat short Fashion/Electronics/Home category-pill list is explicitly rejected as non-scalable.
+8. A separate single-row horizontally scrollable **shopping availability** selector: **All Products / Ready to Buy / Pre-Order / Made to Order**. Distinct from product category and condition.
+9. **Product Listings** true count or honest loading, with Sort.
+10. **ONE full-width product card per compact-mobile row**. Card hero is **1:1 square** and **BoxFit.cover**, upper-left truthful condition badge, independent upper-right Heart, and **a dark bottom gradient carrying actual Product Title and price eyebrow + amount overlaid inside the photo**. Below media: actual seller display name, public-safe locality/category, concise two-line description, valid fulfillment/availability and full-width **View Product**. Contrasts with Services Visual Card (no portfolio price scrim) and earlier rejected idea of moving all product text below photo.
+
+**Critical contract rules:** "New Arrivals" ≠ Brand New; "Local Makers" requires production provenance, not mere seller geography; "Deals" requires validated discount basis; Ready to Buy / Pre-Order / Made to Order are purchase-orderability modes and **not** condition or product categories. Seller/public locality/fulfillment and genuine image must have provenance, real item condition cannot default Brand New and real missing price cannot become ₱0. Current accessible MarketplaceProduct model contains risky mock defaults for 4.8 rating, stock 10, verified seller true, Brand New condition and null/parse-price-to-zero, while existing MarketplaceScreen still uses Marketplace title, tag pills and two-column grid. Require separate API/screen reconciliation before real rendering. Citizens may publish appropriate Pre-Loved products, with progressive business formalization for repeat commercial trade per existing TownBoss rules.
+
+**App-local detailed specification:** GlenTown-App docs/PRODUCTS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md — 821 lines, 34 detailed sections, 55 acceptance checks and a 44-scenario matrix — on docs/properties-mobile-ui-authority-20261009, draft PR #33. **TownBoss governance reconciliation:** Decisions and Rules, Implementation Plan (separate design/implementation/API validation/device QA gates), Current State and this Memory on docs/glentown-explore-three-category-ux-20261009, draft PR #35. Both draft PRs are review-only, unmerged unless independently verified otherwise.
+
+**Implementation:** No new Flutter/API code, tests, screenshot audit, Samsung physical-device visual acceptance, checkout/payment confirmation or publication was executed by the documentation effort. Do not mark implementation complete merely because the user approves the visual mockup.
+
+**Next unapproved Explore concepts:** Foods, Suppliers, Tourism and Directory; preserve the selective shared hierarchy but determine domain-specific cards and fulfillment behaviors separately.
