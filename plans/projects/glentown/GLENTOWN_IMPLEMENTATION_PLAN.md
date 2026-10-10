@@ -150,6 +150,11 @@
 - [x] T1.7.3 Automated validation: 20 focused tests and 370 full Flutter tests passed; full analyze no issues; diff check pass.
 - [ ] T1.7.4 Consolidated Samsung physical re-audit. `READY`; the 75-check session worksheet is prepared, but no physical verification is claimed.
 
+- [x] T1.3.35 **Directory user-approved design documentation** recorded in GlenTown-App docs/DIRECTORY_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md; reconcile with TownBoss Decisions, State and Memory. **DESIGN/DOC ONLY.**
+- [ ] T1.3.36 Implement Directory topbar/location/search; Government/Health/Education/Community shortcuts; image-only Welcome-ratio ad; Featured Directory; scalable All Categories picker; Access All/Open Today/24-7/Online row; single-column compact entity cards, true public hours/contact, conditional quick actions and View Entry. **NOT STARTED.**
+- [ ] T1.3.37 Verify source Organization/Place/branch taxonomy, system-managed identity, public-safe coordinates, official logos, real published phones/emails/websites, time zones/holiday exceptions, online service eligibility, contact provenance and checked-at. Audit Suggest Entry moderation and Claim Entry rights separately. **DATA/API VALIDATION OPEN.**
+- [ ] T1.3.38 Run Directory focused/full Flutter/analyzer + API/contact/source tests, responsive screenshot, accessibility/TalkBack and independent Samsung physical-device audit before any PASS or merge. **NOT RUN.**
+
 ## Phase 1 gate
 
 - [x] D1.1–D1.7 independently implementable App-side work complete or explicitly blocked/deferred.
