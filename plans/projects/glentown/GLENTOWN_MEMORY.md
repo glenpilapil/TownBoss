@@ -262,3 +262,17 @@ The user explicitly approved the interactive **Explore > Suppliers** mobile mock
 **TownBoss governance:** existing Decisions and Rules rule #37, Implementation Plan T1.3.30–T1.3.34, Current State and this Memory on docs/glentown-explore-three-category-ux-20261009 / draft PR #35. Both PRs remain draft/unmerged until separately verified/authorized. No Flutter/Laravel source modifications, backend verification, image source rights review, live RFQ transmission, analyzer/tests or Samsung physical-device PASS occurred in this documentation task.
 
 **Next unapproved Explore visual design categories:** Tourism and Directory. Do not transfer Suppliers procurement-focused card or RFQ behavior to unrelated categories without independent user review.
+
+## 2026-10-10 — Directory interactive mobile approval
+
+**Decision:** User explicitly approved the interactive Explore > Directory mobile mockup and requested detailed documentation like the prior category screens. **Status: DESIGN APPROVED / DOCS IN DRAFT REVIEW / NOT IMPLEMENTED / NO DEVICE PASS.**
+
+**Exact approved hierarchy:** Back/Directory/Filters/Suggest Entry topbar → bare resolved Town/Province/National selector → Search offices/places/organizations → four Government/Health/Education/Community shortcut tiles → image-only sponsored Home-Welcome-ratio banner with attribution outside → Featured Directory compact mini-carousel → Browse Directory with scalable searchable All Categories picker → **Access** All Entries/Open Today/24-7/Online Services horizontal single-row controls → Directory Listings/Sort → single-column compact utility-first cards.
+
+**Card:** 64px-scale leading **authentic official logo or neutral category Lucide icon fallback**, source-backed public name and entity classification, independent Save, public-safe locality, hours/service-specific availability, actual public contact status, two-line description, at most three **conditional** Call/Directions/Website/Email actions, full-width **View Entry**. This is not another Products image grid, Supplier MOQ/RFQ card, or Services booking card.
+
+**Critical data truth:** Open Today uses timezone/holidays and real service hours; 24/7 only specific verified entity/service capability (not every department of a hospital); Online Services means genuinely supported online transactions not merely having a website; fake emergency phone, website, pin/directions or official seal prohibited. Data freshness checked_at/last verified, agency jurisdiction, source/license and Organization/Place/Geography/Destination separation remain authoritative. Government/other system-managed organizations must not be user-claimable. **Suggest Entry** is a separate moderated proposal; mock's Preview Suggestion is local only, no publication/sending. Only actual verified contact channels render quick actions.
+
+**App-local specification:** GlenTown-App docs/DIRECTORY_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md (32 sections, 41 implementation acceptance checks, 38 QA scenarios) in existing draft PR #33. **TownBoss:** Decisions rule #38, Implementation Plan tasks T1.3.35–T1.3.38, Current State and this Memory in draft PR #35. Both reviews are documentation-only; no Flutter/API source implementation, real hours/contact action QA or Samsung device testing was performed.
+
+**Only remaining unapproved Explore category in this sequence:** Tourism.
