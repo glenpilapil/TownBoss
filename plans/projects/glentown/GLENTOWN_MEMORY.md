@@ -276,3 +276,19 @@ The user explicitly approved the interactive **Explore > Suppliers** mobile mock
 **App-local specification:** GlenTown-App docs/DIRECTORY_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md (32 sections, 41 implementation acceptance checks, 38 QA scenarios) in existing draft PR #33. **TownBoss:** Decisions rule #38, Implementation Plan tasks T1.3.35–T1.3.38, Current State and this Memory in draft PR #35. Both reviews are documentation-only; no Flutter/API source implementation, real hours/contact action QA or Samsung device testing was performed.
 
 **Only remaining unapproved Explore category in this sequence:** Tourism.
+
+## 2026-10-10 — Final Travel v3 interactive design approved
+
+**Decision:** User explicitly approved final **Explore > Travel** embedded interactive mobile concept after correcting previous Tourism, then Travel v2, then final v3. Supersedes earlier proposals; implementation not authorized by documentation alone.
+
+**Nomenclature:** Travel is public top-level category. Town resolved as City/Municipality → **Places** (first shortcut, Featured Places, All Categories picker/filter, badge, Explore Place CTA and detail). Province or National → **Destinations** analogously. All public **Tours & Activities** labels changed to **Experiences**. Names derive from actual geographic type rather than comparing the display string. Keep underlying Place/Geography/Destination/Organization models distinct.
+
+**Approved structure:** Back/Travel/Filters/Map/Add Travel Offering; full-width Pin/Town/Province/National selector without helper eyebrow; search places/stays/experiences; four shortcuts Places-or-Destinations/Stays/Experiences/**Plan a Trip**; image-only Sponsored banner at real Home Welcome ratio; **Featured Places/Destinations** uniform cover-cropped portrait image cards with identical dimensions, gradients and caption anchoring; Browse Travel searchable All Categories; Explore by Interest All Travel/Nature & Adventure/Relaxation/Culture & Heritage/Family-Friendly; Travel Listings/Sort; one-column mixed Place/Destination, Accommodation and Experience cards.
+
+**Key visual authority:** Travel is photo-heavy. All main listing hero media must be **flush to left/right outer card edge**, absolutely **no inset image padding**, at a consistent sample 4:3 ratio with Flutter **BoxFit.cover**; only below-image information is padded. Dark gradient over image supports title/subtitle; real truth-based type badge and separate Save Heart. Featured cards uniform mock dimensions ~146×188, image cover, gradient and caption baseline; no mixed aspect/card sizes. Domain CTA: Explore Place/Destination, View Accommodation or View Experience; genuine visitor information, rate basis and schedules only when sourced.
+
+**Truth / unfinished:** Illustrative photos and ₱2,800/night and ₱1,500/person are not real offers. Map pins require safe validated coordinates; Trip Planner handoff genuine; actual accommodations inventory, cancellation, permits, experience operator/weather/safety, payments and server-confirmed booking must be independently reconciled. Preserve existing Travel Package variable margins, individual Tours/Experiences/accommodation commission direction, van/boat/vehicle rentals and booked venues under separate architecture. No fake prices, badges, operator certification or instant order.
+
+**Detailed app spec:** GlenTown-App docs/TRAVEL_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md (24 sections, 42 acceptance checks, 30 QA scenarios), existing draft PR #33. **TownBoss governance:** Decision #39, plan T1.3.39–T1.3.44, Current State and Memory on draft PR #35. No Flutter/API code changes, live provider availability verification, screenshots, physical Samsung QA or merged PR by this documentation task.
+
+**Nine of nine Explore categories have approved mobile designs:** Properties, Jobs, Events, Services, Products, Foods (structure approved, imagery separately pending), Suppliers, Directory and Travel.
