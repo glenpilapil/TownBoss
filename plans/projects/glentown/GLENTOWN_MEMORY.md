@@ -232,3 +232,33 @@ The user requested an **actual in-chat interactive mobile Foods landing mockup**
 **Next gate:** re-present food and ad images so user can actually see them, then record a distinct FOODS_IMAGES_APPROVED or correction decision. Separately perform real API, Flutter tests, accessibility/screenshots and Samsung physical Android QA before ever declaring production-ready. Do not issue an implementation agent prompt while another related one is pending.
 
 **Remaining unapproved Explore screen proposals:** Suppliers, Tourism and Directory.
+
+
+## 2026-10-10 — Suppliers interactive mobile approval
+
+**Type:** USER-APPROVED DESIGN DECISION / DOCUMENTATION  
+**State:** DESIGN APPROVED / DOCUMENTATION REVIEW ONLY / NOT IMPLEMENTED / NO LIVE RFQ OR DEVICE QA
+
+The user explicitly approved the interactive **Explore > Suppliers** mobile mockup and requested a detailed app-local specification and canonical TownBoss reconciliation like the preceding category screens. The intent is **supplier-first procurement discovery**, not a consumer Product grid.
+
+**Exact approved structural hierarchy:**
+1. Back/Suppliers/Filters/My RFQ Drafts/Offer Supplies topbar.
+2. Location selector with only the resolved Town/Province/National name, Pin and Chevron (no helper text).
+3. Search suppliers, materials, or goods.
+4. Wholesalers / Manufacturers / Distributors / Post RFQ shortcuts; three supplier-role facets plus buyer action.
+5. **Image-only Sponsored** creative at actual Home Welcome-card aspect ratio with ad disclosure outside image.
+6. Featured Suppliers compact carousel, See All.
+7. Browse Suppliers and searchable **All Categories** real sector picker.
+8. Separate single-row horizontally scrollable **Supply Capability: All Suppliers / Bulk Orders / Custom Supply / Recurring Supply**.
+9. Supplier Listings with honest count/Sort; full-width single-column mobile cards.
+10. Supplier card title/sector/role **above a landscape featured facility/goods image**; independent Heart; locality and two-line description; true capability chips; separate **MOQ with actual unit** and **Lead Time** metrics; real price By Quotation and geographic coverage or To Confirm; two adjacent **View Supplier** and **Request Quote** actions.
+
+**RFQ demo/user approval boundary:** Post RFQ opens general RFQ draft, card Request Quote targets supplier, Supplier Detail -> Prepare a Quotation Request targets that supplier, and topbar My RFQ Drafts shows local-only sample drafts. Form fields: Target Supplier, Material/Item Needed, Quantity and Unit, Specifications/Delivery Requirements. Button **Save Preview Draft**, with explicit no transmission; neither the user nor mock approves a fake submitted quotation.
+
+**High-priority gap discovered in accessible Flutter main:** SupplierDirectoryScreen currently renders hardcoded MockData.suppliers, universal verified icon, fallback MOQ "Negotiable" / Lead Time "Standard", simulated wholesale catalog download; RfqFormScreen displays **RFQ Dispatched!** and assures delivery to supplier/dashboard from a local handler without evidenced API submission. These are unsafe claims requiring code/backend gate before Beta. Do not confuse RFQ Draft, Submitted, Delivered, Quote Received, Accepted Quote or Purchase Order. Supplier identity/registration, multi-role classification, units, coverage, permits/accreditation, actual lead times and quote pricing must be sourced and periodically verified.
+
+**App-local design:** GlenTown-App docs/SUPPLIERS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md (388 lines, 34 sections, 46 future acceptance checks, 35 scenario matrix tests) on existing docs/properties-mobile-ui-authority-20261009 review branch / draft PR #33.
+
+**TownBoss governance:** existing Decisions and Rules rule #37, Implementation Plan T1.3.30–T1.3.34, Current State and this Memory on docs/glentown-explore-three-category-ux-20261009 / draft PR #35. Both PRs remain draft/unmerged until separately verified/authorized. No Flutter/Laravel source modifications, backend verification, image source rights review, live RFQ transmission, analyzer/tests or Samsung physical-device PASS occurred in this documentation task.
+
+**Next unapproved Explore visual design categories:** Tourism and Directory. Do not transfer Suppliers procurement-focused card or RFQ behavior to unrelated categories without independent user review.
