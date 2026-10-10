@@ -146,3 +146,149 @@ No device was connected during preparation, so no physical result is claimed. Th
 - Synthetic output is hypothesis/risk/experiment evidence only. It does not prove real usability, demand, conversion, retention, trust, or product-market fit.
 - Gate PASS requires material findings to be fixed, mitigated, explicitly accepted, or converted into governed Beta experiments.
 - Real Beta telemetry, surveys, qualitative research, support/safety outcomes, and marketplace data must later recalibrate or invalidate simulation assumptions.
+
+
+## 2026-10-09 — Explore Properties, Jobs, Events mobile UX acceptance
+
+**Type:** DECISION / DOCUMENTATION  
+**Status:** USER-APPROVED CONCEPT / DOCS UNDER REVIEW / NOT IMPLEMENTED
+
+The user reviewed conceptual mobile discovery mockups for three selected Explore categories. GlenTown should reuse category-specific topbar, full-width location selector, search, four icon shortcuts, Home Welcome-aspect-ratio sponsored banner, normalized scrolling pills, global eyebrow type and reduced-radius tokens while avoiding mechanical one-size-fits-all cards and secondary sections.
+
+- **Properties:** Buy/Rent/Rush/Projects; Popular Locations; horizontal All/Residential/Commercial/Industrial/Agricultural pills; conditional Property Type; Map View. Image-led property card places For Sale/Rent/Rush badge **inside image upper-left**, separate listing-owner badge, transparent-to-black in-image lower scrim, unlimited count of **fully fitting** contextual features on one row, left price with global eyebrow and right **icon-only stateful Compare**; description two lines, View Property.
+- **Jobs:** Full-Time/Part-Time/Remote/Internships; Hiring Highlights (New Openings/Nearby Work/Household Jobs); normalized job-sector pills and conditional Job Role; information-driven cards with real employer/public-safe household identity, work conditions, structured salary eyebrow, two-line preview, Save and View Job. Must respect current TownBoss citizen/household posting rule, not fabricate company registration. Jobs app-local specification was **audited for detail parity** and already has 532 lines, 24 sections, 36 acceptance checklist items; no padding/approved-design rewrite was needed.
+- **Events:** Today/Weekend/Free/Online; Upcoming Highlights; category pills; **always-visible When: Upcoming** date filter even on All; Calendar View prioritized over Map; image-led event cards with date badge **inside upper-left image**, poster-sensitive image treatment and schedule/location/admission **below image**, global eyebrow, two-line excerpt and View Event. Accurate timezones, calendar multi-day projection and cancellation/status; missing pricing does **not** mean Free. Current client has no authoritative RSVP/ticket capability; Create Event and Event Planner must remain distinct.
+
+**Documentation evidence (GlenTown-App):** draft PR #33, branch `docs/properties-mobile-ui-authority-20261009`; detailed files `docs/PROPERTIES_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` (508 lines), `docs/JOBS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` (532 lines), and `docs/EVENTS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` (781 lines). All files were fetched back and verified on that branch. Detailed acceptance, unresolved API/data needs, accessibility, error states, responsive tests and implementation handoffs are preserved in those records.
+
+**Governance reconciliation:** TownBoss Decisions and Rules, Implementation Plan and Current State are being proposed on a separate **documentation review branch**, not silently amended on main. No app or backend source implementation was changed; no analyzer, runtime/browser, visual screenshot or Android physical acceptance is asserted. Phase 1 recovery and ongoing Web/Android execution sequence are unchanged until separately authorized.
+
+**Next gate:** review and merge the documentation PRs through governance; reconcile exact component tokens/Welcome ratio, Jobs salary/household posting, Properties price/rush/compare and Events date/organizer/admission/Calendar contract; then issue independent bounded implementation tasks with mandated real-data, visual and physical QA.
+
+
+## 2026-10-09 — Explore Services consolidated landing and two card variants
+
+**Type:** DECISION / DOCUMENTATION  
+**Status:** USER-APPROVED DESIGN CONCEPT / REVIEW BRANCH / NOT IMPLEMENTED
+
+The user first accepted the **refined Compact Service Card** for information-first services such as repairs, maintenance, cleaning, tutoring and professional consultation, then accepted the **refined Visual Service Card** for portfolio/work-sample-driven services such as beauty, photography, styling, design and renovation. Subsequently, the user explicitly approved the **consolidated Explore > Services mobile landing** containing both cards in one mixed feed.
+
+Approved hierarchy: Back/Services/Filters/Create Service topbar → full-width Town/Province/National selector → contextual service/provider/skills search → **Available Today, Home Visits, At Provider, Online** shortcuts → sponsored local service banner at actual Home Welcome-card aspect ratio → **Explore by Need** three contextual tiles (Home Repairs, Beauty & Care, Professional Help) → Browse Services/grounded Map View → normalized one-row horizontal category pills → **Availability: Any Time** always displayed even under All → optional conditional **Service Type: All** → Service Listings with real data and Sort → mixed Compact/Visual cards.
+
+Approved card distinction: Compact has a substantial responsive square thumbnail beside mode/locality/brief copy, avoiding giant repetitive photos. Visual has a large genuine provider work/portfolio image above mode/locality/two-line excerpt, without a real-estate image scrim. Both share title/provider, separate Save/Heart, genuine category/delivery/location, the global **STARTING AT** eyebrow with an actual price/unit/basis, clearly separate availability, and full-width **View Service**. Presentation variant selection depends on imagery's actual usefulness/rights, not rigid service-sector assignment or an invented consumer toggle.
+
+Existing Services Booking, Availability & Appointment Management UX Architecture still governs **Open Now versus Available Now versus Next Available**, request-based mode, real appointment slots, staff/branch choice, queue/waitlist and provider scheduling. No universal Book Now or false live capacity. Source inspection revealed unsafe default/fallback prices, 4.8 ratings, verification=true and Available Today claims in the current accessible Flutter model/detail; these need separate contract checks. Individual lawful livelihood provider access remains supported with progressive verification and compliance, not a fabricated company identity.
+
+**App-local detailed source:** GlenTown-App `docs/SERVICES_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-09.md` on review branch `docs/properties-mobile-ui-authority-20261009` (draft PR #33). **TownBoss governance:** Decisions and Rules, Implementation Plan, Current State and this Memory are reconciled on `docs/glentown-explore-three-category-ux-20261009` (draft PR #35); approval/review is not merge or physical PASS. No Flutter/API implementation, tests, device screenshots or browser QA was performed here.
+
+**Next conceptual category:** Products. The following design requires its own separate visual approval; do not invent Product specifics or silently treat Services approval as Products approval.
+
+
+## 2026-10-10 — Approved Explore Products interactive design
+
+**Type:** USER-APPROVED UX DECISION / DOCUMENTATION  
+**Status:** DESIGN CONCEPT APPROVED / REVIEW BRANCH / NOT IMPLEMENTED / NOT PHYSICALLY VERIFIED
+
+User rejected the first generated graphic as not the same kind of in-chat UI mockup used for earlier categories, and rejected the subsequent disconnected line/text/image outline. The first spatial, interactive Products mockup was then explicitly refined before approval. **The final refined interactive screen is the only approved Products visual direction**; the preceding image and textual outlines are historical rejected iterations.
+
+**Approved landing:**
+1. Topbar Back / Products / Filters / Cart / Sell Product.
+2. Full-width Town/Province/National location selector containing **only the resolved location and icon/chevron**, omitting the "Explore Products In" helper label.
+3. Contextual Search products, brands, or sellers.
+4. Quick shortcuts **New Arrivals / Pre-Loved / Local Makers / Deals**, independent freshness, item condition, producer provenance and promotion facets.
+5. **Sponsored banner creative is image-only** (its designer-provided words, if any, are contained within the image asset), with external small Sponsored/Ad attribution; must use actual Home Welcome-card aspect ratio in production, never duplicate native advertising title and CTA overlay.
+6. **Featured Finds** compact horizontally scrolling small-photo/title/price product carousel and supported See All.
+7. **Browse Products** paired with **All Categories** searchable, scalable category picker/sheet, supporting real API category IDs and true hierarchy if contract exists. A flat short Fashion/Electronics/Home category-pill list is explicitly rejected as non-scalable.
+8. A separate single-row horizontally scrollable **shopping availability** selector: **All Products / Ready to Buy / Pre-Order / Made to Order**. Distinct from product category and condition.
+9. **Product Listings** true count or honest loading, with Sort.
+10. **ONE full-width product card per compact-mobile row**. Card hero is **1:1 square** and **BoxFit.cover**, upper-left truthful condition badge, independent upper-right Heart, and **a dark bottom gradient carrying actual Product Title and price eyebrow + amount overlaid inside the photo**. Below media: actual seller display name, public-safe locality/category, concise two-line description, valid fulfillment/availability and full-width **View Product**. Contrasts with Services Visual Card (no portfolio price scrim) and earlier rejected idea of moving all product text below photo.
+
+**Critical contract rules:** "New Arrivals" ≠ Brand New; "Local Makers" requires production provenance, not mere seller geography; "Deals" requires validated discount basis; Ready to Buy / Pre-Order / Made to Order are purchase-orderability modes and **not** condition or product categories. Seller/public locality/fulfillment and genuine image must have provenance, real item condition cannot default Brand New and real missing price cannot become ₱0. Current accessible MarketplaceProduct model contains risky mock defaults for 4.8 rating, stock 10, verified seller true, Brand New condition and null/parse-price-to-zero, while existing MarketplaceScreen still uses Marketplace title, tag pills and two-column grid. Require separate API/screen reconciliation before real rendering. Citizens may publish appropriate Pre-Loved products, with progressive business formalization for repeat commercial trade per existing TownBoss rules.
+
+**App-local detailed specification:** GlenTown-App docs/PRODUCTS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md — 821 lines, 34 detailed sections, 55 acceptance checks and a 44-scenario matrix — on docs/properties-mobile-ui-authority-20261009, draft PR #33. **TownBoss governance reconciliation:** Decisions and Rules, Implementation Plan (separate design/implementation/API validation/device QA gates), Current State and this Memory on docs/glentown-explore-three-category-ux-20261009, draft PR #35. Both draft PRs are review-only, unmerged unless independently verified otherwise.
+
+**Implementation:** No new Flutter/API code, tests, screenshot audit, Samsung physical-device visual acceptance, checkout/payment confirmation or publication was executed by the documentation effort. Do not mark implementation complete merely because the user approves the visual mockup.
+
+**Next unapproved Explore concepts:** Foods, Suppliers, Tourism and Directory; preserve the selective shared hierarchy but determine domain-specific cards and fulfillment behaviors separately.
+
+
+## 2026-10-10 — Foods structural approval; imagery unseen
+
+**Type:** UX STRUCTURE DECISION / DOCUMENTATION  
+**Status:** STRUCTURE_APPROVED / IMAGERY_VISUAL_REVIEW_PENDING / NOT CODE IMPLEMENTED
+
+The user requested an **actual in-chat interactive mobile Foods landing mockup**, matching prior Explore category visual-review workflows, **not** an AI-generated screenshot or a text-and-image outline. The assistant presented a dish-led Foods screen. The user replied explicitly: **“I don't see the images but the structure is approved. Document it. Make it as detailed as possible in the documentations.”** This authorizes detailed recording of the hierarchy, component anatomy and controls, but **does not authorize approval of ad or dish imagery**, which was invisible to the user. Never elevate structural approval to full photograph/pixel-level visual approval; re-render actual visible imagery and request separate user review of sponsored creative, featured food thumbnails and Food Card photo crop/ratio.
+
+**Approved composition:** Topbar Back/Foods/Filters/Cart/Offer Food; full-width actual Town/Province/National selector **without Explore Foods In eyebrow**; search dishes, cuisines or food sellers; four quick shortcuts **Delivery / Pickup / Dine-In / Pre-Order**; authorized **image-only sponsored banner** at actual Home Welcome-card ratio, with Sponsored/Ad disclosure outside; **Featured Dishes** horizontal mini photo/title/price carousel; **Browse Foods** and a searchable **All Categories** picker; distinct **Order Timing: All Foods / Order Now / Pre-Order** one-row horizontal selector; Food Listings real count/Sort; full-width **one-column mobile Food Card**.
+
+**Food Card structural contract:** Large photo region with independent Heart and optional true Pre-Order badge. Unlike the approved Products card, **dish title/provider and global PRICE/amount are BELOW the image**, not on a square-photo bottom price gradient. Beneath follow public-safe locality/category, actual Delivery/Pickup/Dine-In chips, short description, genuine Order Status/preparation, and full-width **View Food**. Sample images/photos did **not** display; even the mock's approx. 4:3 card ratio/cover crop remains provisional until user can view it.
+
+**Product-domain guardrails:** Pre-Order is timing, not fulfillment; it should synchronize with the order-timing selector, while Delivery/Pickup/Dine-In are fulfillment modes. Kitchen Open Now != Accepting Orders Now != Food Item Available != Preparation Duration != Pickup Ready != Delivery ETA != Confirmed Order. Current inspected main FoodItem mock mapping has unsafe production-use fallbacks for **4.8 rating, 15–25 min prep, Available Now, Pickup and Delivery, verified=true and null price as ₱0**; these must be gated/reconciled. No fake verified kitchen, food safety, dietary/allergen or local delivery claims. Home-based/individual lawful food livelihoods remain eligible with progressive applicable food permits, sanitary compliance and formalization, not an invented business prerequisite.
+
+**App source:** GlenTown-App docs/FOODS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md under existing review branch docs/properties-mobile-ui-authority-20261009 and draft PR #33. App-local doc details the accepted structure, 44 separate future acceptance checks, 40 scenario tests, image review gate, actual API contract investigation and implementation plan.
+
+**TownBoss pointers:** Decisions and Rules adds Foods structure-only authority; Implementation Plan adds separate design, implementation, API safety, image-review and physical QA work; Current State keeps correct caveat; this Memory preserves exact approval. All on existing governance review branch docs/glentown-explore-three-category-ux-20261009 and draft PR #35. Draft documentation is not merged app code or QA.
+
+**Next gate:** re-present food and ad images so user can actually see them, then record a distinct FOODS_IMAGES_APPROVED or correction decision. Separately perform real API, Flutter tests, accessibility/screenshots and Samsung physical Android QA before ever declaring production-ready. Do not issue an implementation agent prompt while another related one is pending.
+
+**Remaining unapproved Explore screen proposals:** Suppliers, Tourism and Directory.
+
+
+## 2026-10-10 — Suppliers interactive mobile approval
+
+**Type:** USER-APPROVED DESIGN DECISION / DOCUMENTATION  
+**State:** DESIGN APPROVED / DOCUMENTATION REVIEW ONLY / NOT IMPLEMENTED / NO LIVE RFQ OR DEVICE QA
+
+The user explicitly approved the interactive **Explore > Suppliers** mobile mockup and requested a detailed app-local specification and canonical TownBoss reconciliation like the preceding category screens. The intent is **supplier-first procurement discovery**, not a consumer Product grid.
+
+**Exact approved structural hierarchy:**
+1. Back/Suppliers/Filters/My RFQ Drafts/Offer Supplies topbar.
+2. Location selector with only the resolved Town/Province/National name, Pin and Chevron (no helper text).
+3. Search suppliers, materials, or goods.
+4. Wholesalers / Manufacturers / Distributors / Post RFQ shortcuts; three supplier-role facets plus buyer action.
+5. **Image-only Sponsored** creative at actual Home Welcome-card aspect ratio with ad disclosure outside image.
+6. Featured Suppliers compact carousel, See All.
+7. Browse Suppliers and searchable **All Categories** real sector picker.
+8. Separate single-row horizontally scrollable **Supply Capability: All Suppliers / Bulk Orders / Custom Supply / Recurring Supply**.
+9. Supplier Listings with honest count/Sort; full-width single-column mobile cards.
+10. Supplier card title/sector/role **above a landscape featured facility/goods image**; independent Heart; locality and two-line description; true capability chips; separate **MOQ with actual unit** and **Lead Time** metrics; real price By Quotation and geographic coverage or To Confirm; two adjacent **View Supplier** and **Request Quote** actions.
+
+**RFQ demo/user approval boundary:** Post RFQ opens general RFQ draft, card Request Quote targets supplier, Supplier Detail -> Prepare a Quotation Request targets that supplier, and topbar My RFQ Drafts shows local-only sample drafts. Form fields: Target Supplier, Material/Item Needed, Quantity and Unit, Specifications/Delivery Requirements. Button **Save Preview Draft**, with explicit no transmission; neither the user nor mock approves a fake submitted quotation.
+
+**High-priority gap discovered in accessible Flutter main:** SupplierDirectoryScreen currently renders hardcoded MockData.suppliers, universal verified icon, fallback MOQ "Negotiable" / Lead Time "Standard", simulated wholesale catalog download; RfqFormScreen displays **RFQ Dispatched!** and assures delivery to supplier/dashboard from a local handler without evidenced API submission. These are unsafe claims requiring code/backend gate before Beta. Do not confuse RFQ Draft, Submitted, Delivered, Quote Received, Accepted Quote or Purchase Order. Supplier identity/registration, multi-role classification, units, coverage, permits/accreditation, actual lead times and quote pricing must be sourced and periodically verified.
+
+**App-local design:** GlenTown-App docs/SUPPLIERS_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md (388 lines, 34 sections, 46 future acceptance checks, 35 scenario matrix tests) on existing docs/properties-mobile-ui-authority-20261009 review branch / draft PR #33.
+
+**TownBoss governance:** existing Decisions and Rules rule #37, Implementation Plan T1.3.30–T1.3.34, Current State and this Memory on docs/glentown-explore-three-category-ux-20261009 / draft PR #35. Both PRs remain draft/unmerged until separately verified/authorized. No Flutter/Laravel source modifications, backend verification, image source rights review, live RFQ transmission, analyzer/tests or Samsung physical-device PASS occurred in this documentation task.
+
+**Next unapproved Explore visual design categories:** Tourism and Directory. Do not transfer Suppliers procurement-focused card or RFQ behavior to unrelated categories without independent user review.
+
+## 2026-10-10 — Directory interactive mobile approval
+
+**Decision:** User explicitly approved the interactive Explore > Directory mobile mockup and requested detailed documentation like the prior category screens. **Status: DESIGN APPROVED / DOCS IN DRAFT REVIEW / NOT IMPLEMENTED / NO DEVICE PASS.**
+
+**Exact approved hierarchy:** Back/Directory/Filters/Suggest Entry topbar → bare resolved Town/Province/National selector → Search offices/places/organizations → four Government/Health/Education/Community shortcut tiles → image-only sponsored Home-Welcome-ratio banner with attribution outside → Featured Directory compact mini-carousel → Browse Directory with scalable searchable All Categories picker → **Access** All Entries/Open Today/24-7/Online Services horizontal single-row controls → Directory Listings/Sort → single-column compact utility-first cards.
+
+**Card:** 64px-scale leading **authentic official logo or neutral category Lucide icon fallback**, source-backed public name and entity classification, independent Save, public-safe locality, hours/service-specific availability, actual public contact status, two-line description, at most three **conditional** Call/Directions/Website/Email actions, full-width **View Entry**. This is not another Products image grid, Supplier MOQ/RFQ card, or Services booking card.
+
+**Critical data truth:** Open Today uses timezone/holidays and real service hours; 24/7 only specific verified entity/service capability (not every department of a hospital); Online Services means genuinely supported online transactions not merely having a website; fake emergency phone, website, pin/directions or official seal prohibited. Data freshness checked_at/last verified, agency jurisdiction, source/license and Organization/Place/Geography/Destination separation remain authoritative. Government/other system-managed organizations must not be user-claimable. **Suggest Entry** is a separate moderated proposal; mock's Preview Suggestion is local only, no publication/sending. Only actual verified contact channels render quick actions.
+
+**App-local specification:** GlenTown-App docs/DIRECTORY_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md (32 sections, 41 implementation acceptance checks, 38 QA scenarios) in existing draft PR #33. **TownBoss:** Decisions rule #38, Implementation Plan tasks T1.3.35–T1.3.38, Current State and this Memory in draft PR #35. Both reviews are documentation-only; no Flutter/API source implementation, real hours/contact action QA or Samsung device testing was performed.
+
+**Only remaining unapproved Explore category in this sequence:** Tourism.
+
+## 2026-10-10 — Final Travel v3 interactive design approved
+
+**Decision:** User explicitly approved final **Explore > Travel** embedded interactive mobile concept after correcting previous Tourism, then Travel v2, then final v3. Supersedes earlier proposals; implementation not authorized by documentation alone.
+
+**Nomenclature:** Travel is public top-level category. Town resolved as City/Municipality → **Places** (first shortcut, Featured Places, All Categories picker/filter, badge, Explore Place CTA and detail). Province or National → **Destinations** analogously. All public **Tours & Activities** labels changed to **Experiences**. Names derive from actual geographic type rather than comparing the display string. Keep underlying Place/Geography/Destination/Organization models distinct.
+
+**Approved structure:** Back/Travel/Filters/Map/Add Travel Offering; full-width Pin/Town/Province/National selector without helper eyebrow; search places/stays/experiences; four shortcuts Places-or-Destinations/Stays/Experiences/**Plan a Trip**; image-only Sponsored banner at real Home Welcome ratio; **Featured Places/Destinations** uniform cover-cropped portrait image cards with identical dimensions, gradients and caption anchoring; Browse Travel searchable All Categories; Explore by Interest All Travel/Nature & Adventure/Relaxation/Culture & Heritage/Family-Friendly; Travel Listings/Sort; one-column mixed Place/Destination, Accommodation and Experience cards.
+
+**Key visual authority:** Travel is photo-heavy. All main listing hero media must be **flush to left/right outer card edge**, absolutely **no inset image padding**, at a consistent sample 4:3 ratio with Flutter **BoxFit.cover**; only below-image information is padded. Dark gradient over image supports title/subtitle; real truth-based type badge and separate Save Heart. Featured cards uniform mock dimensions ~146×188, image cover, gradient and caption baseline; no mixed aspect/card sizes. Domain CTA: Explore Place/Destination, View Accommodation or View Experience; genuine visitor information, rate basis and schedules only when sourced.
+
+**Truth / unfinished:** Illustrative photos and ₱2,800/night and ₱1,500/person are not real offers. Map pins require safe validated coordinates; Trip Planner handoff genuine; actual accommodations inventory, cancellation, permits, experience operator/weather/safety, payments and server-confirmed booking must be independently reconciled. Preserve existing Travel Package variable margins, individual Tours/Experiences/accommodation commission direction, van/boat/vehicle rentals and booked venues under separate architecture. No fake prices, badges, operator certification or instant order.
+
+**Detailed app spec:** GlenTown-App docs/TRAVEL_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md (24 sections, 42 acceptance checks, 30 QA scenarios), existing draft PR #33. **TownBoss governance:** Decision #39, plan T1.3.39–T1.3.44, Current State and Memory on draft PR #35. No Flutter/API code changes, live provider availability verification, screenshots, physical Samsung QA or merged PR by this documentation task.
+
+**Nine of nine Explore categories have approved mobile designs:** Properties, Jobs, Events, Services, Products, Foods (structure approved, imagery separately pending), Suppliers, Directory and Travel.
