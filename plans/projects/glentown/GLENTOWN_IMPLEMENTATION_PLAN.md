@@ -248,3 +248,10 @@
 ## Closeout discipline
 
 Each checkpoint updates exact task/evidence, Current State, Capability Matrix, Blocker Register, Risk Register when material, and Memory; completes the Documentation Compliance Receipt; validates diff; commits `[P<phase>][D<deliverable>][T<task>]`; then performs normal non-force remote checkpoint.
+
+- [x] T1.3.39 **Travel v3 approved design documentation** added to GlenTown-App docs/TRAVEL_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md on draft PR #33 and TownBoss governance draft PR #35. Supersedes Tourism and earlier Travel mockups. **DOC ONLY.**
+- [ ] T1.3.40 Implement public **Travel** landing, Back/Filters/Map/Add Travel, Town/Province/National scope, Search, Places-or-Destinations/Stays/Experiences/Plan a Trip shortcuts, Sponsored Welcome-ratio image-only banner, standardized Featured carousel, searchable All Categories, Travel Interest row and mixed truthful listings. **NOT STARTED.**
+- [ ] T1.3.41 Implement authoritative geographic **Town → Places; Province/National → Destinations** semantics atomically in shortcuts, Featured headings, category picker, filter, badge, CTA and detail; use **Experiences** not Tours & Activities in visible UI without renaming domain schema. **NOT STARTED.**
+- [ ] T1.3.42 Implement **image-heavy full-bleed media** cards with **zero inset padding and BoxFit.cover**, text gradient, badge/Save and independently padded below-image visitor/rate/CTA details; make every Featured card same portrait aspect and caption anchoring. **NOT STARTED.**
+- [ ] T1.3.43 Reconcile source Travel Place/Destination/Organization/Geography, Accommodation units, Experience operator/price/safety/capacity, Trip Planner, map coordinates, package/rental/transfer contracts, permissions, source provenance and live booking/payment truth. **API/DOMAIN VALIDATION OPEN.**
+- [ ] T1.3.44 Run Travel focused/full Flutter/analyzer, backend tests, responsive cover/crop screenshots, accessibility/TalkBack and Samsung physical visual/functional acceptance. **NOT RUN.**
