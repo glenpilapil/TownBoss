@@ -45,7 +45,7 @@ Keep **Help & Support** in the lower utility area and **You/Profile** at the bot
 
 Explore submenu items are children of Explore, not peer primary navigation. Do not change the authoritative Explore primary taxonomy as part of desktop work.
 
-Places and Professionals retain their established uses (including Explore suggestion/discovery contexts); Places also retains its established Tourism role. Editor's Pick and other suggestion concepts retain their existing placements. Do not promote these into top-level Explore categories without an explicit later taxonomy decision.
+Places and Professionals retain their established uses (including Explore suggestion/discovery contexts); Places also retains its approved Travel discovery role when the resolved geography is a Town (City/Municipality); Province/National Travel discovery labels Destinations. Editor's Pick and other suggestion concepts retain their existing placements. Do not promote these into top-level Explore categories without an explicit later taxonomy decision.
 
 ### Topbar
 
@@ -162,9 +162,9 @@ Use a substantial, location-aware Explore hero with appropriate destination imag
 
 Explore may provide Explore-specific search/discovery controls without replacing persistent Universal Search.
 
-Immediately below the hero, provide strong visual entry cards for exactly the authoritative top-level categories:
+Immediately below the hero, provide strong visual entry cards for exactly the authoritative top-level categories (Travel supersedes Tourism by the 2026-10-10 approval; this taxonomy does not force mobile layouts onto desktop):
 
-**Products · Foods · Services · Tourism · Jobs · Events · Properties · Suppliers · Directory**
+**Products · Foods · Services · Travel · Jobs · Events · Properties · Suppliers · Directory**
 
 Below the categories, progressively contextualize discovery rather than merely repeating taxonomy.
 
