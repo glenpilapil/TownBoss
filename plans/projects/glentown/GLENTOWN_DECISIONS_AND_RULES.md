@@ -30,7 +30,7 @@ GlenTown project-specific rules may be stricter but do not silently weaken portf
 13. Every substantial write-capable task must include the mandatory TownBoss safe-abort/recovery protocol from `governance/PROJECT_EXECUTION_STANDARD.md`.
 14. Material risk acceptance, product/UX authority supersession, destructive actions, external publication/deployment, and rule exceptions require the authority defined by the portfolio standard and `GLENTOWN_AUTHORITY_MATRIX.md`.
 15. **Public product marketing should prefer `Digital Town` rather than `DTOS` / `Digital Town Operating System`.** Internal architecture may retain technical terminology where useful.
-16. **Current public Explore taxonomy labels are Products, Foods, Services, Tourism, Jobs, Events, Properties, Suppliers, Directory.** `Shopping`, `Food & Dining`, `Travel & Tours`, `Places`, and `Professionals` must not be reintroduced as primary categories unless a later explicit decision supersedes this rule. Places and Professionals remain valid concepts outside the primary taxonomy.
+16. **Current public Explore taxonomy labels, superseding the pre-2026-10-10 Tourism label, are Products, Foods, Services, Travel, Jobs, Events, Properties, Suppliers, Directory.** `Shopping`, `Food & Dining`, `Tourism`, `Travel & Tours`, `Places`, and `Professionals` must not be reintroduced as primary categories unless a later explicit decision supersedes this rule. Places and Professionals remain valid concepts outside the primary taxonomy.
 17. `Achieve` is the approved public product name; do not revert public UI/marketing to `Aspirations`.
 18. The Digital Town concept must not be reduced to the orchestration/planner layer. It includes connected community, discovery, commerce, trusted interactions, personal timeline/diary/memories, planning/goal execution, businesses/organizations, government/civic interoperability, and shared platform capabilities according to implementation truth.
 19. **Web/Windows visual and interaction authority is canonicalized in `GLENTOWN_WEB_WINDOWS_VISUAL_AUTHORITY.md`.** Desktop work must preserve the four primary navigation authorities Home/Explore/Create/Chat, the established Explore taxonomy, the location-contextual Map behavior, topbar utility order Notifications → Calendar → Cart, and the written Home/Explore/Create/Chat/Profile desktop composition rules. Generated concept images are visual references only; written authority supersedes image-generation drift.
@@ -63,7 +63,7 @@ GlenTown project-specific rules may be stricter but do not silently weaken portf
 
 ## Explore Mobile Category Design Authority (2026-10-09–10)
 
-**Product decision:** The user accepted **Explore > Properties, Jobs, Events, Services and Products** mobile designs, plus the **screen structure only** of Explore > Foods, and the approved **Explore > Suppliers** concept; **Foods photo imagery remains unseen and unapproved**. This is **DESIGN CONCEPT APPROVED**, **NOT IMPLEMENTED**, and **NOT PHYSICAL_DEVICE_APPROVED**. The category designs must be implemented through separate bounded, source-of-truth-gated tasks. This decision does not mandate adopting these layouts for all other Explore categories or override independent Web/Windows visual authority.
+**Product decision:** The user accepted **Explore > Properties, Jobs, Events, Services and Products** mobile designs, plus the **screen structure only** of Explore > Foods, and the approved **Explore > Suppliers**, **Explore > Directory** and **Explore > Travel v3** concepts; **Foods photo imagery remains unseen and unapproved**. This is **DESIGN CONCEPT APPROVED**, **NOT IMPLEMENTED**, and **NOT PHYSICAL_DEVICE_APPROVED**. The category designs must be implemented through separate bounded, source-of-truth-gated tasks. This decision does not mandate adopting these layouts for all other Explore categories or override independent Web/Windows visual authority.
 
 **Shared visual contract:** Category-specific Back/title/Filters/create-or-submit topbar (no invented ellipsis); full-width resolved Town/Province/National selector (Products has no "Explore Products In" subtitle); category search; four meaningful domain shortcuts; sponsor placement with actual existing Home Welcome-card aspect-ratio authority (never assumed 16:9; Products uses image-only creative with attribution outside); relevant highlights; **taxonomy navigation per domain** (normalized pills for earlier sectors but searchable picker for Products); global reduced corner-radius, spacing, Lucide and eyebrow tokens; honest count/sort/facets, auth and data state; no duplicate shell navigation.
 
@@ -132,8 +132,8 @@ Personal Tools Home action: **All Tools**
 
 Accepted visual details include:
 - Explore compact bento cards
-- Products / Foods / Services / Tourism
-- Tourism uses canonical beach-umbrella icon
+- Products / Foods / Services / Travel
+- Travel retains the previously approved beach-umbrella category icon unless a separate later icon decision changes it
 - Around You heading is AROUND YOU
 - Explore scope header and Home section actions have reconciled typography
 - Compact Quick Community composer
