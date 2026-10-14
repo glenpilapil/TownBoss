@@ -209,7 +209,7 @@ User rejected the first generated graphic as not the same kind of in-chat UI moc
 
 **Implementation:** No new Flutter/API code, tests, screenshot audit, Samsung physical-device visual acceptance, checkout/payment confirmation or publication was executed by the documentation effort. Do not mark implementation complete merely because the user approves the visual mockup.
 
-**Next unapproved Explore concepts:** Foods, Suppliers, Tourism and Directory; preserve the selective shared hierarchy but determine domain-specific cards and fulfillment behaviors separately.
+**Historical next-step note (superseded by later 2026-10-10 approvals):** Foods, Suppliers, Tourism and Directory were then pending; preserve the selective shared hierarchy but determine domain-specific cards and fulfillment behaviors separately.
 
 
 ## 2026-10-10 — Foods structural approval; imagery unseen
@@ -231,7 +231,7 @@ The user requested an **actual in-chat interactive mobile Foods landing mockup**
 
 **Next gate:** re-present food and ad images so user can actually see them, then record a distinct FOODS_IMAGES_APPROVED or correction decision. Separately perform real API, Flutter tests, accessibility/screenshots and Samsung physical Android QA before ever declaring production-ready. Do not issue an implementation agent prompt while another related one is pending.
 
-**Remaining unapproved Explore screen proposals:** Suppliers, Tourism and Directory.
+**Historical checkpoint only (superseded by later 2026-10-10 approvals):** Suppliers, Tourism and Directory were still pending at this point.
 
 
 ## 2026-10-10 — Suppliers interactive mobile approval
@@ -261,7 +261,7 @@ The user explicitly approved the interactive **Explore > Suppliers** mobile mock
 
 **TownBoss governance:** existing Decisions and Rules rule #37, Implementation Plan T1.3.30–T1.3.34, Current State and this Memory on docs/glentown-explore-three-category-ux-20261009 / draft PR #35. Both PRs remain draft/unmerged until separately verified/authorized. No Flutter/Laravel source modifications, backend verification, image source rights review, live RFQ transmission, analyzer/tests or Samsung physical-device PASS occurred in this documentation task.
 
-**Next unapproved Explore visual design categories:** Tourism and Directory. Do not transfer Suppliers procurement-focused card or RFQ behavior to unrelated categories without independent user review.
+**Historical checkpoint only (superseded by later 2026-10-10 approvals):** Tourism and Directory were still pending at this point. Do not transfer Suppliers procurement-focused card or RFQ behavior to unrelated categories without independent user review.
 
 ## 2026-10-10 — Directory interactive mobile approval
 
@@ -275,7 +275,7 @@ The user explicitly approved the interactive **Explore > Suppliers** mobile mock
 
 **App-local specification:** GlenTown-App docs/DIRECTORY_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md (32 sections, 41 implementation acceptance checks, 38 QA scenarios) in existing draft PR #33. **TownBoss:** Decisions rule #38, Implementation Plan tasks T1.3.35–T1.3.38, Current State and this Memory in draft PR #35. Both reviews are documentation-only; no Flutter/API source implementation, real hours/contact action QA or Samsung device testing was performed.
 
-**Only remaining unapproved Explore category in this sequence:** Tourism.
+**Historical checkpoint only (superseded by the later 2026-10-10 Travel v3 approval):** Tourism was still pending at this point.
 
 ## 2026-10-10 — Final Travel v3 interactive design approved
 
@@ -292,3 +292,11 @@ The user explicitly approved the interactive **Explore > Suppliers** mobile mock
 **Detailed app spec:** GlenTown-App docs/TRAVEL_MOBILE_DISCOVERY_UX_SPECIFICATION_2026-10-10.md (24 sections, 42 acceptance checks, 30 QA scenarios), existing draft PR #33. **TownBoss governance:** Decision #39, plan T1.3.39–T1.3.44, Current State and Memory on draft PR #35. No Flutter/API code changes, live provider availability verification, screenshots, physical Samsung QA or merged PR by this documentation task.
 
 **Nine of nine Explore categories have approved mobile designs:** Properties, Jobs, Events, Services, Products, Foods (structure approved, imagery separately pending), Suppliers, Directory and Travel.
+
+## 2026-10-14 — Explore active authority and design-only continuity
+
+**Current nine-category taxonomy:** Products, Foods, Services, **Travel**, Jobs, Events, Properties, Suppliers, Directory. Earlier references to an upcoming Tourism design in the dated approval log describe historical intermediate checkpoints only; **Travel v3 was subsequently approved on 2026-10-10**, and all nine categories now have detailed app-local specifications on draft PR #33. The TownBoss governance updates remain in draft PR #35, not merged.
+
+**Travel vocabulary:** Town (City/Municipality) → Places; Province/National → Destinations; Tours & Activities → Experiences in the public interface. Preserve distinct Place, Destination, Organization and Geography models, and independently verified provider and booking behavior. **Foods images remain not visibly reviewed**, notwithstanding accepted structural hierarchy.
+
+**Temporary work mode while the user's development laptop is under repair:** Continue concept exploration, embedded interactive UI mockups, user approval and design-document updates. Do not authorize or claim Flutter/API implementation, source-level QA, browser screenshot review, local git health, real booking/orders/RFQ, physical Samsung validation, merge or release readiness. Reassess implementation workflow only when a capable development environment is available.
