@@ -1,0 +1,59 @@
+# Town Developer and GlenTown Square — Concept and Governance Baseline
+**Version:** 0.1 concept baseline | **Date:** 2026-10-25 | **Status:** Approved strategic direction; unfunded, unvalidated, not implementation authorization
+**Authority:** TownBoss portfolio concept source. No change to existing GlenTown MVP, architecture or delivery milestones.
+
+## 1. Vision and boundaries
+- **GlenTown**: nationwide, neutral digital town operating ecosystem for discovery, commerce, services, relationships, events, planning and opportunity.
+- **Town Developer**: proposed property-development function for nature-integrated, resort-inspired residential neighborhoods, mixed-use communities and townships. Legal corporate structure not established.
+- **GlenTown Square**: proposed physical mixed-use lifestyle, enterprise and community destination; can stand alone or anchor a Town Developer residential/township development. Preferred working name, not a registered mark.
+- **Town Commons**: optional name for the shared food, social and gathering plaza inside a Square.
+- **Town Launchpad**: physical business-incubation channel aligned with GlenTown Learn Do Earn.
+- **Town Health / Town Academy / Town Farm**: conditional larger-site facility clusters, not committed construction or regulated operators.
+- Proposed tagline: **Your Town. Your Place.**
+Each physical facility must justify capital and operating economics independently. Do not make physical presence a prerequisite for GlenTown coverage, merchant access or user eligibility. Physical subsidiaries, tenants and related parties must not receive undisclosed algorithmic preference.
+
+## 2. Approved place-making philosophy
+Create distinctive, photo-worthy yet functional resort-like communities, not one standardized subdivision aesthetic. Multiple original residential collections may coexist, selected by market, climate and landform: earth-integrated/hillside, woodland/canopy, river dwellings, garden neighborhoods, contemporary tropical resort villas, manor/heritage/aristocratic residences and shared pool/beach-entry/naturalistic-pool environments. Tolkien-associated labels such as Hobbit/Elven are aesthetic inspirations only; develop original IP and names. Preserve mature trees, waterways, rock formations and valuable habitat where feasible; assess before clearing. Landscape architects participate from earliest site planning.
+Common standards: climate-responsive architecture, comfortable shaded walkability, accessible amenities, recreation, community identity, transport hub/internal shuttles when scale supports them, appropriate services, adequate parking, servicing, drainage, flood safety, reliable utilities and maintainable long-life common areas. Separate visitor/commercial access from secured residential zones.
+
+## 3. Resource efficiency, water and food systems
+Pursue measurable low-carbon/net-zero-ready design rather than unsupported zero-emission claims. Assess lifecycle and embodied carbon; passive cooling, solar and battery readiness, rainwater capture, separated treated non-potable reuse, efficient water fixtures, stormwater infiltration/retention, sewage treatment, waste segregation, composting, renewable-energy capacity, and EV/cycle readiness. Test long-run affordability, HOA/estate charges and resilience.
+Optional resident **productive living**: garden plots, edible landscaping, roof gardens with engineered saturated loads/waterproofing, vertical hydroponics, small aquaponics or specialist-managed aquaculture. Shrimp/crab/marine or brackish-water tanks are advanced, permit-, welfare-, biosecurity- and water-quality-dependent; not standard house amenities. Keep production water and effluent isolated from ecological rivers, communal pools and potable supplies. A man-made water spine must meet hydrological and operational feasibility; no decorative feature is presumed ecological or self-cleaning.
+**Community-to-Market**: opt-in resident surplus produce sold resident-to-resident, at occasional neighborhood/community markets, or through qualifying independent vendors and GlenTown Square buyers. Appropriate handling, traceability, food safety and cold chain especially for seafood; no obligation to participate. Shared Town Farm, teaching gardens, greenhouses and collection points only where justified.
+
+## 4. GlenTown Square facilities — candidate program
+**Core candidates:** independently operated café/restaurant/lounge, prominent roadside-visible food park and covered shared dining, local market and retail, generous legal on-site parking, safe drop-off, accessible restrooms, secure GlenTown HQ/service office (when justified), flexible coworking, meeting/training rooms, landscaped social courtyard, event-capable pavilion and well planned loading/service access.
+**Accepted program options, not compulsory on every site:** KTV/VIP rooms (acoustically isolated), billiards/board games/darts and recreation zone, creator/podcast/photo studio, salon/grooming, spa, pop-up retail, maker space, business and professional service counters, jobs/interview fairs, product showcase, parcel pickup, travel desk, property gallery, reading/heritage/family events, mobility hub, pet services and authorized digital assistance.
+**Traveler accommodation:** low-cost **overnight capsule hostel** for people spending days exploring Palawan, not chiefly a transfer layover service. Qualified tenant/operator, independent quiet secured wing, showers, lockers, baggage handling, housekeeping, fire egress and accommodation compliance. Required ordinary toilets remain accessible; premium shower/change packages may be commercialized lawfully.
+**Large-site-only / conditional:** covered multi-sport court and multipurpose event floor; verify actual court geometry and sports compatibility (full tennis may not fit); clinics/dental/diagnostic/optical/rehabilitation/pharmacy in Town Health; vocational/technical training and small school facilities in Town Academy; daycare, fitness, financial/cooperative services, shared urban agriculture/Town Farm. Obtain qualified operators, building and health/education licensing, clinical waste and mobility separation.
+Do not count potential facilities as already approved budgets, operators, permits or construction deliverables.
+
+## 5. Tenant-led operating model
+Owner/Town Developer or special-purpose project company develops and leases; professional estate manager handles leasing, maintenance, shared areas, landscaping, parking, safety, maintenance standards and tenant coordination. Independent brands operate cafés, food stalls, beauty, wellness, lodging, education, clinics and other businesses under commercial leases/concessions; tenants need not adopt GlenTown exclusively. Potential but unconfirmed anchor operators: user's acquaintance who runs two Puerto Princesa cafés and signage/printing firms; separate acquaintance with established salon business. Potential printing/signage pickup/display rather than noisy on-site industrial production.
+Establish transparent leases: permitted uses, identity and signage, fit-out investment/turnover, base rent, optional turnover rent, service charges, metering, access/hours, sanitation, acoustic limits, accessibility, insurance, security deposits, renewal, defaults and handback; verified tenant capability and public-law compliance. Do not conflate tenancy with franchising. Independently track NOI, tenant sales health, vacancy, effective rent, capital recovery and site-wide maintenance reserves.
+
+## 6. Learn Do Earn / Town Launchpad
+**Learn → Do → Earn → Launch → Scale**. Graduate to progressively more substantial commercial exposure: event-day booth; 1–3-month pop-up; incubator kiosk; full market lease or outside premises. Mentor and training relationships, rotating product demonstrations, jobs and service introductions, shared facilities and merchant support. Application criteria, selection fairness, rent assistance caps, performance milestones, food safety and graduation/exit rules remain to be developed. Participation does not confer guaranteed tenancy or special ranking in GlenTown.
+
+## 7. Formats, catchments and franchising
+- **Square:** standalone commercial/community destination.
+- **Mixed-use community:** housing integrated with Square, amenities and mobility.
+- **Township:** larger master-planned neighborhoods, work/commercial and public realm with justified education/health/services.
+Scale by viable catchment and tenant demand, not one fixed building or one facility per municipality. Future operator formats may include local GlenTown commercial partner, Square property franchise/development partner, or integrated partner under separate agreements. GlenTown digital franchise rights are not ownership of territory or a right to exclude competitors. Franchise expansion follows profitable pilots, standardized operating controls, IP/legal diligence and demonstrated tenant/operator success.
+
+## 8. Puerto Princesa pilot and site policy
+Exploratory corridors: San Manuel–San Jose, Tiniguiban–Sta. Monica, and Outer San Pedro. None is selected. An illustrative 4,000 m² rectangle was used for brainstorming; previous renderings are **not approved plot plans**, parking counts or actual area schedules. Property may need to be far larger to hold the entire program, especially sports and institutional uses.
+First seek suitable real parcel, frontage and access; geodetic/title survey, utilities, traffic and parking, zoning/CLUP, easements, drainage/flood/geohazard, tree inventory, ecology, environmental constraints, land acquisition economics. Engage architect, landscape architect and relevant structural, civil, MEP, fire and environmental consultants **before buying** or freezing a master plan. Prioritize frontage food/market beside legal on-site parking; no inducement to roadside stopping. Give service/loading/utility vehicles actual road access; maintain pedestrian safety and functional circulation. Roof gardens, water features and pools are engineering projects with continuous operating costs.
+
+## 9. Stage gates and unresolved decisions
+**G0 concept (current):** approved direction only; no land, operator, fee, franchise, architecture, timetable or budget commitment.
+**G1 market validation:** resident/tourist catchment, competitors, willingness to pay, tenant expressions of interest and draft unit economics.
+**G2 property viability:** title/zoning/hazard/traffic/environment/utility checks and concept-fit test.
+**G3 investment case:** quantity survey, capex, opex, NOI, financing, sensitivities, phased delivery, maintenance endowment and HOA affordability.
+**G4 design & authorization:** professional masterplan, required approvals, licenses and binding anchor agreements.
+**G5 pilot operations:** tenant leasing, independent management, customer results, property economics, governance and incidents measured.
+**G6 replication:** only after proven economics, controls, franchise legal work and validated regional catchments.
+No construction, product backlog or rollout is authorized by this document. Reassess claims like “zero carbon,” revenue forecasts and exact parking capacity with evidence.
+
+## 10. Repository ownership and product handoffs
+TownBoss owns cross-portfolio concept authority. GlenTown App/API may eventually support opt-in merchant listings, venue reservations, events, marketplace ordering, physical hub directories, launchpad opportunities and community markets using the **existing neutral marketplace infrastructure**. No mandatory separate Town Square module or MVP scope addition without independent product approval. TownRealty Engine may someday provide parcel/title/technical-description checks, site and hazard intelligence, leasing/property analysis and development feasibility; no unimplemented feature is represented as delivered. Project-specific companion notes should link here, not fork this authority.
