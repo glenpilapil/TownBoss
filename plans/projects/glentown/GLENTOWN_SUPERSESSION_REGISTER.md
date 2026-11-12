@@ -37,3 +37,13 @@ to change that level.
 | Universal login requirement before seeing GlenTown content | **Public discovery remains Guest-accessible**, with contextual authentication when a protected action is attempted. | Preserve public listing/detail discovery, separate transaction capability gating and authenticated intent restoration where supported. |
 
 **Latest authority:** `GLENTOWN_DECISIONS_AND_RULES.md` rules #44/#45; GlenTown-App `docs/GUEST_DISCOVERY_AND_MEMBER_ACCESS_UX_POLICY_2026-11-12.md` on draft PR #33. These November decisions supersede only conflicting earlier behavior and navigation assumptions; they do not retroactively mark Flutter, API security, browser/device QA, or operator visual acceptance complete.
+
+## 2026-11-12 — Registration and personalization route supersession
+
+| Older requirement / behavior | Superseding approved rule | Implementation consequence |
+| --- | --- | --- |
+| All authenticated users complete three onboarding/personalization steps before entering Home | **Returning existing verified account: Sign In → Home immediately.** Initial **new registration only:** Create Account → email verification success → genuinely required essential setup → Home. | Do not gate existing sign-in or session restoration on optional profile/goal completion; preserve verification/account security checks. |
+| `Make GlenTown Yours` is mandatory and a populated goals catalog is required to enable Home | **Goals and interests are optional personalization.** Missing/empty goals cannot block authentication, Home or basic public/member discovery. | Keep goals capability in appropriate Personal Tools; missing fixture goals remain a separate optional-data issue. |
+| First-registration setup completion is synonymous with a local marker or personalization flag | Separate registration setup, verified account identity, session status, selected browsing Town and optional personalization. | Local marker's cross-device/reinstall behavior requires verification and a robust account-state fallback; Android device acceptance pending. |
+
+**Authority:** `GLENTOWN_DECISIONS_AND_RULES.md` #46/#47, `GLENTOWN_IMPLEMENTATION_PLAN.md` T1.1.5–T1.1.9. November 12 Android agent reported 704 Flutter tests passing, but its newly built APK is not yet physically verified; no source implementation or release acceptance is conferred by this register.
