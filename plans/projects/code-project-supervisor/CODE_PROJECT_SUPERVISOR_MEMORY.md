@@ -676,6 +676,36 @@ Phase 5 documentation reconciliation:
 - Operational acceptance: daemon startup, health, worker launch/stop, restart/reconstruction all verified
 
 **Impact on future work**
-CPS is operational. First operational release criteria are satisfied. Next milestone: routine portfolio use under operational freeze policy. New CPS features require evidence from real product work that an actual blocking gap exists.
+CPS is operational. Phase 7 operationalization criteria are satisfied. Next milestone: first operational release via real product task execution per Implementation Plan §718-735. New CPS features require evidence from real product work that an actual blocking gap exists.
+
+### 2026-11-13 — G-002 interface transition session ID correction merged
+
+**Type:** VERIFICATION | CHECKPOINT
+**Status:** COMPLETED
+**Scope:** G-002 regression correction
+**Performed by:** Kilo
+
+**What happened**
+Pre-existing test failure in `TestInterfaceTransitionUnpromptedChatRoundTrip` (6 variants) since commit 5dbe3eb5. Root cause: test fixtures used session ID "session-1" violating CreateSession identity contract {projectID}-{num} enforced by sessionNumFromID. Two additional Claude regression tests failed after primary fix. Corrected 4 test files to use "proj-1" format. Lint QF1008 fixed (redundant embedded selector).
+
+**Why / context**
+G-002 CI corrective closeout to restore build-test baseline without compromising HR1-F protections.
+
+**Result**
+- All 6 UnpromptedChatRoundTrip variants + 2 Claude regression tests pass (compile-verified)
+- HR1-F atomic worker ID reservation, Kill race fix, concurrency/recovery tests intact
+- PR #1 merged as d90d0781 with 10/10 CI jobs green
+- Merge subject uses conventional Git title; TownBoss checkpoint format not used
+
+**Evidence**
+- Commit: d90d078134306466cd47fab790b29645904a71e6
+- PR: #1 (squash merge)
+- Files: interface_transition_test.go, interface_transition_fresh_chat_test.go, interface_transition_fresh_terminal_test.go, interface_transition_claude_regression_test.go
+- CI: build-test, sqlc-drift, api-drift, windows-workspace, gitleaks, CLI E2E (macOS/Ubuntu/container), lint — all PASS
+- Windows CLI E2E intermittent sharing violation observed (separate observation)
+- Git incident: local main hard-reset to origin/main (not fast-forward) due to divergent history; 2 local G-002 commits removed from local history, preserved in reflog and remote
+
+**Impact on future work**
+Session ID contract now consistently enforced in tests. Windows CLI E2E race tracked separately. Documentation corrections applied to distinguish Phase 7 operationalization from first operational release.
 
 ### 2026-09-13 — Phase 1 Windows baseline test exceptions accepted

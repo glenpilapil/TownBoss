@@ -45,6 +45,7 @@ If Markdown rendering does not support the symbols consistently, the checkbox re
 - [x] Phase 3 — TownBoss Governance Extensions COMPLETE
 - [x] Phase 4 — Planning Corpus Integration COMPLETE
 - [x] Phase 5 — Real Product Canary COMPLETE
+- [x] Phase 7 — Operationalization COMPLETE
 - [ ] First operational release achieved
 - [ ] CPS feature-freeze entered after operational acceptance
 
@@ -652,7 +653,7 @@ Add only gaps proven necessary by the Phase 0 audit:
 - [x] Operational health checklist
   Evidence: `docs/health-checklist.md`
 
-## Gate — Routine Portfolio Use
+## Gate — Phase 7 Operationalization Complete
 
 - [x] CPS survives normal restart/recovery scenarios
   Evidence: Phase 6 live runtime proved daemon restart preserves sessions; Phase 7 OAT verified daemon restart with state reconstruction
@@ -745,3 +746,124 @@ After the first operational release:
 - [ ] Product development becomes the primary use of CPS
 
 The implementation plan/dashboard should be updated as evidence-backed work completes. Checkbox state must reflect repository/runtime evidence, not optimism or worker prose alone.
+
+# Phase 8 — Operator GUI Productization
+
+**Phase status:** IN PROGRESS — AUDIT COMPLETE, IMPLEMENTATION PENDING SMART APP CONTROL RESOLUTION
+
+## Phase checklist
+
+- [x] Audit inherited Agent Orchestrator desktop application
+  Evidence: `frontend/` contains full Electron + React desktop app (package name: `agent-orchestrator`, productName: `Agent Orchestrator`). UI surfaces: projects list, sessions board, session detail, terminal/chat, settings, file tree, diff view, browser panel, task composer, review rail. Build system: Electron Forge + Vite. Windows packaging: NSIS maker (`makers/maker-nsis.ts`).
+- [x] Build Windows desktop artifact
+  Evidence: `npm run package` succeeds. Output: `frontend/out/Agent Orchestrator-win32-x64/agent-orchestrator.exe` (unpacked) and `frontend/out/make/Agent Orchestrator Setup 0.13.0.exe` (NSIS installer). Bundled daemon at `resources/daemon/ao.exe` — solves pty-host discovery because desktop app binary registers pty-host subcommand.
+- [ ] Launch desktop app on Windows
+  Evidence: BLOCKED — launching `agent-orchestrator.exe` exits immediately with code 0 but no window appears. Smart App Control blocks the unsigned executable. Classification: ENVIRONMENT_BLOCKED_SMART_APP_CONTROL.
+- [ ] Verify daemon connection from desktop app
+  Evidence: PENDING — cannot verify until desktop app launches successfully
+- [ ] Map CPS-specific GUI gaps
+  Evidence: Audit complete; see gap matrix below
+- [ ] Implement minimum CPS operator surfaces
+  Evidence: PENDING
+- [ ] Verify GUI operational acceptance
+  Evidence: PENDING
+
+## Deliverables
+
+- [x] GUI audit report
+  Evidence: This section; detailed evidence in Memory
+- [ ] Minimum CPS rebrand/branding
+  Evidence: PENDING
+- [ ] CPS-specific data bindings in GUI
+  Evidence: PENDING
+- [ ] Windows installer/shortcut
+  Evidence: NSIS installer builds but cannot be launched due to Smart App Control
+
+## Gate — Operator GUI Productization
+
+- [x] Inherited desktop app identified and built
+  Evidence: `frontend/` Electron app builds successfully; Windows artifacts produced
+- [ ] Desktop app launches and connects to CPS runtime
+  Evidence: BLOCKED — Smart App Control blocks unsigned executable
+- [ ] CPS-specific concepts visible in GUI
+  Evidence: Audit complete; implementation pending
+- [ ] Operator can perform normal workflow through GUI
+  Evidence: PENDING
+- [ ] Installation mechanism works for operator
+  Evidence: PENDING
+
+## Feature/Parity Matrix
+
+| Capability | Existing AO GUI | CPS backend support | GUI gap | Required action |
+|------------|----------------|-------------------|---------|-----------------|
+| Projects list | YES | YES | NONE | Inherit unchanged |
+| Sessions/workers | YES | YES | NONE | Inherit unchanged |
+| Task status | YES (session status) | YES | PARTIAL | Add CPS TaskLifecycle binding |
+| Phase/deliverable/task | NO | YES | MISSING | Add CPS TaskContract panel |
+| Planning progress | NO | YES | MISSING | Add CPS DocumentationComplianceReceipt view |
+| Validation | PARTIAL (PR/CI) | YES | PARTIAL | Add CPS validation gate status |
+| Independent review | PARTIAL (auto-review) | YES | PARTIAL | Add CPS review evidence binding |
+| Checkpoint | NO | YES | MISSING | Add checkpoint status/action |
+| Memory/compliance | NO | YES | MISSING | Add Memory update status |
+| Operator decisions | PARTIAL | YES | PARTIAL | Add AuthorityGateStatus binding |
+| Recovery/circuit breaker | NO | YES | MISSING | Add circuit breaker state |
+| Queue | NO | YES | MISSING | Add queue/waiting state |
+| Activity/events | YES | YES | NONE | Inherit unchanged |
+| Terminal/chat | YES | YES | NONE | Inherit unchanged |
+| Project switching | YES | YES | NONE | Inherit unchanged |
+| Health | PARTIAL | YES | PARTIAL | Add CPS health check integration |
+| Settings/provider state | YES | YES | NONE | Inherit unchanged |
+
+## Existing GUI surfaces (inherited unchanged)
+
+- `HomePage` — project list, recent activity, onboarding
+- `SessionsBoard` — kanban-style session board
+- `SessionView` — session detail with chat/terminal
+- `ShellTerminalsView` — terminal tabs
+- `TaskComposer` — new task creation
+- `ProjectBoardActions` — project-level actions
+- `SettingsDialog` — settings
+- `DaemonFailureBanner` — daemon health
+- `BrowserPanel` — browser preview
+- `FileTree` / `SessionFileWorkspace` — file explorer
+- `WorkspaceDiffView` / `AoDiffFile` — diff view
+- `NotificationCenter` — notifications
+- `CreateProjectFlow` / `CreateProjectAgentSheet` — project creation
+
+## CPS-specific gaps requiring implementation
+
+1. **TaskContract panel** — show phase, deliverable, task ID, objective, authority classification on session/project detail
+2. **Validation gate status** — show required validation, current status, evidence collected
+3. **Review evidence** — show independent review status, reviewer, findings
+4. **Checkpoint readiness** — show checkpoint status, commit SHA, push status
+5. **Memory/compliance** — show Memory update status, documentation compliance receipt
+6. **Circuit breaker/recovery** — show recovery attempts, circuit breaker state, attention reason
+7. **Queue/waiting** — show queued tasks, wait reason, estimated drain
+8. **Project phase/pass** — show current phase/pass from planning corpus
+9. **CPS health** — integrate CPS-specific health checks into existing health UI
+10. **Rebrand** — change app title from "Agent Orchestrator" to "Code Project Supervisor" or "CPS"
+
+## Windows launch blocker
+
+- **Root cause**: Smart App Control blocks the unsigned `agent-orchestrator.exe` executable
+- **Classification**: ENVIRONMENT_BLOCKED_SMART_APP_CONTROL
+- **Impact**: Cannot launch desktop app on this Windows machine without disabling Smart App Control
+- **Workarounds considered**:
+  1. Sign the executable with a code-signing certificate — requires certificate
+  2. Disable Smart App Control — not allowed per policy
+  3. Run on a machine without Smart App Control — requires different environment
+  4. Use web UI instead — requires server deployment
+- **Resolution path**: Obtain code-signing certificate or run on machine without Smart App Control enforcement
+
+## CPS source changes required
+
+No CPS source changes required for the audit. Implementation of CPS-specific GUI bindings requires new frontend work in `frontend/src/renderer/components/` and potentially new backend API endpoints in `backend/internal/httpd/` to expose CPS TaskGovernanceState data.
+
+## Next bounded task
+
+After Smart App Control resolution:
+1. Rebrand desktop app to "Code Project Supervisor"
+2. Add CPS TaskContract panel to project/session views
+3. Add validation/review/checkpoint/Memory status bindings
+4. Add circuit breaker/recovery UI
+5. Verify GUI operational acceptance
