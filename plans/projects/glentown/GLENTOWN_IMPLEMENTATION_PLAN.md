@@ -128,6 +128,12 @@
 - [x] T1.7.3 Automated validation: 20 focused tests and 370 full Flutter tests passed; full analyze no issues; diff check pass.
 - [ ] T1.7.4 Consolidated Samsung physical re-audit. `READY`; the 75-check session worksheet is prepared, but no physical verification is claimed.
 
+## D1.8 — Android integration source checkpoint and GitHub publication
+
+**Status:** OPERATOR APPROVED / IMPLEMENTATION PENDING (2026-11-13). This task authorizes a controlled source checkpoint on a dedicated GitHub topic branch and a draft PR only; it does not approve merging, APK installation, physical acceptance, API changes, or deployment.
+
+- [ ] **T1.8.1 Review, checkpoint and publish the source-fingerprinted Android integration candidate.** Approved scope: the exact 172 changed paths from isolated candidate baseline `b8b039c260970707d360ee90d49c277be10db8e1`, fingerprint `C7917F95844FFCD190DB2B64E0A6F1B5F7FEDD66614404F1A6C80BB1D5DB64A4`, manifest SHA-256 `1E622466B469C3A6A7977D9B992D5EDEF5B0EA853DE064E155121E01D2C9360F`. Exclude 17 original dirty paths, including held app-theme changes, unless separately approved; include only two reviewed typography compatibility members. Keep the original 189-path Android worktree, verified recovery snapshot, and other agent resources unchanged. Confirm source/asset and secret provenance, exact candidate manifest versus commit tree, task documentation/Memory receipt, full Flutter/analyzer evidence, and clean non-force push to a verified new GitHub topic branch; open a **draft** PR against `main` without merge. Record branch/commit/remote SHA, exact file count, testing and exceptions. Candidate-only automated validation: 707 Flutter tests passed, analyzer clean; 115 focused + 9 discovery tests. The excluded theme geometry test failed against the committed theme and remains an explicit HOLD validation gap. Live API authorization, APK and Samsung physical acceptance remain pending separate gates. Source-preservation and publication status are not product release status.
+
 ## Phase 1 gate
 
 - [x] D1.1–D1.7 independently implementable App-side work complete or explicitly blocked/deferred.
