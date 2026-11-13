@@ -34,6 +34,10 @@ For portfolio governance outside numbered product phases, use a stable phase suc
 
 Permission to commit does not imply permission to push, merge, publish, release, or deploy.
 
+## Incident-learning check
+
+During final documentation review, assess whether the task exposed a repeatable incident or preventive lesson under `governance/INCIDENT_LEARNING_AND_PREVENTIVE_CONTROLS.md`. Record `LESSONS_LEARNED=NOT_APPLICABLE | DOCUMENTED | OPEN_BLOCKER` in the governed receipt or linked project Memory when material. Update `AGENTS.md` only for concise future-agent behavior changes and link to a runbook for the detailed procedure. An unresolved incident is not a successful remediation; use the appropriate blocked status and safe handoff. This check augments the existing closeout sequence rather than changing its order or authorizing unrelated work.
+
 ## Concise report rule
 The final report is a summary receipt, not the evidence archive. By default it should contain only:
 - outcome/status;

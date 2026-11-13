@@ -11,3 +11,8 @@ Preflight repository, worktree, branch, HEAD SHA, upstream, status, active Git o
 Canonical TownBoss/project documentation is authority. Persistent rules operationalize it; first-party Skills encode repeatable procedures; approved third-party Skills/MCPs provide bounded capability; deterministic gates verify compliance. No lower layer may silently supersede canonical authority.
 
 Use the applicable validation profile. Automated, browser, physical-device, deployed, and operational acceptance are distinct. Cite exact implementation and evidence SHAs. Before checkpointing, update affected project documentation and Memory, then reconcile TownBoss documents when project truth changed. Stage task-owned files only; use `[P<phase>][D<deliverable>][T<task>]` commits; verify normal push and remote SHA. Do not declare DONE while closeout, documentation, Memory, validation, or remote-checkpoint compliance is pending. On interruption, preserve state and leave a bounded handoff.
+
+
+## Incident learning and prevention
+
+At material incidents and task closeout, apply `governance/INCIDENT_LEARNING_AND_PREVENTIVE_CONTROLS.md`: classify observed, verified, remediated, regression-verified and unresolved conditions; preserve evidence; capture a reusable lesson only when material. Keep `AGENTS.md` as a short behavior-setting bootstrap, with detailed steps in maintained runbooks/skills and chronology in project Memory. Never present speculative diagnoses as solutions or publish an unreviewed dirty worktree. Report unresolved recovery permissions and artifact-provenance gaps as blockers rather than weakening safety gates.
