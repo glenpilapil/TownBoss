@@ -45,6 +45,7 @@ If Markdown rendering does not support the symbols consistently, the checkbox re
 - [x] Phase 3 — TownBoss Governance Extensions COMPLETE
 - [x] Phase 4 — Planning Corpus Integration COMPLETE
 - [x] Phase 5 — Real Product Canary COMPLETE
+- [x] Phase 7 — Operationalization COMPLETE
 - [ ] First operational release achieved
 - [ ] CPS feature-freeze entered after operational acceptance
 
@@ -652,7 +653,7 @@ Add only gaps proven necessary by the Phase 0 audit:
 - [x] Operational health checklist
   Evidence: `docs/health-checklist.md`
 
-## Gate — Routine Portfolio Use
+## Gate — Phase 7 Operationalization Complete
 
 - [x] CPS survives normal restart/recovery scenarios
   Evidence: Phase 6 live runtime proved daemon restart preserves sessions; Phase 7 OAT verified daemon restart with state reconstruction
