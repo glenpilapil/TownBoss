@@ -1,7 +1,9 @@
 # Incident Learning and Preventive Controls
 
-**Status:** Proposed portfolio-wide governance addition — draft review pending  
-**Applies to:** TownBoss-governed repositories, development agents and supervisors  
+**Status:** Proposed portfolio-wide governance addition — draft review pending
+
+**Applies to:** TownBoss-governed repositories, development agents and supervisors
+
 **Purpose:** Capture repeatable engineering lessons without turning `AGENTS.md` into an unverified troubleshooting log.
 
 ## Existing authority
